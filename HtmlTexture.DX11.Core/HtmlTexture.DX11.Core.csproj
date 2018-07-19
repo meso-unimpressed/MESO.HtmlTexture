@@ -14,6 +14,21 @@
     <TargetFrameworkProfile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DefineConstants>DEBUG;TRACE</DefineConstants>
@@ -85,6 +100,9 @@
       <HintPath>..\packages\md-stdl.0.2.6-beta\lib\Net47\md.stdl.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="mp.pddn, Version=1.1.34.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\mp.pddn.1.1.34\lib\net47\mp.pddn.dll</HintPath>
+    </Reference>
     <Reference Include="SevenZip, Version=9.20.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\LZMA-SDK.9.20\lib\net20\SevenZip.dll</HintPath>
     </Reference>
@@ -159,6 +177,9 @@
     <Reference Include="VVVV.DX11.Lib">
       <HintPath>..\Dependencies\VVVV.DX11.Lib.dll</HintPath>
     </Reference>
+    <Reference Include="VVVV.DX11.Nodes">
+      <HintPath>..\Dependencies\VVVV.DX11.Nodes.dll</HintPath>
+    </Reference>
     <Reference Include="VVVV.Hosting">
       <HintPath>..\Dependencies\VVVV.Hosting.dll</HintPath>
     </Reference>
@@ -177,14 +198,24 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbstractHtmlTextureInputsNode.cs" />
+    <Compile Include="AbstractOperationNode.cs" />
     <Compile Include="BoundObject.cs" />
     <Compile Include="ClrV8ValueSerializer.cs" />
+    <Compile Include="DefaultFunctionBindings.cs" />
     <Compile Include="Globals.cs" />
+    <Compile Include="HtmlTextureNodes.cs" />
     <Compile Include="HtmlTextureWrapper.cs" />
+    <Compile Include="JavascriptOperationNodes.cs" />
+    <Compile Include="NavigationOperationNodes.cs" />
+    <Compile Include="ObjectBindingNodes.cs" />
     <Compile Include="Operations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RenderProcess.cs" />
-    <Compile Include="Startable.cs" />
+    <Compile Include="ScrollOperationNode.cs" />
+    <Compile Include="CoreStartable.cs" />
+    <Compile Include="Startables.cs" />
+    <Compile Include="TouchOperationNode.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -212,6 +243,18 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="auxjs\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
 </Project>

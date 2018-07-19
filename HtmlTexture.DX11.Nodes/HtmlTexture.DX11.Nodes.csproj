@@ -64,6 +64,9 @@
     <Reference Include="md.stdl, Version=0.2.6.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\md-stdl.0.2.6-beta\lib\net47\md.stdl.dll</HintPath>
     </Reference>
+    <Reference Include="mp.pddn, Version=1.1.34.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\mp.pddn.1.1.34\lib\net47\mp.pddn.dll</HintPath>
+    </Reference>
     <Reference Include="SevenZip, Version=9.20.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\LZMA-SDK.9.20\lib\net20\SevenZip.dll</HintPath>
     </Reference>
@@ -141,6 +144,9 @@
     <Reference Include="VVVV.DX11.Lib">
       <HintPath>..\Dependencies\VVVV.DX11.Lib.dll</HintPath>
     </Reference>
+    <Reference Include="VVVV.DX11.Nodes">
+      <HintPath>..\Dependencies\VVVV.DX11.Nodes.dll</HintPath>
+    </Reference>
     <Reference Include="VVVV.Hosting">
       <HintPath>..\Dependencies\VVVV.Hosting.dll</HintPath>
     </Reference>
@@ -159,11 +165,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbstractOperationNode.cs" />
-    <Compile Include="Startables.cs" />
-    <Compile Include="HtmlTextureNodes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TouchOperationNode.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

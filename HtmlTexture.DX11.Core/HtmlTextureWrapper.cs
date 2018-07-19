@@ -29,7 +29,7 @@ using VVVV.Utils.VMath;
 
 namespace VVVV.HtmlTexture.DX11.Core
 {
-    public class HtmlTextureWrapper : IMainlooping, IDisposable
+    public partial class HtmlTextureWrapper : IMainlooping, IDisposable
     {
         public static Dictionary<int, HtmlTextureWrapper> Instances = new Dictionary<int, HtmlTextureWrapper>();
         public static readonly (int w, int h) DefaultSize = (800, 1000);
@@ -412,7 +412,11 @@ namespace VVVV.HtmlTexture.DX11.Core
             {
                 Name = "vvvvUtils"
             };
-            DocumentSizeBaseSelector = OnLoadBinding.AddFunction(new DocSizeBaseSelector());
+            DocumentSizeBaseSelector = OnLoadBinding.AddFunction(new DocSizeBaseSelector
+            {
+                Selector = BrowserSettings.DocumentSizeElementSelector
+            });
+
             ResizeNotification = OnLoadBinding.AddFunction(new ResizeNotificationFunction());
             ResizeNotification.SizeChanged += (sender, args) =>
             {
@@ -440,7 +444,7 @@ namespace VVVV.HtmlTexture.DX11.Core
                     Id = t.Id,
                     X = (float) VMath.Map(t.Point.X, -1.0, 1.0, 0.0, TextureSize.w, TMapMode.Float),
                     Y = (float) VMath.Map(t.Point.Y, 1.0, -1.0, 0.0, TextureSize.h, TMapMode.Float),
-                    Force = t.Force
+                    Force = t.Force,
                 });
             });
         }
@@ -701,54 +705,13 @@ namespace VVVV.HtmlTexture.DX11.Core
             public double ZoomLevel;
             public bool InvertScrollWheel;
             public bool InvertHorizontalScrollWheel;
+            public string DocumentSizeElementSelector;
         }
 
         public class WrapperInitSettings
         {
             public int Fps { get; set; } = 60;
             public int ParentHandle { get; set; } = 0;
-        }
-
-        public class ResizeNotificationFunction : JsBindingFunction
-        {
-            public int Width { get; private set; }
-            public int Height { get; private set; }
-
-            public event EventHandler SizeChanged;
-
-            public ResizeNotificationFunction()
-            {
-                Name = "docResizeNotification";
-            }
-
-            protected override CfrV8Value Function(CfrV8HandlerExecuteEventArgs args, JsBinding binding, HtmlTextureWrapper wrapper)
-            {
-                if (Arguments.Length >= 2 && (Arguments[0].IsInt && Arguments[1].IsInt))
-                {
-                    Width = Arguments[0].IntValue;
-                    Height = Arguments[1].IntValue;
-                    wrapper.DocumentSize = (Width, Height);
-                    SizeChanged?.Invoke(this, EventArgs.Empty);
-                }
-                return CfrV8Value.CreateNull();
-            }
-        }
-
-        public class DocSizeBaseSelector : JsBindingFunction
-        {
-            public string Selector { get; set; } = "body";
-
-            public DocSizeBaseSelector()
-            {
-                Name = "docSizeBaseSelector";
-            }
-
-            protected override CfrV8Value Function(CfrV8HandlerExecuteEventArgs args, JsBinding binding, HtmlTextureWrapper wrapper)
-            {
-                if (Arguments.Length >= 1 && Arguments[0].IsString)
-                    Selector = Arguments[0].StringValue;
-                return CfrV8Value.CreateString(Selector);
-            }
         }
 
         public class EvaluateTask : CfrTask

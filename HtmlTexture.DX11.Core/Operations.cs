@@ -96,6 +96,17 @@ namespace VVVV.HtmlTexture.DX11.Core
         }
     }
 
+    public class NavigationOperation : HtmlTextureOperation
+    {
+        public bool Forward { get; set; }
+        public bool Backward { get; set; }
+        protected override void Operation(HtmlTextureWrapper wrapper)
+        {
+            if (Forward && wrapper.Browser.CanGoForward) wrapper.Browser.GoForward();
+            if (Backward && wrapper.Browser.CanGoBack) wrapper.Browser.GoBack();
+        }
+    }
+
     public struct KeyEvent
     {
         public int KeyCode;

@@ -15,6 +15,7 @@ namespace VVVV.HtmlTexture.DX11.Core
 
         public static string GetExceptionDump(this CfrV8Exception e)
         {
+            if (e == null) return "No Error?";
             return e.Message + Environment.NewLine + e.ScriptResourceName + Environment.NewLine + e.LineNumber + " " + e.StartColumn;
         }
 

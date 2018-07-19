@@ -10,6 +10,8 @@ using md.stdl.Interfaces;
 
 namespace VVVV.HtmlTexture.DX11.Core
 {
+    public delegate void JsFunctionEventHandler(JsBindingFunction func, HtmlTextureWrapper wrapper);
+
     //TODO: possible memory leak undisposed disposables, but wrong disposition might be fatal
     public class JsBinding : ICloneable<JsBinding>
     {
@@ -82,21 +84,20 @@ namespace VVVV.HtmlTexture.DX11.Core
         public string Name { get; set; }
         public CfrV8Value[] Arguments { get; set; } = new CfrV8Value[0];
         public CfrV8HandlerExecuteEventArgs LastEventArgs { get; set; }
-        public event EventHandler Invoked;
+        public int InvokeCount;
+        public event JsFunctionEventHandler Invoked;
 
         public virtual CfrV8Value Invoke(CfrV8HandlerExecuteEventArgs args, JsBinding binding, HtmlTextureWrapper wrapper)
         {
             var res = Function(args, binding, wrapper);
-            Invoked?.Invoke(this, EventArgs.Empty);
+            Invoked?.Invoke(this, wrapper);
+            InvokeCount++;
             return res;
         }
 
         protected abstract CfrV8Value Function(CfrV8HandlerExecuteEventArgs args, JsBinding binding, HtmlTextureWrapper wrapper);
 
-        public virtual JsBindingFunction Copy()
-        {
-            return new SimpleReturnObjectBinding { Name = Name };
-        }
+        public abstract JsBindingFunction Copy();
 
         public object Clone()
         {
@@ -110,6 +111,15 @@ namespace VVVV.HtmlTexture.DX11.Core
         protected override CfrV8Value Function(CfrV8HandlerExecuteEventArgs args, JsBinding binding, HtmlTextureWrapper wrapper)
         {
             return ReturnObject.V8Serialize();
+        }
+
+        public override JsBindingFunction Copy()
+        {
+            return new SimpleReturnObjectBinding
+            {
+                Name = Name,
+                ReturnObject = ReturnObject
+            };
         }
     }
 }
