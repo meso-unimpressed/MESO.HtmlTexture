@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>VVVV.HtmlTexture.DX11.Core</RootNamespace>
+    <RootNamespace>VVVV.HtmlTexture.DX11</RootNamespace>
     <AssemblyName>HtmlTexture.DX11.Core</AssemblyName>
     <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <OutputPath>bin\$(Platform)\$(Configuration)\</OutputPath>
@@ -198,24 +198,32 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbstractHtmlTextureInputsNode.cs" />
-    <Compile Include="AbstractOperationNode.cs" />
-    <Compile Include="BoundObject.cs" />
-    <Compile Include="ClrV8ValueSerializer.cs" />
-    <Compile Include="DefaultFunctionBindings.cs" />
-    <Compile Include="Globals.cs" />
-    <Compile Include="HtmlTextureNodes.cs" />
-    <Compile Include="HtmlTextureWrapper.cs" />
-    <Compile Include="JavascriptOperationNodes.cs" />
-    <Compile Include="NavigationOperationNodes.cs" />
-    <Compile Include="ObjectBindingNodes.cs" />
-    <Compile Include="Operations.cs" />
+    <Compile Include="Core\RemoteTasks.cs" />
+    <Compile Include="Core\WrapperSettings.cs" />
+    <Compile Include="Nodes\About.cs" />
+    <Compile Include="Nodes\AbstractHtmlTextureInputsNode.cs" />
+    <Compile Include="Nodes\AbstractOperationNode.cs" />
+    <Compile Include="Core\BoundObject.cs" />
+    <Compile Include="Core\ClrV8ValueSerializer.cs" />
+    <Compile Include="Core\DefaultFunctionBindings.cs" />
+    <Compile Include="Nodes\DummyResizeOpNode.cs" />
+    <Compile Include="Nodes\EventsTunnelingNode.cs" />
+    <Compile Include="Nodes\HtmlTextureGetNodes.cs" />
+    <Compile Include="Core\Globals.cs" />
+    <Compile Include="Nodes\HtmlTextureNodes.cs" />
+    <Compile Include="Core\HtmlTextureWrapper.cs" />
+    <Compile Include="Nodes\JavascriptOperationNodes.cs" />
+    <Compile Include="Nodes\NavigationOperationNodes.cs" />
+    <Compile Include="Nodes\ObjectBindingNodes.cs" />
+    <Compile Include="Core\ObjectBuilder.cs" />
+    <Compile Include="Core\Operations.cs" />
+    <Compile Include="Nodes\ObjectBuilderNodes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RenderProcess.cs" />
-    <Compile Include="ScrollOperationNode.cs" />
-    <Compile Include="CoreStartable.cs" />
-    <Compile Include="Startables.cs" />
-    <Compile Include="TouchOperationNode.cs" />
+    <Compile Include="Core\RenderProcess.cs" />
+    <Compile Include="Nodes\ScrollOperationNode.cs" />
+    <Compile Include="Core\CoreStartable.cs" />
+    <Compile Include="Nodes\Startables.cs" />
+    <Compile Include="Nodes\TouchOperationNode.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

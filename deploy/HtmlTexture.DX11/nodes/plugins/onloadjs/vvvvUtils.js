@@ -20,24 +20,26 @@ if ("vvvvUtils" in window) {
         });
     };
 
-    vvvvUtils.prevDocW = 0;
-    vvvvUtils.prevDocH = 0;
+    vvvvUtils.prevDocW = -1;
+    vvvvUtils.prevDocH = -1;
 
-    window.requestAnimationFrame(() => {
+    setInterval(() => {
         if ("customSizeReport" in vvvvUtils) {
             vvvvUtils.customSizeReport();
         } else {
-            var el = document.querySelector(vvvvUtils.docSizeBaseSelector());
+            var selector = vvvvUtils.docSizeBaseSelector();
+            var el = document.querySelector(selector);
             var mw = Math.max(el.scrollWidth, document.body.scrollWidth);
             var mh = Math.max(el.scrollHeight, document.body.scrollHeight);
-            var changed = vvvvUtils.prevDocW !== mw || vvvvUtils.prevDocH !== mh;
 
-            if (changed) {
+            if (vvvvUtils.prevDocW != mw || vvvvUtils.prevDocH != mh) {
+                console.log(selector + " size changed");
+                
                 vvvvUtils.docResizeNotification(mw, mh);
             }
 
             vvvvUtils.prevDocW = mw;
             vvvvUtils.prevDocH = mh;
         }
-    });
+    }, 25);
 }

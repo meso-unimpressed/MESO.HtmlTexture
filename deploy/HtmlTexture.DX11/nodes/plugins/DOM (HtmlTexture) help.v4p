@@ -1,0 +1,107 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha36.1.dtd" >
+   <PATCH nodename="D:\local\vvvv-gp\packs\HtmlTexture.DX11\nodes\plugins\DOM (HtmlTexture) help.v4p" scrollx="0" scrolly="0">
+   <BOUNDS type="Window" left="4425" top="1695" width="9000" height="6000">
+   </BOUNDS>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="3">
+   <BOUNDS type="Node" left="225" top="225" width="5100" height="450">
+   </BOUNDS>
+   <BOUNDS type="Box" left="225" top="225" width="5100" height="450">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|DOM (HtmlTexture)|">
+   </PIN>
+   <PIN pinname="Output String" slicecount="1" visible="0" values="||">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" visible="1" values="14">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="2">
+   <BOUNDS type="Node" left="225" top="600" width="5100" height="600">
+   </BOUNDS>
+   <BOUNDS type="Box" left="225" top="600" width="5100" height="600">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|Get the DOM xml from HtmlTexture|">
+   </PIN>
+   <PIN pinname="Output String" slicecount="1" visible="0" values="||">
+   </PIN>
+   </NODE>
+   <NODE nodename="DOM (HtmlTexture)" componentmode="Hidden" id="0">
+   <BOUNDS type="Node" left="2460" top="2730" width="0" height="0">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2460" top="2730" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Update DOM" visible="1" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="RootElement" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="HtmlTexture (DX11.Texture2D String)" filename="%VVVV%\packs\HtmlTexture.DX11\nodes\plugins\HtmlTexture.DX11.Core.exe" nodename="HtmlTexture (DX11.Texture2D String)" componentmode="Hidden" id="4">
+   <BOUNDS type="Node" left="2145" top="2130" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2145" top="2130" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Content" visible="1">
+   </PIN>
+   <PIN pinname="Wrapper Output" visible="1">
+   </PIN>
+   <PIN pinname="On Loaded" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="5">
+   <BOUNDS type="Box" left="2115" top="1410" width="5175" height="330">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2115" top="1410" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="|&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body bgcolor=&quot;#0000ff&quot;&gt;&lt;/body&gt;&lt;/html&gt;|">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="|&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body bgcolor=&quot;#0000ff&quot;&gt;&lt;/body&gt;&lt;/html&gt;|">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="5" srcpinname="Output String" dstnodeid="4" dstpinname="Content">
+   </LINK>
+   <LINK srcnodeid="4" srcpinname="Wrapper Output" dstnodeid="0" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="4" srcpinname="On Loaded" dstnodeid="0" dstpinname="Update DOM">
+   </LINK>
+   <NODE systemname="AsString (Object)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="AsString (Object)" componentmode="Hidden" id="7">
+   <BOUNDS type="Node" left="2475" top="3180" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2475" top="3180" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Object" visible="1">
+   </PIN>
+   <PIN pinname="String" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="0" srcpinname="RootElement" dstnodeid="7" dstpinname="Object">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="8">
+   <BOUNDS type="Box" left="2490" top="3660" width="3045" height="1335">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2490" top="3660" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="7" srcpinname="String" dstnodeid="8" dstpinname="Input String">
+   </LINK>
+   <PACK Name="dx11" Version="1.3.0.1">
+   </PACK>
+   <PACK Name="KeyboardUI" Version="1.1.1">
+   </PACK>
+   <PACK Name="vvvv-Message" Version="2.9.10">
+   </PACK>
+   <PACK Name="vvvv-ZeroMQ" Version="0.5.7">
+   </PACK>
+   <PACK Name="addonpack" Version="36.0.0">
+   </PACK>
+   </PATCH>

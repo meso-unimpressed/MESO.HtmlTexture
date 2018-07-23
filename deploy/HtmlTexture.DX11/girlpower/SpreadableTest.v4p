@@ -1,0 +1,1089 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha36.1.dtd" >
+   <PATCH nodename="D:\local\vvvv-gp\packs\HtmlTexture.DX11\girlpower\SpreadableTest.v4p" scrollx="0" scrolly="4695" locked="0" systemname="SpreadableTest" filename="D:\local\vvvv-gp\packs\HtmlTexture.DX11\girlpower\SpreadableTest.v4p">
+   <BOUNDS type="Window" left="2925" top="8070" width="17175" height="18660">
+   </BOUNDS>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="4" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="3390" top="8160" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3390" top="8160" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
+   <PACK Name="dx11" Version="1.3.0.1">
+   </PACK>
+   <PACK Name="KeyboardUI" Version="1.1.1">
+   </PACK>
+   <PACK Name="vvvv-Message" Version="2.9.10">
+   </PACK>
+   <PACK Name="vvvv-ZeroMQ" Version="0.5.7">
+   </PACK>
+   <PACK Name="addonpack" Version="36.0.0">
+   </PACK>
+   <NODE systemname="Renderer (DX11)" filename="%VVVV%\packs\dx11\nodes\plugins\base\VVVV.DX11.Nodes.dll" nodename="Renderer (DX11)" componentmode="InAWindow" id="14">
+   <BOUNDS type="Node" left="2040" top="21705" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2040" top="21705" width="6000" height="4500">
+   </BOUNDS>
+   <BOUNDS type="Window" left="-33840" top="1170" width="24990" height="18120">
+   </BOUNDS>
+   <PIN pinname="Layers" visible="1">
+   </PIN>
+   <PIN pinname="Actual BackBuffer SizeXY" visible="1">
+   </PIN>
+   <PIN pinname="Mouse State" visible="1">
+   </PIN>
+   <PIN pinname="Keyboard State" visible="1">
+   </PIN>
+   <PIN pinname="Show Cursor" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Touch Data" visible="1">
+   </PIN>
+   <PIN pinname="Background Color" slicecount="1" values="|0.75313,0.75313,0.75313,1.00000|">
+   </PIN>
+   </NODE>
+   <NODE systemname="PerfMeter2 (DX11.Debug)" filename="%VVVV%\packs\mp.dx\nodes\modules\essentials\PerfMeter2 (DX11.Debug).v4p" nodename="PerfMeter2 (DX11.Debug)" componentmode="Hidden" id="42">
+   <BOUNDS type="Node" left="2220" top="20985" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Layer In" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Layer Out" visible="1">
+   </PIN>
+   <PIN pinname="Enabled" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="42" srcpinname="Layer Out" dstnodeid="14" dstpinname="Layers">
+   </LINK>
+   <NODE systemname="Spreadsheet (ReoGrid)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Spreadsheet (ReoGrid)" componentmode="InAWindow" id="48">
+   <BOUNDS type="Node" left="4275" top="2280" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="4275" top="2280" width="6000" height="4500">
+   </BOUNDS>
+   <BOUNDS type="Window" left="7935" top="2580" width="18870" height="5205">
+   </BOUNDS>
+   <PIN pinname="Workbook Data" slicecount="1" values="Sheet1:PGdyaWQgeG1sbnM6eHNkPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYSIgeG1sbnM6eHNpPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYS1pbnN0YW5jZSI+DQogIDxoZWFkPg0KICAgIDxtZXRhPg0KICAgICAgPGN1bHR1cmU+ZW4tREU8L2N1bHR1cmU+DQogICAgICA8ZWRpdG9yPlJlb0dyaWQgQ29yZTwvZWRpdG9yPg0KICAgICAgPGNvcmUtdmVyPjIuMS4wLjA8L2NvcmUtdmVyPg0KICAgIDwvbWV0YT4NCiAgICA8cm93cz4yMDA8L3Jvd3M+DQogICAgPGNvbHM+MTAxPC9jb2xzPg0KICAgIDxkZWZhdWx0LXJvdy1oZWlnaHQ+MjA8L2RlZmF1bHQtcm93LWhlaWdodD4NCiAgICA8ZGVmYXVsdC1jb2wtd2lkdGg+NzA8L2RlZmF1bHQtY29sLXdpZHRoPg0KICAgIDxzZXR0aW5ncyBtZXRhPSIzMDQ3NTAyNjM5OCIgLz4NCiAgICA8c2NyaXB0IC8+DQogIDwvaGVhZD4NCiAgPHN0eWxlIGZvbnQ9IkNhbGlicmkiIGZvbnQtc2l6ZT0iMTAsMjUiIGFsaWduPSJnZW5lcmFsIiB2YWxpZ249Im1pZGRsZSIgLz4NCiAgPHJvd3MgLz4NCiAgPGNvbHM+DQogICAgPGNvbCBjb2w9IjAiIHdpZHRoPSI0ODMiIGxhc3Qtd2lkdGg9IjQ0MCIgLz4NCiAgICA8Y29sIGNvbD0iMSIgd2lkdGg9IjE0MiIgLz4NCiAgICA8Y29sIGNvbD0iMiIgd2lkdGg9IjE0MiIgbGFzdC13aWR0aD0iNzAiIC8+DQogIDwvY29scz4NCiAgPHYtYm9yZGVycyAvPg0KICA8aC1ib3JkZXJzIC8+DQogIDxjZWxscz4NCiAgICA8Y2VsbCByb3c9IjAiIGNvbD0iMCI+aHR0cHM6Ly9wYXRyaWNraGxhdWtlLmdpdGh1Yi5pby90b3VjaC90cmFja2VyL211bHRpLXRvdWNoLXRyYWNrZXItcG9pbnRlci5odG1sPC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMCIgY29sPSIxIj5Ub3VjaCB0ZXN0czwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjAiIGNvbD0iMiI+LmNvbnRhaW5lciBjYW52YXM8L2NlbGw+DQogICAgPGNlbGwgcm93PSIwIiBjb2w9IjMiIGJvZHktdHlwZT0iQnV0dG9uQ2VsbCI+RGV2VG9vbDxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPjwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjAiIGNvbD0iNCIgYm9keS10eXBlPSJCdXR0b25DZWxsIj5Mb2FkPHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMCIgY29sPSI1IiBib2R5LXR5cGU9IkJ1dHRvbkNlbGwiPlJlbG9hZDxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPjwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjAiIGNvbD0iNiIgYm9keS10eXBlPSJCdXR0b25DZWxsIj5CYWNrPHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMCIgY29sPSI3IiBib2R5LXR5cGU9IkJ1dHRvbkNlbGwiPkZvcndhcmQ8c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSIxIiBjb2w9IjAiPmh0dHA6Ly9jYW1lbmRlc2lnbi5jb20vY29kZS92aWRlb19mb3JfZXZlcnlib2R5L3Rlc3QuaHRtbDwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjEiIGNvbD0iMSI+aCwyNjQgdGVzdDwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjEiIGNvbD0iMiI+Ym9keTwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjEiIGNvbD0iMyIgYm9keS10eXBlPSJCdXR0b25DZWxsIj5EZXZUb29sPHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMSIgY29sPSI0IiBib2R5LXR5cGU9IkJ1dHRvbkNlbGwiPkxvYWQ8c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSIxIiBjb2w9IjUiIGJvZHktdHlwZT0iQnV0dG9uQ2VsbCI+UmVsb2FkPHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMSIgY29sPSI2IiBib2R5LXR5cGU9IkJ1dHRvbkNlbGwiPkJhY2s8c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSIxIiBjb2w9IjciIGJvZHktdHlwZT0iQnV0dG9uQ2VsbCI+Rm9yd2FyZDxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPjwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjIiIGNvbD0iMCI+aHR0cHM6Ly9oYW1tZXJqcy5naXRodWIuaW88L2NlbGw+DQogICAgPGNlbGwgcm93PSIyIiBjb2w9IjEiPm11bHRpdG91Y2ggdGVzdDwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjIiIGNvbD0iMiI+Ym9keTwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjIiIGNvbD0iMyIgYm9keS10eXBlPSJCdXR0b25DZWxsIj5EZXZUb29sPHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMiIgY29sPSI0IiBib2R5LXR5cGU9IkJ1dHRvbkNlbGwiPkxvYWQ8c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSIyIiBjb2w9IjUiIGJvZHktdHlwZT0iQnV0dG9uQ2VsbCI+UmVsb2FkPHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMiIgY29sPSI2IiBib2R5LXR5cGU9IkJ1dHRvbkNlbGwiPkJhY2s8c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSIyIiBjb2w9IjciIGJvZHktdHlwZT0iQnV0dG9uQ2VsbCI+Rm9yd2FyZDxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPjwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjMiIGNvbD0iMCI+Y2VzaXVtanMsb3JnL05ld1lvcmsvPC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMyIgY29sPSIxIj5tYXAgdGVzdDwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjMiIGNvbD0iMiI+Ym9keTwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjMiIGNvbD0iMyIgYm9keS10eXBlPSJCdXR0b25DZWxsIj5EZXZUb29sPHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMyIgY29sPSI0IiBib2R5LXR5cGU9IkJ1dHRvbkNlbGwiPkxvYWQ8c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSIzIiBjb2w9IjUiIGJvZHktdHlwZT0iQnV0dG9uQ2VsbCI+UmVsb2FkPHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMyIgY29sPSI2IiBib2R5LXR5cGU9IkJ1dHRvbkNlbGwiPkJhY2s8c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSIzIiBjb2w9IjciIGJvZHktdHlwZT0iQnV0dG9uQ2VsbCI+Rm9yd2FyZDxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPjwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjQiIGNvbD0iMCI+aHR0cDovL3BlYWNoLnRoZW1henpvbmUuY29tL2R1cmlhbi9tb3ZpZXMvc2ludGVsLTIwNDgtc3Vycm91bmQubXA0PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iNCIgY29sPSIxIj5tcDQgdGVzdDwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjQiIGNvbD0iMiI+dmlkZW88L2NlbGw+DQogICAgPGNlbGwgcm93PSI0IiBjb2w9IjMiIGJvZHktdHlwZT0iQnV0dG9uQ2VsbCI+RGV2VG9vbDxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPjwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjQiIGNvbD0iNCIgYm9keS10eXBlPSJCdXR0b25DZWxsIj5Mb2FkPHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iNCIgY29sPSI1IiBib2R5LXR5cGU9IkJ1dHRvbkNlbGwiPlJlbG9hZDxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPjwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjQiIGNvbD0iNiIgYm9keS10eXBlPSJCdXR0b25DZWxsIj5CYWNrPHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iNCIgY29sPSI3IiBib2R5LXR5cGU9IkJ1dHRvbkNlbGwiPkZvcndhcmQ8c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSI1IiBjb2w9IjAiPmh0dHBzOi8vbWFkY2xlbS5naXRodWIuaW88L2NlbGw+DQogICAgPGNlbGwgcm93PSI1IiBjb2w9IjEiPnNjcm9sbGluZyB0ZXN0PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iNSIgY29sPSIyIj4jbWFpbkNvbnRhaW5lciBjYW52YXM8L2NlbGw+DQogICAgPGNlbGwgcm93PSI1IiBjb2w9IjMiIGJvZHktdHlwZT0iQnV0dG9uQ2VsbCI+RGV2VG9vbDxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPjwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjUiIGNvbD0iNCIgYm9keS10eXBlPSJCdXR0b25DZWxsIj5Mb2FkPHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iNSIgY29sPSI1IiBib2R5LXR5cGU9IkJ1dHRvbkNlbGwiPlJlbG9hZDxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPjwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjUiIGNvbD0iNiIgYm9keS10eXBlPSJCdXR0b25DZWxsIj5CYWNrPHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iNSIgY29sPSI3IiBib2R5LXR5cGU9IkJ1dHRvbkNlbGwiPkZvcndhcmQ8c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSI2IiBjb2w9IjAiPmh0dHBzOi8vcmV2ZWFsanMsY29tLz90cmFuc2l0aW9uPWNvbnZleDwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjYiIGNvbD0iMSI+dXNlY2FzZTogcHJlc2VudGF0aW9uPC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iNiIgY29sPSIyIj5ib2R5PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iNiIgY29sPSIzIiBib2R5LXR5cGU9IkJ1dHRvbkNlbGwiPkRldlRvb2w8c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSI2IiBjb2w9IjQiIGJvZHktdHlwZT0iQnV0dG9uQ2VsbCI+TG9hZDxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPjwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjYiIGNvbD0iNSIgYm9keS10eXBlPSJCdXR0b25DZWxsIj5SZWxvYWQ8c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSI2IiBjb2w9IjYiIGJvZHktdHlwZT0iQnV0dG9uQ2VsbCI+QmFjazxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPjwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjYiIGNvbD0iNyIgYm9keS10eXBlPSJCdXR0b25DZWxsIj5Gb3J3YXJkPHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+PC9jZWxsPg0KICA8L2NlbGxzPg0KPC9ncmlkPg==">
+   </PIN>
+   <PIN pinname="Worksheet" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="WorksheetMetrics (ReoGrid)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="WorksheetMetrics (ReoGrid)" componentmode="Hidden" id="49">
+   <BOUNDS type="Node" left="6210" top="2295" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6210" top="2295" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Worksheet" visible="1">
+   </PIN>
+   <PIN pinname="Max Content Rows" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="48" srcpinname="Worksheet" dstnodeid="49" dstpinname="Worksheet" hiddenwhenlocked="0">
+   </LINK>
+   <NODE systemname="OptimalGrid (Value)" filename="%VVVV%\packs\mp.essentials\nodes\modules\value\OptimalGrid (Value).v4p" componentmode="Hidden" id="51" nodename="%VVVV%\packs\mp.essentials\nodes\modules\value\OptimalGrid (Value).v4p">
+   <BOUNDS type="Node" left="6420" top="3825" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6420" top="3825" width="4800" height="3600">
+   </BOUNDS>
+   <BOUNDS type="Window" left="24195" top="16305" width="9000" height="6000">
+   </BOUNDS>
+   <PIN pinname="Count" visible="1">
+   </PIN>
+   <PIN pinname="Rows" visible="1">
+   </PIN>
+   <PIN pinname="Columns" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="49" srcpinname="Max Content Rows" dstnodeid="51" dstpinname="Count" hiddenwhenlocked="1">
+   </LINK>
+   <NODE systemname="I (Spreads)" nodename="I (Spreads)" componentmode="Hidden" id="52">
+   <BOUNDS type="Node" left="5790" top="3855" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname=".. To [" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="49" srcpinname="Max Content Rows" dstnodeid="52" dstpinname=".. To [" hiddenwhenlocked="1">
+   </LINK>
+   <NODE systemname="GridSplit (Transform)" filename="%VVVV%\packs\mp.essentials\nodes\modules\transform\GridSplit (Transform).v4p" nodename="GridSplit (Transform)" componentmode="Hidden" id="53">
+   <BOUNDS type="Node" left="6180" top="4635" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Rows" visible="1">
+   </PIN>
+   <PIN pinname="Columns" visible="1">
+   </PIN>
+   <PIN pinname="Index" visible="1">
+   </PIN>
+   <PIN pinname="Transform Out" visible="1">
+   </PIN>
+   <PIN pinname="Transform In" visible="1">
+   </PIN>
+   <PIN pinname="Padding" slicecount="1" visible="1" values="0.01">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="51" srcpinname="Rows" dstnodeid="53" dstpinname="Rows">
+   </LINK>
+   <LINK srcnodeid="51" srcpinname="Columns" dstnodeid="53" dstpinname="Columns">
+   </LINK>
+   <LINK srcnodeid="52" srcpinname="Output" dstnodeid="53" dstpinname="Index">
+   </LINK>
+   <NODE systemname="S (Node)" nodename="S (Node)" componentmode="Hidden" id="56">
+   <BOUNDS type="Node" left="2490" top="22785" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Send String" slicecount="1" values="Keys">
+   </PIN>
+   <PIN pinname="Input Value" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="14" srcpinname="Keyboard State" dstnodeid="56" dstpinname="Input Value">
+   </LINK>
+   <NODE systemname="S (Node)" nodename="S (Node)" componentmode="Hidden" id="57">
+   <BOUNDS type="Node" left="2295" top="23175" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Send String" slicecount="1" values="Mouse">
+   </PIN>
+   <PIN pinname="Input Value" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="14" srcpinname="Mouse State" dstnodeid="57" dstpinname="Input Value">
+   </LINK>
+   <NODE systemname="Quad (DX11.Layer)" filename="%VVVV%\packs\dx11\nodes\plugins\base\VVVV.DX11.Nodes.dll" nodename="Quad (DX11.Layer)" componentmode="Hidden" id="15">
+   <BOUNDS type="Node" left="2055" top="18390" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2055" top="18390" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Texture" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Layer" visible="1">
+   </PIN>
+   <PIN pinname="Transform" visible="1">
+   </PIN>
+   <PIN pinname="Enabled" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Render State" visible="1">
+   </PIN>
+   <PIN pinname="Color" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Multiply (Transform)" nodename="Multiply (Transform)" componentmode="Hidden" id="58">
+   <BOUNDS type="Node" left="2430" top="12795" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Transform In 1" visible="1">
+   </PIN>
+   <PIN pinname="Transform In 2" visible="1">
+   </PIN>
+   <PIN pinname="Transform Out" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="R (Value)" nodename="R (Value)" componentmode="Hidden" id="59">
+   <BOUNDS type="Node" left="3615" top="12090" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Receive String" slicecount="1" values="Res">
+   </PIN>
+   <PIN pinname="Input Value" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="S (Value)" nodename="S (Value)" componentmode="Hidden" id="60">
+   <BOUNDS type="Node" left="3450" top="22740" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Send String" slicecount="1" values="Res">
+   </PIN>
+   <PIN pinname="Input Value" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="14" srcpinname="Actual BackBuffer SizeXY" dstnodeid="60" dstpinname="Input Value">
+   </LINK>
+   <NODE systemname="Transform (Transform 2d Vector)" nodename="Transform (Transform 2d Vector)" componentmode="Hidden" id="61">
+   <BOUNDS type="Node" left="3255" top="12585" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="ScaleXY" visible="1">
+   </PIN>
+   <PIN pinname="Transform Out" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="59" srcpinname="Input Value" dstnodeid="61" dstpinname="ScaleXY">
+   </LINK>
+   <LINK srcnodeid="61" srcpinname="Transform Out" dstnodeid="58" dstpinname="Transform In 2">
+   </LINK>
+   <NODE systemname="Decompose (Transform Vector)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="Decompose (Transform Vector)" componentmode="Hidden" id="62">
+   <BOUNDS type="Node" left="2430" top="13230" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2430" top="13230" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Transform In" visible="1">
+   </PIN>
+   <PIN pinname="ScaleXYZ" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="58" srcpinname="Transform Out" dstnodeid="62" dstpinname="Transform In">
+   </LINK>
+   <NODE systemname="xy (2d)" nodename="xy (2d)" componentmode="Hidden" id="63">
+   <BOUNDS type="Node" left="2715" top="13770" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="XYZ" visible="1">
+   </PIN>
+   <PIN pinname="XY" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="62" srcpinname="ScaleXYZ" dstnodeid="63" dstpinname="XYZ">
+   </LINK>
+   <NODE systemname="UniformScale (Transform)" nodename="UniformScale (Transform)" componentmode="Hidden" id="64">
+   <BOUNDS type="Node" left="4890" top="4515" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="XYZ" slicecount="1" values="1.98">
+   </PIN>
+   <PIN pinname="Transform Out" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="64" srcpinname="Transform Out" dstnodeid="53" dstpinname="Transform In">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="65" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="8205" top="3645" width="795" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="8205" top="3645" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="2" visible="1" values="0.01,0.01">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="2">
+   </PIN>
+   <PIN pinname="Vector Size" slicecount="1" values="2">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="|0, 0|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="65" srcpinname="Y Output Value" dstnodeid="53" dstpinname="Padding">
+   </LINK>
+   <NODE systemname="Cell (ReoGrid Range)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Cell (ReoGrid Range)" componentmode="Hidden" id="69">
+   <BOUNDS type="Node" left="1455" top="6825" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1455" top="6825" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Top Row" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Left Column" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Row Count" visible="1">
+   </PIN>
+   <PIN pinname="Worksheet" visible="1">
+   </PIN>
+   <PIN pinname="Flat Text" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="49" srcpinname="Max Content Rows" dstnodeid="69" dstpinname="Row Count" hiddenwhenlocked="1">
+   </LINK>
+   <LINK srcnodeid="48" srcpinname="Worksheet" dstnodeid="69" dstpinname="Worksheet" hiddenwhenlocked="1">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="78" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="7005" top="14730" width="855" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="7005" top="14730" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   </NODE>
+   <NODE systemname="Divide (Value)" nodename="Divide (Value)" componentmode="Hidden" id="82">
+   <BOUNDS type="Node" left="2745" top="14265" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Input 2" slicecount="1" values="2">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="63" srcpinname="XY" dstnodeid="82" dstpinname="Input">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="83" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="5370" top="14625" width="285" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="5370" top="14625" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="84" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="4500" top="13920" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="4500" top="13920" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <NODE systemname="GetButton (ReoGrid Range)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="GetButton (ReoGrid Range)" componentmode="Hidden" id="86">
+   <BOUNDS type="Node" left="4365" top="6030" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="4365" top="6030" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Top Row" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Left Column" slicecount="1" values="3">
+   </PIN>
+   <PIN pinname="Row Count" visible="1">
+   </PIN>
+   <PIN pinname="Worksheet" visible="1">
+   </PIN>
+   <PIN pinname="Flat Text" visible="1">
+   </PIN>
+   <PIN pinname="Cell Range" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="49" srcpinname="Max Content Rows" dstnodeid="86" dstpinname="Row Count" hiddenwhenlocked="1">
+   </LINK>
+   <LINK srcnodeid="48" srcpinname="Worksheet" dstnodeid="86" dstpinname="Worksheet" hiddenwhenlocked="1">
+   </LINK>
+   <NODE systemname="Substitute (String)" nodename="Substitute (String)" componentmode="Hidden" id="87">
+   <BOUNDS type="Node" left="1635" top="7665" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="From" slicecount="1" values="|,|">
+   </PIN>
+   <PIN pinname="To" slicecount="1" values=".">
+   </PIN>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="69" srcpinname="Flat Text" dstnodeid="87" dstpinname="Input">
+   </LINK>
+   <NODE systemname="GetButton (ReoGrid Range)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="GetButton (ReoGrid Range)" componentmode="Hidden" id="88">
+   <BOUNDS type="Node" left="4530" top="6495" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="4530" top="6495" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Top Row" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Left Column" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Row Count" visible="1">
+   </PIN>
+   <PIN pinname="Worksheet" visible="1">
+   </PIN>
+   <PIN pinname="Flat Text" visible="1">
+   </PIN>
+   <PIN pinname="Cell Range" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="49" srcpinname="Max Content Rows" dstnodeid="88" dstpinname="Row Count" hiddenwhenlocked="1">
+   </LINK>
+   <LINK srcnodeid="48" srcpinname="Worksheet" dstnodeid="88" dstpinname="Worksheet" hiddenwhenlocked="1">
+   </LINK>
+   <NODE systemname="HtmlTexture (DX11.Texture2D Url)" filename="%VVVV%\packs\HtmlTexture.DX11\nodes\plugins\HtmlTexture.DX11.Nodes.dll" nodename="HtmlTexture (DX11.Texture2D Url)" componentmode="Hidden" id="94">
+   <BOUNDS type="Node" left="3210" top="15225" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="3210" top="15225" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Texture Output" visible="1">
+   </PIN>
+   <PIN pinname="Operations" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Load" visible="1">
+   </PIN>
+   <PIN pinname="Reload Current" visible="1">
+   </PIN>
+   <PIN pinname="Wrapper Output" visible="1">
+   </PIN>
+   <PIN pinname="Zoom" visible="1">
+   </PIN>
+   <PIN pinname="Use Element As Document Size" visible="1" pintype="Input" slicecount="1" values="body">
+   </PIN>
+   <PIN pinname="Document SizeXY" visible="1">
+   </PIN>
+   <PIN pinname="Is Loading" visible="1">
+   </PIN>
+   <PIN pinname="Document Ready" visible="1">
+   </PIN>
+   <PIN pinname="Loading" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="14" srcpinname="Keyboard State" dstnodeid="94" dstpinname="Keyboard">
+   </LINK>
+   <LINK srcnodeid="94" srcpinname="Texture Output" dstnodeid="15" dstpinname="Texture">
+   </LINK>
+   <LINK srcnodeid="78" srcpinname="Y Output Value" dstnodeid="94" dstpinname="Operations Bin Size">
+   </LINK>
+   <LINK srcnodeid="82" srcpinname="Output" dstnodeid="94" dstpinname="SizeXY">
+   </LINK>
+   <LINK srcnodeid="83" srcpinname="Y Output Value" dstnodeid="94" dstpinname="Log to Console">
+   </LINK>
+   <LINK srcnodeid="84" srcpinname="Y Output Value" dstnodeid="94" dstpinname="Allow Popup Takeover">
+   </LINK>
+   <LINK srcnodeid="86" srcpinname="Output" dstnodeid="94" dstpinname="Show DevTools">
+   </LINK>
+   <LINK srcnodeid="87" srcpinname="Output" dstnodeid="94" dstpinname="Url">
+   </LINK>
+   <NODE systemname="OR (Boolean)" nodename="OR (Boolean)" componentmode="Hidden" id="96">
+   <BOUNDS type="Node" left="3480" top="9360" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Input 2" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="4" srcpinname="Y Output Value" dstnodeid="96" dstpinname="Input 1">
+   </LINK>
+   <LINK srcnodeid="88" srcpinname="Output" dstnodeid="96" dstpinname="Input 2">
+   </LINK>
+   <LINK srcnodeid="96" srcpinname="Output" dstnodeid="94" dstpinname="Load">
+   </LINK>
+   <NODE systemname="GetButton (ReoGrid Range)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="GetButton (ReoGrid Range)" componentmode="Hidden" id="97">
+   <BOUNDS type="Node" left="5040" top="7065" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="5040" top="7065" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Top Row" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Left Column" slicecount="1" values="5">
+   </PIN>
+   <PIN pinname="Row Count" visible="1">
+   </PIN>
+   <PIN pinname="Worksheet" visible="1">
+   </PIN>
+   <PIN pinname="Flat Text" visible="1">
+   </PIN>
+   <PIN pinname="Cell Range" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="49" srcpinname="Max Content Rows" dstnodeid="97" dstpinname="Row Count" hiddenwhenlocked="1">
+   </LINK>
+   <LINK srcnodeid="48" srcpinname="Worksheet" dstnodeid="97" dstpinname="Worksheet" hiddenwhenlocked="1">
+   </LINK>
+   <NODE systemname="OR (Boolean)" nodename="OR (Boolean)" componentmode="Hidden" id="98">
+   <BOUNDS type="Node" left="4050" top="9360" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Input 2" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="99">
+   <BOUNDS type="Box" left="3975" top="8505" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3975" top="8505" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="99" srcpinname="Y Output Value" dstnodeid="98" dstpinname="Input 1">
+   </LINK>
+   <LINK srcnodeid="97" srcpinname="Output" dstnodeid="98" dstpinname="Input 2">
+   </LINK>
+   <LINK srcnodeid="98" srcpinname="Output" dstnodeid="94" dstpinname="Reload Current">
+   </LINK>
+   <NODE systemname="GetButton (ReoGrid Range)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="GetButton (ReoGrid Range)" componentmode="Hidden" id="100">
+   <BOUNDS type="Node" left="7215" top="8265" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="7215" top="8265" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Top Row" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Left Column" slicecount="1" values="6">
+   </PIN>
+   <PIN pinname="Row Count" visible="1">
+   </PIN>
+   <PIN pinname="Worksheet" visible="1">
+   </PIN>
+   <PIN pinname="Flat Text" visible="1">
+   </PIN>
+   <PIN pinname="Cell Range" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="49" srcpinname="Max Content Rows" dstnodeid="100" dstpinname="Row Count" hiddenwhenlocked="1">
+   </LINK>
+   <LINK srcnodeid="48" srcpinname="Worksheet" dstnodeid="100" dstpinname="Worksheet" hiddenwhenlocked="1">
+   </LINK>
+   <NODE systemname="GetButton (ReoGrid Range)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="GetButton (ReoGrid Range)" componentmode="Hidden" id="101">
+   <BOUNDS type="Node" left="8280" top="8295" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="8280" top="8295" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Top Row" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Left Column" slicecount="1" values="7">
+   </PIN>
+   <PIN pinname="Row Count" visible="1">
+   </PIN>
+   <PIN pinname="Worksheet" visible="1">
+   </PIN>
+   <PIN pinname="Flat Text" visible="1">
+   </PIN>
+   <PIN pinname="Cell Range" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="49" srcpinname="Max Content Rows" dstnodeid="101" dstpinname="Row Count" hiddenwhenlocked="1">
+   </LINK>
+   <LINK srcnodeid="48" srcpinname="Worksheet" dstnodeid="101" dstpinname="Worksheet" hiddenwhenlocked="1">
+   </LINK>
+   <NODE systemname="SplitWrapper (HtmlTexture)" filename="%VVVV%\packs\HtmlTexture.DX11\nodes\plugins\HtmlTexture.DX11.Core.exe" nodename="SplitWrapper (HtmlTexture)" componentmode="Hidden" id="109">
+   <BOUNDS type="Node" left="7755" top="16875" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="7755" top="16875" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="OperationResults Keys" visible="1">
+   </PIN>
+   <PIN pinname="OperationResults Keys Bin Size" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="94" srcpinname="Wrapper Output" dstnodeid="109" dstpinname="Input">
+   </LINK>
+   <NODE id="12" systemname="Renderer (TTY)" nodename="Renderer (TTY)" componentmode="InAWindow">
+   <BOUNDS type="Node" left="9480" top="7245" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="9480" top="7245" width="2400" height="1800">
+   </BOUNDS>
+   <BOUNDS type="Window" left="27315" top="1905" width="24060" height="8100">
+   </BOUNDS>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="112">
+   <BOUNDS type="Node" left="7890" top="16230" width="2325" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="7890" top="16230" width="5550" height="510">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|uselessly large impractical and slow wrapper splitting node. It&apos;s just here for testing, do not use in production. This node is autogenerated.|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="113">
+   <BOUNDS type="Box" left="9870" top="17625" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="9870" top="17625" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="109" srcpinname="OperationResults Keys Bin Size" dstnodeid="113" dstpinname="Y Input Value">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="118">
+   <BOUNDS type="Box" left="4440" top="14700" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="4440" top="14700" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="-2">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="118" srcpinname="Y Output Value" dstnodeid="94" dstpinname="Zoom">
+   </LINK>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="120">
+   <BOUNDS type="Node" left="2925" top="645" width="9225" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2925" top="645" width="5520" height="945">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|In this demo mouse and touch are merged together into touches. This means in this demo you can&apos;t use scroll wheel and whatnots. This is only a case for this demo for more simple handling.|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE systemname="Context (Notui)" filename="%VVVV%\packs\Notuiv\nodes\plugins\Notuiv.dll" nodename="Context (Notui)" componentmode="Hidden" id="123">
+   <BOUNDS type="Node" left="1065" top="24060" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1065" top="24060" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Mouse" visible="1">
+   </PIN>
+   <PIN pinname="Element Prototypes" visible="1">
+   </PIN>
+   <PIN pinname="DX11 Touches" visible="1">
+   </PIN>
+   <PIN pinname="Hierarchical Elements" visible="1">
+   </PIN>
+   <PIN pinname="Mouse Touch ID" slicecount="1" visible="1" values="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="14" srcpinname="Mouse State" dstnodeid="123" dstpinname="Mouse">
+   </LINK>
+   <NODE systemname="SendTouch (HtmlTexture.Operation Value)" filename="%VVVV%\packs\HtmlTexture.DX11\nodes\plugins\HtmlTexture.DX11.Core.exe" nodename="SendTouch (HtmlTexture.Operation Value)" componentmode="Hidden" id="124">
+   <BOUNDS type="Node" left="5715" top="13500" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="5715" top="13500" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="PointsXY" visible="1">
+   </PIN>
+   <PIN pinname="Id" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Points Bin Size" visible="1" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Id Bin Size" visible="1" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Release After Frames" slicecount="1" values="2">
+   </PIN>
+   </NODE>
+   <NODE systemname="Rectangle (Notui.ElementPrototype Join)" filename="%VVVV%\packs\Notuiv\nodes\plugins\Notuiv.dll" nodename="Rectangle (Notui.ElementPrototype Join)" componentmode="Hidden" id="125">
+   <BOUNDS type="Node" left="1050" top="5400" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1050" top="5400" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Display Transform" visible="1">
+   </PIN>
+   <PIN pinname="Element Prototype" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="53" srcpinname="Transform Out" dstnodeid="125" dstpinname="Display Transform">
+   </LINK>
+   <LINK srcnodeid="125" srcpinname="Element Prototype" dstnodeid="123" dstpinname="Element Prototypes">
+   </LINK>
+   <LINK srcnodeid="14" srcpinname="Touch Data" dstnodeid="123" dstpinname="DX11 Touches">
+   </LINK>
+   <NODE systemname="S (Node)" nodename="S (Node)" componentmode="Hidden" id="126">
+   <BOUNDS type="Node" left="1710" top="24705" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Send String" slicecount="1" values="Elements">
+   </PIN>
+   <PIN pinname="Input Value" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="123" srcpinname="Hierarchical Elements" dstnodeid="126" dstpinname="Input Value">
+   </LINK>
+   <NODE systemname="R (Node)" nodename="R (Node)" componentmode="Hidden" id="127">
+   <BOUNDS type="Node" left="1965" top="10230" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Receive String" slicecount="1" values="Elements">
+   </PIN>
+   <PIN pinname="Input Value" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="InstanceInfo (Notui.Element Split)" filename="%VVVV%\packs\Notuiv\nodes\plugins\Notuiv.dll" nodename="InstanceInfo (Notui.Element Split)" componentmode="Hidden" id="128">
+   <BOUNDS type="Node" left="1980" top="10800" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1980" top="10800" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Element" visible="1">
+   </PIN>
+   <PIN pinname="Interacting Touches" visible="1">
+   </PIN>
+   <PIN pinname="Touching Intersections" visible="1">
+   </PIN>
+   <PIN pinname="Display Transformation Out" visible="1">
+   </PIN>
+   <PIN pinname="Interacting Touches Bin Size" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="127" srcpinname="Input Value" dstnodeid="128" dstpinname="Element">
+   </LINK>
+   <NODE systemname="Touch (Notui Split)" filename="%VVVV%\packs\Notuiv\nodes\plugins\Notuiv.dll" nodename="Touch (Notui Split)" componentmode="Hidden" id="129">
+   <BOUNDS type="Node" left="4230" top="11625" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="4230" top="11625" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Id" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="128" srcpinname="Interacting Touches" dstnodeid="129" dstpinname="Input">
+   </LINK>
+   <NODE systemname="IntersectionPoint (Notui Split)" filename="%VVVV%\packs\Notuiv\nodes\plugins\Notuiv.dll" nodename="IntersectionPoint (Notui Split)" componentmode="Hidden" id="130">
+   <BOUNDS type="Node" left="4875" top="12255" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="4875" top="12255" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="SurfaceSpaceXYZ" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="128" srcpinname="Touching Intersections" dstnodeid="130" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="128" srcpinname="Display Transformation Out" dstnodeid="15" dstpinname="Transform">
+   </LINK>
+   <LINK srcnodeid="128" srcpinname="Interacting Touches Bin Size" dstnodeid="124" dstpinname="Points Bin Size" hiddenwhenlocked="1">
+   </LINK>
+   <LINK srcnodeid="128" srcpinname="Interacting Touches Bin Size" dstnodeid="124" dstpinname="Id Bin Size" hiddenwhenlocked="1">
+   </LINK>
+   <LINK srcnodeid="129" srcpinname="Id" dstnodeid="124" dstpinname="Id">
+   </LINK>
+   <NODE systemname="Navigate (HtmlTexture.Operation)" filename="%VVVV%\packs\HtmlTexture.DX11\nodes\plugins\HtmlTexture.DX11.Core.exe" nodename="Navigate (HtmlTexture.Operation)" componentmode="Hidden" id="131">
+   <BOUNDS type="Node" left="5715" top="14070" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="5715" top="14070" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="100" srcpinname="Output" dstnodeid="131" dstpinname="Back">
+   </LINK>
+   <LINK srcnodeid="101" srcpinname="Output" dstnodeid="131" dstpinname="Forward">
+   </LINK>
+   <LINK srcnodeid="131" srcpinname="Output" dstnodeid="94" dstpinname="Operations">
+   </LINK>
+   <LINK srcnodeid="124" srcpinname="Output" dstnodeid="131" dstpinname="Operations In">
+   </LINK>
+   <NODE systemname="xy (2d)" nodename="xy (2d)" componentmode="Hidden" id="132">
+   <BOUNDS type="Node" left="6060" top="12780" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="XYZ" visible="1">
+   </PIN>
+   <PIN pinname="XY" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="130" srcpinname="SurfaceSpaceXYZ" dstnodeid="132" dstpinname="XYZ">
+   </LINK>
+   <LINK srcnodeid="132" srcpinname="XY" dstnodeid="124" dstpinname="PointsXY">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="133">
+   <BOUNDS type="Box" left="1455" top="23640" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1455" top="23640" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="133" srcpinname="Y Output Value" dstnodeid="123" dstpinname="Mouse Touch ID">
+   </LINK>
+   <NODE systemname="MainLoop (VVVV)" nodename="MainLoop (VVVV)" componentmode="Hidden" id="-6">
+   <BOUNDS type="Node" left="9375" top="6210" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Maximum Foreground FPS" visible="1">
+   </PIN>
+   <PIN pinname="Maximum Background FPS" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="134">
+   <BOUNDS type="Box" left="9420" top="5745" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="9420" top="5745" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="120">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="134" srcpinname="Y Output Value" dstnodeid="-6" dstpinname="Maximum Foreground FPS">
+   </LINK>
+   <LINK srcnodeid="134" srcpinname="Y Output Value" dstnodeid="-6" dstpinname="Maximum Background FPS">
+   </LINK>
+   <NODE systemname="Cell (ReoGrid Range)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Cell (ReoGrid Range)" componentmode="Hidden" id="135">
+   <BOUNDS type="Node" left="2625" top="6825" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2625" top="6825" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Top Row" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Left Column" slicecount="1" values="2">
+   </PIN>
+   <PIN pinname="Row Count" visible="1">
+   </PIN>
+   <PIN pinname="Worksheet" visible="1">
+   </PIN>
+   <PIN pinname="Flat Text" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="49" srcpinname="Max Content Rows" dstnodeid="135" dstpinname="Row Count" hiddenwhenlocked="1">
+   </LINK>
+   <LINK srcnodeid="48" srcpinname="Worksheet" dstnodeid="135" dstpinname="Worksheet" hiddenwhenlocked="1">
+   </LINK>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="153">
+   <BOUNDS type="Node" left="6885" top="13515" width="3570" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6885" top="13515" width="3570" height="270">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|tighter notui integration is coming ;)|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="128" srcpinname="Display Transformation Out" dstnodeid="58" dstpinname="Transform In 1">
+   </LINK>
+   <NODE systemname="Substitute (String)" nodename="Substitute (String)" componentmode="Hidden" id="154">
+   <BOUNDS type="Node" left="2790" top="7605" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="From" slicecount="1" values="|,|">
+   </PIN>
+   <PIN pinname="To" slicecount="1" values=".">
+   </PIN>
+   <PIN pinname="Input" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="135" srcpinname="Flat Text" dstnodeid="154" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="154" srcpinname="Output" dstnodeid="94" dstpinname="Use Element As Document Size">
+   </LINK>
+   <NODE systemname="Group (DX11.Layer)" filename="%VVVV%\packs\dx11\nodes\plugins\base\VVVV.DX11.Nodes.dll" nodename="Group (DX11.Layer)" componentmode="Hidden" id="155">
+   <BOUNDS type="Node" left="1695" top="20385" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1695" top="20385" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Layer 2" visible="1">
+   </PIN>
+   <PIN pinname="Layer 1" visible="1">
+   </PIN>
+   <PIN pinname="Layer Out" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="15" srcpinname="Layer" dstnodeid="155" dstpinname="Layer 2">
+   </LINK>
+   <NODE systemname="Segment (DX11.Geometry)" filename="%VVVV%\packs\dx11\nodes\plugins\base\VVVV.DX11.Nodes.dll" nodename="Segment (DX11.Geometry)" componentmode="Hidden" id="156">
+   <BOUNDS type="Node" left="1755" top="19170" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1755" top="19170" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Geometry Out" visible="1">
+   </PIN>
+   <PIN pinname="Cycles" slicecount="1" values="0.75">
+   </PIN>
+   <PIN pinname="Inner Radius" slicecount="1" values="0.78">
+   </PIN>
+   </NODE>
+   <NODE systemname="Constant (DX11.Effect)" filename="%VVVV%\packs\dx11\nodes\dx11\Constant.fx" nodename="Constant (DX11.Effect)" componentmode="Hidden" id="157">
+   <BOUNDS type="Node" left="1470" top="19800" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Geometry" visible="1">
+   </PIN>
+   <PIN pinname="Layer" visible="1">
+   </PIN>
+   <PIN pinname="Transform In" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="156" srcpinname="Geometry Out" dstnodeid="157" dstpinname="Geometry">
+   </LINK>
+   <LINK srcnodeid="157" srcpinname="Layer" dstnodeid="155" dstpinname="Layer 1">
+   </LINK>
+   <LINK srcnodeid="155" srcpinname="Layer Out" dstnodeid="42" dstpinname="Layer In">
+   </LINK>
+   <NODE systemname="Transform (Transform 2d Vector)" nodename="Transform (Transform 2d Vector)" componentmode="Hidden" id="158">
+   <BOUNDS type="Node" left="2745" top="19170" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Transform In" visible="1">
+   </PIN>
+   <PIN pinname="Transform Out" visible="1">
+   </PIN>
+   <PIN pinname="ScaleXY" slicecount="2" values="0.29,0.29">
+   </PIN>
+   <PIN pinname="Rotate" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="128" srcpinname="Display Transformation Out" dstnodeid="158" dstpinname="Transform In">
+   </LINK>
+   <LINK srcnodeid="158" srcpinname="Transform Out" dstnodeid="157" dstpinname="Transform In">
+   </LINK>
+   <NODE systemname="LFO (Animation)" nodename="LFO (Animation)" componentmode="Hidden" id="159">
+   <BOUNDS type="Node" left="3270" top="18720" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="159" srcpinname="Output" dstnodeid="158" dstpinname="Rotate">
+   </LINK>
+   <NODE systemname="SetAlpha (Color)" nodename="SetAlpha (Color)" componentmode="Hidden" id="160">
+   <BOUNDS type="Node" left="2940" top="17850" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Alpha" visible="1">
+   </PIN>
+   <PIN pinname="Input" slicecount="1" values="|1.00000,1.00000,1.00000,1.00000|">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Blend (DX11.RenderState)" filename="%VVVV%\packs\dx11\nodes\plugins\base\VVVV.DX11.Nodes.dll" nodename="Blend (DX11.RenderState)" componentmode="Hidden" id="161">
+   <BOUNDS type="Node" left="1560" top="17835" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1560" top="17835" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Mode" slicecount="1" values="Blend">
+   </PIN>
+   <PIN pinname="Render State" visible="1" slicecount="1" values="||">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="161" srcpinname="Render State" dstnodeid="15" dstpinname="Render State">
+   </LINK>
+   <NODE systemname="Decay (Animation)" nodename="Decay (Animation)" componentmode="Hidden" id="162">
+   <BOUNDS type="Node" left="3720" top="16470" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Decay" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Attack" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="160" srcpinname="Output" dstnodeid="15" dstpinname="Color">
+   </LINK>
+   <NODE systemname="Tweener (Value)" filename="%VVVV%\addonpack\lib\nodes\plugins\TweenerShaper.dll" nodename="Tweener (Value)" componentmode="Hidden" id="165">
+   <BOUNDS type="Node" left="3720" top="16935" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Transition Type" slicecount="1" values="3">
+   </PIN>
+   <PIN pinname="Transition Mode" slicecount="1" values="2">
+   </PIN>
+   <PIN pinname="Value Input" visible="1">
+   </PIN>
+   <PIN pinname="Value Output" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="3720" top="16935">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="162" srcpinname="Output" dstnodeid="165" dstpinname="Value Input">
+   </LINK>
+   <NODE systemname="MonoFlop (Animation Framebased)" filename="%VVVV%\addonpack\lib\nodes\plugins\MonoFlop.dll" nodename="MonoFlop (Animation Framebased)" componentmode="Hidden" id="166">
+   <BOUNDS type="Node" left="3705" top="15885" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="3705" top="15885" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Frames" slicecount="1" values="2">
+   </PIN>
+   <PIN pinname="Set" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="94" srcpinname="Document Ready" dstnodeid="166" dstpinname="Set">
+   </LINK>
+   <LINK srcnodeid="166" srcpinname="Output" dstnodeid="162" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="165" srcpinname="Value Output" dstnodeid="160" dstpinname="Alpha">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="168">
+   <BOUNDS type="Box" left="4920" top="17205" width="630" height="2505">
+   </BOUNDS>
+   <BOUNDS type="Node" left="4920" top="17205" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="7">
+   </PIN>
+   <PIN pinname="SliceCount Mode" slicecount="1" values="ColsRowsPages">
+   </PIN>
+   <PIN pinname="Y Input Value" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="NOT (Boolean)" nodename="NOT (Boolean)" componentmode="Hidden" id="169">
+   <BOUNDS type="Node" left="4920" top="16740" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="94" srcpinname="Document Ready" dstnodeid="169" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="169" srcpinname="Output" dstnodeid="168" dstpinname="Y Input Value">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="170">
+   <BOUNDS type="Box" left="5715" top="17220" width="630" height="2505">
+   </BOUNDS>
+   <BOUNDS type="Node" left="5715" top="17220" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="7">
+   </PIN>
+   <PIN pinname="SliceCount Mode" slicecount="1" values="ColsRowsPages">
+   </PIN>
+   <PIN pinname="Y Input Value" visible="1" slicecount="7" values="0,0,0,0,0,0,0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="94" srcpinname="Loading" dstnodeid="170" dstpinname="Y Input Value">
+   </LINK>
+   </PATCH>

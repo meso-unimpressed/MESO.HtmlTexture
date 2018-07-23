@@ -1,0 +1,313 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha36.1.dtd" >
+   <PATCH nodename="D:\local\vvvv-gp\packs\HtmlTexture.DX11\girlpower\_Nodes.v4p" systemname="_Nodes" filename="D:\local\vvvv-gp\packs\HtmlTexture.DX11\girlpower\_Nodes.v4p" scrollx="0" scrolly="-360">
+   <BOUNDS type="Window" left="-20910" top="1800" width="13095" height="11355">
+   </BOUNDS>
+   <PACK Name="dx11" Version="1.3.0.1">
+   </PACK>
+   <PACK Name="KeyboardUI" Version="1.1.1">
+   </PACK>
+   <PACK Name="vvvv-Message" Version="2.9.10">
+   </PACK>
+   <PACK Name="vvvv-ZeroMQ" Version="0.5.7">
+   </PACK>
+   <PACK Name="addonpack" Version="36.0.0">
+   </PACK>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="4">
+   <BOUNDS type="Node" left="2565" top="930" width="1110" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2565" top="930" width="3915" height="570">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="HtmlTexture.DX11">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="20">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="2">
+   <BOUNDS type="Box" left="7560" top="2400" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="7560" top="2400" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|HtmlTexture Version|">
+   </PIN>
+   <PIN pinname="Input String" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="1">
+   <BOUNDS type="Box" left="7905" top="1335" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="7905" top="1335" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|mp.pddn Version|">
+   </PIN>
+   <PIN pinname="Input String" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="0">
+   <BOUNDS type="Box" left="7725" top="1875" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="7725" top="1875" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|md.stdl Version|">
+   </PIN>
+   <PIN pinname="Input String" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="5">
+   <BOUNDS type="Node" left="5205" top="1545" width="735" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="5205" top="1545" width="735" height="270">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|by MESO|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE systemname="About (HtmlTexture)" filename="%VVVV%\packs\HtmlTexture.DX11\nodes\plugins\HtmlTexture.DX11.Core.exe" nodename="About (HtmlTexture)" componentmode="Hidden" id="3">
+   <BOUNDS type="Node" left="7560" top="915" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="7560" top="915" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="mp.essentials Version" visible="1">
+   </PIN>
+   <PIN pinname="mp.pddn Version" visible="1">
+   </PIN>
+   <PIN pinname="md.stdl Version" visible="1">
+   </PIN>
+   <PIN pinname="HtmlTexture Version" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="3" srcpinname="mp.pddn Version" dstnodeid="1" dstpinname="Input String">
+   </LINK>
+   <LINK srcnodeid="3" srcpinname="md.stdl Version" dstnodeid="0" dstpinname="Input String">
+   </LINK>
+   <LINK srcnodeid="3" srcpinname="HtmlTexture Version" dstnodeid="2" dstpinname="Input String">
+   </LINK>
+   <NODE systemname="HtmlTexture (DX11.Texture2D Url)" filename="%VVVV%\packs\HtmlTexture.DX11\nodes\plugins\HtmlTexture.DX11.Core.exe" nodename="HtmlTexture (DX11.Texture2D Url)" componentmode="Hidden" id="6">
+   <BOUNDS type="Node" left="1455" top="4125" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1455" top="4125" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="HtmlTexture (DX11.Texture2D String)" filename="%VVVV%\packs\HtmlTexture.DX11\nodes\plugins\HtmlTexture.DX11.Core.exe" nodename="HtmlTexture (DX11.Texture2D String)" componentmode="Hidden" id="7">
+   <BOUNDS type="Node" left="1470" top="4605" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1470" top="4605" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Wrapper Output" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="8">
+   <BOUNDS type="Node" left="1410" top="3525" width="1230" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1410" top="3525" width="2025" height="390">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|Wrapper Nodes|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="12">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="9">
+   <BOUNDS type="Node" left="5130" top="3480" width="1230" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="5130" top="3480" width="2025" height="390">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="Operations">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="12">
+   </PIN>
+   </NODE>
+   <NODE systemname="BindObject (HtmlTexture.Operation)" filename="%VVVV%\packs\HtmlTexture.DX11\nodes\plugins\HtmlTexture.DX11.Core.exe" nodename="BindObject (HtmlTexture.Operation)" componentmode="Hidden" id="10">
+   <BOUNDS type="Node" left="5190" top="4080" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="5190" top="4080" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="EvaluateJavascript (HtmlTexture.Operation)" filename="%VVVV%\packs\HtmlTexture.DX11\nodes\plugins\HtmlTexture.DX11.Core.exe" nodename="EvaluateJavascript (HtmlTexture.Operation)" componentmode="Hidden" id="11">
+   <BOUNDS type="Node" left="5190" top="4605" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="5190" top="4605" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="ExecuteJavascript (HtmlTexture.Operation)" filename="%VVVV%\packs\HtmlTexture.DX11\nodes\plugins\HtmlTexture.DX11.Core.exe" nodename="ExecuteJavascript (HtmlTexture.Operation)" componentmode="Hidden" id="12">
+   <BOUNDS type="Node" left="5190" top="5175" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="5190" top="5175" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Navigate (HtmlTexture.Operation)" filename="%VVVV%\packs\HtmlTexture.DX11\nodes\plugins\HtmlTexture.DX11.Core.exe" nodename="Navigate (HtmlTexture.Operation)" componentmode="Hidden" id="13">
+   <BOUNDS type="Node" left="5190" top="5730" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="5190" top="5730" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Scroll (HtmlTexture.Operation)" filename="%VVVV%\packs\HtmlTexture.DX11\nodes\plugins\HtmlTexture.DX11.Core.exe" nodename="Scroll (HtmlTexture.Operation)" componentmode="Hidden" id="14">
+   <BOUNDS type="Node" left="5190" top="6270" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="5190" top="6270" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="SendTouch (HtmlTexture.Operation DX11)" filename="%VVVV%\packs\HtmlTexture.DX11\nodes\plugins\HtmlTexture.DX11.Core.exe" nodename="SendTouch (HtmlTexture.Operation DX11)" componentmode="Hidden" id="15">
+   <BOUNDS type="Node" left="5190" top="6810" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="5190" top="6810" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="SendTouch (HtmlTexture.Operation TouchContainer)" filename="%VVVV%\packs\HtmlTexture.DX11\nodes\plugins\HtmlTexture.DX11.Core.exe" nodename="SendTouch (HtmlTexture.Operation TouchContainer)" componentmode="Hidden" id="16">
+   <BOUNDS type="Node" left="6270" top="6810" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6270" top="6810" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="SendTouch (HtmlTexture.Operation Value)" filename="%VVVV%\packs\HtmlTexture.DX11\nodes\plugins\HtmlTexture.DX11.Core.exe" nodename="SendTouch (HtmlTexture.Operation Value)" componentmode="Hidden" id="17">
+   <BOUNDS type="Node" left="7350" top="6810" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="7350" top="6810" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="19">
+   <BOUNDS type="Node" left="9150" top="3390" width="1230" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="9150" top="3390" width="870" height="405">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="Misc">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="12">
+   </PIN>
+   </NODE>
+   <NODE systemname="GetBoundObject (HtmlTexture.Operation)" filename="%VVVV%\packs\HtmlTexture.DX11\nodes\plugins\HtmlTexture.DX11.Core.exe" nodename="GetBoundObject (HtmlTexture.Operation)" componentmode="Hidden" id="20">
+   <BOUNDS type="Node" left="9150" top="4065" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="9150" top="4065" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="GetBoundFunction (HtmlTexture.Operation)" filename="%VVVV%\packs\HtmlTexture.DX11\nodes\plugins\HtmlTexture.DX11.Core.exe" nodename="GetBoundFunction (HtmlTexture.Operation)" componentmode="Hidden" id="21">
+   <BOUNDS type="Node" left="9150" top="4560" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="9150" top="4560" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="GetJavascriptResult (HtmlTexture.Operation)" filename="%VVVV%\packs\HtmlTexture.DX11\nodes\plugins\HtmlTexture.DX11.Core.exe" nodename="GetJavascriptResult (HtmlTexture.Operation)" componentmode="Hidden" id="22">
+   <BOUNDS type="Node" left="9150" top="5130" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="9150" top="5130" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="SplitJsResult (HtmlTexture.Operation)" filename="%VVVV%\packs\HtmlTexture.DX11\nodes\plugins\HtmlTexture.DX11.Core.exe" nodename="SplitJsResult (HtmlTexture.Operation)" componentmode="Hidden" id="23">
+   <BOUNDS type="Node" left="9150" top="5670" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="9150" top="5670" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="DOM (HtmlTexture)" filename="%VVVV%\packs\HtmlTexture.DX11\nodes\plugins\HtmlTexture.DX11.Core.exe" nodename="DOM (HtmlTexture)" componentmode="Hidden" id="24">
+   <BOUNDS type="Node" left="9150" top="6195" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="9150" top="6195" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="BrowserId (HtmlTexture)" filename="%VVVV%\packs\HtmlTexture.DX11\nodes\plugins\HtmlTexture.DX11.Core.exe" nodename="BrowserId (HtmlTexture)" componentmode="Hidden" id="25">
+   <BOUNDS type="Node" left="9150" top="6705" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="9150" top="6705" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="SplitWrapper (HtmlTexture)" filename="%VVVV%\packs\HtmlTexture.DX11\nodes\plugins\HtmlTexture.DX11.Core.exe" nodename="SplitWrapper (HtmlTexture)" componentmode="Hidden" id="26">
+   <BOUNDS type="Node" left="675" top="7770" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="675" top="7770" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="V8Object (HtmlTexture.V8Object)" filename="%VVVV%\packs\HtmlTexture.DX11\nodes\plugins\HtmlTexture.DX11.Core.exe" nodename="V8Object (HtmlTexture.V8Object)" componentmode="Hidden" id="27">
+   <BOUNDS type="Node" left="9150" top="7215" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="9150" top="7215" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="V8Array (HtmlTexture.V8Object)" filename="%VVVV%\packs\HtmlTexture.DX11\nodes\plugins\HtmlTexture.DX11.Core.exe" nodename="V8Array (HtmlTexture.V8Object)" componentmode="Hidden" id="28">
+   <BOUNDS type="Node" left="9150" top="7800" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="9150" top="7800" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="7" srcpinname="Wrapper Output" dstnodeid="26" dstpinname="Input" linkstyle="VHV">
+   <LINKPOINT x="1815" y="6375">
+   </LINKPOINT>
+   <LINKPOINT x="705" y="6375">
+   </LINKPOINT>
+   </LINK>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="29">
+   <BOUNDS type="Node" left="855" top="7425" width="3300" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="855" top="7425" width="3300" height="270">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|do not use this node, it&apos;s only for debugging|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="30">
+   <BOUNDS type="Node" left="1425" top="2085" width="4575" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1425" top="2085" width="4575" height="270">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|Forked from HTMLTexture for DX11 by Gumilastik and Tonfilm|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   </PATCH>
