@@ -20,6 +20,7 @@ namespace VVVV.HtmlTexture.DX11.Core
             e.CommandLine.AppendSwitch("ignore-gpu-blacklist");
             e.CommandLine.AppendSwitch("enable-experimental-canvas-features");
             e.CommandLine.AppendSwitch("smooth-scrolling");
+            e.CommandLine.AppendSwitch("allow-file-access-from-files");
             e.CommandLine.AppendSwitchWithValue("enable-features", "OverlayScrollbar");
             e.CommandLine.AppendSwitchWithValue("touch-events", "enabled");
 
