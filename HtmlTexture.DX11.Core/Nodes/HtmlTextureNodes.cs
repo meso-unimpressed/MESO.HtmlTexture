@@ -34,6 +34,11 @@ namespace HtmlTexture.DX11.Nodes
         {
             wrapper.LoadUrl(FUrl[i]);
         }
+
+        protected override int SliceCount()
+        {
+            return FUrl.SliceCount > 0 ? Math.Max(base.SliceCount(), FUrl.SliceCount) : 0;
+        }
     }
 
     [PluginInfo(
@@ -54,6 +59,12 @@ namespace HtmlTexture.DX11.Nodes
         protected override void LoadContent(HtmlTextureWrapper wrapper, int i)
         {
             wrapper.LoadString(FContent[i], FUrl[i]);
+        }
+
+        protected override int SliceCount()
+        {
+            var cslc = SpreadUtils.SpreadMax(FContent, FUrl);
+            return cslc > 0 ? Math.Max(base.SliceCount(), cslc) : 0;
         }
     }
 

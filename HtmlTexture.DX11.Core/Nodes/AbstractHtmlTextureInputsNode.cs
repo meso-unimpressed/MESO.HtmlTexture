@@ -80,7 +80,7 @@ namespace HtmlTexture.DX11.Nodes
         [Input("Enabled", DefaultBoolean = true)]
         public ISpread<bool> FEnabledIn;
 
-        protected int SliceCount()
+        protected virtual int SliceCount()
         {
             return SpreadUtils.SpreadMax(FOperations, FLoad, FReloadIn, FSize,
                 FDocSizeBaseSelector, FAutoWidth, FAutoHeight, FPopupIn, FFilterUrlIn,
@@ -198,16 +198,19 @@ namespace HtmlTexture.DX11.Nodes
         [Output("Current Url")]
         public ISpread<string> FCurrentUrlOut;
 
+        [Output("Texture Valid")]
+        public ISpread<bool> FTextureValid;
+
         [Output("Error Text")]
         public ISpread<string> FErrorTextOut;
 
         [Output("Last Js Log")]
         public ISpread<string> FLog;
 
-        protected void SetOutputsSliceCount(int slc)
+        protected virtual void SetOutputsSliceCount(int slc)
         {
             FTextureOutput.SliceCount = FWrapperOutput.SliceCount = FDocSizeOut.SliceCount = FIsLoadingOut.SliceCount =
-                FLog.SliceCount = FCurrentUrlOut.SliceCount = FErrorTextOut.SliceCount =
+                FLog.SliceCount = FCurrentUrlOut.SliceCount = FErrorTextOut.SliceCount = FTextureValid.SliceCount =
                     FLoaded.SliceCount = FCreated.SliceCount = FDocReady.SliceCount = slc;
         }
 
@@ -221,6 +224,7 @@ namespace HtmlTexture.DX11.Nodes
             FErrorTextOut[i] = wrapper.LastError;
             FLoaded[i] = wrapper.LoadedFrame;
             FCreated[i] = wrapper.CreatedFrame;
+            FTextureValid[i] = wrapper.IsTextureValid;
             FLog[i] = wrapper.LastConsole;
         }
 
