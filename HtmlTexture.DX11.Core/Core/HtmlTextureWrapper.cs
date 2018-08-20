@@ -41,10 +41,10 @@ namespace VVVV.HtmlTexture.DX11.Core
 
         //private readonly object _lockingObject = new object();
 
-        //private bool _invalidate = false;
         private bool _browserReadyFrame = false;
         private bool _loadedFrame = false;
-        private bool _newAccFrameReady = false;
+        private bool _invalidateAccFrame = false;
+        private Dictionary<DX11RenderContext, bool> _newAccFrameReady = new Dictionary<DX11RenderContext, bool>();
         private IntPtr _newAccFramePtr;
         private string _customContent = "";
         private string _customContentUrl = "";
@@ -384,47 +384,21 @@ namespace VVVV.HtmlTexture.DX11.Core
             e.SetReturnValue(CfxReturnValue.Continue);
         }
 
-        //private unsafe void HandleRenderPaint(object sender, CfxOnPaintEventArgs e)
-        //{
-        //    if (RawImage == null || e.Width != TextureSize.w || e.Height != TextureSize.h || !Enabled) return;
-        //    lock (_lockingObject)
-        //    {
-        //        unsafe
-        //        {
-        //            fixed (byte* p = RawImage)
-        //            {
-        //                memcpy((IntPtr)p, e.Buffer, (UIntPtr)(TextureSize.w * TextureSize.h * 4));
-        //            }
-        //        }
-        //        IsImageReady = true;
-        //    }
-        //}
-
         private void HandleAcceleratedRenderPaint(object sender, CfxOnAcceleratedPaintEventArgs e)
         {
-            _newAccFrameReady = e.SharedHandle != _newAccFramePtr;
+            _invalidateAccFrame = e.SharedHandle != _newAccFramePtr;
             _newAccFramePtr = e.SharedHandle;
         }
 
-        public void UpdateSize(bool force = false)
+        public void UpdateSize()
         {
-            (int w, int h) targetsize =
+            TextureSize =
             (
                 (TextureSettings.AutoWidth ? DocumentSize.w : TextureSettings.TargetSize.w) + TextureSettings.ExtraSize.w,
                 (TextureSettings.AutoHeight ? DocumentSize.h : TextureSettings.TargetSize.h) + TextureSettings.ExtraSize.h
             );
-            TextureSize = targetsize;
-            //if(targetsize.w == TextureSize.w && targetsize.h == TextureSize.h) return;
-
-            //lock (_lockingObject)
-            //{
-            //    TextureSize = targetsize;
-            //    RawImage = new byte[TextureSize.w * TextureSize.h * 4];
-            //    IsImageReady = false;
-            //}
 
             Browser?.Host.WasResized();
-            //_invalidate = true;
         }
 
         private void CreateBrowser()
@@ -656,6 +630,11 @@ namespace VVVV.HtmlTexture.DX11.Core
                 _loadedFrame = false;
             }
 
+            if (_invalidateAccFrame)
+            {
+                _newAccFrameReady.Clear();
+            }
+
             if (!TextureSettings.Equals(_prevTextureSettings)) UpdateSize();
 
             if (BrowserSettings.ZoomLevel != Browser.Host.ZoomLevel)
@@ -685,27 +664,17 @@ namespace VVVV.HtmlTexture.DX11.Core
 
         public void UpdateDX11Resources(DX11RenderContext context)
         {
-            //if (IsImageReady && _invalidate || !DX11Texture.Contains(context))
-            //{
-            //    if (DX11Texture.Contains(context)) DX11Texture.Dispose(context);
-            //    DX11Texture[context] = new DX11DynamicTexture2D(context, TextureSize.w, TextureSize.h, SlimDX.DXGI.Format.B8G8R8A8_UNorm);
-            //    _invalidate = false;
-            //}
-
-            //if (Browser == null || RawImage == null || (!IsImageReady || !DX11Texture.Contains(context)) || !Enabled) return;
-
-            //lock (_lockingObject)
-            //{
-            //    unsafe
-            //    {
-            //        fixed (byte* p = RawImage)
-            //        {
-            //            DX11Texture[context].WriteDataPitch((IntPtr)p, TextureSize.w * TextureSize.h * 4);
-            //        }
-            //    }
-            //}
-            if (_newAccFramePtr != IntPtr.Zero && _newAccFrameReady)
+            var invalidate = !_newAccFrameReady.ContainsKey(context) || !DX11Texture.Contains(context);
+            if(invalidate)
             {
+                Browser?.Host.Invalidate(CfxPaintElementType.View);
+                UpdateSize();
+            }
+            if (!invalidate) invalidate = _newAccFrameReady[context];
+
+            if (_newAccFramePtr != IntPtr.Zero && invalidate)
+            {
+                if(DX11Texture.Contains(context)) DX11Texture.Dispose(context);
                 try
                 {
                     DX11Texture[context] = DX11Texture2D.FromSharedHandle(context, _newAccFramePtr);
@@ -716,11 +685,10 @@ namespace VVVV.HtmlTexture.DX11.Core
                     IsTextureValid = false;
                 }
             }
-            else IsTextureValid = false;
 
-            if (_newAccFrameReady)
+            if (invalidate)
             {
-                _newAccFrameReady = false;
+                _newAccFrameReady.UpdateGeneric(context, false);
                 //Browser.Host.SendExternalBeginFrame();
             }
         }
