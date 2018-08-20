@@ -26,5 +26,5 @@ At the time of writing these features are not part of the official CEF repositor
   * Send Touches
 * Arbitrary CLR object serialization to Javascript object
 
-Licensed under BSD-3 Clause
-Copyright @ MESO Digital Interiors GmbH, 2018
+Licensed under BSD-3 Clause  
+  Copyright @ MESO Digital Interiors GmbH, 2018
