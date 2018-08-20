@@ -20,7 +20,7 @@ namespace HtmlTexture.DX11.Nodes
         [Import]
         public ILogger Logger;
 
-        [Config("Framerate", DefaultValue = 60)]
+        [Config("Framerate", DefaultValue = 240)]
         public ISpread<int> FFps;
         
         [Input("Load", IsBang = true)]
@@ -177,7 +177,7 @@ namespace HtmlTexture.DX11.Nodes
     public abstract class HtmlTextureInputOutputNode : AbstractHtmlTextureInputsNode, IDX11ResourceHost, IDisposable
     {
         [Output("Texture Output")]
-        public Pin<DX11Resource<DX11DynamicTexture2D>> FTextureOutput;
+        public Pin<DX11Resource<DX11Texture2D>> FTextureOutput;
 
         [Output("Wrapper Output")]
         public Pin<HtmlTextureWrapper> FWrapperOutput;
@@ -255,7 +255,7 @@ namespace HtmlTexture.DX11.Nodes
     public abstract class HtmlTextureOutputNode : IDX11ResourceHost, IDisposable
     {
         [Output("Texture Output")]
-        public Pin<DX11Resource<DX11DynamicTexture2D>> FTextureOutput;
+        public Pin<DX11Resource<DX11Texture2D>> FTextureOutput;
 
         [Output("Wrapper Output")]
         public Pin<HtmlTextureWrapper> FWrapperOutput;

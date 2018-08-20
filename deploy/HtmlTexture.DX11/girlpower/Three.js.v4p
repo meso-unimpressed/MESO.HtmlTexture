@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha36.1.dtd" >
-   <PATCH nodename="D:\local\vvvv-gp\packs\HtmlTexture.DX11\girlpower\Three.js.v4p" scrollx="0" scrolly="0" systemname="1. UI Sample" filename="C:\vvvv_45beta33.7_x86\1. UI Sample.v4p">
+   <PATCH nodename="D:\local\lib\VVVV.HTMLTexture.DX11\deploy\HtmlTexture.DX11\girlpower\Three.js.v4p" scrollx="0" scrolly="0" systemname="1. UI Sample" filename="C:\vvvv_45beta33.7_x86\1. UI Sample.v4p">
    <BOUNDS type="Window" left="4635" top="1620" width="9195" height="12120">
    </BOUNDS>
    <PACK Name="addonpack" Version="36.0.0">
@@ -13,9 +13,11 @@
    </PIN>
    <PIN pinname="Render State" visible="1" slicecount="1" values="||">
    </PIN>
+   <PIN pinname="Texture Transform" visible="1">
+   </PIN>
    </NODE>
    <NODE systemname="Vector (2d Split)" nodename="Vector (2d Split)" componentmode="Hidden" id="31">
-   <BOUNDS type="Node" left="2025" top="6960" width="100" height="100">
+   <BOUNDS type="Node" left="2595" top="8280" width="100" height="100">
    </BOUNDS>
    <PIN pinname="XY" visible="1" slicecount="2" values="551,530">
    </PIN>
@@ -25,7 +27,7 @@
    </PIN>
    </NODE>
    <NODE systemname="ASPECTRATIO (TRANSFORM)" nodename="AspectRatio (Transform)" componentmode="Hidden" id="32">
-   <BOUNDS type="Node" left="1800" top="7350" width="100" height="100">
+   <BOUNDS type="Node" left="2370" top="8670" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Aspect Width" visible="1">
    </PIN>
@@ -91,11 +93,11 @@
    <LINK srcnodeid="46" srcpinname="Y Output Value" dstnodeid="47" dstpinname="Clear">
    </LINK>
    <NODE systemname="Renderer (DX11)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Renderer (DX11)" componentmode="InAWindow" id="53">
-   <BOUNDS type="Node" left="960" top="6525" width="100" height="100">
+   <BOUNDS type="Node" left="1530" top="7845" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="960" top="6525" width="6000" height="4500">
+   <BOUNDS type="Box" left="1530" top="7845" width="6000" height="4500">
    </BOUNDS>
-   <BOUNDS type="Window" left="13830" top="2355" width="9990" height="8100">
+   <BOUNDS type="Window" left="13830" top="2355" width="10395" height="8085">
    </BOUNDS>
    <PIN pinname="Layers" visible="1">
    </PIN>
@@ -111,8 +113,6 @@
    <LINK srcnodeid="53" srcpinname="Actual BackBuffer SizeXY" dstnodeid="31" dstpinname="XY">
    </LINK>
    <LINK srcnodeid="32" srcpinname="Transform Out" dstnodeid="53" dstpinname="Aspect Ratio" hiddenwhenlocked="1">
-   </LINK>
-   <LINK srcnodeid="2" srcpinname="Layer" dstnodeid="53" dstpinname="Layers">
    </LINK>
    <NODE systemname="MakePath (String)" filename="%VVVV%\addonpack\lib\nodes\plugins\MakePath.dll" nodename="MakePath (String)" componentmode="Hidden" id="56">
    <BOUNDS type="Node" left="1035" top="1560" width="100" height="100">
@@ -167,9 +167,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Color)" componentmode="InABox" id="67" systemname="IOBox (Color)">
-   <BOUNDS type="Box" left="1770" top="5820" width="2250" height="480">
+   <BOUNDS type="Box" left="2340" top="7140" width="2250" height="480">
    </BOUNDS>
-   <BOUNDS type="Node" left="1770" top="5820" width="0" height="0">
+   <BOUNDS type="Node" left="2340" top="7140" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Color Input" slicecount="1" visible="1" values="|0.64909,0.64909,0.64909,1.00000|">
    </PIN>
@@ -229,15 +229,15 @@
    </BOUNDS>
    <BOUNDS type="Box" left="3945" top="3045" width="3000" height="3000">
    </BOUNDS>
-   <PIN pinname="Touches" visible="1">
+   <PIN pinname="Touches" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
    <NODE systemname="TouchProcessor (Join)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="TouchProcessor (Join)" componentmode="Hidden" id="80">
-   <BOUNDS type="Node" left="1020" top="8475" width="100" height="100">
+   <BOUNDS type="Node" left="1590" top="9795" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="1020" top="8475" width="3000" height="3000">
+   <BOUNDS type="Box" left="1590" top="9795" width="3000" height="3000">
    </BOUNDS>
    <PIN pinname="ID&apos;s" visible="1">
    </PIN>
@@ -247,9 +247,9 @@
    </PIN>
    </NODE>
    <NODE systemname="TouchState (System Split)" filename="%VVVV%\packs\dx11\nodes\plugins\base\VVVV.DX11.Nodes.dll" nodename="TouchState (System Split)" componentmode="Hidden" id="81">
-   <BOUNDS type="Node" left="705" top="7455" width="100" height="100">
+   <BOUNDS type="Node" left="1275" top="8775" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="705" top="7455" width="3000" height="3000">
+   <BOUNDS type="Box" left="1275" top="8775" width="3000" height="3000">
    </BOUNDS>
    <PIN pinname="Touch Data" visible="1">
    </PIN>
@@ -265,7 +265,7 @@
    <LINK srcnodeid="81" srcpinname="PositionXY" dstnodeid="80" dstpinname="PointsXY">
    </LINK>
    <NODE systemname="S (Node)" nodename="S (Node)" componentmode="Hidden" id="82">
-   <BOUNDS type="Node" left="1005" top="9075" width="100" height="100">
+   <BOUNDS type="Node" left="1575" top="10395" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Send String" slicecount="1" values="Touches">
    </PIN>
@@ -279,12 +279,14 @@
    </BOUNDS>
    <PIN pinname="Input Value" visible="1">
    </PIN>
+   <PIN pinname="Receive String" slicecount="1" values="Touches">
+   </PIN>
    </NODE>
    <LINK srcnodeid="83" srcpinname="Input Value" dstnodeid="79" dstpinname="Touches">
    </LINK>
    <LINK srcnodeid="79" srcpinname="Output" dstnodeid="78" dstpinname="Operations">
    </LINK>
-   <PACK Name="dx11" Version="1.3.0.1">
+   <PACK Name="dx11" Version="1.3.1.1">
    </PACK>
    <PACK Name="KeyboardUI" Version="1.1.1">
    </PACK>
@@ -306,4 +308,62 @@
    <PIN pinname="String Type" slicecount="1" values="MultiLine">
    </PIN>
    </NODE>
+   <NODE systemname="Scale (Transform)" nodename="Scale (Transform)" componentmode="Hidden" id="85">
+   <BOUNDS type="Node" left="1500" top="4725" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Y" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Transform Out" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="85" srcpinname="Transform Out" dstnodeid="2" dstpinname="Texture Transform">
+   </LINK>
+   <NODE systemname="Quad (DX11.Layer)" filename="%VVVV%\packs\dx11\nodes\plugins\base\VVVV.DX11.Nodes.dll" nodename="Quad (DX11.Layer)" componentmode="Hidden" id="86">
+   <BOUNDS type="Node" left="720" top="6540" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="720" top="6540" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Layer" visible="1">
+   </PIN>
+   <PIN pinname="Enabled" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Transform" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Color" slicecount="1" values="|0.65511,0.99815,0.67673,1.00000|">
+   </PIN>
+   <PIN pinname="Texture Transform" visible="1" slicecount="1" values="||">
+   </PIN>
+   </NODE>
+   <NODE systemname="Group (DX11.Layer)" filename="%VVVV%\packs\dx11\nodes\plugins\base\VVVV.DX11.Nodes.dll" nodename="Group (DX11.Layer)" componentmode="Hidden" id="87">
+   <BOUNDS type="Node" left="1020" top="7200" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1020" top="7200" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Layer 1" visible="1">
+   </PIN>
+   <PIN pinname="Layer Out" visible="1">
+   </PIN>
+   <PIN pinname="Layer 2" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="86" srcpinname="Layer" dstnodeid="87" dstpinname="Layer 1">
+   </LINK>
+   <LINK srcnodeid="2" srcpinname="Layer" dstnodeid="87" dstpinname="Layer 2">
+   </LINK>
+   <NODE systemname="Transform (Transform 2d Vector)" nodename="Transform (Transform 2d Vector)" componentmode="Hidden" id="88">
+   <BOUNDS type="Node" left="495" top="5880" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Transform Out" visible="1">
+   </PIN>
+   <PIN pinname="XYZ" slicecount="1" values="0.77">
+   </PIN>
+   <PIN pinname="ScaleXY" slicecount="2" values="0.8,0.8">
+   </PIN>
+   <PIN pinname="Rotate" slicecount="1" values="0.125">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="88" srcpinname="Transform Out" dstnodeid="86" dstpinname="Transform">
+   </LINK>
+   <LINK srcnodeid="87" srcpinname="Layer Out" dstnodeid="53" dstpinname="Layers">
+   </LINK>
    </PATCH>

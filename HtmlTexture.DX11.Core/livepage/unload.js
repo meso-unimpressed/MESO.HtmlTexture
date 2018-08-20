@@ -1,0 +1,1 @@
+if(typeof $livePage != 'undefined') { $livePage.options.enabled = false; }

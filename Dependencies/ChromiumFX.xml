@@ -4088,6 +4088,49 @@
             Get the Height parameter for the <see cref="E:Chromium.CfxRenderHandler.OnPaint"/> callback.
             </summary>
         </member>
+        <member name="T:Chromium.Event.CfxOnAcceleratedPaintEventHandler">
+            <summary>
+            Called when an view has been rendered to the given shared texture handle.
+            Currently, the shared handle represents a D3D11 Texture2D that can be
+            accessed with the OpenSharedResource function available from a ID3D11Device
+            </summary>
+            <remarks>
+            See also the original CEF documentation in
+            <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_render_handler_capi.h">cef/include/capi/cef_render_handler_capi.h</see>.
+            </remarks>
+        </member>
+        <member name="T:Chromium.Event.CfxOnAcceleratedPaintEventArgs">
+            <summary>
+            Called when an view has been rendered to the given shared texture handle.
+            Currently, the shared handle represents a D3D11 Texture2D that can be
+            accessed with the OpenSharedResource function available from a ID3D11Device
+            </summary>
+            <remarks>
+            See also the original CEF documentation in
+            <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_render_handler_capi.h">cef/include/capi/cef_render_handler_capi.h</see>.
+            </remarks>
+        </member>
+        <member name="P:Chromium.Event.CfxOnAcceleratedPaintEventArgs.Browser">
+            <summary>
+            Get the Browser parameter for the <see cref="E:Chromium.CfxRenderHandler.OnAcceleratedPaint"/> callback.
+            </summary>
+        </member>
+        <member name="P:Chromium.Event.CfxOnAcceleratedPaintEventArgs.Type">
+            <summary>
+            Get the Type parameter for the <see cref="E:Chromium.CfxRenderHandler.OnAcceleratedPaint"/> callback.
+            </summary>
+        </member>
+        <member name="P:Chromium.Event.CfxOnAcceleratedPaintEventArgs.DirtyRects">
+            <summary>
+            Get the DirtyRects parameter for the <see cref="E:Chromium.CfxRenderHandler.OnAcceleratedPaint"/> callback.
+            Do not keep a reference to the elements of this array outside of this function.
+            </summary>
+        </member>
+        <member name="P:Chromium.Event.CfxOnAcceleratedPaintEventArgs.SharedHandle">
+            <summary>
+            Get the SharedHandle parameter for the <see cref="E:Chromium.CfxRenderHandler.OnAcceleratedPaint"/> callback.
+            </summary>
+        </member>
         <member name="T:Chromium.Event.CfxOnCursorChangeEventHandler">
             <summary>
             Called when the browser's cursor has changed. If |Type| is CT_CUSTOM then
@@ -8322,6 +8365,16 @@
             Invalidate the view. The browser will call CfxRenderHandler.OnPaint
             asynchronously. This function is only used when window rendering is
             disabled.
+            </summary>
+            <remarks>
+            See also the original CEF documentation in
+            <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_browser_capi.h">cef/include/capi/cef_browser_capi.h</see>.
+            </remarks>
+        </member>
+        <member name="M:Chromium.CfxBrowserHost.SendExternalBeginFrame">
+            <summary>
+            Issue a BeginFrame request to Chromium.  Only valid when
+            CfxWindowInfo.ExternalBeginFrameEnabled is set to true (1).
             </summary>
             <remarks>
             See also the original CEF documentation in
@@ -16296,6 +16349,17 @@
             <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_render_handler_capi.h">cef/include/capi/cef_render_handler_capi.h</see>.
             </remarks>
         </member>
+        <member name="E:Chromium.CfxRenderHandler.OnAcceleratedPaint">
+            <summary>
+            Called when an view has been rendered to the given shared texture handle.
+            Currently, the shared handle represents a D3D11 Texture2D that can be
+            accessed with the OpenSharedResource function available from a ID3D11Device
+            </summary>
+            <remarks>
+            See also the original CEF documentation in
+            <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_render_handler_capi.h">cef/include/capi/cef_render_handler_capi.h</see>.
+            </remarks>
+        </member>
         <member name="E:Chromium.CfxRenderHandler.OnCursorChange">
             <summary>
             Called when the browser's cursor has changed. If |Type| is CT_CUSTOM then
@@ -19431,18 +19495,6 @@
             <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/internal/cef_types.h">cef/include/internal/cef_types.h</see>.
             </remarks>
         </member>
-        <member name="P:Chromium.CfxSettings.SingleProcess">
-            <summary>
-            Set to true (1) to use a single process for the browser and renderer. This
-            run mode is not officially supported by Chromium and is less stable than
-            the multi-process default. Also configurable using the "single-process"
-            command-line switch.
-            </summary>
-            <remarks>
-            See also the original CEF documentation in
-            <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/internal/cef_types.h">cef/include/internal/cef_types.h</see>.
-            </remarks>
-        </member>
         <member name="P:Chromium.CfxSettings.NoSandbox">
             <summary>
             Set to true (1) to disable the sandbox for sub-processes. See
@@ -22239,6 +22291,27 @@
             <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/internal/cef_types_linux.h">cef/include/internal/cef_types_linux.h</see>.
             </remarks>
         </member>
+        <member name="P:Chromium.CfxWindowInfoLinux.SharedTextureEnabled">
+            <summary>
+            Set to true (1) to enable shared textures for off-screen rendering. Only
+            valid if windowless_rendering_enabled above is set to true.
+            Currently Windows-only (D3D11)
+            </summary>
+            <remarks>
+            See also the original CEF documentation in
+            <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/internal/cef_types_linux.h">cef/include/internal/cef_types_linux.h</see>.
+            </remarks>
+        </member>
+        <member name="P:Chromium.CfxWindowInfoLinux.ExternalBeginFrameEnabled">
+            <summary>
+            Set to true (1) to enable the ability to issue BeginFrame from the client
+            application.
+            </summary>
+            <remarks>
+            See also the original CEF documentation in
+            <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/internal/cef_types_linux.h">cef/include/internal/cef_types_linux.h</see>.
+            </remarks>
+        </member>
         <member name="P:Chromium.CfxWindowInfoLinux.Window">
             <summary>
             Pointer for the new browser window. Only used with windowed rendering.
@@ -22269,6 +22342,27 @@
             CfxSettings.WindowlessRenderingEnabled value must be set to true.
             Transparent painting is enabled by default but can be disabled by setting
             CfxBrowserSettings.BackgroundColor to an opaque value.
+            </summary>
+            <remarks>
+            See also the original CEF documentation in
+            <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/internal/cef_types_win.h">cef/include/internal/cef_types_win.h</see>.
+            </remarks>
+        </member>
+        <member name="P:Chromium.CfxWindowInfoWindows.SharedTextureEnabled">
+            <summary>
+            Set to true (1) to enable shared textures for off-screen rendering. Only
+            valid if windowless_rendering_enabled above is set to true.
+            Currently Windows-only (D3D11)
+            </summary>
+            <remarks>
+            See also the original CEF documentation in
+            <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/internal/cef_types_win.h">cef/include/internal/cef_types_win.h</see>.
+            </remarks>
+        </member>
+        <member name="P:Chromium.CfxWindowInfoWindows.ExternalBeginFrameEnabled">
+            <summary>
+            Set to true (1) to enable the ability to issue BeginFrame from the client
+            application.
             </summary>
             <remarks>
             See also the original CEF documentation in
@@ -31030,6 +31124,27 @@
             See also the original CEF documentation in
             <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/internal/cef_types_win.h">cef/include/internal/cef_types_win.h</see>
             and <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/linux/cef/include/internal/cef_types_linux.h">linux/cef/include/internal/cef_types_linux.h</see>.
+            </remarks>
+        </member>
+        <member name="P:Chromium.CfxWindowInfo.SharedTextureEnabled">
+            <summary>
+            Set to true (1) to enable shared textures for off-screen rendering. Only
+            valid if windowless_rendering_enabled above is set to true.
+            Currently Windows-only (D3D11)
+            </summary>
+            <remarks>
+            See also the original CEF documentation in
+            <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/internal/cef_types_win.h">cef/include/internal/cef_types_win.h</see>.
+            </remarks>
+        </member>
+        <member name="P:Chromium.CfxWindowInfo.ExternalBeginFrameEnabled">
+            <summary>
+            Set to true (1) to enable the ability to issue BeginFrame from the client
+            application.
+            </summary>
+            <remarks>
+            See also the original CEF documentation in
+            <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/internal/cef_types_win.h">cef/include/internal/cef_types_win.h</see>.
             </remarks>
         </member>
         <member name="P:Chromium.CfxWindowInfo.Window">

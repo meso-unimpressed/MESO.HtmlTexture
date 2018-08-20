@@ -34,16 +34,18 @@ namespace VVVV.HtmlTexture.DX11.Core
     public partial class HtmlTextureWrapper : IMainlooping, IDisposable
     {
         public static Dictionary<int, HtmlTextureWrapper> Instances = new Dictionary<int, HtmlTextureWrapper>();
-        public static readonly (int w, int h) DefaultSize = (800, 1000);
+        public static readonly (int w, int h) DefaultSize = (3840, 2160);
 
-        public const int DefaultWidth = 800;
-        public const int DefaultHeight = 1000;
+        public const int DefaultWidth = 3840;
+        public const int DefaultHeight = 2160;
 
-        private readonly object _lockingObject = new object();
+        //private readonly object _lockingObject = new object();
 
-        private bool _invalidate = false;
+        //private bool _invalidate = false;
         private bool _browserReadyFrame = false;
         private bool _loadedFrame = false;
+        private bool _newAccFrameReady = false;
+        private IntPtr _newAccFramePtr;
         private string _customContent = "";
         private string _customContentUrl = "";
 
@@ -97,10 +99,11 @@ namespace VVVV.HtmlTexture.DX11.Core
         public bool Loading { get; set; }
         public bool LoadedFrame { get; private set; }
         public bool CreatedFrame { get; private set; }
-        public bool IsImageReady { get; private set; }
+        //public bool IsImageReady { get; private set; }
+        public bool IsTextureValid { get; private set; }
         public bool LivePageActive { get; private set; }
 
-        public byte[] RawImage { get; private set; }
+        //public byte[] RawImage { get; private set; }
 
         public string LastError { get; private set; }
         public string LastConsole { get; private set; }
@@ -109,7 +112,7 @@ namespace VVVV.HtmlTexture.DX11.Core
         public XElement RootElement { get; private set; }
         public XDocument Dom { get; private set; }
 
-        public DX11Resource<DX11DynamicTexture2D> DX11Texture { get; set; } = new DX11Resource<DX11DynamicTexture2D>();
+        public DX11Resource<DX11Texture2D> DX11Texture { get; set; } = new DX11Resource<DX11Texture2D>();
 
         public event EventHandler OnBrowserReady;
 
@@ -242,7 +245,7 @@ namespace VVVV.HtmlTexture.DX11.Core
         {
             Settings = new CfxBrowserSettings()
             {
-                WindowlessFrameRate = InitSettings.Fps,
+                WindowlessFrameRate = /* InitSettings.Fps */ 240,
                 Webgl = CfxState.Enabled,
                 Plugins = CfxState.Enabled,
                 ApplicationCache = CfxState.Enabled,
@@ -253,7 +256,7 @@ namespace VVVV.HtmlTexture.DX11.Core
             };
             Globals.UpdateScripts();
 
-            TextureSize = new ValueTuple<int, int>(800, 1000);
+            TextureSize = (DefaultWidth, DefaultHeight);
 
             LifeSpanHandler = new CfxLifeSpanHandler();
             LifeSpanHandler.OnAfterCreated += (sender, e) =>
@@ -262,8 +265,9 @@ namespace VVVV.HtmlTexture.DX11.Core
                 BrowserId = e.Browser.Identifier;
                 Instances.UpdateGeneric(BrowserId, this);
                 Browser.Host.WasResized();
+                //Browser.Host.SendExternalBeginFrame();
                 _browserReadyFrame = true;
-                _invalidate = true;
+                //_invalidate = true;
             };
             LifeSpanHandler.OnBeforePopup += (sender, e) =>
             {
@@ -292,7 +296,8 @@ namespace VVVV.HtmlTexture.DX11.Core
                 e.Rect.Height = TextureSize.h;
                 e.SetReturnValue(true);
             };
-            RenderHandler.OnPaint += HandleRenderPaint;
+            //RenderHandler.OnPaint += HandleRenderPaint;
+            RenderHandler.OnAcceleratedPaint += HandleAcceleratedRenderPaint;
 
             LoadHandler = new CfxLoadHandler();
             LoadHandler.OnLoadStart += (sender, e) => IsDocumentReady = false;
@@ -334,14 +339,14 @@ namespace VVVV.HtmlTexture.DX11.Core
             };
 
             CreateBrowser();
-            _invalidate = true;
+            //_invalidate = true;
         }
 
         public void OnLoadEnd()
         {
             IsDocumentReady = true;
             AuxOnLoad();
-            UpdateTextureSize();
+            UpdateSize();
             if (!string.IsNullOrWhiteSpace(_customContent))
             {
                 Browser.MainFrame.LoadString(_customContent, _customContentUrl);
@@ -379,47 +384,58 @@ namespace VVVV.HtmlTexture.DX11.Core
             e.SetReturnValue(CfxReturnValue.Continue);
         }
 
-        private unsafe void HandleRenderPaint(object sender, CfxOnPaintEventArgs e)
+        //private unsafe void HandleRenderPaint(object sender, CfxOnPaintEventArgs e)
+        //{
+        //    if (RawImage == null || e.Width != TextureSize.w || e.Height != TextureSize.h || !Enabled) return;
+        //    lock (_lockingObject)
+        //    {
+        //        unsafe
+        //        {
+        //            fixed (byte* p = RawImage)
+        //            {
+        //                memcpy((IntPtr)p, e.Buffer, (UIntPtr)(TextureSize.w * TextureSize.h * 4));
+        //            }
+        //        }
+        //        IsImageReady = true;
+        //    }
+        //}
+
+        private void HandleAcceleratedRenderPaint(object sender, CfxOnAcceleratedPaintEventArgs e)
         {
-            if (RawImage == null || e.Width != TextureSize.w || e.Height != TextureSize.h || !Enabled) return;
-            lock (_lockingObject)
-            {
-                unsafe
-                {
-                    fixed (byte* p = RawImage)
-                    {
-                        memcpy((IntPtr)p, e.Buffer, (UIntPtr)(TextureSize.w * TextureSize.h * 4));
-                    }
-                }
-                IsImageReady = true;
-            }
+            _newAccFrameReady = e.SharedHandle != _newAccFramePtr;
+            _newAccFramePtr = e.SharedHandle;
         }
 
-        public void UpdateTextureSize()
+        public void UpdateSize(bool force = false)
         {
             (int w, int h) targetsize =
             (
                 (TextureSettings.AutoWidth ? DocumentSize.w : TextureSettings.TargetSize.w) + TextureSettings.ExtraSize.w,
                 (TextureSettings.AutoHeight ? DocumentSize.h : TextureSettings.TargetSize.h) + TextureSettings.ExtraSize.h
             );
+            TextureSize = targetsize;
+            //if(targetsize.w == TextureSize.w && targetsize.h == TextureSize.h) return;
 
-            if(targetsize.w == TextureSize.w && targetsize.h == TextureSize.h) return;
+            //lock (_lockingObject)
+            //{
+            //    TextureSize = targetsize;
+            //    RawImage = new byte[TextureSize.w * TextureSize.h * 4];
+            //    IsImageReady = false;
+            //}
 
-            lock (_lockingObject)
-            {
-                TextureSize = targetsize;
-                RawImage = new byte[TextureSize.w * TextureSize.h * 4];
-                IsImageReady = false;
-            }
             Browser?.Host.WasResized();
-            _invalidate = true;
+            //_invalidate = true;
         }
 
         private void CreateBrowser()
         {
             var windowInfo = new CfxWindowInfo();
-            windowInfo.SetAsWindowless(new IntPtr(InitSettings.ParentHandle));
+            windowInfo.SetAsWindowless(IntPtr.Zero);
+
             windowInfo.WindowlessRenderingEnabled = true;
+            windowInfo.SharedTextureEnabled = true;
+            windowInfo.ExternalBeginFrameEnabled = false;
+
             if (Browser != null)
             {
                 Browser.Host.CloseBrowser(true);
@@ -443,7 +459,7 @@ namespace VVVV.HtmlTexture.DX11.Core
             ResizeNotification.SizeChanged += (sender, args) =>
             {
                 if(!TextureSettings.AutoWidth && !TextureSettings.AutoHeight) return;
-                UpdateTextureSize();
+                UpdateSize();
             };
 
             BindObject(OnLoadBinding);
@@ -640,7 +656,7 @@ namespace VVVV.HtmlTexture.DX11.Core
                 _loadedFrame = false;
             }
 
-            if (!TextureSettings.Equals(_prevTextureSettings)) UpdateTextureSize();
+            if (!TextureSettings.Equals(_prevTextureSettings)) UpdateSize();
 
             if (BrowserSettings.ZoomLevel != Browser.Host.ZoomLevel)
             {
@@ -669,24 +685,43 @@ namespace VVVV.HtmlTexture.DX11.Core
 
         public void UpdateDX11Resources(DX11RenderContext context)
         {
-            if (IsImageReady && _invalidate || !DX11Texture.Contains(context))
-            {
-                if (DX11Texture.Contains(context)) DX11Texture.Dispose(context);
-                DX11Texture[context] = new DX11DynamicTexture2D(context, TextureSize.w, TextureSize.h, SlimDX.DXGI.Format.B8G8R8A8_UNorm);
-                _invalidate = false;
-            }
+            //if (IsImageReady && _invalidate || !DX11Texture.Contains(context))
+            //{
+            //    if (DX11Texture.Contains(context)) DX11Texture.Dispose(context);
+            //    DX11Texture[context] = new DX11DynamicTexture2D(context, TextureSize.w, TextureSize.h, SlimDX.DXGI.Format.B8G8R8A8_UNorm);
+            //    _invalidate = false;
+            //}
 
-            if (Browser == null || RawImage == null || (!IsImageReady || !DX11Texture.Contains(context)) || !Enabled) return;
+            //if (Browser == null || RawImage == null || (!IsImageReady || !DX11Texture.Contains(context)) || !Enabled) return;
 
-            lock (_lockingObject)
+            //lock (_lockingObject)
+            //{
+            //    unsafe
+            //    {
+            //        fixed (byte* p = RawImage)
+            //        {
+            //            DX11Texture[context].WriteDataPitch((IntPtr)p, TextureSize.w * TextureSize.h * 4);
+            //        }
+            //    }
+            //}
+            if (_newAccFramePtr != IntPtr.Zero && _newAccFrameReady)
             {
-                unsafe
+                try
                 {
-                    fixed (byte* p = RawImage)
-                    {
-                        DX11Texture[context].WriteDataPitch((IntPtr)p, TextureSize.w * TextureSize.h * 4);
-                    }
+                    DX11Texture[context] = DX11Texture2D.FromSharedHandle(context, _newAccFramePtr);
+                    IsTextureValid = true;
                 }
+                catch
+                {
+                    IsTextureValid = false;
+                }
+            }
+            else IsTextureValid = false;
+
+            if (_newAccFrameReady)
+            {
+                _newAccFrameReady = false;
+                //Browser.Host.SendExternalBeginFrame();
             }
         }
 

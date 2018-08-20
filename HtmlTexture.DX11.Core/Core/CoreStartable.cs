@@ -17,11 +17,16 @@ namespace VVVV.HtmlTexture.DX11.Core
         {
             // speech api
             e.CommandLine.AppendSwitch("enable-speech-input");
+
             e.CommandLine.AppendSwitch("ignore-gpu-blacklist");
+            e.CommandLine.AppendSwitch("disable-gpu-vsync");
             e.CommandLine.AppendSwitch("enable-experimental-canvas-features");
-            e.CommandLine.AppendSwitch("smooth-scrolling");
+
             e.CommandLine.AppendSwitch("allow-file-access-from-files");
+
+            e.CommandLine.AppendSwitch("smooth-scrolling");
             e.CommandLine.AppendSwitchWithValue("enable-features", "OverlayScrollbar");
+
             e.CommandLine.AppendSwitchWithValue("touch-events", "enabled");
 
             // enable pepper flash or system Flash
@@ -55,7 +60,7 @@ namespace VVVV.HtmlTexture.DX11.Core
                 CachePath = Path.Combine(Globals.AssemblyDir, "cache"),
                 BrowserSubprocessPath = Globals.AssemblyLocation,
                 LogSeverity = CfxLogSeverity.Disable,
-                SingleProcess = false, // DEBUG
+                //SingleProcess = false, // DEBUG
                 MultiThreadedMessageLoop = true, // false
                 IgnoreCertificateErrors = true,
                 RemoteDebuggingPort = 8088,
