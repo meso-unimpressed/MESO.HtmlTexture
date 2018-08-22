@@ -1,4 +1,4 @@
-# HTML Texture by MESO
+# MESO Vanadium
 
 Originally forked from Gumilastik's implementation of ChromiumFX in vvvv
 
@@ -11,7 +11,7 @@ Yet another Html Texture for VVVV which is using a custom built CEF and the rebu
   https://bitbucket.org/chromiumembedded/cef/pull-requests/104/touch-processing-for-osr-different-api
   With this we can provide real multi-touch events to the HTML content.
 
-At the time of writing these features are not part of the official CEF repository and we couldn't wait around until they become part of it. We only provide the modified CEF and its ChromiumFX bindings as binary blobs. We might attempt to contribute proper source-code back to the respective repository in the future, but currently we don't have time for that. This way redistribution and automated building is just incomparably faster to us.
+At the time of writing these features are not part of the official CEF repository and we couldn't wait around until they become part of it. We only provide the modified CEF and its ChromiumFX bindings as binary blobs. We might attempt to contribute proper source-code back to the respective repositories in the future, but currently we don't have time for that. This way redistribution and automated building is just incomparably faster to us.
 
 ### Additional features for VVVV
 
