@@ -17,57 +17,6 @@ using VVVV.Utils.VMath;
 
 namespace Vanadium.Nodes
 {
-    [PluginInfo(
-        Name = "HtmlTexture",
-        Category = "DX11.Texture2D",
-        Version = "Url",
-        Tags = "Modular",
-        Author = "MESO, microdee, Gumilastik, Tonfilm",
-        Help = "Advanced version of HTMLTexture with more bells and whistles"
-    )]
-    public class UrlMesoHtmlTextureNode : MesoHtmlTextureNode
-    {
-        [Input("Url", DefaultString = "about:blank")]
-        public IDiffSpread<string> FUrl;
-
-        protected override void LoadContent(HtmlTextureWrapper wrapper, int i)
-        {
-            wrapper.LoadUrl(FUrl[i]);
-        }
-
-        protected override int SliceCount()
-        {
-            return FUrl.SliceCount > 0 ? Math.Max(base.SliceCount(), FUrl.SliceCount) : 0;
-        }
-    }
-
-    [PluginInfo(
-        Name = "HtmlTexture",
-        Category = "DX11.Texture2D",
-        Version = "String",
-        Tags = "Modular",
-        Author = "MESO, microdee, Gumilastik, Tonfilm",
-        Help = "Advanced version of HTMLTexture with more bells and whistles"
-    )]
-    public class StringMesoHtmlTextureNode : MesoHtmlTextureNode
-    {
-        [Input("Content", DefaultString = @"<html><head></head><body bgcolor=""#0000ff""></body></html>")]
-        public IDiffSpread<string> FContent;
-        [Input("Dummy Url", DefaultString = "about:blank")]
-        public IDiffSpread<string> FUrl;
-
-        protected override void LoadContent(HtmlTextureWrapper wrapper, int i)
-        {
-            wrapper.LoadString(FContent[i], FUrl[i]);
-        }
-
-        protected override int SliceCount()
-        {
-            var cslc = SpreadUtils.SpreadMax(FContent, FUrl);
-            return cslc > 0 ? Math.Max(base.SliceCount(), cslc) : 0;
-        }
-    }
-
     public abstract class MesoHtmlTextureNode : HtmlTextureInputOutputNode, IPluginEvaluate
     {
         private bool _init;
@@ -80,7 +29,7 @@ namespace Vanadium.Nodes
             }
 
             int slc = SliceCount();
-            FWrapperOutput.Resize(slc, CreateWrapper, wrapper => wrapper.Dispose());
+            FWrapperOutput.Resize(slc, CreateWrapper, wrapper => wrapper?.Dispose());
             SetOutputsSliceCount(slc);
 
             // Going backwards to avoid automatic slice duplication
@@ -97,6 +46,7 @@ namespace Vanadium.Nodes
                     wrapper = CreateWrapper(i);
                     FWrapperOutput[i] = wrapper;
                 }
+                if(wrapper == null) continue;
                 UpdateWrapper(wrapper, i);
                 wrapper.Mainloop(0);
                 FillOuptuts(wrapper, i);
@@ -104,6 +54,59 @@ namespace Vanadium.Nodes
 
             FWrapperOutput.Stream.IsChanged = true;
             _init = true;
+        }
+    }
+
+    [PluginInfo(
+        Name = "HtmlTexture",
+        Category = "DX11.Texture2D",
+        Version = "Url",
+        Tags = "Vanadium",
+        Author = "MESO, microdee, Gumilastik",
+        Help = "Advanced version of HTMLTexture with more bells and whistles"
+    )]
+    public class UrlMesoHtmlTextureNode : MesoHtmlTextureNode
+    {
+        [Input("Url", DefaultString = "about:blank")]
+        public IDiffSpread<string> FUrl;
+
+        protected override void LoadContent(HtmlTextureWrapper wrapper, int i)
+        {
+            wrapper.LoadUrl(FUrl[i]);
+        }
+
+        protected override int SliceCount()
+        {
+            var pslc = base.SliceCount();
+            return FUrl.SliceCount > 0 && pslc > 0 ? Math.Max(base.SliceCount(), FUrl.SliceCount) : 0;
+        }
+    }
+
+    [PluginInfo(
+        Name = "HtmlTexture",
+        Category = "DX11.Texture2D",
+        Version = "String",
+        Tags = "Vanadium",
+        Author = "MESO, microdee, Gumilastik",
+        Help = "Advanced version of HTMLTexture with more bells and whistles"
+    )]
+    public class StringMesoHtmlTextureNode : MesoHtmlTextureNode
+    {
+        [Input("Content", DefaultString = @"<html><head></head><body bgcolor=""#0000ff""></body></html>")]
+        public IDiffSpread<string> FContent;
+        [Input("Dummy Url", DefaultString = "about:blank")]
+        public IDiffSpread<string> FUrl;
+
+        protected override void LoadContent(HtmlTextureWrapper wrapper, int i)
+        {
+            wrapper.LoadString(FContent[i], FUrl[i]);
+        }
+
+        protected override int SliceCount()
+        {
+            var pslc = base.SliceCount();
+            var cslc = SpreadUtils.SpreadMax(FContent, FUrl);
+            return cslc > 0 && pslc > 0 ? Math.Max(pslc, cslc) : 0;
         }
     }
 

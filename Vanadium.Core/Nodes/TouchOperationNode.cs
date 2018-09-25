@@ -17,7 +17,7 @@ namespace Vanadium.Nodes
 {
     public abstract class TouchOperationNode : PersistentOperationNode<SendTouchOperation>
     {
-        public abstract bool IsChanged();
+        protected abstract override bool IsChanged();
         public abstract IEnumerable<TouchContainer> GetTouches(int i);
 
         protected override void UpdateOps(ref SendTouchOperation ops, int i)
@@ -39,7 +39,7 @@ namespace Vanadium.Nodes
         [Input("Touches", Order = 10, BinOrder = 11)]
         public ISpread<ISpread<TouchContainer>> FTouches;
 
-        public override bool IsChanged()
+        protected override bool IsChanged()
         {
             return true;
         }
@@ -71,7 +71,7 @@ namespace Vanadium.Nodes
 
         protected float _prevFrameTime = 0;
 
-        public override bool IsChanged()
+        protected override bool IsChanged()
         {
             return true;
         }

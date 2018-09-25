@@ -77,25 +77,32 @@ namespace Vanadium.Nodes
         [Input("Operations", BinVisibility = PinVisibility.Hidden)]
         public ISpread<ISpread<HtmlTextureOperation>> FOperations;
 
-        [Input("Enabled", DefaultBoolean = true)]
-        public ISpread<bool> FEnabledIn;
+        [Input("Allow Initialization", Visibility = PinVisibility.OnlyInspector, DefaultBoolean = true)]
+        public IDiffSpread<bool> FManInit;
+
+        //[Input("Enabled", DefaultBoolean = true)]
+        //public ISpread<bool> FEnabledIn;
+
+        protected bool CanCreate;
 
         protected virtual int SliceCount()
         {
             return SpreadUtils.SpreadMax(FOperations, FLoad, FReloadIn, FSize,
                 FDocSizeBaseSelector, FAutoWidth, FAutoHeight, FPopupIn, FFilterUrlIn,
                 FZoomLevelIn, FMouseIn, FKeyboardIn, FShowDevToolsIn,
-                FLivePageIn, FUserAgentIn, FConsoleIn, FEnabledIn);
+                FLivePageIn, FUserAgentIn, FConsoleIn/*, FEnabledIn*/);
         }
 
         protected abstract void LoadContent(HtmlTextureWrapper wrapper, int i);
 
         protected virtual HtmlTextureWrapper CreateWrapper(int i)
         {
+            if (!CanCreate) return null;
             var wrapper = new HtmlTextureWrapper(new HtmlTextureWrapper.WrapperInitSettings
             {
                 Fps = FFps[0],
-                ParentHandle = 0
+                ParentHandle = 0,
+                FrameRequestFromVvvv = false
             })
             {
                 TextureSettings = new HtmlTextureWrapper.WrapperTextureSettings
@@ -118,7 +125,7 @@ namespace Vanadium.Nodes
                 },
                 VvvvLogger = Logger,
                 Operations = FOperations[i],
-                Enabled = FEnabledIn[i]
+                //Enabled = FEnabledIn[i]
             };
 
             wrapper.UrlFilter.AddRange(FFilterUrlIn[i]);
@@ -130,7 +137,9 @@ namespace Vanadium.Nodes
 
         protected virtual void UpdateWrapper(HtmlTextureWrapper wrapper, int i)
         {
-            wrapper.Enabled = FEnabledIn[i];
+            if(wrapper == null) return;
+            //wrapper.Enabled = FEnabledIn[i];
+            wrapper.Enabled = true;
             if (FLoad[i]) LoadContent(wrapper, i);
             if (FReloadIn[i]) wrapper.Reload();
             if (FShowDevToolsIn[i]) wrapper.ShowDevTool();
@@ -189,6 +198,8 @@ namespace Vanadium.Nodes
         public ISpread<bool> FDocReady;
         [Output("Loading")]
         public ISpread<bool> FIsLoadingOut;
+        [Output("Loading Progress")]
+        public ISpread<double> FloadingProgress;
 
         [Output("On Created", IsBang = true)]
         public ISpread<bool> FCreated;
@@ -211,11 +222,12 @@ namespace Vanadium.Nodes
         {
             FTextureOutput.SliceCount = FWrapperOutput.SliceCount = FDocSizeOut.SliceCount = FIsLoadingOut.SliceCount =
                 FLog.SliceCount = FCurrentUrlOut.SliceCount = FErrorTextOut.SliceCount = FTextureValid.SliceCount =
-                    FLoaded.SliceCount = FCreated.SliceCount = FDocReady.SliceCount = slc;
+                    FLoaded.SliceCount = FCreated.SliceCount = FDocReady.SliceCount = FloadingProgress.SliceCount = slc;
         }
 
         protected void FillOuptuts(HtmlTextureWrapper wrapper, int i)
         {
+            if(wrapper == null) return;
             FTextureOutput[i] = wrapper.DX11Texture;
             FDocSizeOut[i] = new Vector2D(wrapper.DocumentSize.w, wrapper.DocumentSize.h);
             FIsLoadingOut[i] = wrapper.Loading;
@@ -226,10 +238,12 @@ namespace Vanadium.Nodes
             FCreated[i] = wrapper.CreatedFrame;
             FTextureValid[i] = wrapper.IsTextureValid;
             FLog[i] = wrapper.LastConsole;
+            FloadingProgress[i] = wrapper.Progress;
         }
 
         public void Update(DX11RenderContext context)
         {
+            CanCreate = FTextureOutput.IsConnected && (FManInit.SliceCount > 0 && FManInit[0]);
             for (int i = 0; i < FWrapperOutput.SliceCount; i++)
             {
                 var wrapper = FWrapperOutput[i];
@@ -286,6 +300,8 @@ namespace Vanadium.Nodes
         [Output("Last Js Log")]
         public ISpread<string> FLog;
 
+        protected bool CanCreate;
+
         protected void SetOutputsSliceCount(int slc)
         {
             FTextureOutput.SliceCount = FWrapperOutput.SliceCount = FDocSizeOut.SliceCount = FIsLoadingOut.SliceCount =
@@ -295,6 +311,7 @@ namespace Vanadium.Nodes
 
         protected void FillOuptuts(HtmlTextureWrapper wrapper, int i)
         {
+            if (wrapper == null) return;
             FTextureOutput[i] = wrapper.DX11Texture;
             FDocSizeOut[i] = new Vector2D(wrapper.DocumentSize.w, wrapper.DocumentSize.h);
             FIsLoadingOut[i] = wrapper.Loading;
@@ -308,6 +325,7 @@ namespace Vanadium.Nodes
 
         public void Update(DX11RenderContext context)
         {
+            CanCreate = FTextureOutput.IsConnected;
             for (int i = 0; i < FWrapperOutput.SliceCount; i++)
             {
                 var wrapper = FWrapperOutput[i];

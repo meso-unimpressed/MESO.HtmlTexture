@@ -46,8 +46,9 @@ namespace Vanadium.Core
 
         public class WrapperInitSettings
         {
-            public int Fps { get; set; } = 240;
+            public int Fps { get; set; } = 60;
             public int ParentHandle { get; set; } = 0;
+            public bool FrameRequestFromVvvv { get; set; } = false;
         }
     }
 }

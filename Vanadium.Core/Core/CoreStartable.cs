@@ -13,16 +13,23 @@ namespace Vanadium.Core
 {
     public static class HtmlTextureStartable
     {
+        public static bool Started = false;
+
         private static void app_OnBeforeCommandLineProcessing(object sender, Chromium.Event.CfxOnBeforeCommandLineProcessingEventArgs e)
         {
             // speech api
-            e.CommandLine.AppendSwitch("enable-speech-input");
+            //e.CommandLine.AppendSwitch("enable-speech-input");
 
             e.CommandLine.AppendSwitch("ignore-gpu-blacklist");
-            e.CommandLine.AppendSwitch("disable-gpu-vsync");
             e.CommandLine.AppendSwitch("enable-experimental-canvas-features");
+            //e.CommandLine.AppendSwitch("enable-gpu-memory-buffer-video-frames");
+            e.CommandLine.AppendSwitch("enable-accelerated-2d-canvas");
+            //e.CommandLine.AppendSwitch("enable-native-gpu-memory-buffers");
+            //e.CommandLine.AppendSwitchWithValue("disable-gpu-vsync", "beginframe");
+            //e.CommandLine.AppendSwitchWithValue("enable-accelerated-vpx-decode", "0x03");
 
             e.CommandLine.AppendSwitch("allow-file-access-from-files");
+            e.CommandLine.AppendSwitch("allow-universal-access-from-files");
 
             e.CommandLine.AppendSwitch("smooth-scrolling");
             e.CommandLine.AppendSwitchWithValue("enable-features", "OverlayScrollbar");
@@ -60,13 +67,15 @@ namespace Vanadium.Core
                 CachePath = Path.Combine(Globals.AssemblyDir, "cache"),
                 BrowserSubprocessPath = Globals.AssemblyLocation,
                 LogSeverity = CfxLogSeverity.Disable,
-                //SingleProcess = false, // DEBUG
                 MultiThreadedMessageLoop = true, // false
                 IgnoreCertificateErrors = true,
-                RemoteDebuggingPort = 8088,
+                RemoteDebuggingPort = 8088
             };
 
             CfxRuntime.Initialize(settings, app, RenderProcess.RenderProcessMain);
+            Started = true;
+
+
         }
         public static void Shutdown()
         {

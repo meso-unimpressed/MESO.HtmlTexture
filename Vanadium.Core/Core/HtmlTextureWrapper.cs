@@ -41,10 +41,11 @@ namespace Vanadium.Core
 
         //private readonly object _lockingObject = new object();
 
+        private bool _allowInitFrameRequest = false;
         private bool _browserReadyFrame = false;
         private bool _loadedFrame = false;
         private bool _invalidateAccFrame = false;
-        private Dictionary<DX11RenderContext, bool> _newAccFrameReady = new Dictionary<DX11RenderContext, bool>();
+        private readonly Dictionary<DX11RenderContext, bool> _newAccFrameReady = new Dictionary<DX11RenderContext, bool>();
         private IntPtr _newAccFramePtr;
         private string _customContent = "";
         private string _customContentUrl = "";
@@ -103,11 +104,14 @@ namespace Vanadium.Core
         public bool IsTextureValid { get; private set; }
         public bool LivePageActive { get; private set; }
 
+        public double Progress { get; private set; }
+
         //public byte[] RawImage { get; private set; }
 
         public string LastError { get; private set; }
         public string LastConsole { get; private set; }
         public string CurrentUrl { get; private set; }
+        public string LastStatusMessage { get; private set; }
 
         public XElement RootElement { get; private set; }
         public XDocument Dom { get; private set; }
@@ -238,6 +242,11 @@ namespace Vanadium.Core
 
         public HtmlTextureWrapper(WrapperInitSettings initSettings)
         {
+            if (!HtmlTextureStartable.Started)
+            {
+                HtmlTextureStartable.Start();
+            }
+
             InitSettings = initSettings;
         }
 
@@ -245,7 +254,7 @@ namespace Vanadium.Core
         {
             Settings = new CfxBrowserSettings()
             {
-                WindowlessFrameRate = /* InitSettings.Fps */ 240,
+                WindowlessFrameRate = InitSettings.Fps,
                 Webgl = CfxState.Enabled,
                 Plugins = CfxState.Enabled,
                 ApplicationCache = CfxState.Enabled,
@@ -265,7 +274,10 @@ namespace Vanadium.Core
                 BrowserId = e.Browser.Identifier;
                 Instances.UpdateGeneric(BrowserId, this);
                 Browser.Host.WasResized();
-                //Browser.Host.SendExternalBeginFrame();
+
+                if(InitSettings.FrameRequestFromVvvv)
+                    Browser.Host.SendExternalBeginFrame();
+
                 _browserReadyFrame = true;
                 //_invalidate = true;
             };
@@ -323,6 +335,7 @@ namespace Vanadium.Core
             ContextMenuHandler.OnBeforeContextMenu += (sender, args) => args.Model.Clear();
             DisplayHandler = new CfxDisplayHandler();
             DisplayHandler.OnConsoleMessage += HandleConsoleMessage;
+            DisplayHandler.OnLoadingProgressChange += (sender, args) => Progress = args.Progress;
 
             Client = new CfxClient();
             Client.GetLifeSpanHandler += (sender, e) => e.SetReturnValue(LifeSpanHandler);
@@ -386,6 +399,7 @@ namespace Vanadium.Core
 
         private void HandleAcceleratedRenderPaint(object sender, CfxOnAcceleratedPaintEventArgs e)
         {
+            _allowInitFrameRequest = true;
             _invalidateAccFrame = e.SharedHandle != _newAccFramePtr;
             _newAccFramePtr = e.SharedHandle;
         }
@@ -408,7 +422,7 @@ namespace Vanadium.Core
 
             windowInfo.WindowlessRenderingEnabled = true;
             windowInfo.SharedTextureEnabled = true;
-            windowInfo.ExternalBeginFrameEnabled = false;
+            windowInfo.ExternalBeginFrameEnabled = InitSettings.FrameRequestFromVvvv;
 
             if (Browser != null)
             {
@@ -629,6 +643,8 @@ namespace Vanadium.Core
                 LoadedFrame = true;
                 _loadedFrame = false;
             }
+            
+            //if (!_allowInitFrameRequest) return;
 
             if (_invalidateAccFrame)
             {
@@ -655,6 +671,9 @@ namespace Vanadium.Core
             {
                 var operations = Operations;
                 operations?.ForEach(o => o?.Invoke(this));
+
+                if(InitSettings.FrameRequestFromVvvv)
+                    Browser.Host.SendExternalBeginFrame();
             }
             _prevTextureSettings = TextureSettings;
             _prevBrowserSettings = BrowserSettings;
@@ -689,7 +708,6 @@ namespace Vanadium.Core
             if (invalidate)
             {
                 _newAccFrameReady.UpdateGeneric(context, false);
-                //Browser.Host.SendExternalBeginFrame();
             }
         }
 

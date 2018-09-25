@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha36.1.dtd" >
-   <PATCH nodename="D:\local\lib\VVVV.HTMLTexture.DX11\deploy\HtmlTexture.DX11\girlpower\Three.js.v4p" scrollx="0" scrolly="0" systemname="1. UI Sample" filename="C:\vvvv_45beta33.7_x86\1. UI Sample.v4p">
+   <PATCH nodename="D:\local\vvvv-gp\packs\Vanadium\girlpower\Three.js.v4p" scrollx="0" scrolly="0" systemname="1. UI Sample" filename="C:\vvvv_45beta33.7_x86\1. UI Sample.v4p">
    <BOUNDS type="Window" left="4635" top="1620" width="9195" height="12120">
    </BOUNDS>
    <PACK Name="addonpack" Version="36.0.0">
