@@ -13,6 +13,8 @@ namespace VVVV.HtmlTexture.DX11.Core
 {
     public static class HtmlTextureStartable
     {
+        public static bool Started { get; private set; }
+
         private static void app_OnBeforeCommandLineProcessing(object sender, Chromium.Event.CfxOnBeforeCommandLineProcessingEventArgs e)
         {
             // speech api
@@ -40,6 +42,7 @@ namespace VVVV.HtmlTexture.DX11.Core
                 e.CommandLine.AppendSwitch("enable-system-flash");
             }
 
+            Started = true;
             // MessageBox.Show(e.CommandLine.CommandLineString);
         }
 
