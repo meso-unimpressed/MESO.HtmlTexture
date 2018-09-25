@@ -5,8 +5,8 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Vanadium</RootNamespace>
-    <AssemblyName>Vanadium.Core</AssemblyName>
+    <RootNamespace>VVVV.Vanadium</RootNamespace>
+    <AssemblyName>Vanadium</AssemblyName>
     <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <OutputPath>bin\$(Platform)\$(Configuration)\</OutputPath>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
@@ -54,7 +54,7 @@
     <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>Vanadium.Core.App</StartupObject>
+    <StartupObject>VVVV.Vanadium.Core.App</StartupObject>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <Optimize>true</Optimize>
@@ -700,9 +700,6 @@
     <None Include="libcfx64.exp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="libcfx64.ilk">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="libcfx64.lib">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -982,13 +979,7 @@
     <Content Include="cef\swiftshader\libEGL.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="cef\swiftshader\libEGL.dll.pdb">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="cef\swiftshader\libGLESv2.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="cef\swiftshader\libGLESv2.dll.pdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="cef\VkICD_mock_icd.dll">
@@ -1025,9 +1016,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="libcfx64.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="libcfx64.pdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

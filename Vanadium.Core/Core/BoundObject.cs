@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Chromium.Remote;
 using Chromium.Remote.Event;
 using md.stdl.Coding;
 using md.stdl.Interfaces;
 
-namespace Vanadium.Core
+namespace VVVV.Vanadium.Core
 {
     public delegate void JsFunctionEventHandler(JsBindingFunction func, HtmlTextureWrapper wrapper);
 

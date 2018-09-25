@@ -1,35 +1,25 @@
-// Decompiled with JetBrains decompiler
-// Type: Vanadium.Core.HtmlTextureWrapper
-// Assembly: Vanadium.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 57C678C6-0611-48DA-B8C5-441FD4527177
-// Assembly location: D:\local\vvvv-gp\packs\Vanadium\nodes\plugins\Vanadium.Core.exe
-
-using Chromium;
-using Chromium.Event;
-using Chromium.Remote;
-using Chromium.Remote.Event;
-using FeralTic.DX11;
-using FeralTic.DX11.Resources;
-using md.stdl.Interaction;
-using md.stdl.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Reactive.Concurrency;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using Chromium;
+using Chromium.Event;
+using Chromium.Remote;
+using FeralTic.DX11;
+using FeralTic.DX11.Resources;
 using md.stdl.Coding;
+using md.stdl.Interaction;
+using md.stdl.Interfaces;
 using VVVV.Core.Logging;
 using VVVV.DX11;
-using VVVV.DX11.Lib.Effects.Pins.RenderSemantics;
 using VVVV.Utils.IO;
 using VVVV.Utils.VMath;
 
-namespace Vanadium.Core
+namespace VVVV.Vanadium.Core
 {
     public partial class HtmlTextureWrapper : IMainlooping, IDisposable
     {

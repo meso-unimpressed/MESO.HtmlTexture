@@ -1,17 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Chromium;
 using md.stdl.Coding;
 using md.stdl.Interaction;
 using VVVV.PluginInterfaces.V2;
-using VVVV.PluginInterfaces.V2.NonGeneric;
-using VVVV.Utils.IO;
 using VVVV.Utils.VMath;
 
-namespace Vanadium.Core
+namespace VVVV.Vanadium.Core
 {
     public delegate void OperationExecutedEventHandler(HtmlTextureOperation ops, HtmlTextureWrapper wrapper);
 

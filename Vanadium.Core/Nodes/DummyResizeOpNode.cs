@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Vanadium.Nodes;
-using Vanadium.Core;
-using VVVV.PluginInterfaces.V2;
+﻿using VVVV.PluginInterfaces.V2;
+using VVVV.Vanadium.Core;
 
-namespace Vanadium.Nodes
+namespace VVVV.Vanadium.Nodes
 {
     [PluginInfo(
         Name = "SendResizeEvent",

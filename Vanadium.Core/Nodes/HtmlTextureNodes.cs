@@ -1,21 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.Composition;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FeralTic.DX11;
-using FeralTic.DX11.Resources;
 using mp.pddn;
-using VVVV.Core.Logging;
-using VVVV.DX11;
-using Vanadium.Core;
 using VVVV.PluginInterfaces.V2;
-using VVVV.Utils.IO;
-using VVVV.Utils.VMath;
+using VVVV.Vanadium.Core;
 
-namespace Vanadium.Nodes
+namespace VVVV.Vanadium.Nodes
 {
     public abstract class MesoHtmlTextureNode : HtmlTextureInputOutputNode, IPluginEvaluate
     {

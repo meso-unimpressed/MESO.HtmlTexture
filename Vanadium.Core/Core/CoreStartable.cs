@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
 using Chromium;
-using VVVV.DX11.Nodes;
-using VVVV.PluginInterfaces.V2;
 
-namespace Vanadium.Core
+namespace VVVV.Vanadium.Core
 {
     public static class HtmlTextureStartable
     {

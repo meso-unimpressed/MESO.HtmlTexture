@@ -2,18 +2,16 @@
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using md.stdl.Coding;
 using md.stdl.Interaction;
 using md.stdl.Mathematics;
 using VVVV.DX11.Nodes.Renderers.Graphics.Touch;
-using Vanadium.Core;
 using VVVV.PluginInterfaces.V2;
 using VVVV.Utils.SlimDX;
 using VVVV.Utils.VMath;
+using VVVV.Vanadium.Core;
 
-namespace Vanadium.Nodes
+namespace VVVV.Vanadium.Nodes
 {
     public abstract class TouchOperationNode : PersistentOperationNode<SendTouchOperation>
     {

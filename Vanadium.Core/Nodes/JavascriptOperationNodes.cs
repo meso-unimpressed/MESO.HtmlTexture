@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using mp.pddn;
-using Vanadium.Core;
+﻿using mp.pddn;
 using VVVV.PluginInterfaces.V2;
-using VVVV.Utils.VMath;
+using VVVV.Vanadium.Core;
 
-namespace Vanadium.Nodes
+namespace VVVV.Vanadium.Nodes
 {
     public class JsOperationNode<T> : PersistentOperationNode<T> where T : HtmlTextureOperation, IJsOperation, new()
     {

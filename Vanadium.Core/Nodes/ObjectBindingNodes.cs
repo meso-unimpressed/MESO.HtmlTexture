@@ -1,19 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.ComponentModel.Composition;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using Chromium.Remote;
 using mp.pddn;
-using SlimDX.D3DCompiler;
-using Vanadium.Core;
 using VVVV.PluginInterfaces.V2;
 using VVVV.Utils.VMath;
+using VVVV.Vanadium.Core;
 
-namespace Vanadium.Nodes
+namespace VVVV.Vanadium.Nodes
 {
     [PluginInfo(
         Name = "BindObject",

@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Chromium;
 using Chromium.Remote;
 using Chromium.Remote.Event;
-using VVVV.DX11.Nodes;
 
-namespace Vanadium.Core
+namespace VVVV.Vanadium.Core
 {
 
     class App

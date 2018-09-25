@@ -3,16 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Remoting.Messaging;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 using Chromium;
 using Chromium.Remote;
 using SlimDX;
 using VVVV.Utils.VColor;
 
-namespace Vanadium.Core
+namespace VVVV.Vanadium.Core
 {
     public static class ClrV8ValueSerializer
     {

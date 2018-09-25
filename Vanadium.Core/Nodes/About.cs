@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
+﻿using System.ComponentModel.Composition;
 using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using md.stdl.Interfaces;
 using mp.pddn;
 using VVVV.PluginInterfaces.V2;
 
-namespace Vanadium.Nodes
+namespace VVVV.Vanadium.Nodes
 {
     [Startable]
     public class VersionWriter : IStartable

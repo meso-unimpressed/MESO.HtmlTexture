@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using md.stdl.Interfaces;
 
-namespace Vanadium.Core
+namespace VVVV.Vanadium.Core
 {
     public partial class HtmlTextureWrapper : IMainlooping, IDisposable
     {
