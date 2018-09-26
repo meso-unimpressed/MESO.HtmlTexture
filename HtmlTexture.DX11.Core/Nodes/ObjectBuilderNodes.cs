@@ -54,7 +54,7 @@ namespace VVVV.HtmlTexture.DX11.Nodes
         Name = "V8Object",
         Category = "HtmlTexture.V8Object",
         Author = "MESO, microdee",
-        Tags = "Bind, javascript",
+        Tags = "Bind, javascript, Vanadium",
         Help = "Create an object hierarchy which can be fed to BindObject (HtmlTexture.Operation) node",
         Warnings = "Supply only numbers, strings, V8Objects, simple structs or classes with primitive members, Do not supply complex self referencing big objects as return values. It can crash vvvv"
     )]
@@ -90,7 +90,7 @@ namespace VVVV.HtmlTexture.DX11.Nodes
         Name = "V8Array",
         Category = "HtmlTexture.V8Object",
         Author = "MESO, microdee",
-        Tags = "Bind, javascript",
+        Tags = "Bind, javascript, Vanadium",
         Help = "Create an object hierarchy which can be fed to BindObject (HtmlTexture.Operation) node",
         Warnings = "Supply only numbers, strings, V8Objects, simple structs or classes with primitive members, Do not supply complex self referencing big objects as return values. It can crash vvvv"
     )]

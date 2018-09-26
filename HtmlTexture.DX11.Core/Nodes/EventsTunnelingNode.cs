@@ -14,7 +14,7 @@ namespace VVVV.HtmlTexture.DX11.Nodes
         Name = "EventTunneler",
         Category = "HtmlTexture.Operation",
         Author = "MESO, microdee",
-        Tags = "onloaded, oncreated",
+        Tags = "onloaded, oncreated, Vanadium",
         Help = "Notify events upstream"
     )]
     public class EventsTunnelingNode : PersistentOperationNode<EmptyOperation>

@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
 using Chromium;
-using VVVV.DX11.Nodes;
-using VVVV.PluginInterfaces.V2;
 
 namespace VVVV.HtmlTexture.DX11.Core
 {
@@ -21,10 +13,13 @@ namespace VVVV.HtmlTexture.DX11.Core
             e.CommandLine.AppendSwitch("enable-speech-input");
 
             e.CommandLine.AppendSwitch("ignore-gpu-blacklist");
-            e.CommandLine.AppendSwitch("disable-gpu-vsync");
             e.CommandLine.AppendSwitch("enable-experimental-canvas-features");
+            e.CommandLine.AppendSwitch("enable-gpu-memory-buffer-video-frames");
+            e.CommandLine.AppendSwitch("enable-native-gpu-memory-buffers");
 
             e.CommandLine.AppendSwitch("allow-file-access-from-files");
+            e.CommandLine.AppendSwitchWithValue("disable-gpu-vsync", "beginframe");
+            e.CommandLine.AppendSwitchWithValue("enable-accelerated-vpx-decode", "0x03");
 
             e.CommandLine.AppendSwitch("smooth-scrolling");
             e.CommandLine.AppendSwitchWithValue("enable-features", "OverlayScrollbar");
@@ -42,7 +37,6 @@ namespace VVVV.HtmlTexture.DX11.Core
                 e.CommandLine.AppendSwitch("enable-system-flash");
             }
 
-            Started = true;
             // MessageBox.Show(e.CommandLine.CommandLineString);
         }
 
@@ -68,6 +62,8 @@ namespace VVVV.HtmlTexture.DX11.Core
                 IgnoreCertificateErrors = true,
                 RemoteDebuggingPort = 8088,
             };
+
+            Started = true;
 
             CfxRuntime.Initialize(settings, app, RenderProcess.RenderProcessMain);
         }

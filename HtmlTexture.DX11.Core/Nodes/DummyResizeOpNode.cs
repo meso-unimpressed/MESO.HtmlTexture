@@ -12,6 +12,7 @@ namespace VVVV.HtmlTexture.DX11.Nodes
     [PluginInfo(
         Name = "SendResizeEvent",
         Category = "HtmlTexture.Operation",
+        Tags = "Vanadium",
         Author = "MESO, microdee",
         Help = "Send a dummy resize event to the wrapper. Useful for layout refreshing."
     )]

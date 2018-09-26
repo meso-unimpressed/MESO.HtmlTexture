@@ -36,7 +36,7 @@ namespace HtmlTexture.DX11.Nodes
         Name = "ExecuteJavascript",
         Category = "HtmlTexture.Operation",
         Author = "MESO, microdee",
-        Tags = "javascript",
+        Tags = "javascript, Vanadium",
         Help = "Execute Javascript without results"
     )]
     public class ExecuteJsOperationNode : JsOperationNode<ExecuteJsOperation> { }
@@ -45,7 +45,7 @@ namespace HtmlTexture.DX11.Nodes
         Name = "EvaluateJavascript",
         Category = "HtmlTexture.Operation",
         Author = "MESO, microdee",
-        Tags = "javascript",
+        Tags = "javascript, Vanadium",
         Help = "Execute Javascript which will return data"
     )]
     public class EvaluateJsOperationNode : JsOperationNode<EvaluateJsOperation> { }
@@ -54,7 +54,7 @@ namespace HtmlTexture.DX11.Nodes
         Name = "GetJavascriptResult",
         Category = "HtmlTexture.Operation",
         Author = "MESO, microdee",
-        Tags = "javascript",
+        Tags = "javascript, Vanadium",
         Help = "Gets the result of a script run from an EvaluateJavascript"
     )]
     public class GetJavascriptResultNode : GetOperationResultsNode<ResultFromJs, EvaluateJsOperation>
@@ -90,7 +90,7 @@ namespace HtmlTexture.DX11.Nodes
         Name = "SplitJsResult",
         Category = "HtmlTexture.Operation",
         Author = "MESO, microdee",
-        Tags = "javascript",
+        Tags = "javascript, Vanadium",
         Help = "Splits a result coming from Javascript"
     )]
     public class SplitJsResultNode : ObjectSplitNode<ResultFromJs> { }

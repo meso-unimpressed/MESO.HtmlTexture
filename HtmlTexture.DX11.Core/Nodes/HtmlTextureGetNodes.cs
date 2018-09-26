@@ -14,7 +14,7 @@ namespace VVVV.HtmlTexture.DX11.Nodes
     [PluginInfo(
         Name = "DOM",
         Category = "HtmlTexture",
-        Tags = "HTML, XElement",
+        Tags = "HTML, XElement, Vanadium",
         Author = "MESO, microdee",
         Help = "Get the DOM xml from HtmlTexture"
     )]

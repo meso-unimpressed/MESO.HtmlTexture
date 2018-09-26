@@ -1,9 +1,3 @@
-// Decompiled with JetBrains decompiler
-// Type: VVVV.HtmlTexture.DX11.Core.HtmlTextureWrapper
-// Assembly: HtmlTexture.DX11.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 57C678C6-0611-48DA-B8C5-441FD4527177
-// Assembly location: D:\local\vvvv-gp\packs\HtmlTexture.DX11\nodes\plugins\HtmlTexture.DX11.Core.exe
-
 using Chromium;
 using Chromium.Event;
 using Chromium.Remote;
@@ -48,6 +42,7 @@ namespace VVVV.HtmlTexture.DX11.Core
         private IntPtr _newAccFramePtr;
         private string _customContent = "";
         private string _customContentUrl = "";
+        private string _prevUrl = "";
 
         private WrapperTextureSettings _prevTextureSettings;
         private WrapperBrowserSettings _prevBrowserSettings;
@@ -55,8 +50,8 @@ namespace VVVV.HtmlTexture.DX11.Core
         private Subscription<Keyboard, KeyNotification> _keyboardSubscription;
         private Keyboard _keyboard;
 
-        [DllImport("msvcrt.dll", CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr memcpy(IntPtr dest, IntPtr src, UIntPtr count);
+        //[DllImport("msvcrt.dll", CallingConvention = CallingConvention.Cdecl)]
+        //public static extern IntPtr memcpy(IntPtr dest, IntPtr src, UIntPtr count);
 
         public bool Enabled { get; set; }
 
@@ -81,6 +76,7 @@ namespace VVVV.HtmlTexture.DX11.Core
         public (int w, int h) DocumentSize { get; private set; }
         public (int w, int h) TextureSize { get; private set; }
 
+        public bool AllowFrameRequest { get; set; } = false;
         public CfxMouseEvent MouseEvent { get; set; }
         public CfxBrowser Browser { get; private set; }
         public CfrBrowser RemoteBrowser { get; set; }
@@ -102,6 +98,7 @@ namespace VVVV.HtmlTexture.DX11.Core
         //public bool IsImageReady { get; private set; }
         public bool IsTextureValid { get; private set; }
         public bool LivePageActive { get; private set; }
+        public double Progress { get; private set; }
 
         //public byte[] RawImage { get; private set; }
 
@@ -245,7 +242,7 @@ namespace VVVV.HtmlTexture.DX11.Core
         {
             Settings = new CfxBrowserSettings()
             {
-                WindowlessFrameRate = /* InitSettings.Fps */ 240,
+                WindowlessFrameRate = InitSettings.Fps,
                 Webgl = CfxState.Enabled,
                 Plugins = CfxState.Enabled,
                 ApplicationCache = CfxState.Enabled,
@@ -265,7 +262,7 @@ namespace VVVV.HtmlTexture.DX11.Core
                 BrowserId = e.Browser.Identifier;
                 Instances.UpdateGeneric(BrowserId, this);
                 Browser.Host.WasResized();
-                //Browser.Host.SendExternalBeginFrame();
+                
                 _browserReadyFrame = true;
                 //_invalidate = true;
             };
@@ -296,11 +293,16 @@ namespace VVVV.HtmlTexture.DX11.Core
                 e.Rect.Height = TextureSize.h;
                 e.SetReturnValue(true);
             };
-            //RenderHandler.OnPaint += HandleRenderPaint;
+            //RenderHandler.OnPaint += (sender, args) => _paintFrame = true;
             RenderHandler.OnAcceleratedPaint += HandleAcceleratedRenderPaint;
 
             LoadHandler = new CfxLoadHandler();
-            LoadHandler.OnLoadStart += (sender, e) => IsDocumentReady = false;
+            LoadHandler.OnLoadStart += (sender, e) =>
+            {
+                if(e.Browser.MainFrame.Url != _prevUrl)
+                    IsDocumentReady = false;
+                _prevUrl = e.Browser.MainFrame.Url;
+            };
             LoadHandler.OnLoadError += (sender, e) =>
             {
                 LogError(e.ErrorCode.ToString() + Environment.NewLine + "    " + e.ErrorText + Environment.NewLine + "    " + e.FailedUrl);
@@ -323,6 +325,7 @@ namespace VVVV.HtmlTexture.DX11.Core
             ContextMenuHandler.OnBeforeContextMenu += (sender, args) => args.Model.Clear();
             DisplayHandler = new CfxDisplayHandler();
             DisplayHandler.OnConsoleMessage += HandleConsoleMessage;
+            DisplayHandler.OnLoadingProgressChange += (sender, args) => Progress = args.Progress;
 
             Client = new CfxClient();
             Client.GetLifeSpanHandler += (sender, e) => e.SetReturnValue(LifeSpanHandler);
@@ -344,7 +347,6 @@ namespace VVVV.HtmlTexture.DX11.Core
 
         public void OnLoadEnd()
         {
-            IsDocumentReady = true;
             AuxOnLoad();
             UpdateSize();
             if (!string.IsNullOrWhiteSpace(_customContent))
@@ -408,7 +410,7 @@ namespace VVVV.HtmlTexture.DX11.Core
 
             windowInfo.WindowlessRenderingEnabled = true;
             windowInfo.SharedTextureEnabled = true;
-            windowInfo.ExternalBeginFrameEnabled = false;
+            windowInfo.ExternalBeginFrameEnabled = InitSettings.FrameRequestFromVvvv;
 
             if (Browser != null)
             {
@@ -620,12 +622,14 @@ namespace VVVV.HtmlTexture.DX11.Core
 
             if (Browser == null) return;
 
-            if (LoadedFrame) LoadedFrame = false;
+            if (LoadedFrame)
+            {
+                LoadedFrame = false;
+                IsDocumentReady = true;
+            }
             Loading = Browser.IsLoading;
-            IsDocumentReady = !(!IsDocumentReady && Browser.IsLoading);
             if (_loadedFrame)
             {
-                IsDocumentReady = false;
                 LoadedFrame = true;
                 _loadedFrame = false;
             }
@@ -655,6 +659,11 @@ namespace VVVV.HtmlTexture.DX11.Core
             {
                 var operations = Operations;
                 operations?.ForEach(o => o?.Invoke(this));
+
+                if (InitSettings.FrameRequestFromVvvv && AllowFrameRequest)
+                {
+                    Browser.Host.SendExternalBeginFrame();
+                }
             }
             _prevTextureSettings = TextureSettings;
             _prevBrowserSettings = BrowserSettings;

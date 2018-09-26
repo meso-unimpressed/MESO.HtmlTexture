@@ -20,9 +20,14 @@ namespace HtmlTexture.DX11.Nodes
         [Import]
         public ILogger Logger;
 
-        [Config("Framerate", DefaultValue = 240)]
+        [Config("Framerate", DefaultValue = 60)]
         public ISpread<int> FFps;
-        
+
+        [Input("VVVV Requests Frame", DefaultBoolean = false, Visibility = PinVisibility.OnlyInspector, Order = -11)]
+        public ISpread<bool> FVvvvRequFrame;
+        [Input("Allow Requesting Frames", DefaultBoolean = true, Visibility = PinVisibility.OnlyInspector, Order = -10)]
+        public ISpread<bool> FAllowDraw;
+
         [Input("Load", IsBang = true)]
         public ISpread<bool> FLoad;
 
@@ -80,6 +85,11 @@ namespace HtmlTexture.DX11.Nodes
         [Input("Enabled", DefaultBoolean = true)]
         public ISpread<bool> FEnabledIn;
 
+        [Input("Allow Initialization", Visibility = PinVisibility.OnlyInspector, DefaultBoolean = true)]
+        public IDiffSpread<bool> FManInit;
+
+        protected bool CanCreate;
+
         protected virtual int SliceCount()
         {
             return SpreadUtils.SpreadMax(FOperations, FLoad, FReloadIn, FSize,
@@ -92,10 +102,12 @@ namespace HtmlTexture.DX11.Nodes
 
         protected virtual HtmlTextureWrapper CreateWrapper(int i)
         {
+            if (!CanCreate) return null;
             var wrapper = new HtmlTextureWrapper(new HtmlTextureWrapper.WrapperInitSettings
             {
                 Fps = FFps[0],
-                ParentHandle = 0
+                ParentHandle = 0,
+                FrameRequestFromVvvv = FVvvvRequFrame[0]
             })
             {
                 TextureSettings = new HtmlTextureWrapper.WrapperTextureSettings
@@ -130,6 +142,7 @@ namespace HtmlTexture.DX11.Nodes
 
         protected virtual void UpdateWrapper(HtmlTextureWrapper wrapper, int i)
         {
+            if (wrapper == null) return;
             wrapper.Enabled = FEnabledIn[i];
             if (FLoad[i]) LoadContent(wrapper, i);
             if (FReloadIn[i]) wrapper.Reload();
@@ -162,6 +175,7 @@ namespace HtmlTexture.DX11.Nodes
                 };
             }
 
+            wrapper.AllowFrameRequest = FAllowDraw[i];
             wrapper.Mouse = FMouseIn[i];
             wrapper.Keyboard = FKeyboardIn[i];
             wrapper.Operations = FOperations[i];
@@ -194,6 +208,8 @@ namespace HtmlTexture.DX11.Nodes
         public ISpread<bool> FCreated;
         [Output("On Loaded", IsBang = true)]
         public ISpread<bool> FLoaded;
+        [Output("Loading Progress")]
+        public ISpread<double> FloadingProgress;
 
         [Output("Current Url")]
         public ISpread<string> FCurrentUrlOut;
@@ -211,11 +227,12 @@ namespace HtmlTexture.DX11.Nodes
         {
             FTextureOutput.SliceCount = FWrapperOutput.SliceCount = FDocSizeOut.SliceCount = FIsLoadingOut.SliceCount =
                 FLog.SliceCount = FCurrentUrlOut.SliceCount = FErrorTextOut.SliceCount = FTextureValid.SliceCount =
-                    FLoaded.SliceCount = FCreated.SliceCount = FDocReady.SliceCount = slc;
+                    FLoaded.SliceCount = FCreated.SliceCount = FDocReady.SliceCount = FloadingProgress.SliceCount = slc;
         }
 
         protected void FillOuptuts(HtmlTextureWrapper wrapper, int i)
         {
+            if (wrapper == null) return;
             FTextureOutput[i] = wrapper.DX11Texture;
             FDocSizeOut[i] = new Vector2D(wrapper.DocumentSize.w, wrapper.DocumentSize.h);
             FIsLoadingOut[i] = wrapper.Loading;
@@ -226,10 +243,12 @@ namespace HtmlTexture.DX11.Nodes
             FCreated[i] = wrapper.CreatedFrame;
             FTextureValid[i] = wrapper.IsTextureValid;
             FLog[i] = wrapper.LastConsole;
+            FloadingProgress[i] = wrapper.Progress;
         }
 
         public void Update(DX11RenderContext context)
         {
+            CanCreate = FTextureOutput.IsConnected && (FManInit.SliceCount > 0 && FManInit[0]);
             for (int i = 0; i < FWrapperOutput.SliceCount; i++)
             {
                 var wrapper = FWrapperOutput[i];
@@ -276,6 +295,8 @@ namespace HtmlTexture.DX11.Nodes
         public ISpread<bool> FCreated;
         [Output("On Loaded", IsBang = true)]
         public ISpread<bool> FLoaded;
+        [Output("Loading Progress")]
+        public ISpread<double> FloadingProgress;
 
         [Output("Current Url")]
         public ISpread<string> FCurrentUrlOut;
@@ -286,15 +307,18 @@ namespace HtmlTexture.DX11.Nodes
         [Output("Last Js Log")]
         public ISpread<string> FLog;
 
+        protected bool CanCreate;
+
         protected void SetOutputsSliceCount(int slc)
         {
             FTextureOutput.SliceCount = FWrapperOutput.SliceCount = FDocSizeOut.SliceCount = FIsLoadingOut.SliceCount =
                 FLog.SliceCount = FCurrentUrlOut.SliceCount = FErrorTextOut.SliceCount =
-                    FLoaded.SliceCount = FCreated.SliceCount = FDocReady.SliceCount = slc;
+                    FLoaded.SliceCount = FCreated.SliceCount = FDocReady.SliceCount = FloadingProgress.SliceCount = slc;
         }
 
         protected void FillOuptuts(HtmlTextureWrapper wrapper, int i)
         {
+            if (wrapper == null) return;
             FTextureOutput[i] = wrapper.DX11Texture;
             FDocSizeOut[i] = new Vector2D(wrapper.DocumentSize.w, wrapper.DocumentSize.h);
             FIsLoadingOut[i] = wrapper.Loading;
@@ -304,10 +328,12 @@ namespace HtmlTexture.DX11.Nodes
             FLoaded[i] = wrapper.LoadedFrame;
             FCreated[i] = wrapper.CreatedFrame;
             FLog[i] = wrapper.LastConsole;
+            FloadingProgress[i] = wrapper.Progress;
         }
 
         public void Update(DX11RenderContext context)
         {
+            CanCreate = FTextureOutput.IsConnected;
             for (int i = 0; i < FWrapperOutput.SliceCount; i++)
             {
                 var wrapper = FWrapperOutput[i];

@@ -11,6 +11,7 @@ namespace HtmlTexture.DX11.Nodes
     [PluginInfo(
         Name = "Navigate",
         Category = "HtmlTexture.Operation",
+        Tags = "Vanadium",
         Author = "MESO, microdee",
         Help = "Go back or forward in browser history"
     )]

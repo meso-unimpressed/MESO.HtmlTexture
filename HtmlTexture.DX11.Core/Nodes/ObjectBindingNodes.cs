@@ -19,7 +19,7 @@ namespace HtmlTexture.DX11.Nodes
         Name = "BindObject",
         Category = "HtmlTexture.Operation",
         Author = "MESO, microdee",
-        Tags = "Bind, javascript",
+        Tags = "Bind, javascript, Vanadium",
         Help = "Bind objects with functions which can be called by Javascript with arguments, Get those arguments in vvvv and return an object in Javascript",
         Warnings = "Supply only numbers, strings, V8Objects, simple structs or classes with primitive members, Do not supply complex self referencing big objects as return values. It can crash vvvv"
     )]
@@ -115,7 +115,7 @@ namespace HtmlTexture.DX11.Nodes
         Name = "GetBoundObject",
         Category = "HtmlTexture.Operation",
         Author = "MESO, microdee",
-        Tags = "Bind, javascript",
+        Tags = "Bind, javascript, Vanadium",
         Help = "Get data of bound functions from javascript"
     )]
     public class GetJsBindingNode : IPluginEvaluate
@@ -188,7 +188,7 @@ namespace HtmlTexture.DX11.Nodes
         Name = "GetBoundFunction",
         Category = "HtmlTexture.Operation",
         Author = "MESO, microdee",
-        Tags = "Bind, javascript",
+        Tags = "Bind, javascript, Vanadium",
         Help = "Get data of a bound function from javascript"
     )]
     public class SplitJsBindingFuncNode : IPluginEvaluate

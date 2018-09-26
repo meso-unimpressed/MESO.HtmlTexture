@@ -12,6 +12,7 @@ namespace HtmlTexture.DX11.Nodes
     [PluginInfo(
         Name = "Scroll",
         Category = "HtmlTexture.Operation",
+        Tags = "Vanadium",
         Author = "MESO, microdee",
         Help = "Scroll on any element in a HTML document"
     )]

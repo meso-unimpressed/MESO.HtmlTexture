@@ -31,6 +31,7 @@ namespace HtmlTexture.DX11.Nodes
         Name = "SendTouch",
         Category = "HtmlTexture.Operation",
         Version = "TouchContainer",
+        Tags = "Vanadium",
         Author = "MESO, microdee",
         Help = "TouchContainer provider for HtmlTexture"
     )]
@@ -154,6 +155,7 @@ namespace HtmlTexture.DX11.Nodes
         Name = "SendTouch",
         Category = "HtmlTexture.Operation",
         Version = "Value",
+        Tags = "Vanadium",
         Author = "MESO, microdee",
         Help = "Simple touch provider for HtmlTexture"
     )]
@@ -185,6 +187,7 @@ namespace HtmlTexture.DX11.Nodes
         Name = "SendTouch",
         Category = "HtmlTexture.Operation",
         Version = "DX11",
+        Tags = "Vanadium",
         Author = "MESO, microdee",
         Help = "Touch provider for HtmlTexture from a DX11 Renderer window"
     )]
