@@ -11,18 +11,21 @@ using mp.pddn;
 using VVVV.Core.Logging;
 using VVVV.DX11;
 using VVVV.HtmlTexture.DX11.Core;
+using VVVV.PluginInterfaces.V1;
 using VVVV.PluginInterfaces.V2;
 using VVVV.Utils.IO;
 using VVVV.Utils.VMath;
 
 namespace HtmlTexture.DX11.Nodes
 {
-    public abstract class MesoHtmlTextureNode : HtmlTextureInputOutputNode, IPluginEvaluate
+    public abstract class MesoHtmlTextureNode : HtmlTextureInputOutputNode, IPluginEvaluate, IPluginAwareOfEvaluation
     {
         private bool _init;
+        protected bool Evaluating = true;
 
         public void Evaluate(int SpreadMax)
         {
+            if(!Evaluating) return;
             if (!_init)
             {
                 FWrapperOutput.SliceCount = 0;
@@ -35,6 +38,11 @@ namespace HtmlTexture.DX11.Nodes
             // Going backwards to avoid automatic slice duplication
             for (int i = slc - 1; i >= 0; i--)
             {
+                if ((FWrapperOutput[i]?.Closed ?? false) && FEnabledIn[i])
+                {
+                    FWrapperOutput[i]?.Dispose();
+                    FWrapperOutput[i] = null;
+                }
                 var wrapper = FWrapperOutput[i];
                 if (wrapper == null)
                 {
@@ -47,6 +55,12 @@ namespace HtmlTexture.DX11.Nodes
                     FWrapperOutput[i] = wrapper;
                 }
                 if (wrapper == null) continue;
+                if (!FEnabledIn[i] && wrapper.Closed) continue;
+                if (!FEnabledIn[i] && !wrapper.Closed)
+                {
+                    wrapper.Close();
+                    continue;
+                }
                 UpdateWrapper(wrapper, i);
                 wrapper?.Mainloop(0);
                 FillOuptuts(wrapper, i);
@@ -54,6 +68,25 @@ namespace HtmlTexture.DX11.Nodes
 
             FWrapperOutput.Stream.IsChanged = true;
             _init = true;
+        }
+
+        public void TurnOn()
+        {
+            for (int i = 0; i < FWrapperOutput.SliceCount; i++)
+            {
+                FWrapperOutput[i]?.Dispose();
+                FWrapperOutput[i] = null;
+            }
+            Evaluating = true;
+        }
+
+        public void TurnOff()
+        {
+            for (int i = 0; i < FWrapperOutput.SliceCount; i++)
+            {
+                FWrapperOutput[i].Close();
+            }
+            Evaluating = false;
         }
     }
 

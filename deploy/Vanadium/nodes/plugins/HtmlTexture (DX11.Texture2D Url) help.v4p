@@ -1,0 +1,1477 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta37.dtd" >
+   <PATCH nodename="D:\local\vvvv-gp\packs\Vanadium\nodes\plugins\HtmlTexture (DX11.Texture2D Url) help.v4p" scrollx="0" scrolly="3240" locked="0">
+   <BOUNDS type="Window" left="0" top="0" width="19770" height="15075">
+   </BOUNDS>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="3">
+   <BOUNDS type="Node" left="225" top="225" width="5100" height="450">
+   </BOUNDS>
+   <BOUNDS type="Box" left="225" top="225" width="5100" height="450">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|HtmlTexture (DX11.Texture2D Url)|">
+   </PIN>
+   <PIN pinname="Output String" slicecount="1" visible="0" values="||">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" visible="1" values="14">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="2">
+   <BOUNDS type="Node" left="225" top="600" width="5100" height="600">
+   </BOUNDS>
+   <BOUNDS type="Box" left="225" top="600" width="5100" height="600">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|Advanced version of HTMLTexture with more bells and whistles|">
+   </PIN>
+   <PIN pinname="Output String" slicecount="1" visible="0" values="||">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="4">
+   <BOUNDS type="Box" left="2685" top="7980" width="2220" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2685" top="7980" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="https://html5test.com">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="https://html5test.com">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Url">
+   </PIN>
+   <PIN pinname="Output String" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Renderer (DX11)" filename="%VVVV%\packs\dx11\nodes\plugins\base\VVVV.DX11.Nodes.dll" nodename="Renderer (DX11)" componentmode="InAWindow" id="5">
+   <BOUNDS type="Node" left="2415" top="30150" width="1950" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2415" top="30150" width="6000" height="4500">
+   </BOUNDS>
+   <BOUNDS type="Window" left="19665" top="0" width="16530" height="14970">
+   </BOUNDS>
+   <PIN pinname="Show Cursor" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Layers" visible="1">
+   </PIN>
+   <PIN pinname="Actual BackBuffer SizeXY" visible="1">
+   </PIN>
+   <PIN pinname="Mouse State" visible="1">
+   </PIN>
+   <PIN pinname="Keyboard State" visible="1">
+   </PIN>
+   <PIN pinname="Background Color" slicecount="1" values="|0.00000,0.00000,0.00000,1.00000|">
+   </PIN>
+   <PIN pinname="Touch Data" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="DrawFullScreen (DX11.Layer)" filename="%VVVV%\packs\dx11\nodes\plugins\base\VVVV.DX11.Nodes.dll" nodename="DrawFullScreen (DX11.Layer)" componentmode="Hidden" id="6">
+   <BOUNDS type="Node" left="2565" top="28815" width="1125" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2565" top="28815" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Texture" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Layer" visible="1">
+   </PIN>
+   <PIN pinname="Blend State" slicecount="1" values="Blend">
+   </PIN>
+   <PIN pinname="Texture Transform" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="7">
+   <BOUNDS type="Box" left="4680" top="17430" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="4680" top="17430" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Invert Vertical Scrolling|">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="8">
+   <BOUNDS type="Box" left="5775" top="22065" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="5775" top="22065" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Operations">
+   </PIN>
+   <PIN pinname="Output Node" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="9">
+   <BOUNDS type="Node" left="2805" top="8295" width="5835" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2805" top="8295" width="5835" height="270">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|Url to be displayed, unlike vanilla though you have to trigger loading it manually|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="10">
+   <BOUNDS type="Node" left="5850" top="22365" width="4140" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="5850" top="22365" width="4140" height="270">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|Arbitrary operations on the HtmlTextureWrapper object|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="11">
+   <BOUNDS type="Box" left="2850" top="8865" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2850" top="8865" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Load">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="12">
+   <BOUNDS type="Node" left="3420" top="8970" width="1590" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="3420" top="8970" width="1590" height="270">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|Load the specified Url|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="14">
+   <BOUNDS type="Box" left="5130" top="19140" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="5130" top="19140" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Show DevTools|">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="15">
+   <BOUNDS type="Node" left="3315" top="10665" width="1365" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="3315" top="10665" width="1140" height="240">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="body">
+   </PIN>
+   <PIN pinname="Output String" visible="1">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Use Element As Document Size|">
+   </PIN>
+   </NODE>
+   <PACK Name="dx11" Version="1.3.1.1">
+   </PACK>
+   <PACK Name="KeyboardUI" Version="1.1.1">
+   </PACK>
+   <PACK Name="vvvv-Message" Version="2.9.10">
+   </PACK>
+   <PACK Name="vvvv-ZeroMQ" Version="0.5.7">
+   </PACK>
+   <PACK Name="addonpack" Version="36.0.0">
+   </PACK>
+   <NODE systemname="PerfMeter2 (DX11.Debug)" filename="%VVVV%\packs\mp.dx\nodes\modules\essentials\PerfMeter2 (DX11.Debug).v4p" nodename="PerfMeter2 (DX11.Debug)" componentmode="Hidden" id="19">
+   <BOUNDS type="Node" left="2580" top="29385" width="1065" height="270">
+   </BOUNDS>
+   <PIN pinname="Layer In" visible="1">
+   </PIN>
+   <PIN pinname="Layer Out" visible="1">
+   </PIN>
+   <PIN pinname="Enabled" slicecount="1" visible="1" values="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="6" srcpinname="Layer" dstnodeid="19" dstpinname="Layer In">
+   </LINK>
+   <LINK srcnodeid="19" srcpinname="Layer Out" dstnodeid="5" dstpinname="Layers">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="21">
+   <BOUNDS type="Box" left="3705" top="29370" width="660" height="285">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3705" top="29370" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="21" srcpinname="Y Output Value" dstnodeid="19" dstpinname="Enabled">
+   </LINK>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="22">
+   <BOUNDS type="Node" left="3390" top="10965" width="7245" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="3390" top="10965" width="5400" height="990">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|use a CSS selector to determine the element which will provide the basis for document width/height. This is necessary when the actual content is inside a fixed div in the body. Therefore the size of the body might be misleading.|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="23">
+   <BOUNDS type="Box" left="3465" top="12210" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3465" top="12210" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Auto Width|">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="24">
+   <BOUNDS type="Node" left="4725" top="12405" width="9870" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="4725" top="12405" width="3765" height="930">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|Resize the browser view and texture so the entire document is visible automatically. It&apos;s still important to provide a reference target size.|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="25">
+   <BOUNDS type="Box" left="3930" top="15315" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3930" top="15315" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Allow Popup Takeover|">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="26">
+   <BOUNDS type="Node" left="4470" top="15360" width="3210" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="4470" top="15360" width="4140" height="570">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|Popups will navigate away from current page and will be displayed inside the texture.|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="27">
+   <BOUNDS type="Box" left="4365" top="16320" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="4365" top="16320" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Zoom">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="28">
+   <BOUNDS type="Node" left="4485" top="16635" width="6135" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="4485" top="16635" width="3915" height="525">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|Classic zoom functionality as seen in browsers.&cr;&lf;Note it&apos;s not multitouch pinch zoom! That&apos;s different|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="29">
+   <BOUNDS type="Node" left="5385" top="18270" width="6555" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="5385" top="18270" width="3645" height="525">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|In case mouse scrolling is inverted (like mouse coming from DX11 renderer) then use these.|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="30">
+   <BOUNDS type="Box" left="4845" top="18180" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="4845" top="18180" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Invert Horizontal Scrolling|">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="32">
+   <BOUNDS type="Box" left="5295" top="19980" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="5295" top="19980" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Use LivePage|">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="33">
+   <BOUNDS type="Node" left="5850" top="20055" width="9840" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="5850" top="20055" width="5175" height="555">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|LivePage is a script which reloads the website automatically if its source is changed. Useful for iterative development / rapid prototyping.|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="34">
+   <BOUNDS type="Box" left="5610" top="21030" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="5610" top="21030" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Log to Console|">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="35">
+   <BOUNDS type="Node" left="6165" top="21105" width="3525" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6165" top="21105" width="3525" height="270">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|Log javascript errors and messages to vvvv TTY|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="36">
+   <BOUNDS type="Box" left="6075" top="24390" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="6075" top="24390" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Enabled">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="37">
+   <BOUNDS type="Box" left="6705" top="36210" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="6705" top="36210" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Wrapper Output|">
+   </PIN>
+   <PIN pinname="Output Node" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="38">
+   <BOUNDS type="Node" left="6855" top="36750" width="9855" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6855" top="36750" width="5205" height="1005">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|Object representing one browser with texture and its data/functions. Each browser (or in vvvv speak each slice in each HtmlTexture node) runs in its own process. You can also attach this object to packages allowing you to attach objects to other objects. Like Notui elements.|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="39">
+   <BOUNDS type="Box" left="6705" top="35265" width="795" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="6705" top="35265" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Vector Size" slicecount="1" values="2">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="2">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Document SizeXY|">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="40">
+   <BOUNDS type="Node" left="7650" top="35340" width="1830" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="7650" top="35340" width="1830" height="270">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|Document size in pixels|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="41">
+   <BOUNDS type="Box" left="6705" top="33570" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="6705" top="33570" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Is Loading|">
+   </PIN>
+   <PIN pinname="Y Input Value" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="42">
+   <BOUNDS type="Node" left="7350" top="33660" width="8145" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="7350" top="33660" width="1830" height="270">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|The website is loading.|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="43">
+   <BOUNDS type="Box" left="6705" top="31230" width="1965" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="6705" top="31230" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Current Url|">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="44">
+   <BOUNDS type="Box" left="6705" top="29085" width="2025" height="270">
+   </BOUNDS>
+   <BOUNDS type="Node" left="6705" top="29085" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Error Text|">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="45">
+   <BOUNDS type="Node" left="6705" top="29610" width="9975" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6705" top="29610" width="6345" height="1380">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|Last error message. Errors are also logged to TTY. Note that this is different from &quot;Log to Console&quot;, it&apos;s displaying errors coming from CEF&cr;&lf;&cr;&lf;NOTE:&cr;&lf;&quot;Connection lost&quot; or &quot;Abort&quot; errors are not severe, although they can be side effects of something bigger they are not the cause also Chromium recovers immediately from it.|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE systemname="DOM (HtmlTexture)" filename="%VVVV%\packs\HtmlTexture.DX11\nodes\plugins\HtmlTexture.DX11.Core.exe" nodename="DOM (HtmlTexture)" componentmode="Hidden" id="51">
+   <BOUNDS type="Node" left="6705" top="37980" width="495" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6705" top="37980" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Update DOM" visible="1">
+   </PIN>
+   <PIN pinname="Dom" visible="1">
+   </PIN>
+   <PIN pinname="RootElement" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="37" srcpinname="Output Node" dstnodeid="51" dstpinname="Input">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="52">
+   <BOUNDS type="Box" left="7335" top="37965" width="285" height="285">
+   </BOUNDS>
+   <BOUNDS type="Node" left="7335" top="37965" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="52" srcpinname="Y Output Value" dstnodeid="51" dstpinname="Update DOM">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="54">
+   <BOUNDS type="Box" left="6705" top="32790" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="6705" top="32790" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|On Created|">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="55">
+   <BOUNDS type="Box" left="6705" top="31920" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="6705" top="31920" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|On Loaded|">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="56">
+   <BOUNDS type="Node" left="7335" top="31980" width="5370" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="7335" top="31980" width="2130" height="240">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|Bang when page is loaded.|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="57">
+   <BOUNDS type="Node" left="7320" top="32925" width="2595" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="7320" top="32925" width="2595" height="270">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|Bang when browser is ready to use|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE systemname="AsString (Object)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="AsString (Object)" componentmode="Hidden" id="62">
+   <BOUNDS type="Node" left="6705" top="38535" width="690" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6705" top="38535" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Object" visible="1">
+   </PIN>
+   <PIN pinname="String" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="51" srcpinname="RootElement" dstnodeid="62" dstpinname="Object">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="64">
+   <BOUNDS type="Box" left="6705" top="39045" width="7005" height="4500">
+   </BOUNDS>
+   <BOUNDS type="Node" left="6705" top="39045" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="62" srcpinname="String" dstnodeid="64" dstpinname="Input String">
+   </LINK>
+   <NODE systemname="Renderer (TTY)" nodename="Renderer (TTY)" componentmode="InAWindow" id="65">
+   <BOUNDS type="Node" left="7140" top="2055" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="7140" top="2055" width="2400" height="1800">
+   </BOUNDS>
+   <BOUNDS type="Window" left="24735" top="17880" width="11775" height="8505">
+   </BOUNDS>
+   </NODE>
+   <NODE nodename="HtmlTexture (DX11.Texture2D Url)" componentmode="Hidden" id="66">
+   <BOUNDS type="Node" left="2385" top="27810" width="4050" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2385" top="27810" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Loading" visible="1">
+   </PIN>
+   <PIN pinname="Document Ready" visible="1">
+   </PIN>
+   <PIN pinname="Url" visible="1">
+   </PIN>
+   <PIN pinname="Reload Current" visible="1">
+   </PIN>
+   <PIN pinname="Document SizeXY" visible="1">
+   </PIN>
+   <PIN pinname="Last Js Log" visible="1">
+   </PIN>
+   <PIN pinname="Wrapper Output" visible="1">
+   </PIN>
+   <PIN pinname="Auto Width" visible="1">
+   </PIN>
+   <PIN pinname="Auto Height" visible="1">
+   </PIN>
+   <PIN pinname="Extra SizeXY" visible="1" pintype="Input" slicecount="2" values="0,0">
+   </PIN>
+   <PIN pinname="Operations" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="On Loaded" visible="1">
+   </PIN>
+   <PIN pinname="Texture Output" visible="1">
+   </PIN>
+   <PIN pinname="VVVV Requests Frame" visible="1" pintype="Input" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Allow Requesting Frames" visible="1" pintype="Input" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Allow Initialization" visible="1" pintype="Input" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Evaluate" visible="1" pintype="Input" slicecount="1" values="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="66" srcpinname="Texture Output" dstnodeid="6" dstpinname="Texture">
+   </LINK>
+   <LINK srcnodeid="5" srcpinname="Actual BackBuffer SizeXY" dstnodeid="66" dstpinname="SizeXY" linkstyle="Bezier">
+   <LINKPOINT x="0" y="32605">
+   </LINKPOINT>
+   <LINKPOINT x="210" y="24725">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="5" srcpinname="Mouse State" dstnodeid="66" dstpinname="Mouse" linkstyle="Bezier">
+   <LINKPOINT x="1230" y="30535">
+   </LINKPOINT>
+   <LINKPOINT x="1185" y="25535">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="5" srcpinname="Keyboard State" dstnodeid="66" dstpinname="Keyboard" linkstyle="Bezier">
+   <LINKPOINT x="510" y="31720">
+   </LINKPOINT>
+   <LINKPOINT x="750" y="24365">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="7" srcpinname="Y Output Value" dstnodeid="66" dstpinname="Invert Vertical Scrolling">
+   </LINK>
+   <LINK srcnodeid="11" srcpinname="Y Output Value" dstnodeid="66" dstpinname="Load">
+   </LINK>
+   <LINK srcnodeid="14" srcpinname="Y Output Value" dstnodeid="66" dstpinname="Show DevTools">
+   </LINK>
+   <LINK srcnodeid="15" srcpinname="Output String" dstnodeid="66" dstpinname="Use Element As Document Size">
+   </LINK>
+   <LINK srcnodeid="23" srcpinname="Y Output Value" dstnodeid="66" dstpinname="Auto Size">
+   </LINK>
+   <LINK srcnodeid="25" srcpinname="Y Output Value" dstnodeid="66" dstpinname="Allow Popup Takeover">
+   </LINK>
+   <LINK srcnodeid="27" srcpinname="Y Output Value" dstnodeid="66" dstpinname="Zoom">
+   </LINK>
+   <LINK srcnodeid="30" srcpinname="Y Output Value" dstnodeid="66" dstpinname="Invert Horizontal Scrolling">
+   </LINK>
+   <LINK srcnodeid="32" srcpinname="Y Output Value" dstnodeid="66" dstpinname="Use LivePage">
+   </LINK>
+   <LINK srcnodeid="34" srcpinname="Y Output Value" dstnodeid="66" dstpinname="Log to Console">
+   </LINK>
+   <LINK srcnodeid="36" srcpinname="Y Output Value" dstnodeid="66" dstpinname="Enabled">
+   </LINK>
+   <LINK srcnodeid="66" srcpinname="Wrapper Output" dstnodeid="37" dstpinname="Input Node">
+   </LINK>
+   <LINK srcnodeid="66" srcpinname="Document SizeXY" dstnodeid="39" dstpinname="Y Input Value">
+   </LINK>
+   <LINK srcnodeid="66" srcpinname="Current Url" dstnodeid="43" dstpinname="Input String">
+   </LINK>
+   <LINK srcnodeid="66" srcpinname="Error Text" dstnodeid="44" dstpinname="Input String">
+   </LINK>
+   <LINK srcnodeid="66" srcpinname="On Created" dstnodeid="54" dstpinname="Y Input Value">
+   </LINK>
+   <LINK srcnodeid="66" srcpinname="On Loaded" dstnodeid="55" dstpinname="Y Input Value">
+   </LINK>
+   <LINK srcnodeid="66" srcpinname="Loading" dstnodeid="41" dstpinname="Y Input Value">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="67">
+   <BOUNDS type="Box" left="6705" top="34440" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="6705" top="34440" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Document Ready|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="66" srcpinname="Document Ready" dstnodeid="67" dstpinname="Y Input Value">
+   </LINK>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="68">
+   <BOUNDS type="Node" left="7380" top="34545" width="1755" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="7380" top="34545" width="1755" height="270">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|The document is ready|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="69">
+   <BOUNDS type="Node" left="9360" top="33855" width="15705" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="9360" top="33855" width="5670" height="765">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|NOTE: &quot;Document Ready&quot; and &quot;Is Loading&quot; are not simply the inverse of eachother. &quot;Is Loading&quot; is true whenever the browser is fetching web requests, &quot;Document Ready&quot; on the other will stay true after initial page loading|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="Url">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="70">
+   <BOUNDS type="Node" left="6645" top="270" width="1140" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6645" top="270" width="1890" height="435">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|Known issues:|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="12">
+   </PIN>
+   </NODE>
+   <NODE id="49" systemname="Spreadsheet (ReoGrid)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Spreadsheet (ReoGrid)" componentmode="InABox">
+   <BOUNDS type="Node" left="9585" top="1815" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="9585" top="1815" width="9285" height="11220">
+   </BOUNDS>
+   <BOUNDS type="Window" left="11610" top="9315" width="13290" height="10050">
+   </BOUNDS>
+   <PIN pinname="Workbook Data" slicecount="1" values="Sheet1:PGdyaWQgeG1sbnM6eHNkPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYSIgeG1sbnM6eHNpPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYS1pbnN0YW5jZSI+DQogIDxoZWFkPg0KICAgIDxtZXRhPg0KICAgICAgPGN1bHR1cmU+ZW4tREU8L2N1bHR1cmU+DQogICAgICA8ZWRpdG9yPlJlb0dyaWQgQ29yZTwvZWRpdG9yPg0KICAgICAgPGNvcmUtdmVyPjIuMS4wLjA8L2NvcmUtdmVyPg0KICAgICAgPGRlY2ltYWxjaGFyPiw8L2RlY2ltYWxjaGFyPg0KICAgIDwvbWV0YT4NCiAgICA8cm93cz4yMDQ8L3Jvd3M+DQogICAgPGNvbHM+MTAwPC9jb2xzPg0KICAgIDxkZWZhdWx0LXJvdy1oZWlnaHQ+MjA8L2RlZmF1bHQtcm93LWhlaWdodD4NCiAgICA8ZGVmYXVsdC1jb2wtd2lkdGg+NzA8L2RlZmF1bHQtY29sLXdpZHRoPg0KICAgIDxzZXR0aW5ncyBtZXRhPSIzMDQ3NTAyNjM5OCIgLz4NCiAgICA8c2NyaXB0IC8+DQogIDwvaGVhZD4NCiAgPHN0eWxlIGZvbnQ9IkNhbGlicmkiIGZvbnQtc2l6ZT0iMTAsMjUiIGFsaWduPSJnZW5lcmFsIiB2YWxpZ249Im1pZGRsZSIgLz4NCiAgPHJvd3MgLz4NCiAgPGNvbHM+DQogICAgPGNvbCBjb2w9IjAiIHdpZHRoPSIyMDUiIGxhc3Qtd2lkdGg9IjE4NCIgLz4NCiAgICA8Y29sIGNvbD0iMSIgd2lkdGg9IjExOSIgbGFzdC13aWR0aD0iOTciIC8+DQogICAgPGNvbCBjb2w9IjIiIHdpZHRoPSIxMTIiIGxhc3Qtd2lkdGg9IjE2MyIgLz4NCiAgICA8Y29sIGNvbD0iMyIgd2lkdGg9Ijk5IiBsYXN0LXdpZHRoPSI5MSIgLz4NCiAgPC9jb2xzPg0KICA8di1ib3JkZXJzIC8+DQogIDxoLWJvcmRlcnMgLz4NCiAgPGNlbGxzPg0KICAgIDxjZWxsIHJvdz0iMCIgY29sPSIwIiBjb2xzcGFuPSI0Ij5CbGF0YW50IEZlYXR1cmUgY29tcGFyaXNvbiE8L2NlbGw+DQogICAgPGNlbGwgcm93PSIxIiBjb2w9IjEiPlZhbmlsbGE8L2NlbGw+DQogICAgPGNlbGwgcm93PSIxIiBjb2w9IjIiPkd1bWlsYXN0aWsgZXQuIGFsLjwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjEiIGNvbD0iMyI+TUVTTzwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjIiIGNvbD0iMCI+Q2hyb21pdW0gVmVyc2lvbjwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjIiIGNvbD0iMSI+NjY8L2NlbGw+DQogICAgPGNlbGwgcm93PSIyIiBjb2w9IjIiPjQ3PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMiIgY29sPSIzIj42OTwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjMiIGNvbD0iMCI+Q0VGIEJpbmRpbmc8L2NlbGw+DQogICAgPGNlbGwgcm93PSIzIiBjb2w9IjEiPlhpbGl1bSxDZWZHbHVlPC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMyIgY29sPSIyIj5DaHJvbWl1bUZYPC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMyIgY29sPSIzIj5DaHJvbWl1bUZYPC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iNCIgY29sPSIwIj5PdXRwdXQgaW1hZ2U8L2NlbGw+DQogICAgPGNlbGwgcm93PSI0IiBjb2w9IjEiPkRYOS9EWDExL0lJbWFnZTwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjQiIGNvbD0iMiI+RFgxMTwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjQiIGNvbD0iMyI+RFgxMTwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjUiIGNvbD0iMCI+RGlyZWN0bHkgZ2V0IFNoYXJlZCBUZXh0dXJlPC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iNSIgY29sPSIxIiBib2R5LXR5cGU9IkNoZWNrQm94Q2VsbCI+RmFsc2U8Zm9ybXVsYT5GYWxzZTwvZm9ybXVsYT48c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSI1IiBjb2w9IjIiIGJvZHktdHlwZT0iQ2hlY2tCb3hDZWxsIj5GYWxzZTxmb3JtdWxhPkZhbHNlPC9mb3JtdWxhPjxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPjwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjUiIGNvbD0iMyIgYm9keS10eXBlPSJDaGVja0JveENlbGwiPlRydWU8Zm9ybXVsYT5UcnVlPC9mb3JtdWxhPjxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPjwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjYiIGNvbD0iMCI+RnJhbWUgU3luY2hyb25pemF0aW9uIHdpdGggdnZ2dio8L2NlbGw+DQogICAgPGNlbGwgcm93PSI2IiBjb2w9IjEiIGJvZHktdHlwZT0iQ2hlY2tCb3hDZWxsIj4NCiAgICAgIDxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPg0KICAgIDwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjYiIGNvbD0iMiIgYm9keS10eXBlPSJDaGVja0JveENlbGwiPg0KICAgICAgPHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+DQogICAgPC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iNiIgY29sPSIzIiBib2R5LXR5cGU9IkNoZWNrQm94Q2VsbCI+DQogICAgICA8Zm9ybXVsYT5UcnVlPC9mb3JtdWxhPg0KICAgICAgPHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+DQogICAgPC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iNyIgY29sPSIwIj5TcHJlYWRhYmxlPC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iNyIgY29sPSIxIiBib2R5LXR5cGU9IkNoZWNrQm94Q2VsbCI+VHJ1ZTxmb3JtdWxhPlRydWU8L2Zvcm11bGE+PHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iNyIgY29sPSIyIiBib2R5LXR5cGU9IkNoZWNrQm94Q2VsbCI+RmFsc2U8Zm9ybXVsYT5GYWxzZTwvZm9ybXVsYT48c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSI3IiBjb2w9IjMiIGJvZHktdHlwZT0iQ2hlY2tCb3hDZWxsIj5UcnVlPGZvcm11bGE+VHJ1ZTwvZm9ybXVsYT48c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSI4IiBjb2w9IjAiPlpvb208L2NlbGw+DQogICAgPGNlbGwgcm93PSI4IiBjb2w9IjEiIGJvZHktdHlwZT0iQ2hlY2tCb3hDZWxsIj5UcnVlPGZvcm11bGE+VHJ1ZTwvZm9ybXVsYT48c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSI4IiBjb2w9IjIiIGJvZHktdHlwZT0iQ2hlY2tCb3hDZWxsIj5UcnVlPGZvcm11bGE+VHJ1ZTwvZm9ybXVsYT48c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSI4IiBjb2w9IjMiIGJvZHktdHlwZT0iQ2hlY2tCb3hDZWxsIj5UcnVlPGZvcm11bGE+VHJ1ZTwvZm9ybXVsYT48c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSI5IiBjb2w9IjAiPlJlbG9hZDwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjkiIGNvbD0iMSIgYm9keS10eXBlPSJDaGVja0JveENlbGwiPlRydWU8Zm9ybXVsYT5UcnVlPC9mb3JtdWxhPjxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPjwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjkiIGNvbD0iMiIgYm9keS10eXBlPSJDaGVja0JveENlbGwiPlRydWU8Zm9ybXVsYT5UcnVlPC9mb3JtdWxhPjxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPjwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjkiIGNvbD0iMyIgYm9keS10eXBlPSJDaGVja0JveENlbGwiPlRydWU8Zm9ybXVsYT5UcnVlPC9mb3JtdWxhPjxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPjwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjEwIiBjb2w9IjAiPk1hbnVhbCBMb2FkPC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMTAiIGNvbD0iMSIgYm9keS10eXBlPSJDaGVja0JveENlbGwiPg0KICAgICAgPHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+DQogICAgPC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMTAiIGNvbD0iMiIgYm9keS10eXBlPSJDaGVja0JveENlbGwiPg0KICAgICAgPHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+DQogICAgPC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMTAiIGNvbD0iMyIgYm9keS10eXBlPSJDaGVja0JveENlbGwiPlRydWU8Zm9ybXVsYT5UcnVlPC9mb3JtdWxhPjxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPjwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjExIiBjb2w9IjAiPktleWJvYXJkL01vdXNlPC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMTEiIGNvbD0iMSIgYm9keS10eXBlPSJDaGVja0JveENlbGwiPlRydWU8Zm9ybXVsYT5UcnVlPC9mb3JtdWxhPjxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPjwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjExIiBjb2w9IjIiIGJvZHktdHlwZT0iQ2hlY2tCb3hDZWxsIj5UcnVlPGZvcm11bGE+VHJ1ZTwvZm9ybXVsYT48c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSIxMSIgY29sPSIzIiBib2R5LXR5cGU9IkNoZWNrQm94Q2VsbCI+VHJ1ZTxmb3JtdWxhPlRydWU8L2Zvcm11bGE+PHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMTIiIGNvbD0iMCI+Q3VzdG9tIEtleWJvYXJkIEV2ZW50czwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjEyIiBjb2w9IjEiIGJvZHktdHlwZT0iQ2hlY2tCb3hDZWxsIj4NCiAgICAgIDxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPg0KICAgIDwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjEyIiBjb2w9IjIiIGJvZHktdHlwZT0iQ2hlY2tCb3hDZWxsIj5UcnVlPGZvcm11bGE+VHJ1ZTwvZm9ybXVsYT48c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSIxMiIgY29sPSIzIj5ubyAgb3AsIG5vZGUgeWV0PHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMTMiIGNvbD0iMCI+U2Nyb2xsIFRvIE5vcm1hbGl6ZWQ8L2NlbGw+DQogICAgPGNlbGwgcm93PSIxMyIgY29sPSIxIiBib2R5LXR5cGU9IkNoZWNrQm94Q2VsbCI+VHJ1ZTxmb3JtdWxhPlRydWU8L2Zvcm11bGE+PHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMTMiIGNvbD0iMiIgYm9keS10eXBlPSJDaGVja0JveENlbGwiPlRydWU8Zm9ybXVsYT5UcnVlPC9mb3JtdWxhPjxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPjwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjEzIiBjb2w9IjMiIGJvZHktdHlwZT0iQ2hlY2tCb3hDZWxsIj5UcnVlPGZvcm11bGE+VHJ1ZTwvZm9ybXVsYT48c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSIxNCIgY29sPSIwIj5TY3JvbGwgVG8gUGl4ZWw8L2NlbGw+DQogICAgPGNlbGwgcm93PSIxNCIgY29sPSIxIiBib2R5LXR5cGU9IkNoZWNrQm94Q2VsbCI+DQogICAgICA8c3R5bGUgYWxpZ249ImNlbnRlciIgLz4NCiAgICA8L2NlbGw+DQogICAgPGNlbGwgcm93PSIxNCIgY29sPSIyIiBib2R5LXR5cGU9IkNoZWNrQm94Q2VsbCI+DQogICAgICA8c3R5bGUgYWxpZ249ImNlbnRlciIgLz4NCiAgICA8L2NlbGw+DQogICAgPGNlbGwgcm93PSIxNCIgY29sPSIzIiBib2R5LXR5cGU9IkNoZWNrQm94Q2VsbCI+VHJ1ZTxmb3JtdWxhPlRydWU8L2Zvcm11bGE+PHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMTUiIGNvbD0iMCI+RWxlbWVudCBTY3JvbGxpbmc8L2NlbGw+DQogICAgPGNlbGwgcm93PSIxNSIgY29sPSIxIiBib2R5LXR5cGU9IkNoZWNrQm94Q2VsbCI+DQogICAgICA8c3R5bGUgYWxpZ249ImNlbnRlciIgLz4NCiAgICA8L2NlbGw+DQogICAgPGNlbGwgcm93PSIxNSIgY29sPSIyIiBib2R5LXR5cGU9IkNoZWNrQm94Q2VsbCI+DQogICAgICA8c3R5bGUgYWxpZ249ImNlbnRlciIgLz4NCiAgICA8L2NlbGw+DQogICAgPGNlbGwgcm93PSIxNSIgY29sPSIzIiBib2R5LXR5cGU9IkNoZWNrQm94Q2VsbCI+VHJ1ZTxmb3JtdWxhPlRydWU8L2Zvcm11bGE+PHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMTYiIGNvbD0iMCI+RXhlY3V0ZSBKYXZhc2NyaXB0IHdpdGggUmVzdWx0czwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjE2IiBjb2w9IjEiIGJvZHktdHlwZT0iQ2hlY2tCb3hDZWxsIj5UcnVlPGZvcm11bGE+VHJ1ZTwvZm9ybXVsYT48c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSIxNiIgY29sPSIyIiBib2R5LXR5cGU9IkNoZWNrQm94Q2VsbCI+VHJ1ZTxmb3JtdWxhPlRydWU8L2Zvcm11bGE+PHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMTYiIGNvbD0iMyIgYm9keS10eXBlPSJDaGVja0JveENlbGwiPlRydWU8Zm9ybXVsYT5UcnVlPC9mb3JtdWxhPjxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPjwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjE3IiBjb2w9IjAiPkV4ZWN1dGUgSmF2YXNjcmlwdCB3aXRob3V0IFJlc3VsdHM8L2NlbGw+DQogICAgPGNlbGwgcm93PSIxNyIgY29sPSIxIiBib2R5LXR5cGU9IkNoZWNrQm94Q2VsbCI+DQogICAgICA8c3R5bGUgYWxpZ249ImNlbnRlciIgLz4NCiAgICA8L2NlbGw+DQogICAgPGNlbGwgcm93PSIxNyIgY29sPSIyIiBib2R5LXR5cGU9IkNoZWNrQm94Q2VsbCI+VHJ1ZTxmb3JtdWxhPlRydWU8L2Zvcm11bGE+PHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMTciIGNvbD0iMyIgYm9keS10eXBlPSJDaGVja0JveENlbGwiPlRydWU8Zm9ybXVsYT5UcnVlPC9mb3JtdWxhPjxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPjwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjE4IiBjb2w9IjAiPkJpbmQgZnVuY3Rpb25zIHJ1biBieSBKYXZhc2NyaXB0PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMTgiIGNvbD0iMSIgYm9keS10eXBlPSJDaGVja0JveENlbGwiPg0KICAgICAgPHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+DQogICAgPC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMTgiIGNvbD0iMiIgYm9keS10eXBlPSJDaGVja0JveENlbGwiPlRydWU8Zm9ybXVsYT5UcnVlPC9mb3JtdWxhPjxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPjwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjE4IiBjb2w9IjMiIGJvZHktdHlwZT0iQ2hlY2tCb3hDZWxsIj5UcnVlPGZvcm11bGE+VHJ1ZTwvZm9ybXVsYT48c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSIxOSIgY29sPSIwIj5Cb3VuZCBmdW5jdGlvbnMgY2FuIHJldHVybiB2YWx1ZTwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjE5IiBjb2w9IjEiIGJvZHktdHlwZT0iQ2hlY2tCb3hDZWxsIj4NCiAgICAgIDxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPg0KICAgIDwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjE5IiBjb2w9IjIiIGJvZHktdHlwZT0iQ2hlY2tCb3hDZWxsIj4NCiAgICAgIDxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPg0KICAgIDwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjE5IiBjb2w9IjMiIGJvZHktdHlwZT0iQ2hlY2tCb3hDZWxsIj5UcnVlPGZvcm11bGE+VHJ1ZTwvZm9ybXVsYT48c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSIyMCIgY29sPSIwIj5TZW5kIGRhdGEgZnJvbSBKYXZhc2NyaXB0PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMjAiIGNvbD0iMSI+WEVsZW1lbnQ8c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSIyMCIgY29sPSIyIj5TdHJpbmc8c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSIyMCIgY29sPSIzIj5TdHJpbmcgKGFycmF5KTxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPjwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjIxIiBjb2w9IjAiPkdldCBET00gWEVsZW1lbnQ8L2NlbGw+DQogICAgPGNlbGwgcm93PSIyMSIgY29sPSIxIiBib2R5LXR5cGU9IkNoZWNrQm94Q2VsbCI+VHJ1ZTxmb3JtdWxhPlRydWU8L2Zvcm11bGE+PHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMjEiIGNvbD0iMiIgYm9keS10eXBlPSJDaGVja0JveENlbGwiPlRydWU8Zm9ybXVsYT5UcnVlPC9mb3JtdWxhPjxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPjwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjIxIiBjb2w9IjMiIGJvZHktdHlwZT0iQ2hlY2tCb3hDZWxsIj5UcnVlPGZvcm11bGE+VHJ1ZTwvZm9ybXVsYT48c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSIyMiIgY29sPSIwIj5EZXZUb29sczwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjIyIiBjb2w9IjEiIGJvZHktdHlwZT0iQ2hlY2tCb3hDZWxsIj4NCiAgICAgIDxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPg0KICAgIDwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjIyIiBjb2w9IjIiIGJvZHktdHlwZT0iQ2hlY2tCb3hDZWxsIj5UcnVlPGZvcm11bGE+VHJ1ZTwvZm9ybXVsYT48c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSIyMiIgY29sPSIzIiBib2R5LXR5cGU9IkNoZWNrQm94Q2VsbCI+VHJ1ZTxmb3JtdWxhPlRydWU8L2Zvcm11bGE+PHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMjMiIGNvbD0iMCI+TGl2ZVBhZ2U8L2NlbGw+DQogICAgPGNlbGwgcm93PSIyMyIgY29sPSIxIiBib2R5LXR5cGU9IkNoZWNrQm94Q2VsbCI+DQogICAgICA8c3R5bGUgYWxpZ249ImNlbnRlciIgLz4NCiAgICA8L2NlbGw+DQogICAgPGNlbGwgcm93PSIyMyIgY29sPSIyIiBib2R5LXR5cGU9IkNoZWNrQm94Q2VsbCI+VHJ1ZTxmb3JtdWxhPlRydWU8L2Zvcm11bGE+PHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMjMiIGNvbD0iMyIgYm9keS10eXBlPSJDaGVja0JveENlbGwiPlRydWU8Zm9ybXVsYT5UcnVlPC9mb3JtdWxhPjxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPjwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjI0IiBjb2w9IjAiPkphdmFzY3JpcHQgbG9nIHRvIFRUWTwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjI0IiBjb2w9IjEiIGJvZHktdHlwZT0iQ2hlY2tCb3hDZWxsIj4NCiAgICAgIDxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPg0KICAgIDwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjI0IiBjb2w9IjIiIGJvZHktdHlwZT0iQ2hlY2tCb3hDZWxsIj5UcnVlPGZvcm11bGE+VHJ1ZTwvZm9ybXVsYT48c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSIyNCIgY29sPSIzIiBib2R5LXR5cGU9IkNoZWNrQm94Q2VsbCI+VHJ1ZTxmb3JtdWxhPlRydWU8L2Zvcm11bGE+PHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMjUiIGNvbD0iMCI+TXVsdGl0b3VjaDwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjI1IiBjb2w9IjEiIGJvZHktdHlwZT0iQ2hlY2tCb3hDZWxsIj4NCiAgICAgIDxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPg0KICAgIDwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjI1IiBjb2w9IjIiIGJvZHktdHlwZT0iQ2hlY2tCb3hDZWxsIj4NCiAgICAgIDxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPg0KICAgIDwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjI1IiBjb2w9IjMiIGJvZHktdHlwZT0iQ2hlY2tCb3hDZWxsIj5UcnVlPGZvcm11bGE+VHJ1ZTwvZm9ybXVsYT48c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSIyNiIgY29sPSIwIj5ILDI2NCBjb2RlYyBzdXBwb3J0PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMjYiIGNvbD0iMSIgYm9keS10eXBlPSJDaGVja0JveENlbGwiPg0KICAgICAgPHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+DQogICAgPC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMjYiIGNvbD0iMiIgYm9keS10eXBlPSJDaGVja0JveENlbGwiPg0KICAgICAgPHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+DQogICAgPC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMjYiIGNvbD0iMyIgYm9keS10eXBlPSJDaGVja0JveENlbGwiPlRydWU8Zm9ybXVsYT5UcnVlPC9mb3JtdWxhPjxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPjwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjI3IiBjb2w9IjAiPkhpc3RvcnkgbmF2aWdhdGlvbjwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjI3IiBjb2w9IjEiIGJvZHktdHlwZT0iQ2hlY2tCb3hDZWxsIj4NCiAgICAgIDxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPg0KICAgIDwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjI3IiBjb2w9IjIiIGJvZHktdHlwZT0iQ2hlY2tCb3hDZWxsIj4NCiAgICAgIDxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPg0KICAgIDwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjI3IiBjb2w9IjMiIGJvZHktdHlwZT0iQ2hlY2tCb3hDZWxsIj5UcnVlPGZvcm11bGE+VHJ1ZTwvZm9ybXVsYT48c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSIyOSIgY29sPSIwIiBjb2xzcGFuPSI0Ij4qIGV4cGVyaW1lbnRhbCBmZWF0dXJlLCBjYW4gbGVhZCB0byBjYXRhc3Ryb3BoaWMgbWVtb3J5bGVhaywgaGFuZGxlIGNhcmVmdWxseTwvY2VsbD4NCiAgPC9jZWxscz4NCjwvZ3JpZD4=">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="72">
+   <BOUNDS type="Box" left="3015" top="9735" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3015" top="9735" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Reload Current|">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="72" srcpinname="Y Output Value" dstnodeid="66" dstpinname="Reload Current">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="73">
+   <BOUNDS type="Box" left="3765" top="32190" width="795" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3765" top="32190" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Vector Size" slicecount="1" values="2">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="2">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="66" srcpinname="Document SizeXY" dstnodeid="73" dstpinname="Y Input Value">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="75">
+   <BOUNDS type="Box" left="6705" top="28020" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="6705" top="28020" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Last Js Log|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="66" srcpinname="Last Js Log" dstnodeid="75" dstpinname="Input String">
+   </LINK>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="76">
+   <BOUNDS type="Node" left="3540" top="9825" width="480" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="3540" top="9825" width="2940" height="270">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|Reload the current page (as in browser)|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="23" srcpinname="Y Output Value" dstnodeid="66" dstpinname="Auto Width">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="77">
+   <BOUNDS type="Box" left="3630" top="13065" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3630" top="13065" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Auto Height|">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="77" srcpinname="Y Output Value" dstnodeid="66" dstpinname="Auto Height">
+   </LINK>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="79">
+   <BOUNDS type="Node" left="6705" top="28545" width="3045" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6705" top="28545" width="3045" height="270">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|Last log message coming from Javascript|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="80">
+   <BOUNDS type="Box" left="3765" top="13830" width="795" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3765" top="13830" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="2" visible="1" values="0,0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Vector Size" slicecount="1" values="2">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="2">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Extra SizeXY|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="80" srcpinname="Y Output Value" dstnodeid="66" dstpinname="Extra SizeXY">
+   </LINK>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="81">
+   <BOUNDS type="Node" left="3855" top="14415" width="6945" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="3855" top="14415" width="3645" height="525">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|Add additional width and height to the texture. This is useful when used with Auto Width/Height|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="8" srcpinname="Output Node" dstnodeid="66" dstpinname="Operations">
+   </LINK>
+   <NODE systemname="Transform (Transform 2d)" nodename="Transform (Transform 2d)" componentmode="Hidden" id="82">
+   <BOUNDS type="Node" left="3270" top="28305" width="1200" height="270">
+   </BOUNDS>
+   <PIN pinname="ScaleY" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Transform Out" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="82" srcpinname="Transform Out" dstnodeid="6" dstpinname="Texture Transform">
+   </LINK>
+   <NODE systemname="Info (DX11.Texture 2d)" filename="%VVVV%\packs\dx11\nodes\plugins\base\VVVV.DX11.Nodes.dll" nodename="Info (DX11.Texture 2d)" componentmode="Hidden" id="85">
+   <BOUNDS type="Node" left="1230" top="31575" width="1050" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1230" top="31575" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Texture In" visible="1">
+   </PIN>
+   <PIN pinname="Width" visible="1">
+   </PIN>
+   <PIN pinname="Height" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="66" srcpinname="Texture Output" dstnodeid="85" dstpinname="Texture In">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="86">
+   <BOUNDS type="Box" left="1215" top="32025" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1215" top="32025" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="85" srcpinname="Width" dstnodeid="86" dstpinname="Y Input Value">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="87">
+   <BOUNDS type="Box" left="1380" top="32415" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1380" top="32415" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="85" srcpinname="Height" dstnodeid="87" dstpinname="Y Input Value">
+   </LINK>
+   <LINK srcnodeid="4" srcpinname="Output String" dstnodeid="66" dstpinname="Url">
+   </LINK>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="88">
+   <BOUNDS type="Node" left="6645" top="690" width="4875" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6645" top="690" width="4875" height="270">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="https://github.com/meso-unimpressed/MESO.HtmlTexture/issues">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="URL">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="89">
+   <BOUNDS type="Node" left="225" top="1725" width="9060" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="225" top="1725" width="6060" height="1200">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|The texture coming out is upside-down. (V or Y coords are flipped). The reason is that we are looking at a texture which was originally created in OpenGL where rows are ordered reverse compared to DirectX. A new rendertarget with a shader pipeline would be required to flip it back which is not the most efficient way to do for such a little gain. So unfortunately you need to flip your texcoords yourself (Scale Y = -1)|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="90">
+   <BOUNDS type="Node" left="225" top="1305" width="1140" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="225" top="1305" width="4665" height="435">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|Note about vertically flipped texture:|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="12">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="91">
+   <BOUNDS type="Node" left="6600" top="24405" width="10545" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6600" top="24405" width="5460" height="750">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|WARNING!&cr;&lf;When you turn off Enabled, it will close the underlying Chromium process. This means when you Enable HtmlTexture again it will reload its content|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="92">
+   <BOUNDS type="Box" left="6240" top="25395" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="6240" top="25395" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Allow Initialization|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="92" srcpinname="Y Output Value" dstnodeid="66" dstpinname="Allow Initialization">
+   </LINK>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="93">
+   <BOUNDS type="Node" left="6795" top="25485" width="9675" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6795" top="25485" width="5655" height="765">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|Hidden by default. A browser process is only created on the first update coming from DX11 AND if this pin, &quot;Allow Initialization&quot; is true. You can exploit this behavior to your advantage on your application startup procedure.|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="94">
+   <BOUNDS type="Box" left="6390" top="26535" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="6390" top="26535" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Evaluate">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="94" srcpinname="Y Output Value" dstnodeid="66" dstpinname="Evaluate">
+   </LINK>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="95">
+   <BOUNDS type="Node" left="6930" top="26580" width="10545" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6930" top="26580" width="6090" height="1200">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|WARNING!&cr;&lf;When you turn off Evaluation, it will close the underlying Chromium process. This means when you Evaluate HtmlTexture again it will reload its content. It&apos;s different from Enabled only by the fact that upstream nodes will also get unevaluated.&cr;&lf;This is the Evaluation pin created by vvvv for every node and it&apos;s hidden by default.|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="96">
+   <BOUNDS type="Box" left="2535" top="6990" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2535" top="6990" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Allow Requesting Frames|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="96" srcpinname="Y Output Value" dstnodeid="66" dstpinname="Allow Requesting Frames">
+   </LINK>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="97">
+   <BOUNDS type="Node" left="3060" top="7035" width="240" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="3060" top="7035" width="5235" height="735">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|Hidden by default. It&apos;s used with &quot;VVVV Requests Frame&quot;. It doesn&apos;t have any effect when that is turned off. During frame synchronization vvvv will only ask for new frames while &quot;Allow Requesting Frames&quot; is true|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="98">
+   <BOUNDS type="Box" left="2385" top="4005" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2385" top="4005" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|VVVV Requests Frame|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="98" srcpinname="Y Output Value" dstnodeid="66" dstpinname="VVVV Requests Frame">
+   </LINK>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="99">
+   <BOUNDS type="Node" left="2895" top="4065" width="7800" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2895" top="4065" width="5895" height="2190">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|Hidden by default.&cr;&lf;Only takes effect if you disable/enable, reset the node or for new slices.&cr;&lf;This turns on frame synchronization. It&apos;s also recommended if for some reason you want chromium to have more than 60 fps. See YoutubeTest.v4p in girlpower for a usecase for this. However...&cr;&lf;&cr;&lf;WARNING!&cr;&lf;We experienced severe memory leaks when used with &lt;video&gt; tag with no source or file system (file://) source. If you experience that too you have to sacrifice this feature for the content which triggers it.|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="100">
+   <BOUNDS type="Node" left="315" top="7680" width="1650" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="315" top="7680" width="1665" height="300">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|scroll down for more!|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="101">
+   <BOUNDS type="Node" left="9630" top="13530" width="990" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="9630" top="13530" width="1635" height="375">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|Config pins:|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="12">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="102">
+   <BOUNDS type="Node" left="9645" top="13980" width="1875" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="9645" top="13980" width="5370" height="795">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|Framerate: 60 by default&cr;&lf;Set target framerate for chromium.&cr;&lf;Only takes effect if you disable/enable, reset the node or for new slices|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="103">
+   <BOUNDS type="Node" left="3645" top="6285" width="2430" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="3645" top="6285" width="2430" height="270">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="..\..\girlpower\YoutubeTest.v4p">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="Filename">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="104">
+   <BOUNDS type="Node" left="6645" top="22665" width="2430" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6645" top="22665" width="2430" height="270">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|..\..\girlpower\UI Sample.v4p|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="Filename">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="105">
+   <BOUNDS type="Node" left="6645" top="22965" width="2430" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6645" top="22965" width="3900" height="270">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="..\..\girlpower\CustomObjectBinding.v4p">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="Filename">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="106">
+   <BOUNDS type="Node" left="6645" top="23265" width="2430" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6645" top="23265" width="3900" height="270">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="..\..\girlpower\TouchTest.v4p">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="Filename">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="107">
+   <BOUNDS type="Node" left="6645" top="23565" width="2430" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6645" top="23565" width="3900" height="270">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="..\..\girlpower\SpreadableTest.v4p">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="Filename">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="108">
+   <BOUNDS type="Box" left="2550" top="32190" width="795" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2550" top="32190" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Vector Size" slicecount="1" values="2">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="2">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="5" srcpinname="Actual BackBuffer SizeXY" dstnodeid="108" dstpinname="Y Input Value">
+   </LINK>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="109">
+   <BOUNDS type="Node" left="1185" top="32730" width="1590" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1185" top="32730" width="1020" height="510">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|resolution of output|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="110">
+   <BOUNDS type="Node" left="2520" top="32730" width="1590" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2520" top="32730" width="1020" height="510">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|resolution of renderer|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="111">
+   <BOUNDS type="Node" left="3750" top="32730" width="1590" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="3750" top="32730" width="1020" height="510">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|size of the document|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   </PATCH>

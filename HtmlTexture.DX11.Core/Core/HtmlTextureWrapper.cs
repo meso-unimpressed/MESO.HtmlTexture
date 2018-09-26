@@ -27,7 +27,7 @@ namespace VVVV.HtmlTexture.DX11.Core
 {
     public partial class HtmlTextureWrapper : IMainlooping, IDisposable
     {
-        public static Dictionary<int, HtmlTextureWrapper> Instances = new Dictionary<int, HtmlTextureWrapper>();
+        public static readonly Dictionary<int, HtmlTextureWrapper> Instances = new Dictionary<int, HtmlTextureWrapper>();
         public static readonly (int w, int h) DefaultSize = (3840, 2160);
 
         public const int DefaultWidth = 3840;
@@ -99,6 +99,7 @@ namespace VVVV.HtmlTexture.DX11.Core
         public bool IsTextureValid { get; private set; }
         public bool LivePageActive { get; private set; }
         public double Progress { get; private set; }
+        public bool Closed { get; private set; }
 
         //public byte[] RawImage { get; private set; }
 
@@ -408,10 +409,6 @@ namespace VVVV.HtmlTexture.DX11.Core
             var windowInfo = new CfxWindowInfo();
             windowInfo.SetAsWindowless(IntPtr.Zero);
 
-            windowInfo.WindowlessRenderingEnabled = true;
-            windowInfo.SharedTextureEnabled = true;
-            windowInfo.ExternalBeginFrameEnabled = InitSettings.FrameRequestFromVvvv;
-
             if (Browser != null)
             {
                 Browser.Host.CloseBrowser(true);
@@ -611,6 +608,7 @@ namespace VVVV.HtmlTexture.DX11.Core
         public void Mainloop(float deltatime)
         {
             OnMainLoopBegin?.Invoke(this, EventArgs.Empty);
+            if(Closed) return;
 
             if (CreatedFrame) CreatedFrame = false;
             if (_browserReadyFrame)
@@ -711,24 +709,47 @@ namespace VVVV.HtmlTexture.DX11.Core
 
         public event EventHandler OnMainLoopEnd;
 
-        public void Dispose()
+        public void Close()
         {
+            if(Closed) return;
+            Closed = true;
+            
             Browser?.Host?.CloseBrowser(true);
-            DX11Texture?.Dispose();
             _mouseSubscription?.Dispose();
             _keyboardSubscription?.Dispose();
-            MouseEvent?.Dispose();
+
             Browser?.Dispose();
             RemoteBrowser?.Dispose();
+
             Visitor?.Dispose();
             Client?.Dispose();
+
+            MouseEvent?.Dispose();
             ContextMenuHandler?.Dispose();
             LifeSpanHandler?.Dispose();
             LoadHandler?.Dispose();
             RenderHandler?.Dispose();
             RequestHandler?.Dispose();
             DisplayHandler?.Dispose();
+            V8Handler?.Dispose();
+
             Settings?.Dispose();
+            
+        }
+
+        public void Dispose()
+        {
+            if(Instances.ContainsKey(BrowserId))
+                Instances.Remove(BrowserId);
+
+            DX11Texture?.Dispose();
+            Close();
+        }
+
+        ~HtmlTextureWrapper()
+        {
+            if (Instances.ContainsKey(BrowserId))
+                Instances.Remove(BrowserId);
         }
     }
 }

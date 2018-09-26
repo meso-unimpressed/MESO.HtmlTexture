@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha36.1.dtd" >
-   <PATCH nodename="D:\local\lib\VVVV.HTMLTexture.DX11\deploy\HtmlTexture.DX11\girlpower\Three.js.v4p" scrollx="0" scrolly="0" systemname="1. UI Sample" filename="C:\vvvv_45beta33.7_x86\1. UI Sample.v4p">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta37.dtd" >
+   <PATCH nodename="D:\local\vvvv-gp\packs\Vanadium\girlpower\Three.js.v4p" scrollx="0" scrolly="0" systemname="1. UI Sample" filename="C:\vvvv_45beta33.7_x86\1. UI Sample.v4p">
    <BOUNDS type="Window" left="4635" top="1620" width="9195" height="12120">
    </BOUNDS>
    <PACK Name="addonpack" Version="36.0.0">
@@ -67,7 +67,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="5010" top="4410" width="2400" height="1800">
    </BOUNDS>
-   <BOUNDS type="Window" left="18750" top="7695" width="6240" height="5085">
+   <BOUNDS type="Window" left="18750" top="7695" width="14640" height="6180">
    </BOUNDS>
    <PIN pinname="Clear" slicecount="1" visible="1" values="0">
    </PIN>
@@ -109,6 +109,8 @@
    </PIN>
    <PIN pinname="Touch Data" visible="1">
    </PIN>
+   <PIN pinname="Mouse State" visible="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="53" srcpinname="Actual BackBuffer SizeXY" dstnodeid="31" dstpinname="XY">
    </LINK>
@@ -123,7 +125,7 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="55" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="1035" top="1155" width="795" height="240">
+   <BOUNDS type="Box" left="1035" top="1155" width="1305" height="240">
    </BOUNDS>
    <BOUNDS type="Node" left="1035" top="1155" width="0" height="0">
    </BOUNDS>
@@ -148,24 +150,6 @@
    </NODE>
    <LINK srcnodeid="63" srcpinname="Render State" dstnodeid="2" dstpinname="Render State">
    </LINK>
-   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="64" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="1905" top="2370" width="480" height="480">
-   </BOUNDS>
-   <BOUNDS type="Node" left="1905" top="2370" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
-   </PIN>
-   <PIN pinname="Units" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Precision" slicecount="1" values="4">
-   </PIN>
-   <PIN pinname="Value Type" slicecount="1" values="Boolean">
-   </PIN>
-   <PIN pinname="Behavior" slicecount="1" values="Toggle">
-   </PIN>
-   <PIN pinname="X Input Value" slicecount="1" values="1">
-   </PIN>
-   </NODE>
    <NODE nodename="IOBox (Color)" componentmode="InABox" id="67" systemname="IOBox (Color)">
    <BOUNDS type="Box" left="2340" top="7140" width="2250" height="480">
    </BOUNDS>
@@ -190,12 +174,6 @@
    <PIN pinname="String Type" slicecount="1" values="MultiLine">
    </PIN>
    </NODE>
-   <NODE systemname="MOUSE (DEVICES WINDOW)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="Mouse (Devices Window)" componentmode="Hidden" id="77">
-   <BOUNDS type="Node" left="2520" top="2370" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Device" visible="1">
-   </PIN>
-   </NODE>
    <NODE systemname="HtmlTexture (DX11.Texture2D Url)" filename="%VVVV%\packs\HtmlTexture.DX11\nodes\plugins\HtmlTexture.DX11.Core.exe" nodename="HtmlTexture (DX11.Texture2D Url)" componentmode="Hidden" id="78">
    <BOUNDS type="Node" left="1260" top="3705" width="100" height="100">
    </BOUNDS>
@@ -205,86 +183,22 @@
    </PIN>
    <PIN pinname="Load" visible="1">
    </PIN>
-   <PIN pinname="Mouse" visible="1">
+   <PIN pinname="Mouse" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Texture Output" visible="1">
    </PIN>
    <PIN pinname="SizeXY" visible="1">
    </PIN>
-   <PIN pinname="Operations" visible="1">
+   <PIN pinname="Operations" visible="1" slicecount="1" values="||">
    </PIN>
    </NODE>
    <LINK srcnodeid="56" srcpinname="Output" dstnodeid="78" dstpinname="Url">
    </LINK>
    <LINK srcnodeid="39" srcpinname="Y Output Value" dstnodeid="78" dstpinname="Load">
    </LINK>
-   <LINK srcnodeid="77" srcpinname="Device" dstnodeid="78" dstpinname="Mouse">
-   </LINK>
    <LINK srcnodeid="78" srcpinname="Texture Output" dstnodeid="2" dstpinname="Texture">
    </LINK>
    <LINK srcnodeid="53" srcpinname="Actual BackBuffer SizeXY" dstnodeid="78" dstpinname="SizeXY">
-   </LINK>
-   <NODE systemname="SendTouch (HtmlTexture.Operation TouchContainer)" filename="%VVVV%\packs\HtmlTexture.DX11\nodes\plugins\HtmlTexture.DX11.Core.exe" nodename="SendTouch (HtmlTexture.Operation TouchContainer)" componentmode="Hidden" id="79">
-   <BOUNDS type="Node" left="3945" top="3045" width="100" height="100">
-   </BOUNDS>
-   <BOUNDS type="Box" left="3945" top="3045" width="3000" height="3000">
-   </BOUNDS>
-   <PIN pinname="Touches" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   </NODE>
-   <NODE systemname="TouchProcessor (Join)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="TouchProcessor (Join)" componentmode="Hidden" id="80">
-   <BOUNDS type="Node" left="1590" top="9795" width="100" height="100">
-   </BOUNDS>
-   <BOUNDS type="Box" left="1590" top="9795" width="3000" height="3000">
-   </BOUNDS>
-   <PIN pinname="ID&apos;s" visible="1">
-   </PIN>
-   <PIN pinname="PointsXY" visible="1">
-   </PIN>
-   <PIN pinname="Container" visible="1">
-   </PIN>
-   </NODE>
-   <NODE systemname="TouchState (System Split)" filename="%VVVV%\packs\dx11\nodes\plugins\base\VVVV.DX11.Nodes.dll" nodename="TouchState (System Split)" componentmode="Hidden" id="81">
-   <BOUNDS type="Node" left="1275" top="8775" width="100" height="100">
-   </BOUNDS>
-   <BOUNDS type="Box" left="1275" top="8775" width="3000" height="3000">
-   </BOUNDS>
-   <PIN pinname="Touch Data" visible="1">
-   </PIN>
-   <PIN pinname="Id" visible="1">
-   </PIN>
-   <PIN pinname="PositionXY" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="53" srcpinname="Touch Data" dstnodeid="81" dstpinname="Touch Data">
-   </LINK>
-   <LINK srcnodeid="81" srcpinname="Id" dstnodeid="80" dstpinname="ID&apos;s">
-   </LINK>
-   <LINK srcnodeid="81" srcpinname="PositionXY" dstnodeid="80" dstpinname="PointsXY">
-   </LINK>
-   <NODE systemname="S (Node)" nodename="S (Node)" componentmode="Hidden" id="82">
-   <BOUNDS type="Node" left="1575" top="10395" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Send String" slicecount="1" values="Touches">
-   </PIN>
-   <PIN pinname="Input Value" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="80" srcpinname="Container" dstnodeid="82" dstpinname="Input Value">
-   </LINK>
-   <NODE systemname="R (Node)" nodename="R (Node)" componentmode="Hidden" id="83">
-   <BOUNDS type="Node" left="4515" top="2565" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Input Value" visible="1">
-   </PIN>
-   <PIN pinname="Receive String" slicecount="1" values="Touches">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="83" srcpinname="Input Value" dstnodeid="79" dstpinname="Touches">
-   </LINK>
-   <LINK srcnodeid="79" srcpinname="Output" dstnodeid="78" dstpinname="Operations">
    </LINK>
    <PACK Name="dx11" Version="1.3.1.1">
    </PACK>
@@ -366,4 +280,62 @@
    </LINK>
    <LINK srcnodeid="87" srcpinname="Layer Out" dstnodeid="53" dstpinname="Layers">
    </LINK>
+   <NODE systemname="MainLoop (VVVV)" nodename="MainLoop (VVVV)" componentmode="Hidden" id="-6">
+   <BOUNDS type="Node" left="5580" top="1845" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Maximum Foreground FPS" visible="1">
+   </PIN>
+   <PIN pinname="Maximum Background FPS" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="89">
+   <BOUNDS type="Box" left="5655" top="1380" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="5655" top="1380" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="240">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="89" srcpinname="Y Output Value" dstnodeid="-6" dstpinname="Maximum Foreground FPS">
+   </LINK>
+   <LINK srcnodeid="89" srcpinname="Y Output Value" dstnodeid="-6" dstpinname="Maximum Background FPS">
+   </LINK>
+   <LINK srcnodeid="53" srcpinname="Mouse State" dstnodeid="78" dstpinname="Mouse">
+   </LINK>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="90">
+   <BOUNDS type="Node" left="2550" top="2385" width="4035" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2550" top="2385" width="2565" height="540">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|Frame drawing is called from vvvv so fps is uncapped ;)|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="91">
+   <BOUNDS type="Node" left="5280" top="2325" width="4620" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="5280" top="2325" width="2640" height="1200">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|although framerates above ~300 fps can lead to chaos at startup&cr;&lf;&cr;&lf;but you need vsync anyway so ain&apos;t gonna bother too much|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
    </PATCH>

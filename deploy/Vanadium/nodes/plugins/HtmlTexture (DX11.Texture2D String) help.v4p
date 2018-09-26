@@ -1,11 +1,11 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha36.1.dtd" >
-   <PATCH nodename="D:\local\vvvv-gp\packs\HtmlTexture.DX11\nodes\plugins\HtmlTexture (DX11.Texture2D String) help.v4p" scrollx="0" scrolly="-360">
-   <BOUNDS type="Window" left="16005" top="12330" width="9855" height="7845">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta37.dtd" >
+   <PATCH nodename="D:\local\vvvv-gp\packs\Vanadium\nodes\plugins\HtmlTexture (DX11.Texture2D String) help.v4p" scrollx="0" scrolly="-360">
+   <BOUNDS type="Window" left="930" top="990" width="12720" height="9585">
    </BOUNDS>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="3">
-   <BOUNDS type="Node" left="225" top="225" width="5100" height="450">
+   <BOUNDS type="Node" left="240" top="180" width="5100" height="450">
    </BOUNDS>
-   <BOUNDS type="Box" left="225" top="225" width="5100" height="450">
+   <BOUNDS type="Box" left="240" top="180" width="5100" height="450">
    </BOUNDS>
    <PIN pinname="Input String" slicecount="1" visible="0" values="|HtmlTexture (DX11.Texture2D String)|">
    </PIN>
@@ -15,9 +15,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="2">
-   <BOUNDS type="Node" left="225" top="600" width="5100" height="600">
+   <BOUNDS type="Node" left="240" top="555" width="5100" height="600">
    </BOUNDS>
-   <BOUNDS type="Box" left="225" top="600" width="5100" height="600">
+   <BOUNDS type="Box" left="240" top="555" width="5100" height="600">
    </BOUNDS>
    <PIN pinname="Input String" slicecount="1" visible="0" values="|Advanced version of HTMLTexture with more bells and whistles|">
    </PIN>
@@ -25,11 +25,11 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="5">
-   <BOUNDS type="Box" left="1710" top="1755" width="6465" height="330">
+   <BOUNDS type="Box" left="2085" top="1800" width="7485" height="1275">
    </BOUNDS>
-   <BOUNDS type="Node" left="1710" top="1755" width="0" height="0">
+   <BOUNDS type="Node" left="2085" top="1800" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Input String" slicecount="1" visible="1" values="|&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body bgcolor=&quot;#ffff00&quot;&gt;&lt;h1&gt;yo!&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;|">
+   <PIN pinname="Input String" slicecount="1" visible="1" values="|&lt;html&gt;&lt;head&gt;&lt;/head&gt;&cr;&lf;&lt;body bgcolor=&quot;#ffff00&quot;&gt;&cr;&lf;&lt;img src=&quot;https://vvvv.org/sites/default/files/imagecache/large/VVVV_logo_upsidedown.png&quot; /&gt;&cr;&lf;&lt;/body&gt;&cr;&lf;&lt;/html&gt;|">
    </PIN>
    <PIN pinname="Default" slicecount="1" values="|&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body bgcolor=&quot;#0000ff&quot;&gt;&lt;/body&gt;&lt;/html&gt;|">
    </PIN>
@@ -41,11 +41,15 @@
    </PIN>
    <PIN pinname="Changed" visible="1" pintype="Output">
    </PIN>
+   <PIN pinname="Output String" visible="1">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="6">
-   <BOUNDS type="Box" left="2775" top="3705" width="480" height="480">
+   <BOUNDS type="Box" left="3150" top="4950" width="480" height="480">
    </BOUNDS>
-   <BOUNDS type="Node" left="2775" top="3705" width="0" height="0">
+   <BOUNDS type="Node" left="3150" top="4950" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
    </PIN>
@@ -63,9 +67,9 @@
    </PIN>
    </NODE>
    <NODE nodename="HtmlTexture (DX11.Texture2D String)" componentmode="Hidden" id="7">
-   <BOUNDS type="Node" left="2460" top="4575" width="0" height="0">
+   <BOUNDS type="Node" left="2835" top="5820" width="0" height="0">
    </BOUNDS>
-   <BOUNDS type="Box" left="2460" top="4575" width="0" height="0">
+   <BOUNDS type="Box" left="2835" top="5820" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Is Loading" visible="1">
    </PIN>
@@ -81,12 +85,12 @@
    </PIN>
    <PIN pinname="Current Url" visible="1">
    </PIN>
+   <PIN pinname="Content" visible="1">
+   </PIN>
    </NODE>
-   <LINK srcnodeid="5" srcpinname="Output String" dstnodeid="7" dstpinname="Content">
-   </LINK>
    <LINK srcnodeid="6" srcpinname="Y Output Value" dstnodeid="7" dstpinname="Load">
    </LINK>
-   <PACK Name="dx11" Version="1.3.0.1">
+   <PACK Name="dx11" Version="1.3.1.1">
    </PACK>
    <PACK Name="KeyboardUI" Version="1.1.1">
    </PACK>
@@ -97,9 +101,9 @@
    <PACK Name="addonpack" Version="36.0.0">
    </PACK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="8">
-   <BOUNDS type="Box" left="3600" top="5190" width="480" height="480">
+   <BOUNDS type="Box" left="3975" top="6435" width="480" height="480">
    </BOUNDS>
-   <BOUNDS type="Node" left="3600" top="5190" width="0" height="0">
+   <BOUNDS type="Node" left="3975" top="6435" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -113,9 +117,9 @@
    <LINK srcnodeid="7" srcpinname="Is Loading" dstnodeid="8" dstpinname="Y Input Value">
    </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="9">
-   <BOUNDS type="Box" left="2610" top="2400" width="1755" height="255">
+   <BOUNDS type="Box" left="2985" top="3645" width="1755" height="255">
    </BOUNDS>
-   <BOUNDS type="Node" left="2610" top="2400" width="0" height="0">
+   <BOUNDS type="Node" left="2985" top="3645" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input String" slicecount="1" visible="1" values="yolo:swag">
    </PIN>
@@ -131,9 +135,9 @@
    <LINK srcnodeid="9" srcpinname="Output String" dstnodeid="7" dstpinname="Dummy Url">
    </LINK>
    <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="12">
-   <BOUNDS type="Node" left="2715" top="2700" width="9180" height="270">
+   <BOUNDS type="Node" left="3090" top="3945" width="9180" height="270">
    </BOUNDS>
-   <BOUNDS type="Box" left="2715" top="2700" width="4890" height="555">
+   <BOUNDS type="Box" left="3090" top="3945" width="4890" height="555">
    </BOUNDS>
    <PIN pinname="Input String" visible="0" slicecount="1" values="|If your content does AJAX requests and stuff requiring a valid url you should supply one. For most situations about:blank is fine|">
    </PIN>
@@ -145,11 +149,11 @@
    </PIN>
    </NODE>
    <NODE systemname="Renderer (DX11)" filename="%VVVV%\packs\dx11\nodes\plugins\base\VVVV.DX11.Nodes.dll" nodename="Renderer (DX11)" componentmode="InAWindow" id="13">
-   <BOUNDS type="Node" left="2310" top="6450" width="100" height="100">
+   <BOUNDS type="Node" left="2685" top="7695" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="2310" top="6450" width="6000" height="4500">
+   <BOUNDS type="Box" left="2685" top="7695" width="6000" height="4500">
    </BOUNDS>
-   <BOUNDS type="Window" left="31065" top="10920" width="6240" height="5085">
+   <BOUNDS type="Window" left="13995" top="870" width="13245" height="8865">
    </BOUNDS>
    <PIN pinname="Actual BackBuffer SizeXY" visible="1">
    </PIN>
@@ -159,13 +163,15 @@
    <LINK srcnodeid="13" srcpinname="Actual BackBuffer SizeXY" dstnodeid="7" dstpinname="SizeXY">
    </LINK>
    <NODE systemname="DrawFullScreen (DX11.Layer)" filename="%VVVV%\packs\dx11\nodes\plugins\base\VVVV.DX11.Nodes.dll" nodename="DrawFullScreen (DX11.Layer)" componentmode="Hidden" id="14">
-   <BOUNDS type="Node" left="1725" top="5700" width="100" height="100">
+   <BOUNDS type="Node" left="2100" top="6945" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="1725" top="5700" width="3000" height="3000">
+   <BOUNDS type="Box" left="2100" top="6945" width="3000" height="3000">
    </BOUNDS>
    <PIN pinname="Texture" visible="1">
    </PIN>
    <PIN pinname="Layer" visible="1">
+   </PIN>
+   <PIN pinname="Texture Transform" visible="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="7" srcpinname="Texture Output" dstnodeid="14" dstpinname="Texture">
@@ -173,9 +179,9 @@
    <LINK srcnodeid="14" srcpinname="Layer" dstnodeid="13" dstpinname="Layers">
    </LINK>
    <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="15">
-   <BOUNDS type="Node" left="4545" top="3495" width="2865" height="270">
+   <BOUNDS type="Node" left="4920" top="4740" width="2865" height="270">
    </BOUNDS>
-   <BOUNDS type="Box" left="4545" top="3495" width="2865" height="270">
+   <BOUNDS type="Box" left="4920" top="4740" width="2865" height="270">
    </BOUNDS>
    <PIN pinname="Input String" visible="0" slicecount="1" values="|The rest is the same as the Url version|">
    </PIN>
@@ -187,15 +193,15 @@
    </PIN>
    </NODE>
    <NODE systemname="HtmlTexture (DX11.Texture2D Url)" filename="%VVVV%\packs\HtmlTexture.DX11\nodes\plugins\HtmlTexture.DX11.Core.exe" nodename="HtmlTexture (DX11.Texture2D Url)" componentmode="Hidden" id="16">
-   <BOUNDS type="Node" left="4635" top="3840" width="100" height="100">
+   <BOUNDS type="Node" left="5010" top="5085" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="4635" top="3840" width="3000" height="3000">
+   <BOUNDS type="Box" left="5010" top="5085" width="3000" height="3000">
    </BOUNDS>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="17">
-   <BOUNDS type="Box" left="4590" top="5205" width="1050" height="315">
+   <BOUNDS type="Box" left="4965" top="6450" width="1050" height="315">
    </BOUNDS>
-   <BOUNDS type="Node" left="4590" top="5205" width="0" height="0">
+   <BOUNDS type="Node" left="4965" top="6450" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Default" slicecount="1" values="||">
    </PIN>
@@ -206,10 +212,40 @@
    </NODE>
    <LINK srcnodeid="7" srcpinname="Current Url" dstnodeid="17" dstpinname="Input String">
    </LINK>
-   <LINK srcnodeid="5" srcpinname="Changed" dstnodeid="6" dstpinname="Y Input Value" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="8115" y="2880">
-   </LINKPOINT>
-   <LINKPOINT x="2835" y="2880">
-   </LINKPOINT>
+   <NODE systemname="Scale (Transform)" nodename="Scale (Transform)" componentmode="Hidden" id="18">
+   <BOUNDS type="Node" left="2805" top="6405" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Y" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Transform Out" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="18" srcpinname="Transform Out" dstnodeid="14" dstpinname="Texture Transform">
    </LINK>
+   <NODE systemname="Select (String)" nodename="Select (String)" componentmode="Hidden" id="19">
+   <BOUNDS type="Node" left="2250" top="4470" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="5" srcpinname="Output String" dstnodeid="19" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="19" srcpinname="Output" dstnodeid="7" dstpinname="Content">
+   </LINK>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="20">
+   <BOUNDS type="Node" left="510" top="4455" width="1740" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="510" top="4455" width="1740" height="270">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|only here for multiline|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
    </PATCH>

@@ -1,0 +1,339 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta37.dtd" >
+   <PATCH nodename="D:\local\vvvv-gp\packs\Vanadium\girlpower\ChromeUtils.v4p" scrollx="0" scrolly="-360" systemname="ChromeUtils" filename="D:\local\vvvv-gp\packs\Vanadium\girlpower\ChromeUtils.v4p">
+   <BOUNDS type="Window" left="1290" top="690" width="12270" height="12285">
+   </BOUNDS>
+   <NODE systemname="Renderer (DX11)" filename="%VVVV%\packs\dx11\nodes\plugins\base\VVVV.DX11.Nodes.dll" nodename="Renderer (DX11)" componentmode="InAWindow" id="4" border="1">
+   <BOUNDS type="Node" left="1620" top="10755" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1620" top="10755" width="6000" height="4500">
+   </BOUNDS>
+   <BOUNDS type="Window" left="13650" top="600" width="16725" height="12465">
+   </BOUNDS>
+   <PIN pinname="Layers" visible="1">
+   </PIN>
+   <PIN pinname="Show Cursor" visible="1" pintype="Input" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="VSync" visible="1" pintype="Input" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="ID" visible="1" pintype="Output">
+   </PIN>
+   <PIN pinname="Mouse State" visible="1">
+   </PIN>
+   <PIN pinname="Background Color" slicecount="1" values="|1.00000,1.00000,1.00000,1.00000|">
+   </PIN>
+   <PIN pinname="Actual BackBuffer SizeXY" visible="1">
+   </PIN>
+   <PIN pinname="Keyboard State" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="DrawFullScreen (DX11.Layer)" filename="%VVVV%\packs\dx11\nodes\plugins\base\VVVV.DX11.Nodes.dll" nodename="DrawFullScreen (DX11.Layer)" componentmode="Hidden" id="5">
+   <BOUNDS type="Node" left="2055" top="10095" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2055" top="10095" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Texture" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Layer" visible="1">
+   </PIN>
+   <PIN pinname="Texture Transform" visible="1">
+   </PIN>
+   <PIN pinname="Blend State" slicecount="1" values="Blend">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="5" srcpinname="Layer" dstnodeid="4" dstpinname="Layers">
+   </LINK>
+   <PACK Name="dx11" Version="1.3.1.1">
+   </PACK>
+   <PACK Name="KeyboardUI" Version="1.1.1">
+   </PACK>
+   <PACK Name="vvvv-Message" Version="2.9.10">
+   </PACK>
+   <PACK Name="vvvv-ZeroMQ" Version="0.5.7">
+   </PACK>
+   <PACK Name="addonpack" Version="36.0.0">
+   </PACK>
+   <NODE systemname="Scale (Transform)" nodename="Scale (Transform)" componentmode="Hidden" id="11">
+   <BOUNDS type="Node" left="3375" top="9945" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Transform Out" visible="1">
+   </PIN>
+   <PIN pinname="Y" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="11" srcpinname="Transform Out" dstnodeid="5" dstpinname="Texture Transform">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="14" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="4065" top="8505" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="4065" top="8505" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <NODE systemname="HtmlTexture (DX11.Texture2D Url)" filename="%VVVV%\packs\Vanadium\nodes\plugins\Vanadium.Core.exe" nodename="HtmlTexture (DX11.Texture2D Url)" componentmode="Hidden" id="15">
+   <BOUNDS type="Node" left="2115" top="9315" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2115" top="9315" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Url" visible="1">
+   </PIN>
+   <PIN pinname="SizeXY" visible="1">
+   </PIN>
+   <PIN pinname="Invert Vertical Scrolling" visible="1" pintype="Input" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Load" visible="1">
+   </PIN>
+   <PIN pinname="Loading" visible="1">
+   </PIN>
+   <PIN pinname="Keyboard" visible="1">
+   </PIN>
+   <PIN pinname="Operations" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="15" srcpinname="Texture Output" dstnodeid="5" dstpinname="Texture">
+   </LINK>
+   <LINK srcnodeid="4" srcpinname="Mouse State" dstnodeid="15" dstpinname="Mouse">
+   </LINK>
+   <LINK srcnodeid="14" srcpinname="Y Output Value" dstnodeid="15" dstpinname="Show DevTools">
+   </LINK>
+   <LINK srcnodeid="4" srcpinname="Actual BackBuffer SizeXY" dstnodeid="15" dstpinname="SizeXY">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="16" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="3795" top="7830" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3795" top="7830" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="16" srcpinname="Y Output Value" dstnodeid="15" dstpinname="Invert Vertical Scrolling">
+   </LINK>
+   <NODE systemname="Spreadsheet (ReoGrid)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Spreadsheet (ReoGrid)" componentmode="InABox" id="20">
+   <BOUNDS type="Node" left="840" top="600" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="840" top="600" width="10485" height="5055">
+   </BOUNDS>
+   <BOUNDS type="Window" left="990" top="195" width="13200" height="6735">
+   </BOUNDS>
+   <PIN pinname="Workbook Data" slicecount="1" values="Sheet1:PGdyaWQgeG1sbnM6eHNkPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYSIgeG1sbnM6eHNpPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYS1pbnN0YW5jZSI+DQogIDxoZWFkPg0KICAgIDxtZXRhPg0KICAgICAgPGN1bHR1cmU+ZW4tREU8L2N1bHR1cmU+DQogICAgICA8ZWRpdG9yPlJlb0dyaWQgQ29yZTwvZWRpdG9yPg0KICAgICAgPGNvcmUtdmVyPjIuMS4wLjA8L2NvcmUtdmVyPg0KICAgICAgPGRlY2ltYWxjaGFyPiw8L2RlY2ltYWxjaGFyPg0KICAgIDwvbWV0YT4NCiAgICA8cm93cz4xNzU8L3Jvd3M+DQogICAgPGNvbHM+MTAwPC9jb2xzPg0KICAgIDxkZWZhdWx0LXJvdy1oZWlnaHQ+MjA8L2RlZmF1bHQtcm93LWhlaWdodD4NCiAgICA8ZGVmYXVsdC1jb2wtd2lkdGg+NzA8L2RlZmF1bHQtY29sLXdpZHRoPg0KICAgIDxzZXR0aW5ncyBtZXRhPSIzMDQ3NTAyNjM5OCIgLz4NCiAgICA8c2NyaXB0IC8+DQogIDwvaGVhZD4NCiAgPHN0eWxlIGZvbnQ9IkNhbGlicmkiIGZvbnQtc2l6ZT0iMTAsMjUiIGFsaWduPSJnZW5lcmFsIiB2YWxpZ249Im1pZGRsZSIgLz4NCiAgPHJvd3MgLz4NCiAgPGNvbHM+DQogICAgPGNvbCBjb2w9IjAiIHdpZHRoPSIyMjIiIGxhc3Qtd2lkdGg9IjIzNSIgLz4NCiAgICA8Y29sIGNvbD0iMiIgd2lkdGg9IjMzOCIgbGFzdC13aWR0aD0iMTY2IiAvPg0KICA8L2NvbHM+DQogIDx2LWJvcmRlcnMgLz4NCiAgPGgtYm9yZGVycyAvPg0KICA8Y2VsbHM+DQogICAgPGNlbGwgcm93PSIwIiBjb2w9IjAiPmNocm9tZTovL2Fib3V0PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMCIgY29sPSIxIiBib2R5LXR5cGU9IkJ1dHRvbkNlbGwiPm9wZW48c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSIwIiBjb2w9IjIiPlNpbXBsZSBBYm91dCBwYWdlPC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMSIgY29sPSIwIj5jaHJvbWU6Ly9hY2Nlc3NpYmlsaXR5PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMSIgY29sPSIxIiBib2R5LXR5cGU9IkJ1dHRvbkNlbGwiPm9wZW48c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSIxIiBjb2w9IjIiPk9wdGlvbnMgYWJvdXQgYWNjZXNzaWJpbGl0eTwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjIiIGNvbD0iMCI+Y2hyb21lOi8vYXBwY2FjaGUtaW50ZXJuYWxzPC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMiIgY29sPSIxIiBib2R5LXR5cGU9IkJ1dHRvbkNlbGwiPm9wZW48c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSIzIiBjb2w9IjAiPmNocm9tZTovL2Jsb2ItaW50ZXJuYWxzPC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMyIgY29sPSIxIiBib2R5LXR5cGU9IkJ1dHRvbkNlbGwiPm9wZW48c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSI0IiBjb2w9IjAiPmNocm9tZTovL2NyZWRpdHM8L2NlbGw+DQogICAgPGNlbGwgcm93PSI0IiBjb2w9IjEiIGJvZHktdHlwZT0iQnV0dG9uQ2VsbCI+b3BlbjxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPjwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjQiIGNvbD0iMiI+TGlzdGluZyBhbGwgZXh0ZXJuYWwgbGlicmFyaWVzIGNocm9taXVtIHVzZXMgdG8gZG8gaXRzIGJpZGRpbmc8L2NlbGw+DQogICAgPGNlbGwgcm93PSI1IiBjb2w9IjAiPmNocm9tZTovL2dwdTwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjUiIGNvbD0iMSIgYm9keS10eXBlPSJCdXR0b25DZWxsIj5vcGVuPHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iNSIgY29sPSIyIj5EZXRhaWxlZCBpbmZvIGFib3V0IGhhcmR3YXJlIGFjY2VsZXJhdGlvbiBpbiBnZW5lcmFsPC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iNiIgY29sPSIwIj5jaHJvbWU6Ly9oaXN0b2dyYW1zPC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iNiIgY29sPSIxIiBib2R5LXR5cGU9IkJ1dHRvbkNlbGwiPm9wZW48c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSI3IiBjb2w9IjAiPmNocm9tZTovL2luZGV4ZWRkYi1pbnRlcm5hbHM8L2NlbGw+DQogICAgPGNlbGwgcm93PSI3IiBjb2w9IjEiIGJvZHktdHlwZT0iQnV0dG9uQ2VsbCI+b3BlbjxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPjwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjgiIGNvbD0iMCI+Y2hyb21lOi8vbWVkaWEtaW50ZXJuYWxzPC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iOCIgY29sPSIxIiBib2R5LXR5cGU9IkJ1dHRvbkNlbGwiPm9wZW48c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSI4IiBjb2w9IjIiPkRldGFpbGVkIGluZm8gYWJvdXQgY3VycmVudGx5IHBsYXlpbmcgbWVkaWE8L2NlbGw+DQogICAgPGNlbGwgcm93PSI5IiBjb2w9IjAiPmNocm9tZTovL25ldC1pbnRlcm5hbHM8L2NlbGw+DQogICAgPGNlbGwgcm93PSI5IiBjb2w9IjEiIGJvZHktdHlwZT0iQnV0dG9uQ2VsbCI+b3BlbjxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPjwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjkiIGNvbD0iMiI+RGV0YWlsZWQgbmV0d29ya2luZyBpbmZvIGFib3V0IGFsbCBvcGVuIHBhZ2VzPC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMTAiIGNvbD0iMCI+Y2hyb21lOi8vc2VydmljZXdvcmtlci1pbnRlcm5hbHM8L2NlbGw+DQogICAgPGNlbGwgcm93PSIxMCIgY29sPSIxIiBib2R5LXR5cGU9IkJ1dHRvbkNlbGwiPm9wZW48c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSIxMSIgY29sPSIwIj5jaHJvbWU6Ly9zeXN0ZW08L2NlbGw+DQogICAgPGNlbGwgcm93PSIxMSIgY29sPSIxIiBib2R5LXR5cGU9IkJ1dHRvbkNlbGwiPm9wZW48c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSIxMSIgY29sPSIyIj5CYXNpYyBpbmZvIGFib3V0IHN0dWZmPC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMTIiIGNvbD0iMCI+Y2hyb21lOi8vd2VicnRjLWludGVybmFsczwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjEyIiBjb2w9IjEiIGJvZHktdHlwZT0iQnV0dG9uQ2VsbCI+b3BlbjxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPjwvY2VsbD4NCiAgPC9jZWxscz4NCjwvZ3JpZD4=">
+   </PIN>
+   <PIN pinname="Worksheet" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="WorksheetMetrics (ReoGrid)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="WorksheetMetrics (ReoGrid)" componentmode="Hidden" id="21">
+   <BOUNDS type="Node" left="1905" top="6315" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1905" top="6315" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Worksheet" visible="1">
+   </PIN>
+   <PIN pinname="Max Content Rows" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="20" srcpinname="Worksheet" dstnodeid="21" dstpinname="Worksheet">
+   </LINK>
+   <NODE systemname="GetButton (ReoGrid Range)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="GetButton (ReoGrid Range)" componentmode="Hidden" id="22">
+   <BOUNDS type="Node" left="1680" top="6795" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1680" top="6795" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Top Row" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Row Count" visible="1">
+   </PIN>
+   <PIN pinname="Worksheet" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="21" srcpinname="Max Content Rows" dstnodeid="22" dstpinname="Row Count">
+   </LINK>
+   <LINK srcnodeid="20" srcpinname="Worksheet" dstnodeid="22" dstpinname="Worksheet">
+   </LINK>
+   <NODE systemname="MultiFlipFlop (Animation Advanced)" filename="%VVVV%\addonpack\lib\nodes\plugins\VVVV.Nodes.AnimAdvanced.dll" nodename="MultiFlipFlop (Animation Advanced)" componentmode="Hidden" id="23">
+   <BOUNDS type="Node" left="2055" top="7260" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2055" top="7260" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Set" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="22" srcpinname="Output" dstnodeid="23" dstpinname="Set">
+   </LINK>
+   <NODE systemname="Cell (ReoGrid Single)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Cell (ReoGrid Single)" componentmode="Hidden" id="24">
+   <BOUNDS type="Node" left="1620" top="7905" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1620" top="7905" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Worksheet" visible="1">
+   </PIN>
+   <PIN pinname="Row" visible="1">
+   </PIN>
+   <PIN pinname="Column" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Flat Text" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="20" srcpinname="Worksheet" dstnodeid="24" dstpinname="Worksheet">
+   </LINK>
+   <LINK srcnodeid="23" srcpinname="Output" dstnodeid="24" dstpinname="Row">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="25">
+   <BOUNDS type="Box" left="2790" top="7755" width="435" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2790" top="7755" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="25" srcpinname="Y Output Value" dstnodeid="24" dstpinname="Column">
+   </LINK>
+   <LINK srcnodeid="24" srcpinname="Flat Text" dstnodeid="15" dstpinname="Url">
+   </LINK>
+   <NODE systemname="OR (Boolean Spectral)" nodename="OR (Boolean Spectral)" componentmode="Hidden" id="26">
+   <BOUNDS type="Node" left="2805" top="8370" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="22" srcpinname="Output" dstnodeid="26" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="26" srcpinname="Output" dstnodeid="15" dstpinname="Load">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="27">
+   <BOUNDS type="Box" left="4275" top="10020" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="4275" top="10020" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="15" srcpinname="Loading" dstnodeid="27" dstpinname="Y Input Value">
+   </LINK>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="29">
+   <BOUNDS type="Node" left="3735" top="5910" width="5925" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="3735" top="5910" width="3855" height="765">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|these pages are great for looking at what&apos;s going on with the chromium instances. especially&cr;&lf;~about, ~gpu, ~media-internals and ~net-internals|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="4" srcpinname="Keyboard State" dstnodeid="15" dstpinname="Keyboard">
+   </LINK>
+   <NODE systemname="Navigate (HtmlTexture.Operation)" filename="%VVVV%\packs\Vanadium\nodes\plugins\Vanadium.Core.exe" nodename="Navigate (HtmlTexture.Operation)" componentmode="Hidden" id="30">
+   <BOUNDS type="Node" left="4965" top="8835" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="4965" top="8835" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Back" visible="1">
+   </PIN>
+   <PIN pinname="Forward" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="31">
+   <BOUNDS type="Node" left="5145" top="7950" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="5145" top="7950" width="480" height="480">
+   </BOUNDS>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Back">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="31" srcpinname="Y Output Value" dstnodeid="30" dstpinname="Back">
+   </LINK>
+   <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="32">
+   <BOUNDS type="Node" left="5805" top="7965" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="5805" top="7965" width="480" height="480">
+   </BOUNDS>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Forward">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="32" srcpinname="Y Output Value" dstnodeid="30" dstpinname="Forward">
+   </LINK>
+   <LINK srcnodeid="30" srcpinname="Output" dstnodeid="15" dstpinname="Operations">
+   </LINK>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="34">
+   <BOUNDS type="Node" left="7545" top="7275" width="10620" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="7545" top="7275" width="4230" height="765">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|on windows 10 CEF inside ChromiumFX might think it&apos;s running on Windows 8 but it had only one side effect which I fixed with application manifests|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="35">
+   <BOUNDS type="Node" left="7530" top="7995" width="6810" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="7530" top="7995" width="6810" height="270">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="https://bitbucket.org/chromiumfx/chromiumfx/issues/181/windows-version-is-not-correct">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="URL">
+   </PIN>
+   </NODE>
+   </PATCH>

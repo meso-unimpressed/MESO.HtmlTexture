@@ -103,6 +103,14 @@ namespace VVVV.HtmlTexture.DX11.Core
         {
             return Copy();
         }
+
+        ~JsBindingFunction()
+        {
+            foreach (var value in Arguments)
+            {
+                value.Dispose();
+            }
+        }
     }
 
     public class SimpleReturnObjectBinding : JsBindingFunction

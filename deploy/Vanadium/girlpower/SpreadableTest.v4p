@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha36.1.dtd" >
-   <PATCH nodename="D:\local\vvvv-gp\packs\HtmlTexture.DX11\girlpower\SpreadableTest.v4p" scrollx="0" scrolly="4695" locked="0" systemname="SpreadableTest" filename="D:\local\vvvv-gp\packs\HtmlTexture.DX11\girlpower\SpreadableTest.v4p">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta37.dtd" >
+   <PATCH nodename="D:\local\vvvv-gp\packs\Vanadium\girlpower\SpreadableTest.v4p" scrollx="0" scrolly="2325" locked="0" systemname="SpreadableTest" filename="D:\local\vvvv-gp\packs\HtmlTexture.DX11\girlpower\SpreadableTest.v4p">
    <BOUNDS type="Window" left="2925" top="8070" width="17175" height="18660">
    </BOUNDS>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="4" systemname="IOBox (Value Advanced)">
@@ -22,7 +22,7 @@
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
    </NODE>
-   <PACK Name="dx11" Version="1.3.0.1">
+   <PACK Name="dx11" Version="1.3.1.1">
    </PACK>
    <PACK Name="KeyboardUI" Version="1.1.1">
    </PACK>
@@ -37,7 +37,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="2040" top="21705" width="6000" height="4500">
    </BOUNDS>
-   <BOUNDS type="Window" left="-33840" top="1170" width="24990" height="18120">
+   <BOUNDS type="Window" left="-25620" top="540" width="24990" height="15060">
    </BOUNDS>
    <PIN pinname="Layers" visible="1">
    </PIN>
@@ -53,6 +53,8 @@
    </PIN>
    <PIN pinname="Background Color" slicecount="1" values="|0.75313,0.75313,0.75313,1.00000|">
    </PIN>
+   <PIN pinname="VSync" slicecount="1" visible="1" pintype="Input" values="1">
+   </PIN>
    </NODE>
    <NODE systemname="PerfMeter2 (DX11.Debug)" filename="%VVVV%\packs\mp.dx\nodes\modules\essentials\PerfMeter2 (DX11.Debug).v4p" nodename="PerfMeter2 (DX11.Debug)" componentmode="Hidden" id="42">
    <BOUNDS type="Node" left="2220" top="20985" width="100" height="100">
@@ -61,7 +63,7 @@
    </PIN>
    <PIN pinname="Layer Out" visible="1">
    </PIN>
-   <PIN pinname="Enabled" slicecount="1" values="0">
+   <PIN pinname="Enabled" slicecount="1" values="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="42" srcpinname="Layer Out" dstnodeid="14" dstpinname="Layers">
@@ -73,7 +75,7 @@
    </BOUNDS>
    <BOUNDS type="Window" left="7935" top="2580" width="18870" height="5205">
    </BOUNDS>
-   <PIN pinname="Workbook Data" slicecount="1" values="Sheet1:PGdyaWQgeG1sbnM6eHNkPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYSIgeG1sbnM6eHNpPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYS1pbnN0YW5jZSI+DQogIDxoZWFkPg0KICAgIDxtZXRhPg0KICAgICAgPGN1bHR1cmU+ZW4tREU8L2N1bHR1cmU+DQogICAgICA8ZWRpdG9yPlJlb0dyaWQgQ29yZTwvZWRpdG9yPg0KICAgICAgPGNvcmUtdmVyPjIuMS4wLjA8L2NvcmUtdmVyPg0KICAgIDwvbWV0YT4NCiAgICA8cm93cz4yMDA8L3Jvd3M+DQogICAgPGNvbHM+MTAxPC9jb2xzPg0KICAgIDxkZWZhdWx0LXJvdy1oZWlnaHQ+MjA8L2RlZmF1bHQtcm93LWhlaWdodD4NCiAgICA8ZGVmYXVsdC1jb2wtd2lkdGg+NzA8L2RlZmF1bHQtY29sLXdpZHRoPg0KICAgIDxzZXR0aW5ncyBtZXRhPSIzMDQ3NTAyNjM5OCIgLz4NCiAgICA8c2NyaXB0IC8+DQogIDwvaGVhZD4NCiAgPHN0eWxlIGZvbnQ9IkNhbGlicmkiIGZvbnQtc2l6ZT0iMTAsMjUiIGFsaWduPSJnZW5lcmFsIiB2YWxpZ249Im1pZGRsZSIgLz4NCiAgPHJvd3MgLz4NCiAgPGNvbHM+DQogICAgPGNvbCBjb2w9IjAiIHdpZHRoPSI0ODMiIGxhc3Qtd2lkdGg9IjQ0MCIgLz4NCiAgICA8Y29sIGNvbD0iMSIgd2lkdGg9IjE0MiIgLz4NCiAgICA8Y29sIGNvbD0iMiIgd2lkdGg9IjE0MiIgbGFzdC13aWR0aD0iNzAiIC8+DQogIDwvY29scz4NCiAgPHYtYm9yZGVycyAvPg0KICA8aC1ib3JkZXJzIC8+DQogIDxjZWxscz4NCiAgICA8Y2VsbCByb3c9IjAiIGNvbD0iMCI+aHR0cHM6Ly9wYXRyaWNraGxhdWtlLmdpdGh1Yi5pby90b3VjaC90cmFja2VyL211bHRpLXRvdWNoLXRyYWNrZXItcG9pbnRlci5odG1sPC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMCIgY29sPSIxIj5Ub3VjaCB0ZXN0czwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjAiIGNvbD0iMiI+LmNvbnRhaW5lciBjYW52YXM8L2NlbGw+DQogICAgPGNlbGwgcm93PSIwIiBjb2w9IjMiIGJvZHktdHlwZT0iQnV0dG9uQ2VsbCI+RGV2VG9vbDxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPjwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjAiIGNvbD0iNCIgYm9keS10eXBlPSJCdXR0b25DZWxsIj5Mb2FkPHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMCIgY29sPSI1IiBib2R5LXR5cGU9IkJ1dHRvbkNlbGwiPlJlbG9hZDxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPjwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjAiIGNvbD0iNiIgYm9keS10eXBlPSJCdXR0b25DZWxsIj5CYWNrPHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMCIgY29sPSI3IiBib2R5LXR5cGU9IkJ1dHRvbkNlbGwiPkZvcndhcmQ8c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSIxIiBjb2w9IjAiPmh0dHA6Ly9jYW1lbmRlc2lnbi5jb20vY29kZS92aWRlb19mb3JfZXZlcnlib2R5L3Rlc3QuaHRtbDwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjEiIGNvbD0iMSI+aCwyNjQgdGVzdDwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjEiIGNvbD0iMiI+Ym9keTwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjEiIGNvbD0iMyIgYm9keS10eXBlPSJCdXR0b25DZWxsIj5EZXZUb29sPHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMSIgY29sPSI0IiBib2R5LXR5cGU9IkJ1dHRvbkNlbGwiPkxvYWQ8c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSIxIiBjb2w9IjUiIGJvZHktdHlwZT0iQnV0dG9uQ2VsbCI+UmVsb2FkPHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMSIgY29sPSI2IiBib2R5LXR5cGU9IkJ1dHRvbkNlbGwiPkJhY2s8c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSIxIiBjb2w9IjciIGJvZHktdHlwZT0iQnV0dG9uQ2VsbCI+Rm9yd2FyZDxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPjwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjIiIGNvbD0iMCI+aHR0cHM6Ly9oYW1tZXJqcy5naXRodWIuaW88L2NlbGw+DQogICAgPGNlbGwgcm93PSIyIiBjb2w9IjEiPm11bHRpdG91Y2ggdGVzdDwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjIiIGNvbD0iMiI+Ym9keTwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjIiIGNvbD0iMyIgYm9keS10eXBlPSJCdXR0b25DZWxsIj5EZXZUb29sPHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMiIgY29sPSI0IiBib2R5LXR5cGU9IkJ1dHRvbkNlbGwiPkxvYWQ8c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSIyIiBjb2w9IjUiIGJvZHktdHlwZT0iQnV0dG9uQ2VsbCI+UmVsb2FkPHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMiIgY29sPSI2IiBib2R5LXR5cGU9IkJ1dHRvbkNlbGwiPkJhY2s8c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSIyIiBjb2w9IjciIGJvZHktdHlwZT0iQnV0dG9uQ2VsbCI+Rm9yd2FyZDxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPjwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjMiIGNvbD0iMCI+Y2VzaXVtanMsb3JnL05ld1lvcmsvPC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMyIgY29sPSIxIj5tYXAgdGVzdDwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjMiIGNvbD0iMiI+Ym9keTwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjMiIGNvbD0iMyIgYm9keS10eXBlPSJCdXR0b25DZWxsIj5EZXZUb29sPHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMyIgY29sPSI0IiBib2R5LXR5cGU9IkJ1dHRvbkNlbGwiPkxvYWQ8c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSIzIiBjb2w9IjUiIGJvZHktdHlwZT0iQnV0dG9uQ2VsbCI+UmVsb2FkPHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMyIgY29sPSI2IiBib2R5LXR5cGU9IkJ1dHRvbkNlbGwiPkJhY2s8c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSIzIiBjb2w9IjciIGJvZHktdHlwZT0iQnV0dG9uQ2VsbCI+Rm9yd2FyZDxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPjwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjQiIGNvbD0iMCI+aHR0cDovL3BlYWNoLnRoZW1henpvbmUuY29tL2R1cmlhbi9tb3ZpZXMvc2ludGVsLTIwNDgtc3Vycm91bmQubXA0PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iNCIgY29sPSIxIj5tcDQgdGVzdDwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjQiIGNvbD0iMiI+dmlkZW88L2NlbGw+DQogICAgPGNlbGwgcm93PSI0IiBjb2w9IjMiIGJvZHktdHlwZT0iQnV0dG9uQ2VsbCI+RGV2VG9vbDxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPjwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjQiIGNvbD0iNCIgYm9keS10eXBlPSJCdXR0b25DZWxsIj5Mb2FkPHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iNCIgY29sPSI1IiBib2R5LXR5cGU9IkJ1dHRvbkNlbGwiPlJlbG9hZDxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPjwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjQiIGNvbD0iNiIgYm9keS10eXBlPSJCdXR0b25DZWxsIj5CYWNrPHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iNCIgY29sPSI3IiBib2R5LXR5cGU9IkJ1dHRvbkNlbGwiPkZvcndhcmQ8c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSI1IiBjb2w9IjAiPmh0dHBzOi8vbWFkY2xlbS5naXRodWIuaW88L2NlbGw+DQogICAgPGNlbGwgcm93PSI1IiBjb2w9IjEiPnNjcm9sbGluZyB0ZXN0PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iNSIgY29sPSIyIj4jbWFpbkNvbnRhaW5lciBjYW52YXM8L2NlbGw+DQogICAgPGNlbGwgcm93PSI1IiBjb2w9IjMiIGJvZHktdHlwZT0iQnV0dG9uQ2VsbCI+RGV2VG9vbDxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPjwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjUiIGNvbD0iNCIgYm9keS10eXBlPSJCdXR0b25DZWxsIj5Mb2FkPHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iNSIgY29sPSI1IiBib2R5LXR5cGU9IkJ1dHRvbkNlbGwiPlJlbG9hZDxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPjwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjUiIGNvbD0iNiIgYm9keS10eXBlPSJCdXR0b25DZWxsIj5CYWNrPHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iNSIgY29sPSI3IiBib2R5LXR5cGU9IkJ1dHRvbkNlbGwiPkZvcndhcmQ8c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSI2IiBjb2w9IjAiPmh0dHBzOi8vcmV2ZWFsanMsY29tLz90cmFuc2l0aW9uPWNvbnZleDwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjYiIGNvbD0iMSI+dXNlY2FzZTogcHJlc2VudGF0aW9uPC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iNiIgY29sPSIyIj5ib2R5PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iNiIgY29sPSIzIiBib2R5LXR5cGU9IkJ1dHRvbkNlbGwiPkRldlRvb2w8c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSI2IiBjb2w9IjQiIGJvZHktdHlwZT0iQnV0dG9uQ2VsbCI+TG9hZDxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPjwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjYiIGNvbD0iNSIgYm9keS10eXBlPSJCdXR0b25DZWxsIj5SZWxvYWQ8c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSI2IiBjb2w9IjYiIGJvZHktdHlwZT0iQnV0dG9uQ2VsbCI+QmFjazxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPjwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjYiIGNvbD0iNyIgYm9keS10eXBlPSJCdXR0b25DZWxsIj5Gb3J3YXJkPHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+PC9jZWxsPg0KICA8L2NlbGxzPg0KPC9ncmlkPg==">
+   <PIN pinname="Workbook Data" slicecount="1" values="Sheet1:PGdyaWQgeG1sbnM6eHNkPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYSIgeG1sbnM6eHNpPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYS1pbnN0YW5jZSI+DQogIDxoZWFkPg0KICAgIDxtZXRhPg0KICAgICAgPGN1bHR1cmU+ZW4tREU8L2N1bHR1cmU+DQogICAgICA8ZWRpdG9yPlJlb0dyaWQgQ29yZTwvZWRpdG9yPg0KICAgICAgPGNvcmUtdmVyPjIuMS4wLjA8L2NvcmUtdmVyPg0KICAgICAgPGRlY2ltYWxjaGFyPiw8L2RlY2ltYWxjaGFyPg0KICAgIDwvbWV0YT4NCiAgICA8cm93cz4yMDA8L3Jvd3M+DQogICAgPGNvbHM+MTAxPC9jb2xzPg0KICAgIDxkZWZhdWx0LXJvdy1oZWlnaHQ+MjA8L2RlZmF1bHQtcm93LWhlaWdodD4NCiAgICA8ZGVmYXVsdC1jb2wtd2lkdGg+NzA8L2RlZmF1bHQtY29sLXdpZHRoPg0KICAgIDxzZXR0aW5ncyBtZXRhPSIzMDQ3NTAyNjM5OCIgLz4NCiAgICA8c2NyaXB0IC8+DQogIDwvaGVhZD4NCiAgPHN0eWxlIGZvbnQ9IkNhbGlicmkiIGZvbnQtc2l6ZT0iMTAsMjUiIGFsaWduPSJnZW5lcmFsIiB2YWxpZ249Im1pZGRsZSIgLz4NCiAgPHJvd3MgLz4NCiAgPGNvbHM+DQogICAgPGNvbCBjb2w9IjAiIHdpZHRoPSI1MTgiIGxhc3Qtd2lkdGg9IjQ4MyIgLz4NCiAgICA8Y29sIGNvbD0iMSIgd2lkdGg9IjE0MiIgLz4NCiAgICA8Y29sIGNvbD0iMiIgd2lkdGg9IjE0MiIgbGFzdC13aWR0aD0iNzAiIC8+DQogIDwvY29scz4NCiAgPHYtYm9yZGVycyAvPg0KICA8aC1ib3JkZXJzIC8+DQogIDxjZWxscz4NCiAgICA8Y2VsbCByb3c9IjAiIGNvbD0iMCI+aHR0cHM6Ly9wYXRyaWNraGxhdWtlLmdpdGh1Yi5pby90b3VjaC90cmFja2VyL211bHRpLXRvdWNoLXRyYWNrZXItcG9pbnRlci5odG1sPC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMCIgY29sPSIxIj5Ub3VjaCB0ZXN0czwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjAiIGNvbD0iMiI+LmNvbnRhaW5lciBjYW52YXM8L2NlbGw+DQogICAgPGNlbGwgcm93PSIwIiBjb2w9IjMiIGJvZHktdHlwZT0iQnV0dG9uQ2VsbCI+RGV2VG9vbDxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPjwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjAiIGNvbD0iNCIgYm9keS10eXBlPSJCdXR0b25DZWxsIj5Mb2FkPHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMCIgY29sPSI1IiBib2R5LXR5cGU9IkJ1dHRvbkNlbGwiPlJlbG9hZDxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPjwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjAiIGNvbD0iNiIgYm9keS10eXBlPSJCdXR0b25DZWxsIj5CYWNrPHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMCIgY29sPSI3IiBib2R5LXR5cGU9IkJ1dHRvbkNlbGwiPkZvcndhcmQ8c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSIxIiBjb2w9IjAiPmh0dHA6Ly9jYW1lbmRlc2lnbi5jb20vY29kZS92aWRlb19mb3JfZXZlcnlib2R5L3Rlc3QuaHRtbDwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjEiIGNvbD0iMSI+aC4yNjQgdGVzdDwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjEiIGNvbD0iMiI+Ym9keTwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjEiIGNvbD0iMyIgYm9keS10eXBlPSJCdXR0b25DZWxsIj5EZXZUb29sPHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMSIgY29sPSI0IiBib2R5LXR5cGU9IkJ1dHRvbkNlbGwiPkxvYWQ8c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSIxIiBjb2w9IjUiIGJvZHktdHlwZT0iQnV0dG9uQ2VsbCI+UmVsb2FkPHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMSIgY29sPSI2IiBib2R5LXR5cGU9IkJ1dHRvbkNlbGwiPkJhY2s8c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSIxIiBjb2w9IjciIGJvZHktdHlwZT0iQnV0dG9uQ2VsbCI+Rm9yd2FyZDxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPjwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjIiIGNvbD0iMCI+aHR0cHM6Ly9oYW1tZXJqcy5naXRodWIuaW88L2NlbGw+DQogICAgPGNlbGwgcm93PSIyIiBjb2w9IjEiPm11bHRpdG91Y2ggdGVzdDwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjIiIGNvbD0iMiI+Ym9keTwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjIiIGNvbD0iMyIgYm9keS10eXBlPSJCdXR0b25DZWxsIj5EZXZUb29sPHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMiIgY29sPSI0IiBib2R5LXR5cGU9IkJ1dHRvbkNlbGwiPkxvYWQ8c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSIyIiBjb2w9IjUiIGJvZHktdHlwZT0iQnV0dG9uQ2VsbCI+UmVsb2FkPHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMiIgY29sPSI2IiBib2R5LXR5cGU9IkJ1dHRvbkNlbGwiPkJhY2s8c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSIyIiBjb2w9IjciIGJvZHktdHlwZT0iQnV0dG9uQ2VsbCI+Rm9yd2FyZDxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPjwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjMiIGNvbD0iMCI+aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS9tYXBzL0A1MC4xMDM1NzkyLDguNjYzMzQ3OSw3MGEsMzV5LDM5LjQxdC9kYXRhPSEzbTEhMWUzPC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMyIgY29sPSIxIj5tYXAgdGVzdDwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjMiIGNvbD0iMiI+Ym9keTwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjMiIGNvbD0iMyIgYm9keS10eXBlPSJCdXR0b25DZWxsIj5EZXZUb29sPHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMyIgY29sPSI0IiBib2R5LXR5cGU9IkJ1dHRvbkNlbGwiPkxvYWQ8c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSIzIiBjb2w9IjUiIGJvZHktdHlwZT0iQnV0dG9uQ2VsbCI+UmVsb2FkPHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iMyIgY29sPSI2IiBib2R5LXR5cGU9IkJ1dHRvbkNlbGwiPkJhY2s8c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSIzIiBjb2w9IjciIGJvZHktdHlwZT0iQnV0dG9uQ2VsbCI+Rm9yd2FyZDxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPjwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjQiIGNvbD0iMCI+aHR0cHM6Ly93d3cueW91dHViZS5jb20vZW1iZWQvMUxhNFF6R2VhYVE8L2NlbGw+DQogICAgPGNlbGwgcm93PSI0IiBjb2w9IjEiPmhpIHJlcyB2aWRlbyB0ZXN0PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iNCIgY29sPSIyIj52aWRlbzwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjQiIGNvbD0iMyIgYm9keS10eXBlPSJCdXR0b25DZWxsIj5EZXZUb29sPHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iNCIgY29sPSI0IiBib2R5LXR5cGU9IkJ1dHRvbkNlbGwiPkxvYWQ8c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSI0IiBjb2w9IjUiIGJvZHktdHlwZT0iQnV0dG9uQ2VsbCI+UmVsb2FkPHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iNCIgY29sPSI2IiBib2R5LXR5cGU9IkJ1dHRvbkNlbGwiPkJhY2s8c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSI0IiBjb2w9IjciIGJvZHktdHlwZT0iQnV0dG9uQ2VsbCI+Rm9yd2FyZDxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPjwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjUiIGNvbD0iMCI+aHR0cHM6Ly9tYWRjbGVtLmdpdGh1Yi5pbzwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjUiIGNvbD0iMSI+c2Nyb2xsaW5nIHRlc3Q8L2NlbGw+DQogICAgPGNlbGwgcm93PSI1IiBjb2w9IjIiPiNtYWluQ29udGFpbmVyIGNhbnZhczwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjUiIGNvbD0iMyIgYm9keS10eXBlPSJCdXR0b25DZWxsIj5EZXZUb29sPHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iNSIgY29sPSI0IiBib2R5LXR5cGU9IkJ1dHRvbkNlbGwiPkxvYWQ8c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSI1IiBjb2w9IjUiIGJvZHktdHlwZT0iQnV0dG9uQ2VsbCI+UmVsb2FkPHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iNSIgY29sPSI2IiBib2R5LXR5cGU9IkJ1dHRvbkNlbGwiPkJhY2s8c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSI1IiBjb2w9IjciIGJvZHktdHlwZT0iQnV0dG9uQ2VsbCI+Rm9yd2FyZDxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPjwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjYiIGNvbD0iMCI+aHR0cHM6Ly9yZXZlYWxqcy5jb20vP3RyYW5zaXRpb249Y29udmV4PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iNiIgY29sPSIxIj51c2VjYXNlOiBwcmVzZW50YXRpb248L2NlbGw+DQogICAgPGNlbGwgcm93PSI2IiBjb2w9IjIiPmJvZHk8L2NlbGw+DQogICAgPGNlbGwgcm93PSI2IiBjb2w9IjMiIGJvZHktdHlwZT0iQnV0dG9uQ2VsbCI+RGV2VG9vbDxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPjwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjYiIGNvbD0iNCIgYm9keS10eXBlPSJCdXR0b25DZWxsIj5Mb2FkPHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iNiIgY29sPSI1IiBib2R5LXR5cGU9IkJ1dHRvbkNlbGwiPlJlbG9hZDxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPjwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjYiIGNvbD0iNiIgYm9keS10eXBlPSJCdXR0b25DZWxsIj5CYWNrPHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iNiIgY29sPSI3IiBib2R5LXR5cGU9IkJ1dHRvbkNlbGwiPkZvcndhcmQ8c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSI3IiBjb2w9IjAiPm1lc28uZGVzaWduPC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iNyIgY29sPSIxIj5tZXNvIHdlYnNpdGU8L2NlbGw+DQogICAgPGNlbGwgcm93PSI3IiBjb2w9IjIiPmJvZHk8L2NlbGw+DQogICAgPGNlbGwgcm93PSI3IiBjb2w9IjMiIGJvZHktdHlwZT0iQnV0dG9uQ2VsbCI+RGV2VG9vbDxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPjwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjciIGNvbD0iNCIgYm9keS10eXBlPSJCdXR0b25DZWxsIj5Mb2FkPHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iNyIgY29sPSI1IiBib2R5LXR5cGU9IkJ1dHRvbkNlbGwiPlJlbG9hZDxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPjwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjciIGNvbD0iNiIgYm9keS10eXBlPSJCdXR0b25DZWxsIj5CYWNrPHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iNyIgY29sPSI3IiBib2R5LXR5cGU9IkJ1dHRvbkNlbGwiPkZvcndhcmQ8c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSI4IiBjb2w9IjAiPm1jcm8uZGU8L2NlbGw+DQogICAgPGNlbGwgcm93PSI4IiBjb2w9IjEiPm1pY3JvZGVlPC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iOCIgY29sPSIyIj5ib2R5PC9jZWxsPg0KICAgIDxjZWxsIHJvdz0iOCIgY29sPSIzIiBib2R5LXR5cGU9IkJ1dHRvbkNlbGwiPkRldlRvb2w8c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSI4IiBjb2w9IjQiIGJvZHktdHlwZT0iQnV0dG9uQ2VsbCI+TG9hZDxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPjwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjgiIGNvbD0iNSIgYm9keS10eXBlPSJCdXR0b25DZWxsIj5SZWxvYWQ8c3R5bGUgYWxpZ249ImNlbnRlciIgLz48L2NlbGw+DQogICAgPGNlbGwgcm93PSI4IiBjb2w9IjYiIGJvZHktdHlwZT0iQnV0dG9uQ2VsbCI+QmFjazxzdHlsZSBhbGlnbj0iY2VudGVyIiAvPjwvY2VsbD4NCiAgICA8Y2VsbCByb3c9IjgiIGNvbD0iNyIgYm9keS10eXBlPSJCdXR0b25DZWxsIj5Gb3J3YXJkPHN0eWxlIGFsaWduPSJjZW50ZXIiIC8+PC9jZWxsPg0KICA8L2NlbGxzPg0KPC9ncmlkPg==">
    </PIN>
    <PIN pinname="Worksheet" visible="1">
    </PIN>
@@ -174,6 +176,8 @@
    <PIN pinname="Render State" visible="1">
    </PIN>
    <PIN pinname="Color" visible="1">
+   </PIN>
+   <PIN pinname="Texture Transform" visible="1">
    </PIN>
    </NODE>
    <NODE systemname="Multiply (Transform)" nodename="Multiply (Transform)" componentmode="Hidden" id="58">
@@ -307,7 +311,7 @@
    </BOUNDS>
    <PIN pinname="Input" visible="1">
    </PIN>
-   <PIN pinname="Input 2" slicecount="1" values="2">
+   <PIN pinname="Input 2" slicecount="1" values="1">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
@@ -372,20 +376,6 @@
    </LINK>
    <LINK srcnodeid="48" srcpinname="Worksheet" dstnodeid="86" dstpinname="Worksheet" hiddenwhenlocked="1">
    </LINK>
-   <NODE systemname="Substitute (String)" nodename="Substitute (String)" componentmode="Hidden" id="87">
-   <BOUNDS type="Node" left="1635" top="7665" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="From" slicecount="1" values="|,|">
-   </PIN>
-   <PIN pinname="To" slicecount="1" values=".">
-   </PIN>
-   <PIN pinname="Input" visible="1">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="69" srcpinname="Flat Text" dstnodeid="87" dstpinname="Input">
-   </LINK>
    <NODE systemname="GetButton (ReoGrid Range)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="GetButton (ReoGrid Range)" componentmode="Hidden" id="88">
    <BOUNDS type="Node" left="4530" top="6495" width="100" height="100">
    </BOUNDS>
@@ -437,6 +427,10 @@
    </PIN>
    <PIN pinname="Loading" visible="1">
    </PIN>
+   <PIN pinname="Url" visible="1">
+   </PIN>
+   <PIN pinname="Loading Progress" visible="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="14" srcpinname="Keyboard State" dstnodeid="94" dstpinname="Keyboard">
    </LINK>
@@ -451,8 +445,6 @@
    <LINK srcnodeid="84" srcpinname="Y Output Value" dstnodeid="94" dstpinname="Allow Popup Takeover">
    </LINK>
    <LINK srcnodeid="86" srcpinname="Output" dstnodeid="94" dstpinname="Show DevTools">
-   </LINK>
-   <LINK srcnodeid="87" srcpinname="Output" dstnodeid="94" dstpinname="Url">
    </LINK>
    <NODE systemname="OR (Boolean)" nodename="OR (Boolean)" componentmode="Hidden" id="96">
    <BOUNDS type="Node" left="3480" top="9360" width="100" height="100">
@@ -880,22 +872,6 @@
    </NODE>
    <LINK srcnodeid="128" srcpinname="Display Transformation Out" dstnodeid="58" dstpinname="Transform In 1">
    </LINK>
-   <NODE systemname="Substitute (String)" nodename="Substitute (String)" componentmode="Hidden" id="154">
-   <BOUNDS type="Node" left="2790" top="7605" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="From" slicecount="1" values="|,|">
-   </PIN>
-   <PIN pinname="To" slicecount="1" values=".">
-   </PIN>
-   <PIN pinname="Input" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="135" srcpinname="Flat Text" dstnodeid="154" dstpinname="Input">
-   </LINK>
-   <LINK srcnodeid="154" srcpinname="Output" dstnodeid="94" dstpinname="Use Element As Document Size">
-   </LINK>
    <NODE systemname="Group (DX11.Layer)" filename="%VVVV%\packs\dx11\nodes\plugins\base\VVVV.DX11.Nodes.dll" nodename="Group (DX11.Layer)" componentmode="Hidden" id="155">
    <BOUNDS type="Node" left="1695" top="20385" width="100" height="100">
    </BOUNDS>
@@ -917,7 +893,7 @@
    </BOUNDS>
    <PIN pinname="Geometry Out" visible="1">
    </PIN>
-   <PIN pinname="Cycles" slicecount="1" values="0.75">
+   <PIN pinname="Cycles" slicecount="1" visible="1" values="0.75">
    </PIN>
    <PIN pinname="Inner Radius" slicecount="1" values="0.78">
    </PIN>
@@ -947,7 +923,7 @@
    </PIN>
    <PIN pinname="ScaleXY" slicecount="2" values="0.29,0.29">
    </PIN>
-   <PIN pinname="Rotate" visible="1">
+   <PIN pinname="Rotate" visible="1" slicecount="1" values="0.125">
    </PIN>
    </NODE>
    <LINK srcnodeid="128" srcpinname="Display Transformation Out" dstnodeid="158" dstpinname="Transform In">
@@ -955,13 +931,11 @@
    <LINK srcnodeid="158" srcpinname="Transform Out" dstnodeid="157" dstpinname="Transform In">
    </LINK>
    <NODE systemname="LFO (Animation)" nodename="LFO (Animation)" componentmode="Hidden" id="159">
-   <BOUNDS type="Node" left="3270" top="18720" width="100" height="100">
+   <BOUNDS type="Node" left="3315" top="18465" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="159" srcpinname="Output" dstnodeid="158" dstpinname="Rotate">
-   </LINK>
    <NODE systemname="SetAlpha (Color)" nodename="SetAlpha (Color)" componentmode="Hidden" id="160">
    <BOUNDS type="Node" left="2940" top="17850" width="100" height="100">
    </BOUNDS>
@@ -1033,9 +1007,9 @@
    <LINK srcnodeid="165" srcpinname="Value Output" dstnodeid="160" dstpinname="Alpha">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="168">
-   <BOUNDS type="Box" left="4920" top="17205" width="630" height="2505">
+   <BOUNDS type="Box" left="5070" top="16155" width="630" height="2505">
    </BOUNDS>
-   <BOUNDS type="Node" left="4920" top="17205" width="0" height="0">
+   <BOUNDS type="Node" left="5070" top="16155" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -1045,29 +1019,17 @@
    </PIN>
    <PIN pinname="Behavior" slicecount="1" values="Bang">
    </PIN>
-   <PIN pinname="Rows" slicecount="1" values="7">
+   <PIN pinname="Rows" slicecount="1" values="9">
    </PIN>
    <PIN pinname="SliceCount Mode" slicecount="1" values="ColsRowsPages">
    </PIN>
    <PIN pinname="Y Input Value" visible="1">
    </PIN>
    </NODE>
-   <NODE systemname="NOT (Boolean)" nodename="NOT (Boolean)" componentmode="Hidden" id="169">
-   <BOUNDS type="Node" left="4920" top="16740" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Input" visible="1">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="94" srcpinname="Document Ready" dstnodeid="169" dstpinname="Input">
-   </LINK>
-   <LINK srcnodeid="169" srcpinname="Output" dstnodeid="168" dstpinname="Y Input Value">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="170">
-   <BOUNDS type="Box" left="5715" top="17220" width="630" height="2505">
+   <BOUNDS type="Box" left="5865" top="16170" width="630" height="2505">
    </BOUNDS>
-   <BOUNDS type="Node" left="5715" top="17220" width="0" height="0">
+   <BOUNDS type="Node" left="5865" top="16170" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -1077,7 +1039,7 @@
    </PIN>
    <PIN pinname="Behavior" slicecount="1" values="Bang">
    </PIN>
-   <PIN pinname="Rows" slicecount="1" values="7">
+   <PIN pinname="Rows" slicecount="1" values="9">
    </PIN>
    <PIN pinname="SliceCount Mode" slicecount="1" values="ColsRowsPages">
    </PIN>
@@ -1085,5 +1047,43 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="94" srcpinname="Loading" dstnodeid="170" dstpinname="Y Input Value">
+   </LINK>
+   <NODE systemname="Scale (Transform)" nodename="Scale (Transform)" componentmode="Hidden" id="171">
+   <BOUNDS type="Node" left="2730" top="17400" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Y" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Transform Out" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="171" srcpinname="Transform Out" dstnodeid="15" dstpinname="Texture Transform">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="172">
+   <BOUNDS type="Box" left="825" top="21105" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="825" top="21105" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="172" srcpinname="Y Output Value" dstnodeid="14" dstpinname="VSync">
+   </LINK>
+   <LINK srcnodeid="69" srcpinname="Flat Text" dstnodeid="94" dstpinname="Url">
+   </LINK>
+   <LINK srcnodeid="135" srcpinname="Flat Text" dstnodeid="94" dstpinname="Use Element As Document Size">
+   </LINK>
+   <LINK srcnodeid="94" srcpinname="Loading Progress" dstnodeid="156" dstpinname="Cycles">
+   </LINK>
+   <LINK srcnodeid="94" srcpinname="Document Ready" dstnodeid="168" dstpinname="Y Input Value">
    </LINK>
    </PATCH>
