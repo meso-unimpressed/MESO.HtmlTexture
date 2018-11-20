@@ -56,7 +56,7 @@ namespace HtmlTexture.DX11.Nodes
                 }
                 if (wrapper == null) continue;
                 if (!FEnabledIn[i] && wrapper.Closed) continue;
-                if (!FEnabledIn[i] && !wrapper.Closed)
+                if ((!FEnabledIn[i] || FHardLoad[i]) && !wrapper.Closed)
                 {
                     wrapper.Close();
                     continue;

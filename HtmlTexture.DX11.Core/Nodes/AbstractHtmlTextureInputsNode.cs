@@ -31,6 +31,9 @@ namespace HtmlTexture.DX11.Nodes
         [Input("Load", IsBang = true)]
         public ISpread<bool> FLoad;
 
+        [Input("Hard Load", IsBang = true, Visibility = PinVisibility.Hidden)]
+        public ISpread<bool> FHardLoad;
+
         [Input("Reload Current", IsBang = true)]
         public ISpread<bool> FReloadIn;
 
@@ -50,8 +53,11 @@ namespace HtmlTexture.DX11.Nodes
         [Input("Allow Popup Takeover")]
         public IDiffSpread<bool> FPopupIn;
 
-        [Input("Filter Url")]
+        [Input("Filter Url", Visibility = PinVisibility.OnlyInspector, BinVisibility = PinVisibility.OnlyInspector)]
         public IDiffSpread<ISpread<string>> FFilterUrlIn;
+
+        [Input("Filter Mode", Visibility = PinVisibility.OnlyInspector)]
+        public IDiffSpread<UrlFilterMode> FFilterMode;
 
         [Input("Zoom")]
         public IDiffSpread<double> FZoomLevelIn;
@@ -92,7 +98,7 @@ namespace HtmlTexture.DX11.Nodes
 
         protected virtual int SliceCount()
         {
-            return SpreadUtils.SpreadMax(FOperations, FLoad, FReloadIn, FSize,
+            return SpreadUtils.SpreadMax(FOperations, FLoad, FHardLoad, FReloadIn, FSize,
                 FDocSizeBaseSelector, FAutoWidth, FAutoHeight, FPopupIn, FFilterUrlIn,
                 FZoomLevelIn, FMouseIn, FKeyboardIn, FShowDevToolsIn,
                 FLivePageIn, FUserAgentIn, FConsoleIn, FEnabledIn);
@@ -126,14 +132,15 @@ namespace HtmlTexture.DX11.Nodes
                     ZoomLevel = FZoomLevelIn[i],
                     InvertScrollWheel = FInvVScroll[i],
                     InvertHorizontalScrollWheel = FInvHScroll[i],
+                    UrlFilterMode = FFilterMode[i],
                     DocumentSizeElementSelector = FDocSizeBaseSelector[i]
                 },
                 VvvvLogger = Logger,
                 Operations = FOperations[i],
+                UrlFilters = FFilterUrlIn[i],
                 Enabled = FEnabledIn[i]
             };
-
-            wrapper.UrlFilter.AddRange(FFilterUrlIn[i]);
+            
             wrapper.OnBrowserReady += (sender, e) => LoadContent(wrapper, i);
 
             wrapper.Initialize();
@@ -149,7 +156,7 @@ namespace HtmlTexture.DX11.Nodes
             if (FShowDevToolsIn[i]) wrapper.ShowDevTool();
 
             if (SpreadUtils.AnyChanged(FLivePageIn, FPopupIn, FUserAgentIn, FConsoleIn, FZoomLevelIn, FInvVScroll,
-                FInvHScroll, FDocSizeBaseSelector))
+                FInvHScroll, FDocSizeBaseSelector, FFilterMode))
             {
                 wrapper.BrowserSettings = new HtmlTextureWrapper.WrapperBrowserSettings
                 {
@@ -160,6 +167,7 @@ namespace HtmlTexture.DX11.Nodes
                     ZoomLevel = FZoomLevelIn[i],
                     InvertScrollWheel = FInvVScroll[i],
                     InvertHorizontalScrollWheel = FInvHScroll[i],
+                    UrlFilterMode = FFilterMode[i],
                     DocumentSizeElementSelector = FDocSizeBaseSelector[i]
                 };
             }
@@ -181,10 +189,7 @@ namespace HtmlTexture.DX11.Nodes
             wrapper.Operations = FOperations[i];
 
             if (FFilterUrlIn.IsChanged)
-            {
-                wrapper.UrlFilter.Clear();
-                wrapper.UrlFilter.AddRange(FFilterUrlIn[i]);
-            }
+                wrapper.UrlFilters = FFilterUrlIn[i];
         }
     }
 

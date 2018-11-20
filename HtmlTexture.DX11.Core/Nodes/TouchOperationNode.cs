@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using md.stdl.Coding;
 using md.stdl.Interaction;
 using md.stdl.Mathematics;
+using Notui;
 using VVVV.DX11.Nodes.Renderers.Graphics.Touch;
 using VVVV.HtmlTexture.DX11.Core;
 using VVVV.PluginInterfaces.V2;
@@ -18,7 +19,7 @@ namespace HtmlTexture.DX11.Nodes
     public abstract class TouchOperationNode : PersistentOperationNode<SendTouchOperation>
     {
         public abstract bool IsChanged();
-        public abstract IEnumerable<TouchContainer> GetTouches(int i);
+        public abstract IEnumerable<HtmlTextureTouch> GetTouches(int i);
 
         protected override void UpdateOps(ref SendTouchOperation ops, int i)
         {
@@ -40,114 +41,52 @@ namespace HtmlTexture.DX11.Nodes
         [Input("Touches", Order = 10, BinOrder = 11)]
         public ISpread<ISpread<TouchContainer>> FTouches;
 
-        public override bool IsChanged()
-        {
-            return true;
-        }
+        public override bool IsChanged() => true;
 
         protected override int SliceCount()
         {
             return SpreadUtils.SpreadMax(FTouches, FOpsIn);
         }
 
-        public override IEnumerable<TouchContainer> GetTouches(int i)
+        public override IEnumerable<HtmlTextureTouch> GetTouches(int i)
         {
-            return FTouches[i];
+            return FTouches[i].Where(t=> t != null).Select(t => new HtmlTextureTouch(t.Id, t.Point.X, t.Point.Y, t.Force, 5.0f, 0.0f));
         }
     }
 
-    public abstract class TouchGeneratorTouchOperationNode : TouchOperationNode
+    [PluginInfo(
+        Name = "SendTouch",
+        Category = "HtmlTexture.Operation",
+        Version = "Notui.Element",
+        Tags = "Vanadium",
+        Author = "MESO, microdee",
+        Help = "Provides touches for HtmlTexture from a Notui element"
+    )]
+    public class NotuiElementTouchOperationNode : TouchOperationNode
     {
+        [Input("Element", Order = 10)]
+        public ISpread<NotuiElement> ElementIn;
+        [Input("Use Element Space", Order = 11)]
+        public ISpread<bool> UseElementSpaceIn;
 
-        [Import] public IPluginHost2 PluginHost;
-        [Import] public IHDEHost Host;
-
-        [Input("Release After Frames", Order = 14, Visibility = PinVisibility.Hidden, DefaultValue = 2)]
-        public ISpread<int> FRelease;
-
-        [Output("Touches Out", Order = 10, BinOrder = 11)]
-        public ISpread<ISpread<TouchContainer>> FTouches;
-
-        protected Dictionary<int, TouchContainer>[] Touches = new Dictionary<int, TouchContainer>[0];
-
-        protected float _prevFrameTime = 0;
-
-        public override bool IsChanged()
-        {
-            return true;
-        }
-
-        protected abstract int SetSliceCount();
-        protected abstract int SetTouchCount(int i);
-        protected abstract (Vector2D p, int id) ProvideTouch(int i, int j);
+        public override bool IsChanged() => true;
 
         protected override int SliceCount()
         {
-            return FTouches.SliceCount = SetSliceCount();
+            return SpreadUtils.SpreadMax(ElementIn, FOpsIn);
         }
 
-        protected override void PreEvaluate(int sprmax)
+        public override IEnumerable<HtmlTextureTouch> GetTouches(int i)
         {
-
-            float dt = (float)Host.FrameTime - _prevFrameTime;
-            if (_prevFrameTime <= 0.00001) dt = 0;
-
-            if (Touches.Length != sprmax)
-            {
-                var prev = Touches.Take(Math.Min(sprmax, Touches.Length)).ToArray();
-                Touches = new Dictionary<int, TouchContainer>[sprmax];
-                Touches.Fill(prev);
-            }
-
-            for (int i = 0; i < sprmax; i++)
-            {
-                var touches = Touches[i];
-                if (touches == null)
-                {
-                    touches = new Dictionary<int, TouchContainer>();
-                    Touches[i] = touches;
-                }
-
-                var removables = touches
-                    .Where(kvp => kvp.Value.ExpireFrames > FRelease[0])
-                    .Select(kvp => kvp.Key)
-                    .ToArray();
-
-                foreach (var id in removables)
-                {
-                    touches.Remove(id);
-                }
-
-                foreach (var touch in touches.Values)
-                {
-                    touch.Mainloop(dt);
-                }
-
-                var tsprmax = SetTouchCount(i);
-
-                for (int j = 0; j < tsprmax; j++)
-                {
-                    var (p, id) = ProvideTouch(i, j);
-
-                    if (touches.ContainsKey(id))
-                    {
-                        var touch = touches[id];
-                        touch.Update(p.AsSystemVector(), dt);
-                    }
-                    else
-                    {
-                        var touch = new TouchContainer(id);
-                        touch.Update(p.AsSystemVector(), dt);
-                        touches.Add(id, touch);
-                    }
-                }
-                FTouches[i].AssignFrom(touches.Values);
-            }
-        }
-
-        public override IEnumerable<TouchContainer> GetTouches(int i)
-        {
-            return Touches[i].Values;
+            if (ElementIn[i] == null) return Enumerable.Empty<HtmlTextureTouch>();
+            return ElementIn[i].Touching.Values.Select(t => new HtmlTextureTouch(
+                t.Touch.Id,
+                UseElementSpaceIn[i] ? t.ElementSpace.X : t.SurfaceSpace.X,
+                UseElementSpaceIn[i] ? t.ElementSpace.Y : t.SurfaceSpace.Y,
+                t.Touch.Force,
+                5.0f,
+                0.0f)
+            );
         }
     }
 
@@ -159,27 +98,40 @@ namespace HtmlTexture.DX11.Nodes
         Author = "MESO, microdee",
         Help = "Simple touch provider for HtmlTexture"
     )]
-    public class ValueTouchOperationNode : TouchGeneratorTouchOperationNode
+    public class ValueTouchOperationNode : TouchOperationNode
     {
 
         [Input("Points", Order = 10, BinOrder = 11)]
-        public ISpread<ISpread<Vector2D>> FPoints;
-        [Input("Id", Order = 12, BinOrder = 13)]
-        public ISpread<ISpread<int>> FIds;
+        public IDiffSpread<ISpread<Vector2D>> FPoints;
+        [Input("Force", Order = 12, BinOrder = 13, DefaultValue = 1.0)]
+        public IDiffSpread<ISpread<float>> FForce;
+        [Input("Radius", Order = 14, BinOrder = 15, DefaultValue = 5.0)]
+        public IDiffSpread<ISpread<float>> FRadius;
+        [Input("Rotation", Order = 16, BinOrder = 17)]
+        public IDiffSpread<ISpread<float>> FRotation;
+        [Input("Id", Order = 18, BinOrder = 19)]
+        public IDiffSpread<ISpread<int>> FIds;
 
-        protected override int SetSliceCount()
+        protected override int SliceCount()
         {
-            return SpreadUtils.SpreadMax(FPoints, FIds);
+            return FIds.SliceCount;
         }
 
-        protected override int SetTouchCount(int i)
-        {
-            return SpreadUtils.SpreadMax(FPoints[i], FIds[i]);
-        }
+        public override bool IsChanged() => true;
 
-        protected override (Vector2D p, int id) ProvideTouch(int i, int j)
+        public override IEnumerable<HtmlTextureTouch> GetTouches(int i)
         {
-            return (FPoints[i][j], FIds[i][j]);
+            for (int j = 0; j < FIds[i].SliceCount; j++)
+            {
+                yield return new HtmlTextureTouch(
+                    FIds[i][j],
+                    (float) FPoints[i][j].x,
+                    (float) FPoints[i][j].y,
+                    FForce[i][j],
+                    FRadius[i][j],
+                    FRotation[i][j]
+                );
+            }
         }
     }
 
@@ -191,27 +143,33 @@ namespace HtmlTexture.DX11.Nodes
         Author = "MESO, microdee",
         Help = "Touch provider for HtmlTexture from a DX11 Renderer window"
     )]
-    public class Dx11TouchOperationNode : TouchGeneratorTouchOperationNode
+    public class Dx11TouchOperationNode : TouchOperationNode
     {
 
         [Input("Touches", Order = 10, BinOrder = 11)]
         public Pin<TouchData> FPoints;
 
-        protected override int SetSliceCount()
+        public override bool IsChanged() => true;
+
+        protected override int SliceCount()
         {
-            return 1;
+            return Math.Max(1, FOpsIn.SliceCount);
         }
 
-        protected override int SetTouchCount(int i)
+        public override IEnumerable<HtmlTextureTouch> GetTouches(int i)
         {
-            if (!FPoints.IsConnected) return 0;
-            return FPoints.SliceCount;
-        }
-
-        protected override (Vector2D p, int id) ProvideTouch(int i, int j)
-        {
-            if (FPoints[j] == null) return (Vector2D.Zero, -1);
-            return (FPoints[j].Pos.ToVector2D(), FPoints[j].Id);
+            foreach (var touch in FPoints)
+            {
+                if(touch == null) continue;
+                yield return new HtmlTextureTouch(
+                    touch.Id,
+                    touch.Pos.X,
+                    touch.Pos.Y,
+                    1.0f,
+                    5.0f,
+                    0.0f
+                );
+            }
         }
     }
 }

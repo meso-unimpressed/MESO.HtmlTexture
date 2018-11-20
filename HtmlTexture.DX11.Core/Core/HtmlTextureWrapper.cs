@@ -11,12 +11,15 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Numerics;
 using System.Reactive.Concurrency;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using md.stdl.Coding;
+using Notui;
 using VVVV.Core.Logging;
 using VVVV.DX11;
 using VVVV.DX11.Lib.Effects.Pins.RenderSemantics;
@@ -25,6 +28,36 @@ using VVVV.Utils.VMath;
 
 namespace VVVV.HtmlTexture.DX11.Core
 {
+    public struct HtmlTextureTouch
+    {
+        public int Id;
+        public float X;
+        public float Y;
+        public float Force;
+        public float Radius;
+        public float Rotation;
+
+        public HtmlTextureTouch(int id, float x, float y, float force, float radius, float rotation)
+        {
+            Id = id;
+            X = x;
+            Y = y;
+            Force = force;
+            Radius = radius;
+            Rotation = rotation;
+        }
+
+        public void Deconstruct(out int id, out float x, out float y, out float force, out float radius, out float rotation)
+        {
+            id = Id;
+            x = X;
+            y = Y;
+            force = Force;
+            radius = Radius;
+            rotation = Rotation;
+        }
+    }
+
     public partial class HtmlTextureWrapper : IMainlooping, IDisposable
     {
         public static readonly Dictionary<int, HtmlTextureWrapper> Instances = new Dictionary<int, HtmlTextureWrapper>();
@@ -43,15 +76,13 @@ namespace VVVV.HtmlTexture.DX11.Core
         private string _customContent = "";
         private string _customContentUrl = "";
         private string _prevUrl = "";
+        private readonly Dictionary<int, CfxTouchEvent> _touches = new Dictionary<int, CfxTouchEvent>();
 
         private WrapperTextureSettings _prevTextureSettings;
         private WrapperBrowserSettings _prevBrowserSettings;
         private Subscription<Mouse, MouseNotification> _mouseSubscription;
         private Subscription<Keyboard, KeyNotification> _keyboardSubscription;
         private Keyboard _keyboard;
-
-        //[DllImport("msvcrt.dll", CallingConvention = CallingConvention.Cdecl)]
-        //public static extern IntPtr memcpy(IntPtr dest, IntPtr src, UIntPtr count);
 
         public bool Enabled { get; set; }
 
@@ -63,11 +94,12 @@ namespace VVVV.HtmlTexture.DX11.Core
         public ResizeNotificationFunction ResizeNotification { get; private set; }
         public DocSizeBaseSelector DocumentSizeBaseSelector { get; private set; }
         public Dictionary<string, JsBinding> JsBindings { get; } = new Dictionary<string, JsBinding>();
+        public Dictionary<int, HtmlTextureTouch> SubmittedTouches { get; } = new Dictionary<int, HtmlTextureTouch>();
 
         public IEnumerable<HtmlTextureOperation> Operations { get; set; }
         public Dictionary<HtmlTextureOperation, object> OperationResults { get; } = new Dictionary<HtmlTextureOperation, object>();
 
-        public List<string> UrlFilter { get; } = new List<string>();
+        public IEnumerable<string> UrlFilters { get; set; }
 
         public ILogger VvvvLogger { get; set; }
         
@@ -95,13 +127,10 @@ namespace VVVV.HtmlTexture.DX11.Core
         public bool Loading { get; set; }
         public bool LoadedFrame { get; private set; }
         public bool CreatedFrame { get; private set; }
-        //public bool IsImageReady { get; private set; }
         public bool IsTextureValid { get; private set; }
         public bool LivePageActive { get; private set; }
         public double Progress { get; private set; }
         public bool Closed { get; private set; }
-
-        //public byte[] RawImage { get; private set; }
 
         public string LastError { get; private set; }
         public string LastConsole { get; private set; }
@@ -314,8 +343,46 @@ namespace VVVV.HtmlTexture.DX11.Core
             RequestHandler = new CfxRequestHandler();
             RequestHandler.OnBeforeBrowse += (sender, e) =>
             {
-                var flag = UrlFilter.Any(u => u == "" || e.Browser.MainFrame.Url.Contains(u));
-                e.SetReturnValue(!flag);
+                if (UrlFilters == null)
+                {
+                    e.SetReturnValue(false);
+                    return;
+                }
+                switch (BrowserSettings.UrlFilterMode)
+                {
+                    case UrlFilterMode.None:
+                        e.SetReturnValue(false);
+                        return;
+                    case UrlFilterMode.BlacklistMatch:
+                        e.SetReturnValue(UrlFilters.Any(f => e.Browser.MainFrame.Url.Equals(f, StringComparison.InvariantCultureIgnoreCase)));
+                        return;
+                    case UrlFilterMode.WhitelistMatch:
+                        e.SetReturnValue(!UrlFilters.Any(f => e.Browser.MainFrame.Url.Equals(f, StringComparison.InvariantCultureIgnoreCase)));
+                        return;
+                    case UrlFilterMode.BlacklistContains:
+                        e.SetReturnValue(UrlFilters.Any(f => e.Browser.MainFrame.Url.Contains(f, StringComparison.InvariantCultureIgnoreCase)));
+                        return;
+                    case UrlFilterMode.WhitelistContains:
+                        e.SetReturnValue(!UrlFilters.Any(f => e.Browser.MainFrame.Url.Contains(f, StringComparison.InvariantCultureIgnoreCase)));
+                        return;
+                    case UrlFilterMode.BlacklistRegex:
+                        var blregex = UrlFilters.Any(f => Regex.IsMatch(e.Browser.MainFrame.Url, f,
+                            RegexOptions.IgnoreCase |
+                            RegexOptions.CultureInvariant |
+                            RegexOptions.Singleline
+                        ));
+                        e.SetReturnValue(blregex);
+                        return;
+                    case UrlFilterMode.WhitelistRegex:
+                        var wlregex = UrlFilters.Any(f => Regex.IsMatch(e.Browser.MainFrame.Url, f,
+                            RegexOptions.IgnoreCase |
+                            RegexOptions.CultureInvariant |
+                            RegexOptions.Singleline
+                        ));
+                        e.SetReturnValue(!wlregex);
+                        return;
+                }
+                //e.SetReturnValue(false);
             };
             RequestHandler.OnBeforeResourceLoad += HandleBeforeResourceLoad;
             RequestHandler.OnCertificateError += (sender, e) => LogError("Cert error: " + e.CertError.ToString());
@@ -373,6 +440,13 @@ namespace VVVV.HtmlTexture.DX11.Core
             LastError = message;
         }
 
+        public void LogError(Exception e)
+        { 
+            VvvvLogger?.Log(LogType.Error, "CEF Error");
+            VvvvLogger?.Log(e);
+            LastError = $"CEF Error: {e.Message}\n{e.StackTrace}";
+        }
+
         private void HandleBeforeResourceLoad(object sender, CfxOnBeforeResourceLoadEventArgs e)
         {
             var headerMap = e.Request.GetHeaderMap();
@@ -395,6 +469,7 @@ namespace VVVV.HtmlTexture.DX11.Core
 
         public void UpdateSize()
         {
+            if(Closed) return;
             TextureSize =
             (
                 (TextureSettings.AutoWidth ? DocumentSize.w : TextureSettings.TargetSize.w) + TextureSettings.ExtraSize.w,
@@ -408,6 +483,10 @@ namespace VVVV.HtmlTexture.DX11.Core
         {
             var windowInfo = new CfxWindowInfo();
             windowInfo.SetAsWindowless(IntPtr.Zero);
+
+            windowInfo.WindowlessRenderingEnabled = true;
+            windowInfo.SharedTextureEnabled = true;
+            windowInfo.ExternalBeginFrameEnabled = InitSettings.FrameRequestFromVvvv;
 
             if (Browser != null)
             {
@@ -440,24 +519,46 @@ namespace VVVV.HtmlTexture.DX11.Core
                 ExecuteJavascript(code);
         }
 
-        public void SendTouches(IEnumerable<TouchContainer> touches)
+        public void SendTouches(IEnumerable<HtmlTextureTouch> touches)
         {
-            touches.Where(t => t.Id >= 0).ForEach(t =>
+            if (Closed) return;
+            foreach (var touch in touches)
             {
-                var cfxTouchEventType = CfxTouchEventType.Moved;
-                if (t.AgeFrames < 2)
-                    cfxTouchEventType = CfxTouchEventType.Pressed;
-                if (t.ExpireFrames >= 1)
-                    cfxTouchEventType = CfxTouchEventType.Released;
-                Browser.Host.SendTouchEvent(new CfxTouchEvent()
+                SubmittedTouches.UpdateGeneric(touch.Id, touch);
+            }
+        }
+
+        private void ProcessTouches()
+        {
+            if (Closed) return;
+            foreach (var touch in _touches.Values.ToList())
+            {
+                if (touch.Type == CfxTouchEventType.Released || touch.Type == CfxTouchEventType.Cancelled)
                 {
-                    Type = cfxTouchEventType,
-                    Id = t.Id,
-                    X = (float) VMath.Map(t.Point.X, -1.0, 1.0, 0.0, TextureSize.w, TMapMode.Float),
-                    Y = (float) VMath.Map(t.Point.Y, 1.0, -1.0, 0.0, TextureSize.h, TMapMode.Float),
-                    Force = t.Force,
-                });
-            });
+                    _touches.Remove(touch.Id);
+                    //touch.Dispose();
+                }
+                touch.Type = CfxTouchEventType.Released;
+            }
+            foreach (var (id, f, y, force, rad, rot) in SubmittedTouches.Values)
+            {
+                var ceftouch = new CfxTouchEvent
+                {
+                    Type = _touches.ContainsKey(id) ? CfxTouchEventType.Moved : CfxTouchEventType.Pressed,
+                    Id = id,
+                    X = (float)VMath.Map(f, -1.0, 1.0, 0.0, TextureSize.w, TMapMode.Float),
+                    Y = (float)VMath.Map(y, 1.0, -1.0, 0.0, TextureSize.h, TMapMode.Float),
+                    Force = force,
+                    RadiusX = rad,
+                    RadiusY = rad,
+                    RotationAngle = rot
+                };
+                _touches.UpdateGeneric(id, ceftouch);
+            }
+            foreach (var touch in _touches.Values)
+            {
+                Browser.Host.SendTouchEvent(touch);
+            }
         }
 
         public static XElement HtmlToXElement(string html)
@@ -478,6 +579,7 @@ namespace VVVV.HtmlTexture.DX11.Core
 
         public bool ExecuteJavascript(string code)
         {
+            if (Closed) return false;
             if (Browser == null) return false;
             Browser.MainFrame.ExecuteJavaScript(code, null, 0);
             return true;
@@ -485,6 +587,7 @@ namespace VVVV.HtmlTexture.DX11.Core
 
         public bool EvaluateJavascript(string code, Action<CfrV8Value, CfrV8Exception> callback)
         {
+            if (Closed) return false;
             if (RemoteBrowser == null)
                 return false;
             try
@@ -517,6 +620,7 @@ namespace VVVV.HtmlTexture.DX11.Core
 
         public bool BindObject(JsBinding binding)
         {
+            if (Closed) return false;
             if (RemoteBrowser == null)
                 return false;
             try
@@ -533,20 +637,25 @@ namespace VVVV.HtmlTexture.DX11.Core
                 remoteCallContext.Enter();
                 try
                 {
-                    if(V8Handler == null) V8Handler = new CfrV8Handler();
-                    jsBinding.Bind(this);
+                    V8Handler = new CfrV8Handler();
+                    jsBinding.Bind(this, V8Handler);
                     var taskrunner = CfrTaskRunner.GetForThread((CfxThreadId)6);
                     if (taskrunner == null)
                     {
                         LogError("Unsuccessful Binding, TaskRunner is null");
+                        remoteCallContext.Exit();
                         return false;
                     }
                     taskrunner.PostTask(new BindFunctionsTask(RemoteBrowser, jsBinding.Name, jsBinding.Functions.Keys.ToArray(), V8Handler));
+                    remoteCallContext.Exit();
                     return true;
                 }
-                finally
+                catch (Exception ex)
                 {
                     remoteCallContext.Exit();
+                    LogError(ex.Message);
+                    VvvvLogger?.Log(ex);
+                    return false;
                 }
             }
             catch (Exception ex)
@@ -559,6 +668,7 @@ namespace VVVV.HtmlTexture.DX11.Core
 
         public void ShowDevTool()
         {
+            if (Closed) return;
             Browser.Host.ShowDevTools(new CfxWindowInfo()
             {
                 Style = WindowStyle.WS_OVERLAPPEDWINDOW | WindowStyle.WS_CLIPCHILDREN | WindowStyle.WS_CLIPSIBLINGS | WindowStyle.WS_VISIBLE,
@@ -573,21 +683,26 @@ namespace VVVV.HtmlTexture.DX11.Core
 
         public void Reload()
         {
+            if (Closed) return;
             Browser.ReloadIgnoreCache();
         }
 
         public void UpdateDom()
         {
+            if (Closed) return;
             Browser.MainFrame.GetSource(Visitor);
         }
 
         public void LoadUrl(string url)
         {
-            Browser?.MainFrame?.LoadUrl(url);
+            if (Closed) return;
+            if (Browser == null) return;
+            Browser.MainFrame.LoadUrl(url);
         }
         
         public void LoadString(string content, string dummyurl)
         {
+            if (Closed) return;
             if (Browser == null) return;
             Browser.MainFrame.LoadUrl("about:blank");
             _customContent = content;
@@ -596,6 +711,7 @@ namespace VVVV.HtmlTexture.DX11.Core
 
         public void ScrollTo(double h, double v, string elementSelector = "", bool normalized = false)
         {
+            if (Closed) return;
             var usewindow = string.IsNullOrWhiteSpace(elementSelector);
             var norm = normalized ? "true" : "false";
             var code = !usewindow ? string.Format(CultureInfo.InvariantCulture,
@@ -639,12 +755,15 @@ namespace VVVV.HtmlTexture.DX11.Core
 
             if (!TextureSettings.Equals(_prevTextureSettings)) UpdateSize();
 
-            if (BrowserSettings.ZoomLevel != Browser.Host.ZoomLevel)
-            {
-                Browser.Host.ZoomLevel = BrowserSettings.ZoomLevel;
-            }
+            //if (BrowserSettings.ZoomLevel != Browser.Host.ZoomLevel)
+            //{
+            //    Browser.Host.ZoomLevel = Math.Abs(BrowserSettings.ZoomLevel) <= 0.0001 ? 0.0001 : BrowserSettings.ZoomLevel;
+            //    //Browser.Host.ZoomLevel = BrowserSettings.ZoomLevel;
+            //}
 
-            if(DocumentSizeBaseSelector != null)
+            Browser.Host.ZoomLevel = BrowserSettings.ZoomLevel;
+
+            if (DocumentSizeBaseSelector != null)
                 DocumentSizeBaseSelector.Selector = BrowserSettings.DocumentSizeElementSelector;
 
             if (LivePageActive != BrowserSettings.UseLivePage)
@@ -653,16 +772,34 @@ namespace VVVV.HtmlTexture.DX11.Core
                 LivePageActive = BrowserSettings.UseLivePage;
             }
 
+            SubmittedTouches.Clear();
+
             if (Enabled)
             {
-                var operations = Operations;
-                operations?.ForEach(o => o?.Invoke(this));
+                try
+                {
+                    var operations = Operations;
+                    if (operations != null)
+                    {
+                        foreach (var operation in operations)
+                        {
+                            operation?.Invoke(this);
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    LogError(e);
+                }
 
                 if (InitSettings.FrameRequestFromVvvv && AllowFrameRequest)
                 {
                     Browser.Host.SendExternalBeginFrame();
                 }
             }
+
+            ProcessTouches();
+
             _prevTextureSettings = TextureSettings;
             _prevBrowserSettings = BrowserSettings;
 
@@ -674,7 +811,6 @@ namespace VVVV.HtmlTexture.DX11.Core
             var invalidate = !_newAccFrameReady.ContainsKey(context) || !DX11Texture.Contains(context);
             if(invalidate)
             {
-                Browser?.Host.Invalidate(CfxPaintElementType.View);
                 UpdateSize();
             }
             if (!invalidate) invalidate = _newAccFrameReady[context];

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Chromium;
 using md.stdl.Coding;
 using md.stdl.Interaction;
+using Notui;
 using VVVV.PluginInterfaces.V2;
 using VVVV.PluginInterfaces.V2.NonGeneric;
 using VVVV.Utils.IO;
@@ -148,7 +149,7 @@ namespace VVVV.HtmlTexture.DX11.Core
 
     public class SendTouchOperation : HtmlTextureOperation
     {
-        public IEnumerable<TouchContainer> Touches { get; set; }
+        public IEnumerable<HtmlTextureTouch> Touches { get; set; }
         protected override void Operation(HtmlTextureWrapper wrapper)
         {
             if(Touches != null) wrapper.SendTouches(Touches);
@@ -183,7 +184,13 @@ namespace VVVV.HtmlTexture.DX11.Core
         public override void Invoke(HtmlTextureWrapper wrapper)
         {
             Up.Clear();
-            if(Input.IsEmpty()) Up.AddRange(Pressed);
+            bool inputexists = false;
+            foreach (var key in Input)
+            {
+                inputexists = true;
+                break;
+            }
+            if(inputexists) Up.AddRange(Pressed);
             else Up.AddRange(Pressed.Where(k => Input.All(kk => k.KeyCode != kk.KeyCode)));
 
             Down.Clear();
