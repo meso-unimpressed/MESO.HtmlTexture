@@ -7,6 +7,16 @@ using md.stdl.Interfaces;
 
 namespace VVVV.HtmlTexture.DX11.Core
 {
+    public enum UrlFilterMode
+    {
+        None,
+        BlacklistMatch,
+        WhitelistMatch,
+        BlacklistContains,
+        WhitelistContains,
+        BlacklistRegex,
+        WhitelistRegex
+    }
     public partial class HtmlTextureWrapper : IMainlooping, IDisposable
     {
         public struct WrapperTextureSettings
@@ -41,6 +51,7 @@ namespace VVVV.HtmlTexture.DX11.Core
             public double ZoomLevel;
             public bool InvertScrollWheel;
             public bool InvertHorizontalScrollWheel;
+            public UrlFilterMode UrlFilterMode;
             public string DocumentSizeElementSelector;
         }
 
