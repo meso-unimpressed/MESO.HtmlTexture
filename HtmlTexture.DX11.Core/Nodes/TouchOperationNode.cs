@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using md.stdl.Coding;
 using md.stdl.Interaction;
 using md.stdl.Mathematics;
+using mp.pddn;
 using Notui;
 using VVVV.DX11.Nodes.Renderers.Graphics.Touch;
 using VVVV.HtmlTexture.DX11.Core;
@@ -19,11 +20,13 @@ namespace HtmlTexture.DX11.Nodes
     public abstract class TouchOperationNode : PersistentOperationNode<SendTouchOperation>
     {
         public abstract bool IsChanged();
-        public abstract IEnumerable<HtmlTextureTouch> GetTouches(int i);
+        public abstract IEnumerable<HtmlTextureTouch> GetTouches(int i, int j);
 
-        protected override void UpdateOps(ref SendTouchOperation ops, int i)
+        protected override int SliceCount(int i) => 1;
+
+        protected override void UpdateOps(ref SendTouchOperation ops, int i, int j)
         {
-            ops.Touches = GetTouches(i);
+            ops.Touches = GetTouches(i, j);
             ops.Execute = true;
         }
     }
@@ -43,12 +46,12 @@ namespace HtmlTexture.DX11.Nodes
 
         public override bool IsChanged() => true;
 
-        protected override int SliceCount()
+        protected override int BinCount()
         {
-            return SpreadUtils.SpreadMax(FTouches, FOpsIn);
+            return SpreadUtils.SpreadMax(FTouches, OpsIn);
         }
 
-        public override IEnumerable<HtmlTextureTouch> GetTouches(int i)
+        public override IEnumerable<HtmlTextureTouch> GetTouches(int i, int j)
         {
             return FTouches[i].Where(t=> t != null).Select(t => new HtmlTextureTouch(t.Id, t.Point.X, t.Point.Y, t.Force, 5.0f, 0.0f));
         }
@@ -64,29 +67,34 @@ namespace HtmlTexture.DX11.Nodes
     )]
     public class NotuiElementTouchOperationNode : TouchOperationNode
     {
-        [Input("Element", Order = 10)]
-        public ISpread<NotuiElement> ElementIn;
-        [Input("Use Element Space", Order = 11)]
+        [Input("Element", Order = 10, BinOrder = 11, BinSize = 1)]
+        public ISpread<ISpread<NotuiElement>> ElementIn;
+        [Input("Use Element Space", Order = 12)]
         public ISpread<bool> UseElementSpaceIn;
 
         public override bool IsChanged() => true;
 
-        protected override int SliceCount()
+        protected override int BinCount()
         {
-            return SpreadUtils.SpreadMax(ElementIn, FOpsIn);
+            return ElementIn.SliceCount;
         }
 
-        public override IEnumerable<HtmlTextureTouch> GetTouches(int i)
+        protected override int SliceCount(int i)
         {
-            if (ElementIn[i] == null) return Enumerable.Empty<HtmlTextureTouch>();
-            return ElementIn[i].Touching.Values.Select(t => new HtmlTextureTouch(
+            return ElementIn[i].SliceCount;
+        }
+
+        public override IEnumerable<HtmlTextureTouch> GetTouches(int i, int j)
+        {
+            if (ElementIn[i][j] == null) return Enumerable.Empty<HtmlTextureTouch>();
+            return ElementIn[i][j].Touching.Values.Select(t => new HtmlTextureTouch(
                 t.Touch.Id,
                 UseElementSpaceIn[i] ? t.ElementSpace.X : t.SurfaceSpace.X,
                 UseElementSpaceIn[i] ? t.ElementSpace.Y : t.SurfaceSpace.Y,
                 t.Touch.Force,
                 5.0f,
                 0.0f)
-            );
+            ).ToArray();
         }
     }
 
@@ -112,24 +120,24 @@ namespace HtmlTexture.DX11.Nodes
         [Input("Id", Order = 18, BinOrder = 19)]
         public IDiffSpread<ISpread<int>> FIds;
 
-        protected override int SliceCount()
+        protected override int BinCount()
         {
             return FIds.SliceCount;
         }
 
         public override bool IsChanged() => true;
 
-        public override IEnumerable<HtmlTextureTouch> GetTouches(int i)
+        public override IEnumerable<HtmlTextureTouch> GetTouches(int i, int jj)
         {
             for (int j = 0; j < FIds[i].SliceCount; j++)
             {
                 yield return new HtmlTextureTouch(
                     FIds[i][j],
-                    (float) FPoints[i][j].x,
-                    (float) FPoints[i][j].y,
-                    FForce[i][j],
-                    FRadius[i][j],
-                    FRotation[i][j]
+                    (float) FPoints.TryGetSlice(i, j).x,
+                    (float) FPoints.TryGetSlice(i, j).y,
+                    FForce.TryGetSlice(i, j),
+                    FRadius.TryGetSlice(i, j),
+                    FRotation.TryGetSlice(i, j)
                 );
             }
         }
@@ -151,12 +159,9 @@ namespace HtmlTexture.DX11.Nodes
 
         public override bool IsChanged() => true;
 
-        protected override int SliceCount()
-        {
-            return Math.Max(1, FOpsIn.SliceCount);
-        }
+        protected override int BinCount() => 1;
 
-        public override IEnumerable<HtmlTextureTouch> GetTouches(int i)
+        public override IEnumerable<HtmlTextureTouch> GetTouches(int i, int j)
         {
             foreach (var touch in FPoints)
             {

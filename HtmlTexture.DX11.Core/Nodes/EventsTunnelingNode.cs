@@ -19,24 +19,29 @@ namespace VVVV.HtmlTexture.DX11.Nodes
     )]
     public class EventsTunnelingNode : PersistentOperationNode<EmptyOperation>
     {
-        [Output("On Loaded", IsBang = true)]
-        public ISpread<int> FLoaded;
-        [Output("On Created", IsBang = true)]
-        public ISpread<int> FCreated;
+        [Output("On Loaded")]
+        public ISpread<int> LoadedOut;
+        [Output("On Created")]
+        public ISpread<int> CreatedOut;
+        [Output("On Loaded Bang", IsBang = true)]
+        public ISpread<bool> LoadedBangOut;
+        [Output("On Created Bang", IsBang = true)]
+        public ISpread<bool> CreatedBangOut;
 
-        protected override int SliceCount()
-        {
-            return 1;
-        }
+        protected int _loadedc = -1;
+        protected int _createdc = -1;
 
-        protected override EmptyOperation CreateOps(int i)
+        protected override int SliceCount(int i) => 1;
+        protected override int BinCount() => 1;
+
+        protected override EmptyOperation CreateOps(int i, int j)
         {
-            var ops = base.CreateOps(i);
+            var ops = base.CreateOps(i, j);
 
             void OpsOnOnBeforeExecute(HtmlTextureOperation operation, HtmlTextureWrapper wrapper)
             {
-                FLoaded[i] += wrapper.LoadedFrame ? 1 : 0;
-                FCreated[i] += wrapper.CreatedFrame ? 1 : 0;
+                LoadedOut[i] += wrapper.LoadedFrame ? 1 : 0;
+                CreatedOut[i] += wrapper.CreatedFrame ? 1 : 0;
                 //operation.OnBeforeExecute -= OpsOnOnBeforeExecute;
             }
             ops.OnBeforeExecute += OpsOnOnBeforeExecute;
@@ -46,10 +51,23 @@ namespace VVVV.HtmlTexture.DX11.Nodes
         protected override void PreEvaluate(int sprmax)
         {
             base.PreEvaluate(sprmax);
-            FLoaded.SliceCount = FCreated.SliceCount = sprmax;
+            LoadedOut.SliceCount = CreatedOut.SliceCount = 1;
+            LoadedBangOut[0] = CreatedBangOut[0] = false;
+
+            if (_loadedc != LoadedOut[0])
+            {
+                LoadedBangOut[0] = true;
+            }
+            _loadedc = LoadedOut[0];
+
+            if (_createdc != CreatedOut[0])
+            {
+                CreatedBangOut[0] = true;
+            }
+            _createdc = CreatedOut[0];
         }
 
-        protected override void UpdateOps(ref EmptyOperation ops, int i)
+        protected override void UpdateOps(ref EmptyOperation ops, int i, int j)
         {
             ops.ExecuteOnLoad = true;
         }

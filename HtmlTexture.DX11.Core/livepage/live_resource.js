@@ -48,15 +48,15 @@ LiveResource.prototype.check = function(callback) {
   this.xhr.onreadystatechange = function() {
 
     // If it 404s
-    if (this.status == 404) {
+    if (this.status === 404) {
       $livePage.removeResource(this.url);
     }
 
-    if (this.readyState == 4){
+    if (this.readyState === 4){
       _callback();
     }
 
-    if (this.readyState == 4 && this.status != 304) {
+    if (this.readyState === 4 && this.status !== 304) {
       // Pull all the headers
       this.getAllResponseHeaders();
 

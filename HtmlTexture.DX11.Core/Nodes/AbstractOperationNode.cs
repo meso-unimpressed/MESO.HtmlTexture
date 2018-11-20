@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using mp.pddn;
 using VVVV.HtmlTexture.DX11.Core;
 using VVVV.PluginInterfaces.V2;
 using VVVV.Utils.VMath;
@@ -11,52 +12,64 @@ namespace HtmlTexture.DX11.Nodes
 {
     public class AbstractOperationNode<T> where T : HtmlTextureOperation
     {
-        [Input("Operations In", BinSize = 1, BinVisibility = PinVisibility.Hidden, Order = 0, BinOrder = 1)]
-        public ISpread<ISpread<HtmlTextureOperation>> FOpsIn;
+        [Input("Operations In", Order = 0, IsSingle = true)]
+        public ISpread<HtmlTextureOperationHost> OpsIn;
 
         [Output("Output", Order = -10)]
-        public ISpread<T> FOpsOut;
+        public ISpread<HtmlTextureOperationHost> OpsOut;
+
+        [Output(
+            "Individual Operations",
+            Order = 9998,
+            BinOrder = 9999,
+            Visibility = PinVisibility.Hidden,
+            BinVisibility = PinVisibility.Hidden
+        )]
+        public ISpread<ISpread<T>> IndivOpsOut;
     }
+
     public abstract class PersistentOperationNode<T> : AbstractOperationNode<T>, IPluginEvaluate where T : HtmlTextureOperation, new()
     {
-        protected abstract int SliceCount();
-        protected abstract void UpdateOps(ref T ops, int i);
+        protected abstract int SliceCount(int i);
+        protected abstract int BinCount();
+        protected abstract void UpdateOps(ref T ops, int i, int j);
         protected virtual void PreEvaluate(int sprmax) { }
 
-        protected virtual bool IsChanged()
-        {
-            return false;
-        }
-
-        protected virtual T CreateOps(int i)
+        protected virtual T CreateOps(int i, int j)
         {
             return new T();
         }
 
-        private int _oldSlc = -1;
-
         public void Evaluate(int SpreadMax)
         {
-            var sprmax = FOpsOut.SliceCount = Math.Max(FOpsIn.SliceCount, SliceCount());
-            var changed = IsChanged() || _oldSlc != sprmax;
-            _oldSlc = sprmax;
+            if(OpsOut[0] == null) OpsOut[0] = new HtmlTextureOperationHost();
+            var ophost = OpsOut[0];
+            ophost.Child = OpsIn.TryGetSlice(0);
+
+            var sprmax = IndivOpsOut.SliceCount = BinCount();
+            ophost.SetBinCount(sprmax);
 
             PreEvaluate(sprmax);
 
-            for (int i = sprmax - 1; i >= 0; i--)
+            for (int i = 0 ; i < sprmax; i++)
             {
-                if (FOpsOut[i] == null) FOpsOut[i] = CreateOps(i);
-                else if (FOpsOut.Count(o => o?.Equals(FOpsOut[i]) ?? false) > 1) FOpsOut[i] = CreateOps(i);
-                var opsout = FOpsOut[i];
+                var binsprmax = ophost.Operations[i].SliceCount = IndivOpsOut[i].SliceCount = SliceCount(i);
 
-                UpdateOps(ref opsout, i);
+                for (int j = binsprmax - 1; j >= 0; j--)
+                {
+                    if (IndivOpsOut[i][j] == null) IndivOpsOut[i][j] = CreateOps(i, j);
+                    else if (IndivOpsOut[i].Count(o => o?.Equals(IndivOpsOut[i][j]) ?? false) > 1)
+                        IndivOpsOut[i][j] = CreateOps(i, j);
 
-                opsout.Executed.Clear();
-                opsout.Others = FOpsIn[i];
-                FOpsOut[i] = opsout;
+                    var op = IndivOpsOut[i][j];
+                    UpdateOps(ref op, i, j);
+                    op.Executed.Clear();
+                    IndivOpsOut[i][j] = op;
+                    ophost.Operations[i][j] = op;
+                }
             }
 
-            FOpsOut.Stream.IsChanged = true;
+            OpsOut.Stream.IsChanged = true;
         }
     }
 

@@ -39,15 +39,17 @@ namespace HtmlTexture.DX11.Nodes
         [Input("Bind On Load", Order = 14, BinOrder = 15)]
         public IDiffSpread<bool> FBindOnLoad;
 
-        protected override int SliceCount()
+        protected override int BinCount()
         {
             return Math.Max(SpreadUtils.SpreadMax(FObj, FFunc, FBind, FBindOnLoad), _input.SliceCount) *
                    (_input.SliceCount > 0 ? 1 : 0);
         }
 
-        protected override BindObjectOperation CreateOps(int i)
+        protected override int SliceCount(int i) => 1;
+
+        protected override BindObjectOperation CreateOps(int i, int j)
         {
-            var ops = base.CreateOps(i);
+            var ops = base.CreateOps(i, j);
 
             void OpsOnBeforeExecute(HtmlTextureOperation operation, HtmlTextureWrapper wrapper)
             {
@@ -57,13 +59,13 @@ namespace HtmlTexture.DX11.Nodes
                     Name = FObj[i]
                 };
 
-                for (int j = 0; j < FFunc[i].SliceCount; j++)
+                for (int jj = 0; jj < FFunc[i].SliceCount; jj++)
                 {
-                    if (string.IsNullOrWhiteSpace(FFunc[i][j])) continue;
+                    if (string.IsNullOrWhiteSpace(FFunc[i][jj])) continue;
                     var func = new SimpleReturnObjectBinding
                     {
-                        Name = FFunc[i][j],
-                        ReturnObject = _input[i]?[j]
+                        Name = FFunc[i][jj],
+                        ReturnObject = _input[i]?[jj]
                     };
                     bops.Binding.AddFunction(func);
                 }
@@ -74,29 +76,21 @@ namespace HtmlTexture.DX11.Nodes
             return ops;
         }
 
-        //protected override void PreEvaluate(int sprmax)
-        //{
-        //    if (FBind.Any())
-        //    {
-        //        _input.Pin.Validate();
-        //    }
-        //}
-
-        protected override void UpdateOps(ref BindObjectOperation ops, int i)
+        protected override void UpdateOps(ref BindObjectOperation ops, int i, int j)
         {
             ops.Execute = FBind[i];
             ops.ExecuteOnLoad = FBindOnLoad[i];
             
             if(ops.Binding == null) return;
 
-            for (int j = 0; j < FFunc[i].SliceCount; j++)
+            for (int jj = 0; jj < FFunc[i].SliceCount; jj++)
             {
-                if(!ops.Binding.Functions.ContainsKey(FFunc[i][j])) continue;
-                var func = ops.Binding.Functions[FFunc[i][j]];
+                if(!ops.Binding.Functions.ContainsKey(FFunc[i][jj])) continue;
+                var func = ops.Binding.Functions[FFunc[i][jj]];
 
                 if (func is SimpleReturnObjectBinding sfunc)
                 {
-                    sfunc.ReturnObject = _input[i]?[VMath.Zmod(j, _input[i].Count)];
+                    sfunc.ReturnObject = _input[i]?[VMath.Zmod(jj, _input[i].Count)];
                 }
             }
         }

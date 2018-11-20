@@ -29,8 +29,13 @@ if ("vvvvUtils" in window) {
         } else {
             var selector = vvvvUtils.docSizeBaseSelector();
             var el = document.querySelector(selector);
-            var mw = Math.max(el.scrollWidth, document.body.scrollWidth);
-            var mh = Math.max(el.scrollHeight, document.body.scrollHeight);
+            if(el !== null && el !== undefined) {
+                var mw = Math.max(el.scrollWidth, document.body.scrollWidth);
+                var mh = Math.max(el.scrollHeight, document.body.scrollHeight);
+            } else {
+                var mw = document.body.scrollWidth;
+                var mh = document.body.scrollHeight;
+            }
 
             if (vvvvUtils.prevDocW != mw || vvvvUtils.prevDocH != mh) {
                 console.log(selector + " size changed");

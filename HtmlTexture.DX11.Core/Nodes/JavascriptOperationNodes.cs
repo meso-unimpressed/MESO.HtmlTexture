@@ -13,22 +13,27 @@ namespace HtmlTexture.DX11.Nodes
     public class JsOperationNode<T> : PersistentOperationNode<T> where T : HtmlTextureOperation, IJsOperation, new()
     {
         [Input("Script", Order = 10, BinOrder = 11)]
-        public IDiffSpread<string> FScript;
+        public IDiffSpread<ISpread<string>> FScript;
         [Input("Execute", Order = 12, BinOrder = 13, IsBang = true)]
-        public IDiffSpread<bool> FExec;
+        public IDiffSpread<ISpread<bool>> FExec;
         [Input("Execute On Load", Order = 14, BinOrder = 15)]
-        public IDiffSpread<bool> FExecOnLoad;
+        public IDiffSpread<ISpread<bool>> FExecOnLoad;
 
-        protected override int SliceCount()
+        protected override int BinCount()
         {
             return SpreadUtils.SpreadMax(FScript, FExec, FExecOnLoad);
         }
 
-        protected override void UpdateOps(ref T ops, int i)
+        protected override int SliceCount(int i)
         {
-            ops.Script = FScript.TryGetSlice(i) ?? "";
-            ops.Execute = FExec.TryGetSlice(i);
-            ops.ExecuteOnLoad = FExecOnLoad.TryGetSlice(i);
+            return SpreadUtils.SpreadMax(FScript[i], FExec[i], FExecOnLoad[i]);
+        }
+
+        protected override void UpdateOps(ref T ops, int i, int j)
+        {
+            ops.Script = FScript.TryGetSlice(i, j) ?? "";
+            ops.Execute = FExec.TryGetSlice(i, j);
+            ops.ExecuteOnLoad = FExecOnLoad.TryGetSlice(i, j);
         }
     }
 

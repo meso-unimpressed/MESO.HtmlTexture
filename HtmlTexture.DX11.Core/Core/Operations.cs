@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Chromium;
 using md.stdl.Coding;
 using md.stdl.Interaction;
+using mp.pddn;
 using Notui;
 using VVVV.PluginInterfaces.V2;
 using VVVV.PluginInterfaces.V2.NonGeneric;
@@ -23,12 +24,13 @@ namespace VVVV.HtmlTexture.DX11.Core
         public string Error { get; set; }
     }
 
-    public abstract class HtmlTextureOperation
+    public abstract class HtmlTextureOperation : OperationBase
     {
         public ISpread<HtmlTextureOperation> Others { get; set; }
         public bool ExecuteOnLoad { get; set; }
         public bool Execute { get; set; }
         public Dictionary<int, bool> Executed { get; } = new Dictionary<int, bool>();
+        public HtmlTextureWrapper Wrapper { get; set; }
         public event OperationExecutedEventHandler OnBeforeExecute;
         public event OperationExecutedEventHandler OnAfterExecute;
 
@@ -37,23 +39,26 @@ namespace VVVV.HtmlTexture.DX11.Core
             return Executed.ContainsKey(bid) && Executed[bid];
         }
 
-        public virtual void Invoke(HtmlTextureWrapper wrapper)
+        public override void Invoke()
         {
-            if (Others == null) return;
-            foreach (var operation in Others)
+            if((Execute || ExecuteOnLoad && Wrapper.LoadedFrame) && !WasExecuted(Wrapper.BrowserId))
             {
-                operation?.Invoke(wrapper);
-            }
-            if((Execute || ExecuteOnLoad && wrapper.LoadedFrame) && !WasExecuted(wrapper.BrowserId))
-            {
-                OnBeforeExecute?.Invoke(this, wrapper);
-                Operation(wrapper);
-                Executed.UpdateGeneric(wrapper.BrowserId, true);
-                OnAfterExecute?.Invoke(this, wrapper);
+                OnBeforeExecute?.Invoke(this, Wrapper);
+                Operation(Wrapper);
+                Executed.UpdateGeneric(Wrapper.BrowserId, true);
+                OnAfterExecute?.Invoke(this, Wrapper);
             }
         }
 
         protected abstract void Operation(HtmlTextureWrapper wrapper);
+    }
+
+    public class HtmlTextureOperationHost : OperationHost<HtmlTextureOperation>
+    {
+        public void InvokeRecursive(HtmlTextureWrapper wrapper)
+        {
+            InvokeRecursive(0, (i, j, o) => o.Wrapper = wrapper);
+        }
     }
 
     public class EmptyOperation : HtmlTextureOperation
@@ -181,7 +186,7 @@ namespace VVVV.HtmlTexture.DX11.Core
         public IEnumerable<KeyEvent> Input { get; set; }
         public bool Enabled { get; set; }
 
-        public override void Invoke(HtmlTextureWrapper wrapper)
+        public override void Invoke()
         {
             Up.Clear();
             bool inputexists = false;
@@ -201,7 +206,7 @@ namespace VVVV.HtmlTexture.DX11.Core
             Pressed.AddRange(Input);
 
             Execute = Enabled && (Up.Count > 0 || Down.Count > 0);
-            base.Invoke(wrapper);
+            base.Invoke();
         }
 
         protected override void Operation(HtmlTextureWrapper wrapper)

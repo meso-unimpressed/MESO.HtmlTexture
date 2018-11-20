@@ -22,13 +22,15 @@ namespace VVVV.HtmlTexture.DX11.Nodes
         public IDiffSpread<bool> FExec;
         [Input("Execute On Load", Order = 14, BinOrder = 15)]
         public IDiffSpread<bool> FExecOnLoad;
+        
+        protected override int SliceCount(int i) => 1;
 
-        protected override int SliceCount()
+        protected override int BinCount()
         {
-            return 1;
+            return SpreadUtils.SpreadMax(FExec, FExecOnLoad);
         }
 
-        protected override void UpdateOps(ref DummyResizeOperation ops, int i)
+        protected override void UpdateOps(ref DummyResizeOperation ops, int i, int j)
         {
             ops.Execute = FExec[i];
             ops.ExecuteOnLoad = FExecOnLoad[i];

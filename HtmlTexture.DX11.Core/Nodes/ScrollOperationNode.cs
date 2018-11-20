@@ -19,22 +19,27 @@ namespace HtmlTexture.DX11.Nodes
     public class ScrollOperationNode : PersistentOperationNode<ScrollOperation>
     {
         [Input("Scroll", Order = 10, BinOrder = 11)]
-        public IDiffSpread<Vector2D> FScroll;
+        public IDiffSpread<ISpread<Vector2D>> FScroll;
         [Input("Normalized", Order = 12, BinOrder = 13)]
-        public IDiffSpread<bool> FNorm;
+        public IDiffSpread<ISpread<bool>> FNorm;
         [Input("Element Selector", Order = 14, BinOrder = 15)]
-        public IDiffSpread<string> FElement;
+        public IDiffSpread<ISpread<string>> FElement;
 
-        protected override int SliceCount()
+        protected override int BinCount()
         {
             return SpreadUtils.SpreadMax(FScroll, FElement, FNorm);
         }
 
-        protected override void UpdateOps(ref ScrollOperation ops, int i)
+        protected override int SliceCount(int i)
         {
-            ops.ElementSelector = FElement[i];
-            ops.ScrollPos = FScroll[i];
-            ops.Normalized = FNorm[i];
+            return SpreadUtils.SpreadMax(FScroll[i], FElement[i], FNorm[i]);
+        }
+
+        protected override void UpdateOps(ref ScrollOperation ops, int i, int j)
+        {
+            ops.ElementSelector = FElement[i][j];
+            ops.ScrollPos = FScroll[i][j];
+            ops.Normalized = FNorm[i][j];
             ops.Execute = SpreadUtils.AnyChanged(FScroll, FNorm, FElement);
         }
     }

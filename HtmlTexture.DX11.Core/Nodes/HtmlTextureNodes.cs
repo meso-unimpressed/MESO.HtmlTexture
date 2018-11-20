@@ -28,35 +28,35 @@ namespace HtmlTexture.DX11.Nodes
             if(!Evaluating) return;
             if (!_init)
             {
-                FWrapperOutput.SliceCount = 0;
+                WrapperOut.SliceCount = 0;
             }
 
             int slc = SliceCount();
-            FWrapperOutput.Resize(slc, CreateWrapper, wrapper => wrapper.Dispose());
+            WrapperOut.Resize(slc, CreateWrapper, wrapper => wrapper.Dispose());
             SetOutputsSliceCount(slc);
 
             // Going backwards to avoid automatic slice duplication
             for (int i = slc - 1; i >= 0; i--)
             {
-                if ((FWrapperOutput[i]?.Closed ?? false) && FEnabledIn[i])
+                if ((WrapperOut[i]?.Closed ?? false) && EnabledIn[i])
                 {
-                    FWrapperOutput[i]?.Dispose();
-                    FWrapperOutput[i] = null;
+                    WrapperOut[i]?.Dispose();
+                    WrapperOut[i] = null;
                 }
-                var wrapper = FWrapperOutput[i];
+                var wrapper = WrapperOut[i];
                 if (wrapper == null)
                 {
                     wrapper = CreateWrapper(i);
-                    FWrapperOutput[i] = wrapper;
+                    WrapperOut[i] = wrapper;
                 }
-                else if (FWrapperOutput.Count(w => w != null && w.BrowserId == wrapper.BrowserId) > 1)
+                else if (WrapperOut.Count(w => w != null && w.BrowserId == wrapper.BrowserId) > 1)
                 {
                     wrapper = CreateWrapper(i);
-                    FWrapperOutput[i] = wrapper;
+                    WrapperOut[i] = wrapper;
                 }
                 if (wrapper == null) continue;
-                if (!FEnabledIn[i] && wrapper.Closed) continue;
-                if ((!FEnabledIn[i] || FHardLoad[i]) && !wrapper.Closed)
+                if (!EnabledIn[i] && wrapper.Closed) continue;
+                if ((!EnabledIn[i] || HardLoadIn[i]) && !wrapper.Closed)
                 {
                     wrapper.Close();
                     continue;
@@ -66,25 +66,25 @@ namespace HtmlTexture.DX11.Nodes
                 FillOuptuts(wrapper, i);
             }
 
-            FWrapperOutput.Stream.IsChanged = true;
+            WrapperOut.Stream.IsChanged = true;
             _init = true;
         }
 
         public void TurnOn()
         {
-            for (int i = 0; i < FWrapperOutput.SliceCount; i++)
+            for (int i = 0; i < WrapperOut.SliceCount; i++)
             {
-                FWrapperOutput[i]?.Dispose();
-                FWrapperOutput[i] = null;
+                WrapperOut[i]?.Dispose();
+                WrapperOut[i] = null;
             }
             Evaluating = true;
         }
 
         public void TurnOff()
         {
-            for (int i = 0; i < FWrapperOutput.SliceCount; i++)
+            for (int i = 0; i < WrapperOut.SliceCount; i++)
             {
-                FWrapperOutput[i].Close();
+                WrapperOut[i].Close();
             }
             Evaluating = false;
         }

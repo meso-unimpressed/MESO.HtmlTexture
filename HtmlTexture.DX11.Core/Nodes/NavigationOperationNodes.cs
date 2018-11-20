@@ -17,17 +17,19 @@ namespace HtmlTexture.DX11.Nodes
     )]
     public class NavigationOperationNodes : PersistentOperationNode<NavigationOperation>
     {
-        [Input("Back", Order = 10, BinOrder = 11, IsBang = true)]
+        [Input("Back", Order = 10, IsBang = true)]
         public ISpread<bool> FBack;
-        [Input("Forward", Order = 12, BinOrder = 13, IsBang = true)]
+        [Input("Forward", Order = 12, IsBang = true)]
         public ISpread<bool> FForw;
 
-        protected override int SliceCount()
+        protected override int SliceCount(int i) => 1;
+
+        protected override int BinCount()
         {
             return SpreadUtils.SpreadMax(FBack, FForw);
         }
 
-        protected override void UpdateOps(ref NavigationOperation ops, int i)
+        protected override void UpdateOps(ref NavigationOperation ops, int i, int j)
         {
             ops.Backward = FBack[i];
             ops.Forward = FForw[i];

@@ -4,8 +4,10 @@ using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Fasterflect;
 using FeralTic.DX11;
 using FeralTic.DX11.Resources;
+using mp.pddn;
 using VVVV.Core.Logging;
 using VVVV.DX11;
 using VVVV.HtmlTexture.DX11.Core;
@@ -21,87 +23,87 @@ namespace HtmlTexture.DX11.Nodes
         public ILogger Logger;
 
         [Config("Framerate", DefaultValue = 60)]
-        public ISpread<int> FFps;
+        public ISpread<int> FpsIn;
 
         [Input("VVVV Requests Frame", DefaultBoolean = false, Visibility = PinVisibility.OnlyInspector, Order = -11)]
-        public ISpread<bool> FVvvvRequFrame;
+        public ISpread<bool> VvvvRequFrameIn;
         [Input("Allow Requesting Frames", DefaultBoolean = true, Visibility = PinVisibility.OnlyInspector, Order = -10)]
-        public ISpread<bool> FAllowDraw;
+        public ISpread<bool> AllowDrawIn;
 
         [Input("Load", IsBang = true)]
-        public ISpread<bool> FLoad;
+        public ISpread<bool> LoadIn;
 
         [Input("Hard Load", IsBang = true, Visibility = PinVisibility.Hidden)]
-        public ISpread<bool> FHardLoad;
+        public ISpread<bool> HardLoadIn;
 
         [Input("Reload Current", IsBang = true)]
-        public ISpread<bool> FReloadIn;
+        public ISpread<bool> ReloadIn;
 
         [Input("Size", DefaultValues = new double[] { HtmlTextureWrapper.DefaultWidth, HtmlTextureWrapper.DefaultHeight })]
-        public IDiffSpread<Vector2D> FSize;
+        public IDiffSpread<Vector2D> SizeIn;
 
         [Input("Use Element As Document Size", DefaultString = "body", Visibility = PinVisibility.OnlyInspector)]
-        public IDiffSpread<string> FDocSizeBaseSelector;
+        public IDiffSpread<string> DocSizeBaseSelectorIn;
 
         [Input("Auto Width")]
-        public IDiffSpread<bool> FAutoWidth;
+        public IDiffSpread<bool> AutoWidthIn;
         [Input("Auto Height")]
-        public IDiffSpread<bool> FAutoHeight;
+        public IDiffSpread<bool> AutoHeightIn;
         [Input("Extra Size", Visibility = PinVisibility.OnlyInspector)]
-        public IDiffSpread<Vector2D> FExtraSize;
+        public IDiffSpread<Vector2D> ExtraSizeIn;
 
         [Input("Allow Popup Takeover")]
-        public IDiffSpread<bool> FPopupIn;
+        public IDiffSpread<bool> PopupIn;
 
         [Input("Filter Url", Visibility = PinVisibility.OnlyInspector, BinVisibility = PinVisibility.OnlyInspector)]
-        public IDiffSpread<ISpread<string>> FFilterUrlIn;
+        public IDiffSpread<ISpread<string>> FilterUrlIn;
 
         [Input("Filter Mode", Visibility = PinVisibility.OnlyInspector)]
-        public IDiffSpread<UrlFilterMode> FFilterMode;
+        public IDiffSpread<UrlFilterMode> FilterModeIn;
 
         [Input("Zoom")]
-        public IDiffSpread<double> FZoomLevelIn;
+        public IDiffSpread<double> ZoomLevelIn;
 
         [Input("Mouse")]
-        public ISpread<Mouse> FMouseIn;
+        public ISpread<Mouse> MouseIn;
 
         [Input("Invert Vertical Scrolling", Visibility = PinVisibility.OnlyInspector)]
-        public IDiffSpread<bool> FInvVScroll;
+        public IDiffSpread<bool> InvVScrollIn;
         [Input("Invert Horizontal Scrolling", Visibility = PinVisibility.OnlyInspector)]
-        public IDiffSpread<bool> FInvHScroll;
+        public IDiffSpread<bool> InvHScrollIn;
 
         [Input("Keyboard")]
-        public ISpread<Keyboard> FKeyboardIn;
+        public ISpread<Keyboard> KeyboardIn;
 
         [Input("Show DevTools", IsBang = true)]
-        public IDiffSpread<bool> FShowDevToolsIn;
+        public IDiffSpread<bool> ShowDevToolsIn;
 
         [Input("Use LivePage")]
-        public IDiffSpread<bool> FLivePageIn;
+        public IDiffSpread<bool> LivePageIn;
 
         [Input("User-Agent")]
-        public IDiffSpread<string> FUserAgentIn;
+        public IDiffSpread<string> UserAgentIn;
 
         [Input("Log to Console")]
-        public IDiffSpread<bool> FConsoleIn;
+        public IDiffSpread<bool> LogToConsoleIn;
 
-        [Input("Operations", BinVisibility = PinVisibility.Hidden)]
-        public ISpread<ISpread<HtmlTextureOperation>> FOperations;
+        [Input("Operations", IsSingle = true)]
+        public ISpread<HtmlTextureOperationHost> OperationsIn;
 
         [Input("Enabled", DefaultBoolean = true)]
-        public ISpread<bool> FEnabledIn;
+        public ISpread<bool> EnabledIn;
 
         [Input("Allow Initialization", Visibility = PinVisibility.OnlyInspector, DefaultBoolean = true)]
-        public IDiffSpread<bool> FManInit;
+        public IDiffSpread<bool> ManInit;
 
         protected bool CanCreate;
 
         protected virtual int SliceCount()
         {
-            return SpreadUtils.SpreadMax(FOperations, FLoad, FHardLoad, FReloadIn, FSize,
-                FDocSizeBaseSelector, FAutoWidth, FAutoHeight, FPopupIn, FFilterUrlIn,
-                FZoomLevelIn, FMouseIn, FKeyboardIn, FShowDevToolsIn,
-                FLivePageIn, FUserAgentIn, FConsoleIn, FEnabledIn);
+            return SpreadUtils.SpreadMax(OperationsIn, LoadIn, HardLoadIn, ReloadIn, SizeIn,
+                DocSizeBaseSelectorIn, AutoWidthIn, AutoHeightIn, PopupIn, FilterUrlIn,
+                ZoomLevelIn, MouseIn, KeyboardIn, ShowDevToolsIn,
+                LivePageIn, UserAgentIn, LogToConsoleIn, EnabledIn);
         }
 
         protected abstract void LoadContent(HtmlTextureWrapper wrapper, int i);
@@ -111,35 +113,38 @@ namespace HtmlTexture.DX11.Nodes
             if (!CanCreate) return null;
             var wrapper = new HtmlTextureWrapper(new HtmlTextureWrapper.WrapperInitSettings
             {
-                Fps = FFps[0],
+                Fps = FpsIn[0],
                 ParentHandle = 0,
-                FrameRequestFromVvvv = FVvvvRequFrame[0]
+                FrameRequestFromVvvv = VvvvRequFrameIn[0]
             })
             {
                 TextureSettings = new HtmlTextureWrapper.WrapperTextureSettings
                 {
-                    TargetSize = ((int)FSize[i].x, (int)FSize[i].y),
-                    ExtraSize = ((int)FExtraSize[i].x, (int)FExtraSize[i].y),
-                    AutoWidth = FAutoWidth[i],
-                    AutoHeight = FAutoHeight[i]
+                    TargetSize = ((int)SizeIn[i].x, (int)SizeIn[i].y),
+                    ExtraSize = ((int)ExtraSizeIn[i].x, (int)ExtraSizeIn[i].y),
+                    AutoWidth = AutoWidthIn[i],
+                    AutoHeight = AutoHeightIn[i]
                 },
                 BrowserSettings = new HtmlTextureWrapper.WrapperBrowserSettings
                 {
-                    UseLivePage = FLivePageIn[i],
-                    AllowPopups = FPopupIn[i],
-                    UserAgent = FUserAgentIn[i],
-                    ListenConsole = FConsoleIn[i],
-                    ZoomLevel = FZoomLevelIn[i],
-                    InvertScrollWheel = FInvVScroll[i],
-                    InvertHorizontalScrollWheel = FInvHScroll[i],
-                    UrlFilterMode = FFilterMode[i],
-                    DocumentSizeElementSelector = FDocSizeBaseSelector[i]
+                    UseLivePage = LivePageIn[i],
+                    AllowPopups = PopupIn[i],
+                    UserAgent = UserAgentIn[i],
+                    ListenConsole = LogToConsoleIn[i],
+                    ZoomLevel = ZoomLevelIn[i],
+                    InvertScrollWheel = InvVScrollIn[i],
+                    InvertHorizontalScrollWheel = InvHScrollIn[i],
+                    UrlFilterMode = FilterModeIn[i],
+                    DocumentSizeElementSelector = DocSizeBaseSelectorIn[i]
                 },
                 VvvvLogger = Logger,
-                Operations = FOperations[i],
-                UrlFilters = FFilterUrlIn[i],
-                Enabled = FEnabledIn[i]
+                Operations = new HtmlTextureOperationHost(),
+                UrlFilters = FilterUrlIn[i],
+                Enabled = EnabledIn[i]
             };
+
+            var ops = OperationsIn.TryGetSlice(0);
+            ops?.ExtractOperationHost(wrapper.Operations, i);
             
             wrapper.OnBrowserReady += (sender, e) => LoadContent(wrapper, i);
 
@@ -150,131 +155,134 @@ namespace HtmlTexture.DX11.Nodes
         protected virtual void UpdateWrapper(HtmlTextureWrapper wrapper, int i)
         {
             if (wrapper == null) return;
-            wrapper.Enabled = FEnabledIn[i];
-            if (FLoad[i]) LoadContent(wrapper, i);
-            if (FReloadIn[i]) wrapper.Reload();
-            if (FShowDevToolsIn[i]) wrapper.ShowDevTool();
+            wrapper.Enabled = EnabledIn[i];
+            if (LoadIn[i]) LoadContent(wrapper, i);
+            if (ReloadIn[i]) wrapper.Reload();
+            if (ShowDevToolsIn[i]) wrapper.ShowDevTool();
 
-            if (SpreadUtils.AnyChanged(FLivePageIn, FPopupIn, FUserAgentIn, FConsoleIn, FZoomLevelIn, FInvVScroll,
-                FInvHScroll, FDocSizeBaseSelector, FFilterMode))
+            if (SpreadUtils.AnyChanged(LivePageIn, PopupIn, UserAgentIn, LogToConsoleIn, ZoomLevelIn, InvVScrollIn,
+                InvHScrollIn, DocSizeBaseSelectorIn, FilterModeIn))
             {
                 wrapper.BrowserSettings = new HtmlTextureWrapper.WrapperBrowserSettings
                 {
-                    UseLivePage = FLivePageIn[i],
-                    AllowPopups = FPopupIn[i],
-                    UserAgent = FUserAgentIn[i],
-                    ListenConsole = FConsoleIn[i],
-                    ZoomLevel = FZoomLevelIn[i],
-                    InvertScrollWheel = FInvVScroll[i],
-                    InvertHorizontalScrollWheel = FInvHScroll[i],
-                    UrlFilterMode = FFilterMode[i],
-                    DocumentSizeElementSelector = FDocSizeBaseSelector[i]
+                    UseLivePage = LivePageIn[i],
+                    AllowPopups = PopupIn[i],
+                    UserAgent = UserAgentIn[i],
+                    ListenConsole = LogToConsoleIn[i],
+                    ZoomLevel = ZoomLevelIn[i],
+                    InvertScrollWheel = InvVScrollIn[i],
+                    InvertHorizontalScrollWheel = InvHScrollIn[i],
+                    UrlFilterMode = FilterModeIn[i],
+                    DocumentSizeElementSelector = DocSizeBaseSelectorIn[i]
                 };
             }
 
-            if (SpreadUtils.AnyChanged(FSize, FExtraSize, FAutoWidth, FAutoHeight))
+            if (SpreadUtils.AnyChanged(SizeIn, ExtraSizeIn, AutoWidthIn, AutoHeightIn))
             {
                 wrapper.TextureSettings = new HtmlTextureWrapper.WrapperTextureSettings
                 {
-                    TargetSize = ((int)FSize[i].x, (int)FSize[i].y),
-                    ExtraSize = ((int)FExtraSize[i].x, (int)FExtraSize[i].y),
-                    AutoWidth = FAutoWidth[i],
-                    AutoHeight = FAutoHeight[i]
+                    TargetSize = ((int)SizeIn[i].x, (int)SizeIn[i].y),
+                    ExtraSize = ((int)ExtraSizeIn[i].x, (int)ExtraSizeIn[i].y),
+                    AutoWidth = AutoWidthIn[i],
+                    AutoHeight = AutoHeightIn[i]
                 };
             }
 
-            wrapper.AllowFrameRequest = FAllowDraw[i];
-            wrapper.Mouse = FMouseIn[i];
-            wrapper.Keyboard = FKeyboardIn[i];
-            wrapper.Operations = FOperations[i];
+            wrapper.AllowFrameRequest = AllowDrawIn[i];
+            wrapper.Mouse = MouseIn[i];
+            wrapper.Keyboard = KeyboardIn[i];
 
-            if (FFilterUrlIn.IsChanged)
-                wrapper.UrlFilters = FFilterUrlIn[i];
+            if(wrapper.Operations == null) wrapper.Operations = new HtmlTextureOperationHost();
+            var ops = OperationsIn.TryGetSlice(0);
+            ops?.ExtractOperationHost(wrapper.Operations, i);
+
+            if (FilterUrlIn.IsChanged)
+                wrapper.UrlFilters = FilterUrlIn[i];
         }
     }
 
     public abstract class HtmlTextureInputOutputNode : AbstractHtmlTextureInputsNode, IDX11ResourceHost, IDisposable
     {
         [Output("Texture Output")]
-        public Pin<DX11Resource<DX11Texture2D>> FTextureOutput;
+        public Pin<DX11Resource<DX11Texture2D>> TextureOut;
 
         [Output("Wrapper Output")]
-        public Pin<HtmlTextureWrapper> FWrapperOutput;
+        public Pin<HtmlTextureWrapper> WrapperOut;
 
         [Output("Document Size")]
-        public ISpread<Vector2D> FDocSizeOut;
+        public ISpread<Vector2D> DocSizeOut;
 
         [Output("Document Ready")]
-        public ISpread<bool> FDocReady;
+        public ISpread<bool> DocReadyOut;
         [Output("Loading")]
-        public ISpread<bool> FIsLoadingOut;
+        public ISpread<bool> IsLoadingOut;
 
         [Output("On Created", IsBang = true)]
-        public ISpread<bool> FCreated;
+        public ISpread<bool> CreatedOut;
         [Output("On Loaded", IsBang = true)]
-        public ISpread<bool> FLoaded;
+        public ISpread<bool> LoadedOut;
         [Output("Loading Progress")]
-        public ISpread<double> FloadingProgress;
+        public ISpread<double> LoadingProgressOut;
 
         [Output("Current Url")]
-        public ISpread<string> FCurrentUrlOut;
+        public ISpread<string> CurrentUrlOut;
 
         [Output("Texture Valid")]
-        public ISpread<bool> FTextureValid;
+        public ISpread<bool> TextureValidOut;
 
         [Output("Error Text")]
-        public ISpread<string> FErrorTextOut;
+        public ISpread<string> ErrorTextOut;
 
         [Output("Last Js Log")]
-        public ISpread<string> FLog;
+        public ISpread<string> JsLogOut;
 
         protected virtual void SetOutputsSliceCount(int slc)
         {
-            FTextureOutput.SliceCount = FWrapperOutput.SliceCount = FDocSizeOut.SliceCount = FIsLoadingOut.SliceCount =
-                FLog.SliceCount = FCurrentUrlOut.SliceCount = FErrorTextOut.SliceCount = FTextureValid.SliceCount =
-                    FLoaded.SliceCount = FCreated.SliceCount = FDocReady.SliceCount = FloadingProgress.SliceCount = slc;
+            TextureOut.SliceCount = WrapperOut.SliceCount = DocSizeOut.SliceCount = IsLoadingOut.SliceCount =
+                JsLogOut.SliceCount = CurrentUrlOut.SliceCount = ErrorTextOut.SliceCount = TextureValidOut.SliceCount =
+                    LoadedOut.SliceCount = CreatedOut.SliceCount = DocReadyOut.SliceCount = LoadingProgressOut.SliceCount = slc;
         }
 
         protected void FillOuptuts(HtmlTextureWrapper wrapper, int i)
         {
             if (wrapper == null) return;
-            FTextureOutput[i] = wrapper.DX11Texture;
-            FDocSizeOut[i] = new Vector2D(wrapper.DocumentSize.w, wrapper.DocumentSize.h);
-            FIsLoadingOut[i] = wrapper.Loading;
-            FDocReady[i] = wrapper.IsDocumentReady;
-            FCurrentUrlOut[i] = wrapper.CurrentUrl;
-            FErrorTextOut[i] = wrapper.LastError;
-            FLoaded[i] = wrapper.LoadedFrame;
-            FCreated[i] = wrapper.CreatedFrame;
-            FTextureValid[i] = wrapper.IsTextureValid;
-            FLog[i] = wrapper.LastConsole;
-            FloadingProgress[i] = wrapper.Progress;
+            TextureOut[i] = wrapper.DX11Texture;
+            DocSizeOut[i] = new Vector2D(wrapper.DocumentSize.w, wrapper.DocumentSize.h);
+            IsLoadingOut[i] = wrapper.Loading;
+            DocReadyOut[i] = wrapper.IsDocumentReady;
+            CurrentUrlOut[i] = wrapper.CurrentUrl;
+            ErrorTextOut[i] = wrapper.LastError;
+            LoadedOut[i] = wrapper.LoadedFrame;
+            CreatedOut[i] = wrapper.CreatedFrame;
+            TextureValidOut[i] = wrapper.IsTextureValid;
+            JsLogOut[i] = wrapper.LastConsole;
+            LoadingProgressOut[i] = wrapper.Progress;
         }
 
         public void Update(DX11RenderContext context)
         {
-            CanCreate = FTextureOutput.IsConnected && (FManInit.SliceCount > 0 && FManInit[0]);
-            for (int i = 0; i < FWrapperOutput.SliceCount; i++)
+            CanCreate = TextureOut.IsConnected && (ManInit.SliceCount > 0 && ManInit[0]);
+            for (int i = 0; i < WrapperOut.SliceCount; i++)
             {
-                var wrapper = FWrapperOutput[i];
+                var wrapper = WrapperOut[i];
                 wrapper?.UpdateDX11Resources(context);
             }
         }
 
         public void Destroy(DX11RenderContext context, bool force)
         {
-            for (int i = 0; i < FWrapperOutput.SliceCount; i++)
+            for (int i = 0; i < WrapperOut.SliceCount; i++)
             {
-                var wrapper = FWrapperOutput[i];
+                var wrapper = WrapperOut[i];
                 wrapper?.DestroyDX11Resources(context, force);
             }
         }
 
         public void Dispose()
         {
-            for (int i = 0; i < FWrapperOutput.SliceCount; i++)
+            for (int i = 0; i < WrapperOut.SliceCount; i++)
             {
-                var wrapper = FWrapperOutput[i];
+                var wrapper = WrapperOut[i];
                 wrapper?.Dispose();
             }
         }
@@ -283,83 +291,84 @@ namespace HtmlTexture.DX11.Nodes
     public abstract class HtmlTextureOutputNode : IDX11ResourceHost, IDisposable
     {
         [Output("Texture Output")]
-        public Pin<DX11Resource<DX11Texture2D>> FTextureOutput;
+        public Pin<DX11Resource<DX11Texture2D>> TextureOut;
 
         [Output("Wrapper Output")]
-        public Pin<HtmlTextureWrapper> FWrapperOutput;
+        public Pin<HtmlTextureWrapper> WrapperOut;
 
         [Output("Document Size")]
-        public ISpread<Vector2D> FDocSizeOut;
+        public ISpread<Vector2D> DocSizeOut;
 
         [Output("Document Ready")]
-        public ISpread<bool> FDocReady;
+        public ISpread<bool> DocReadyOut;
         [Output("Loading")]
-        public ISpread<bool> FIsLoadingOut;
+        public ISpread<bool> IsLoadingOut;
 
         [Output("On Created", IsBang = true)]
-        public ISpread<bool> FCreated;
+        public ISpread<bool> CreatedOut;
         [Output("On Loaded", IsBang = true)]
-        public ISpread<bool> FLoaded;
+        public ISpread<bool> LoadedOut;
         [Output("Loading Progress")]
-        public ISpread<double> FloadingProgress;
+        public ISpread<double> LoadingProgressOut;
 
         [Output("Current Url")]
-        public ISpread<string> FCurrentUrlOut;
+        public ISpread<string> CurrentUrlOut;
+
+        [Output("Texture Valid")]
+        public ISpread<bool> TextureValidOut;
 
         [Output("Error Text")]
-        public ISpread<string> FErrorTextOut;
+        public ISpread<string> ErrorTextOut;
 
         [Output("Last Js Log")]
-        public ISpread<string> FLog;
+        public ISpread<string> JsLogOut;
 
-        protected bool CanCreate;
-
-        protected void SetOutputsSliceCount(int slc)
+        protected virtual void SetOutputsSliceCount(int slc)
         {
-            FTextureOutput.SliceCount = FWrapperOutput.SliceCount = FDocSizeOut.SliceCount = FIsLoadingOut.SliceCount =
-                FLog.SliceCount = FCurrentUrlOut.SliceCount = FErrorTextOut.SliceCount =
-                    FLoaded.SliceCount = FCreated.SliceCount = FDocReady.SliceCount = FloadingProgress.SliceCount = slc;
+            TextureOut.SliceCount = WrapperOut.SliceCount = DocSizeOut.SliceCount = IsLoadingOut.SliceCount =
+                JsLogOut.SliceCount = CurrentUrlOut.SliceCount = ErrorTextOut.SliceCount = TextureValidOut.SliceCount =
+                    LoadedOut.SliceCount = CreatedOut.SliceCount = DocReadyOut.SliceCount = LoadingProgressOut.SliceCount = slc;
         }
 
         protected void FillOuptuts(HtmlTextureWrapper wrapper, int i)
         {
             if (wrapper == null) return;
-            FTextureOutput[i] = wrapper.DX11Texture;
-            FDocSizeOut[i] = new Vector2D(wrapper.DocumentSize.w, wrapper.DocumentSize.h);
-            FIsLoadingOut[i] = wrapper.Loading;
-            FDocReady[i] = wrapper.IsDocumentReady;
-            FCurrentUrlOut[i] = wrapper.CurrentUrl;
-            FErrorTextOut[i] = wrapper.LastError;
-            FLoaded[i] = wrapper.LoadedFrame;
-            FCreated[i] = wrapper.CreatedFrame;
-            FLog[i] = wrapper.LastConsole;
-            FloadingProgress[i] = wrapper.Progress;
+            TextureOut[i] = wrapper.DX11Texture;
+            DocSizeOut[i] = new Vector2D(wrapper.DocumentSize.w, wrapper.DocumentSize.h);
+            IsLoadingOut[i] = wrapper.Loading;
+            DocReadyOut[i] = wrapper.IsDocumentReady;
+            CurrentUrlOut[i] = wrapper.CurrentUrl;
+            ErrorTextOut[i] = wrapper.LastError;
+            LoadedOut[i] = wrapper.LoadedFrame;
+            CreatedOut[i] = wrapper.CreatedFrame;
+            TextureValidOut[i] = wrapper.IsTextureValid;
+            JsLogOut[i] = wrapper.LastConsole;
+            LoadingProgressOut[i] = wrapper.Progress;
         }
 
         public void Update(DX11RenderContext context)
         {
-            CanCreate = FTextureOutput.IsConnected;
-            for (int i = 0; i < FWrapperOutput.SliceCount; i++)
+            for (int i = 0; i < WrapperOut.SliceCount; i++)
             {
-                var wrapper = FWrapperOutput[i];
+                var wrapper = WrapperOut[i];
                 wrapper?.UpdateDX11Resources(context);
             }
         }
 
         public void Destroy(DX11RenderContext context, bool force)
         {
-            for (int i = 0; i < FWrapperOutput.SliceCount; i++)
+            for (int i = 0; i < WrapperOut.SliceCount; i++)
             {
-                var wrapper = FWrapperOutput[i];
+                var wrapper = WrapperOut[i];
                 wrapper?.DestroyDX11Resources(context, force);
             }
         }
 
         public void Dispose()
         {
-            for (int i = 0; i < FWrapperOutput.SliceCount; i++)
+            for (int i = 0; i < WrapperOut.SliceCount; i++)
             {
-                var wrapper = FWrapperOutput[i];
+                var wrapper = WrapperOut[i];
                 wrapper?.Dispose();
             }
         }

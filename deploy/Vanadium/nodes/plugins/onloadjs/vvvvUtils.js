@@ -29,7 +29,7 @@ if ("vvvvUtils" in window) {
         } else {
             var selector = vvvvUtils.docSizeBaseSelector();
             var el = document.querySelector(selector);
-            if(el != null && el !== undefined) {
+            if(el !== null && el !== undefined) {
                 var mw = Math.max(el.scrollWidth, document.body.scrollWidth);
                 var mh = Math.max(el.scrollHeight, document.body.scrollHeight);
             } else {
