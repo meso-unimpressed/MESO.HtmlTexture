@@ -25,6 +25,7 @@ namespace VVVV.HtmlTexture.DX11.Core
 
             protected override CfrV8Value Function(CfrV8HandlerExecuteEventArgs args, JsBinding binding, HtmlTextureWrapper wrapper)
             {
+                if(wrapper == null) return CfrV8Value.CreateNull();
                 if (Arguments.Length >= 2 && (Arguments[0].IsInt && Arguments[1].IsInt))
                 {
                     Width = Arguments[0].IntValue;

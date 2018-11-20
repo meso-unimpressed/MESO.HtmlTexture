@@ -26,9 +26,9 @@ namespace HtmlTexture.DX11.Nodes
 
         protected override void UpdateOps(ref T ops, int i)
         {
-            ops.Script = FScript[i];
-            ops.Execute = FExec[i];
-            ops.ExecuteOnLoad = FExecOnLoad[i];
+            ops.Script = FScript.TryGetSlice(i) ?? "";
+            ops.Execute = FExec.TryGetSlice(i);
+            ops.ExecuteOnLoad = FExecOnLoad.TryGetSlice(i);
         }
     }
 

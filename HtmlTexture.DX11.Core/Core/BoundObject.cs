@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Chromium;
 using Chromium.Remote;
 using Chromium.Remote.Event;
 using md.stdl.Coding;
@@ -16,10 +17,9 @@ namespace VVVV.HtmlTexture.DX11.Core
     public class JsBinding : ICloneable<JsBinding>
     {
         public string Name { get; set; }
+        public bool Executed { get; private set; }
         public HtmlTextureWrapper Wrapper { get; private set; }
         public Dictionary<string, JsBindingFunction> Functions { get; } = new Dictionary<string, JsBindingFunction>();
-
-        private CfrV8Handler _prevHandler;
 
         public T AddFunction<T>(T func) where T : JsBindingFunction
         {
@@ -36,12 +36,12 @@ namespace VVVV.HtmlTexture.DX11.Core
             }
         }
 
-        public void Bind(HtmlTextureWrapper wrapper)
+        public void Bind(HtmlTextureWrapper wrapper, CfrV8Handler v8handler)
         {
-            if(_prevHandler != null) _prevHandler.Execute -= JavascriptCallback;
-            _prevHandler = wrapper.V8Handler;
-            wrapper.V8Handler.Execute += JavascriptCallback;
             Wrapper = wrapper;
+            Wrapper.OnMainLoopBegin += (sender, args) => Executed = false;
+            
+            v8handler.Execute += JavascriptCallback;
         }
 
         public void JavascriptCallback(object sender, CfrV8HandlerExecuteEventArgs e)
@@ -104,13 +104,13 @@ namespace VVVV.HtmlTexture.DX11.Core
             return Copy();
         }
 
-        ~JsBindingFunction()
-        {
-            foreach (var value in Arguments)
-            {
-                value.Dispose();
-            }
-        }
+        //~JsBindingFunction()
+        //{
+        //    foreach (var value in Arguments)
+        //    {
+        //        value.Dispose();
+        //    }
+        //}
     }
 
     public class SimpleReturnObjectBinding : JsBindingFunction
