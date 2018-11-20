@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using Chromium;
 using Chromium.Remote;
@@ -10,11 +13,39 @@ using VVVV.DX11.Nodes;
 
 namespace VVVV.HtmlTexture.DX11.Core
 {
-
     class App
     {
+        private static Process _parent;
+        private static Process _current;
+
+        private static void InitProcessListener(string[] args)
+        {
+            try
+            {
+                var pidargraw = args.ToList().Find(a => a.Contains("--vvvv-pid"));
+                var pidargregex = new Regex(@"--vvvv-pid=(?<pid>\d*?)$");
+                var pidarg = pidargregex.Match(pidargraw).Groups["pid"].Value;
+
+                if (!int.TryParse(pidarg, out var parentpid)) return;
+
+                _parent = Process.GetProcessById(parentpid);
+                _current = Process.GetCurrentProcess();
+
+                Task.Run(() =>
+                {
+                    while (true)
+                    {
+                        if (_parent.HasExited) _current.Kill();
+                        Thread.Sleep(1000);
+                    }
+                });
+            }
+            catch { }
+        }
+
         public static int Main(string[] args)
         {
+            InitProcessListener(args);
             return CfxRuntime.ExecuteProcess(null);
         }
     }
@@ -25,13 +56,20 @@ namespace VVVV.HtmlTexture.DX11.Core
 
         public static int RenderProcessMain()
         {
-            RenderProcess rp = new RenderProcess();
+            try
+            {
+                RenderProcess rp = new RenderProcess();
 
-            renderProcess.Add(rp);
-            int retval = rp.Start();
-            renderProcess.Remove(rp);
+                renderProcess.Add(rp);
+                int retval = rp.Start();
+                renderProcess.Remove(rp);
 
-            return retval;
+                return retval;
+            }
+            catch
+            {
+                return 0;
+            }
         }
 
         private CfrApp app;
