@@ -55,6 +55,27 @@ namespace HtmlTexture.DX11.Nodes
         [Input("Allow Popup Takeover")]
         public IDiffSpread<bool> PopupIn;
 
+        [Input(
+            "Allow Cookies",
+            Visibility = PinVisibility.Hidden,
+            DefaultBoolean = true
+        )]
+        public IDiffSpread<bool> AllowCookiesIn;
+
+        [Input(
+            "Allow Get Cookies",
+            Visibility = PinVisibility.OnlyInspector,
+            DefaultBoolean = true
+        )]
+        public IDiffSpread<bool> AllowGetCookiesIn;
+
+        [Input(
+            "Allow Set Cookies",
+            Visibility = PinVisibility.OnlyInspector,
+            DefaultBoolean = true
+        )]
+        public IDiffSpread<bool> AllowSetCookiesIn;
+
         [Input("Filter Url", Visibility = PinVisibility.OnlyInspector, BinVisibility = PinVisibility.OnlyInspector)]
         public IDiffSpread<ISpread<string>> FilterUrlIn;
 
@@ -135,7 +156,9 @@ namespace HtmlTexture.DX11.Nodes
                     InvertScrollWheel = InvVScrollIn[i],
                     InvertHorizontalScrollWheel = InvHScrollIn[i],
                     UrlFilterMode = FilterModeIn[i],
-                    DocumentSizeElementSelector = DocSizeBaseSelectorIn[i]
+                    DocumentSizeElementSelector = DocSizeBaseSelectorIn[i],
+                    AllowGetCookies = AllowCookiesIn[i] && AllowGetCookiesIn[i],
+                    AllowSetCookies = AllowCookiesIn[i] && AllowSetCookiesIn[i]
                 },
                 VvvvLogger = Logger,
                 Operations = new HtmlTextureOperationHost(),
@@ -173,7 +196,9 @@ namespace HtmlTexture.DX11.Nodes
                     InvertScrollWheel = InvVScrollIn[i],
                     InvertHorizontalScrollWheel = InvHScrollIn[i],
                     UrlFilterMode = FilterModeIn[i],
-                    DocumentSizeElementSelector = DocSizeBaseSelectorIn[i]
+                    DocumentSizeElementSelector = DocSizeBaseSelectorIn[i],
+                    AllowGetCookies = AllowCookiesIn[i] && AllowGetCookiesIn[i],
+                    AllowSetCookies = AllowCookiesIn[i] && AllowSetCookiesIn[i]
                 };
             }
 

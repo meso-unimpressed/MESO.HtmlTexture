@@ -88,6 +88,8 @@ namespace VVVV.HtmlTexture.DX11.Core
             LoadHandler.OnLoadingStateChange += (sender, e) => CurrentUrl = Browser.MainFrame.Url;
 
             RequestHandler = new CfxRequestHandler();
+            RequestHandler.CanGetCookies += (sender, args) => { args.SetReturnValue(BrowserSettings.AllowGetCookies); };
+            RequestHandler.CanSetCookie += (sender, args) => { args.SetReturnValue(BrowserSettings.AllowSetCookies); };
             RequestHandler.OnBeforeBrowse += HandleOnBeforeBrowse;
             RequestHandler.OnBeforeResourceLoad += HandleBeforeResourceLoad;
             RequestHandler.OnCertificateError += (sender, e) => LogError("Cert error: " + e.CertError.ToString());

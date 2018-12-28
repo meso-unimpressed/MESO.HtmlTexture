@@ -48,6 +48,8 @@ namespace VVVV.HtmlTexture.DX11.Core
             public bool AllowPopups;
             public string UserAgent;
             public bool ListenConsole;
+            public bool AllowGetCookies;
+            public bool AllowSetCookies;
             public double ZoomLevel;
             public bool InvertScrollWheel;
             public bool InvertHorizontalScrollWheel;

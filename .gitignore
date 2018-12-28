@@ -1,7 +1,10 @@
 
 # .v4p backup files
 *~.xml
-
+deploy/**/version.info
+deploy/**/cache
+deploy/**/user
+deploy/**/userdata
 deploy/**/cef/
 deploy/**/*.xml
 deploy/**/*.dll
