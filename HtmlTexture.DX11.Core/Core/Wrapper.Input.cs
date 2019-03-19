@@ -71,9 +71,23 @@ namespace VVVV.HtmlTexture.DX11.Core
                 };
                 _touches.UpdateGeneric(id, ceftouch);
             }
+
             foreach (var touch in _touches.Values)
             {
                 Browser.Host.SendTouchEvent(touch);
+            }
+
+            if(BrowserSettings.NoMouseMoveOnFirstTouch) return;
+
+            var firsttouch = _touches.Values.OrderBy(t => t.Id).FirstOrDefault();
+            if (firsttouch != null)
+            {
+                var me = new CfxMouseEvent
+                {
+                    X = (int)firsttouch.X,
+                    Y = (int)firsttouch.Y
+                };
+                Browser.Host.SendMouseMoveEvent(me, false);
             }
         }
 

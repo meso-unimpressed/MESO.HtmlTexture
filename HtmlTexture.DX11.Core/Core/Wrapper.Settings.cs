@@ -55,6 +55,7 @@ namespace VVVV.HtmlTexture.DX11.Core
             public bool InvertHorizontalScrollWheel;
             public UrlFilterMode UrlFilterMode;
             public string DocumentSizeElementSelector;
+            public bool NoMouseMoveOnFirstTouch;
         }
 
         public class WrapperInitSettings

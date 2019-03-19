@@ -25,24 +25,50 @@ namespace HtmlTexture.DX11.Nodes
         [Config("Framerate", DefaultValue = 60)]
         public ISpread<int> FpsIn;
 
-        [Input("VVVV Requests Frame", DefaultBoolean = false, Visibility = PinVisibility.OnlyInspector, Order = -11)]
+        [Input(
+            "VVVV Requests Frame",
+            DefaultBoolean = false,
+            Visibility = PinVisibility.OnlyInspector,
+            Order = -11
+        )]
         public ISpread<bool> VvvvRequFrameIn;
-        [Input("Allow Requesting Frames", DefaultBoolean = true, Visibility = PinVisibility.OnlyInspector, Order = -10)]
+
+        [Input(
+            "Allow Requesting Frames",
+            DefaultBoolean = true,
+            Visibility = PinVisibility.OnlyInspector,
+            Order = -10
+        )]
         public ISpread<bool> AllowDrawIn;
 
         [Input("Load", IsBang = true)]
         public ISpread<bool> LoadIn;
 
-        [Input("Hard Load", IsBang = true, Visibility = PinVisibility.Hidden)]
+        [Input(
+            "Hard Load",
+            IsBang = true,
+            Visibility = PinVisibility.Hidden
+        )]
         public ISpread<bool> HardLoadIn;
 
         [Input("Reload Current", IsBang = true)]
         public ISpread<bool> ReloadIn;
 
-        [Input("Size", DefaultValues = new double[] { HtmlTextureWrapper.DefaultWidth, HtmlTextureWrapper.DefaultHeight })]
+        [Input(
+            "Size",
+            DefaultValues = new double[]
+            {
+                HtmlTextureWrapper.DefaultWidth,
+                HtmlTextureWrapper.DefaultHeight
+            }
+        )]
         public IDiffSpread<Vector2D> SizeIn;
 
-        [Input("Use Element As Document Size", DefaultString = "body", Visibility = PinVisibility.OnlyInspector)]
+        [Input(
+            "Use Element As Document Size",
+            DefaultString = "body",
+            Visibility = PinVisibility.OnlyInspector
+        )]
         public IDiffSpread<string> DocSizeBaseSelectorIn;
 
         [Input("Auto Width")]
@@ -76,7 +102,11 @@ namespace HtmlTexture.DX11.Nodes
         )]
         public IDiffSpread<bool> AllowSetCookiesIn;
 
-        [Input("Filter Url", Visibility = PinVisibility.OnlyInspector, BinVisibility = PinVisibility.OnlyInspector)]
+        [Input(
+            "Filter Url",
+            Visibility = PinVisibility.OnlyInspector,
+            BinVisibility = PinVisibility.OnlyInspector
+        )]
         public IDiffSpread<ISpread<string>> FilterUrlIn;
 
         [Input("Filter Mode", Visibility = PinVisibility.OnlyInspector)]
@@ -111,10 +141,20 @@ namespace HtmlTexture.DX11.Nodes
         [Input("Operations", IsSingle = true)]
         public ISpread<HtmlTextureOperationHost> OperationsIn;
 
+        [Input(
+            "No MouseMove on First Touch",
+            Visibility = PinVisibility.OnlyInspector
+        )]
+        public IDiffSpread<bool> NoMouseMoveOnFirstTouchIn;
+
         [Input("Enabled", DefaultBoolean = true)]
         public ISpread<bool> EnabledIn;
 
-        [Input("Allow Initialization", Visibility = PinVisibility.OnlyInspector, DefaultBoolean = true)]
+        [Input(
+            "Allow Initialization",
+            Visibility = PinVisibility.OnlyInspector,
+            DefaultBoolean = true
+        )]
         public IDiffSpread<bool> ManInit;
 
         protected bool CanCreate;
@@ -124,7 +164,7 @@ namespace HtmlTexture.DX11.Nodes
             return SpreadUtils.SpreadMax(OperationsIn, LoadIn, HardLoadIn, ReloadIn, SizeIn,
                 DocSizeBaseSelectorIn, AutoWidthIn, AutoHeightIn, PopupIn, FilterUrlIn,
                 ZoomLevelIn, MouseIn, KeyboardIn, ShowDevToolsIn,
-                LivePageIn, UserAgentIn, LogToConsoleIn, EnabledIn);
+                LivePageIn, UserAgentIn, LogToConsoleIn, NoMouseMoveOnFirstTouchIn, EnabledIn);
         }
 
         protected abstract void LoadContent(HtmlTextureWrapper wrapper, int i);
@@ -158,7 +198,8 @@ namespace HtmlTexture.DX11.Nodes
                     UrlFilterMode = FilterModeIn[i],
                     DocumentSizeElementSelector = DocSizeBaseSelectorIn[i],
                     AllowGetCookies = AllowCookiesIn[i] && AllowGetCookiesIn[i],
-                    AllowSetCookies = AllowCookiesIn[i] && AllowSetCookiesIn[i]
+                    AllowSetCookies = AllowCookiesIn[i] && AllowSetCookiesIn[i],
+                    NoMouseMoveOnFirstTouch = NoMouseMoveOnFirstTouchIn[i]
                 },
                 VvvvLogger = Logger,
                 Operations = new HtmlTextureOperationHost(),
@@ -184,7 +225,7 @@ namespace HtmlTexture.DX11.Nodes
             if (ShowDevToolsIn[i]) wrapper.ShowDevTool();
 
             if (SpreadUtils.AnyChanged(LivePageIn, PopupIn, UserAgentIn, LogToConsoleIn, ZoomLevelIn, InvVScrollIn,
-                InvHScrollIn, DocSizeBaseSelectorIn, FilterModeIn))
+                InvHScrollIn, DocSizeBaseSelectorIn, FilterModeIn, NoMouseMoveOnFirstTouchIn))
             {
                 wrapper.BrowserSettings = new HtmlTextureWrapper.WrapperBrowserSettings
                 {
@@ -198,7 +239,8 @@ namespace HtmlTexture.DX11.Nodes
                     UrlFilterMode = FilterModeIn[i],
                     DocumentSizeElementSelector = DocSizeBaseSelectorIn[i],
                     AllowGetCookies = AllowCookiesIn[i] && AllowGetCookiesIn[i],
-                    AllowSetCookies = AllowCookiesIn[i] && AllowSetCookiesIn[i]
+                    AllowSetCookies = AllowCookiesIn[i] && AllowSetCookiesIn[i],
+                    NoMouseMoveOnFirstTouch = NoMouseMoveOnFirstTouchIn[i]
                 };
             }
 
