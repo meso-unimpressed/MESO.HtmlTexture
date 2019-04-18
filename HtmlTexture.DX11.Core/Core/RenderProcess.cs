@@ -92,7 +92,7 @@ namespace VVVV.HtmlTexture.DX11.Core
 
                 renderProcessHandler = new CfrRenderProcessHandler();
                 renderProcessHandler.GetLoadHandler += (sender, e) => e.SetReturnValue(loadHandler);
-
+                
                 app.GetRenderProcessHandler += (s, e) => e.SetReturnValue(renderProcessHandler);
 
                 var retval = CfrRuntime.ExecuteProcess(app);

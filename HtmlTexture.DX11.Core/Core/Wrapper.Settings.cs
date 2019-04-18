@@ -56,6 +56,7 @@ namespace VVVV.HtmlTexture.DX11.Core
             public UrlFilterMode UrlFilterMode;
             public string DocumentSizeElementSelector;
             public bool NoMouseMoveOnFirstTouch;
+            public bool MuteAudio;
         }
 
         public class WrapperInitSettings

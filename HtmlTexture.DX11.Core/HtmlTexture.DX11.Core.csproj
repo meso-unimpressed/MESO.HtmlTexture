@@ -87,7 +87,7 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationManifest>HtmlTexture.DX11.Core.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ChromiumFX">
@@ -113,6 +113,7 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="mp.pddn, Version=1.3.0.7, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\mp.pddn.1.3.0.7\lib\net47\mp.pddn.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Notui, Version=0.3.1.4, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Notui.0.3.1.4\lib\net47\Notui.dll</HintPath>
@@ -230,6 +231,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\Wrapper.Api.cs" />
+    <Compile Include="Core\Wrapper.Audio.cs" />
     <Compile Include="Core\Wrapper.Init.cs" />
     <Compile Include="Core\Wrapper.Input.cs" />
     <Compile Include="Core\Wrapper.Mainloop.cs" />
@@ -264,413 +266,185 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="app.manifest" />
-    <None Include="cef\angledata\VkICD_mock_icd.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="cef\angledata\VkLayer_core_validation.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="cef\angledata\VkLayer_object_tracker.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="cef\angledata\VkLayer_parameter_validation.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="cef\angledata\VkLayer_standard_validation.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="cef\angledata\VkLayer_threading.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="cef\angledata\VkLayer_unique_objects.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <None Include="HtmlTexture.DX11.Core.manifest" />
     <None Include="cef\cef.pak">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="cef\cef.pak.info">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="cef\cef_100_percent.pak">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="cef\cef_100_percent.pak.info">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="cef\cef_200_percent.pak">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="cef\cef_200_percent.pak.info">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="cef\cef_extensions.pak">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="cef\cef_extensions.pak.info">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="cef\devtools_resources.pak">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="cef\devtools_resources.pak.info">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="cef\icudtl.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="cef\keyboard_resources.pak">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="cef\libcef.dll.lib">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="cef\libEGL.dll.lib">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="cef\libGLESv2.dll.lib">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="cef\locales\am.pak">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="cef\locales\am.pak.info">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="cef\locales\ar.pak">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="cef\locales\ar.pak.info">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="cef\locales\bg.pak">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="cef\locales\bg.pak.info">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="cef\locales\bn.pak">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="cef\locales\bn.pak.info">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="cef\locales\ca.pak">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="cef\locales\ca.pak.info">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="cef\locales\cs.pak">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="cef\locales\cs.pak.info">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="cef\locales\da.pak">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="cef\locales\da.pak.info">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="cef\locales\de.pak">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="cef\locales\de.pak.info">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="cef\locales\el.pak">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="cef\locales\el.pak.info">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="cef\locales\en-GB.pak">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="cef\locales\en-GB.pak.info">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="cef\locales\en-US.pak">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="cef\locales\en-US.pak.info">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="cef\locales\es-419.pak">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="cef\locales\es-419.pak.info">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="cef\locales\es.pak">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="cef\locales\es.pak.info">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="cef\locales\et.pak">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="cef\locales\et.pak.info">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="cef\locales\fa.pak">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="cef\locales\fa.pak.info">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="cef\locales\fi.pak">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="cef\locales\fi.pak.info">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="cef\locales\fil.pak">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="cef\locales\fil.pak.info">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="cef\locales\fr.pak">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="cef\locales\fr.pak.info">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="cef\locales\gu.pak">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="cef\locales\gu.pak.info">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="cef\locales\he.pak">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="cef\locales\he.pak.info">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="cef\locales\hi.pak">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="cef\locales\hi.pak.info">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="cef\locales\hr.pak">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="cef\locales\hr.pak.info">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="cef\locales\hu.pak">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="cef\locales\hu.pak.info">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="cef\locales\id.pak">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="cef\locales\id.pak.info">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="cef\locales\it.pak">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="cef\locales\it.pak.info">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="cef\locales\ja.pak">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="cef\locales\ja.pak.info">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="cef\locales\kn.pak">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="cef\locales\kn.pak.info">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="cef\locales\ko.pak">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="cef\locales\ko.pak.info">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="cef\locales\lt.pak">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="cef\locales\lt.pak.info">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="cef\locales\lv.pak">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="cef\locales\lv.pak.info">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="cef\locales\ml.pak">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="cef\locales\ml.pak.info">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="cef\locales\mr.pak">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="cef\locales\mr.pak.info">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="cef\locales\ms.pak">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="cef\locales\ms.pak.info">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="cef\locales\nb.pak">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="cef\locales\nb.pak.info">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="cef\locales\nl.pak">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="cef\locales\nl.pak.info">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="cef\locales\pl.pak">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="cef\locales\pl.pak.info">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="cef\locales\pt-BR.pak">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="cef\locales\pt-BR.pak.info">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="cef\locales\pt-PT.pak">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="cef\locales\pt-PT.pak.info">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="cef\locales\ro.pak">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="cef\locales\ro.pak.info">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="cef\locales\ru.pak">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="cef\locales\ru.pak.info">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="cef\locales\sk.pak">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="cef\locales\sk.pak.info">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="cef\locales\sl.pak">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="cef\locales\sl.pak.info">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="cef\locales\sr.pak">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="cef\locales\sr.pak.info">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="cef\locales\sv.pak">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="cef\locales\sv.pak.info">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="cef\locales\sw.pak">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="cef\locales\sw.pak.info">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="cef\locales\ta.pak">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="cef\locales\ta.pak.info">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="cef\locales\te.pak">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="cef\locales\te.pak.info">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="cef\locales\th.pak">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="cef\locales\th.pak.info">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="cef\locales\tr.pak">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="cef\locales\tr.pak.info">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="cef\locales\uk.pak">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="cef\locales\uk.pak.info">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="cef\locales\vi.pak">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="cef\locales\vi.pak.info">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="cef\locales\zh-CN.pak">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="cef\locales\zh-CN.pak.info">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="cef\locales\zh-TW.pak">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="cef\locales\zh-TW.pak.info">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="cef\mus_app_resources_100.pak">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="cef\mus_app_resources_100.pak.info">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="cef\mus_app_resources_200.pak">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="cef\mus_app_resources_200.pak.info">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="cef\mus_app_resources_strings.pak">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="cef\mus_app_resources_strings.pak.info">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="cef\natives_blob.bin">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="cef\osmesa.lib">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="cef\PepperFlash\manifest.json">
@@ -679,34 +453,7 @@
     <None Include="cef\snapshot_blob.bin">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="cef\swiftshader\libEGL.dll.exp">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="cef\swiftshader\libEGL.dll.lib">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="cef\swiftshader\libGLESv2.dll.exp">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="cef\swiftshader\libGLESv2.dll.lib">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="cef\v8_build_config.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="cef\v8_context_snapshot.bin">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="cef\views_mus_resources.pak">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="cef\views_mus_resources.pak.info">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="libcfx64.exp">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="libcfx64.lib">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
@@ -718,252 +465,6 @@
     <Content Include="cef\d3dcompiler_47.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="cef\include\base\cef_atomicops.h" />
-    <Content Include="cef\include\base\cef_atomic_ref_count.h" />
-    <Content Include="cef\include\base\cef_basictypes.h" />
-    <Content Include="cef\include\base\cef_bind.h" />
-    <Content Include="cef\include\base\cef_bind_helpers.h" />
-    <Content Include="cef\include\base\cef_build.h" />
-    <Content Include="cef\include\base\cef_callback.h" />
-    <Content Include="cef\include\base\cef_callback_forward.h" />
-    <Content Include="cef\include\base\cef_callback_helpers.h" />
-    <Content Include="cef\include\base\cef_callback_list.h" />
-    <Content Include="cef\include\base\cef_cancelable_callback.h" />
-    <Content Include="cef\include\base\cef_lock.h" />
-    <Content Include="cef\include\base\cef_logging.h" />
-    <Content Include="cef\include\base\cef_macros.h" />
-    <Content Include="cef\include\base\cef_move.h" />
-    <Content Include="cef\include\base\cef_platform_thread.h" />
-    <Content Include="cef\include\base\cef_ref_counted.h" />
-    <Content Include="cef\include\base\cef_scoped_ptr.h" />
-    <Content Include="cef\include\base\cef_string16.h" />
-    <Content Include="cef\include\base\cef_template_util.h" />
-    <Content Include="cef\include\base\cef_thread_checker.h" />
-    <Content Include="cef\include\base\cef_trace_event.h" />
-    <Content Include="cef\include\base\cef_tuple.h" />
-    <Content Include="cef\include\base\cef_weak_ptr.h" />
-    <Content Include="cef\include\base\internal\cef_atomicops_arm_gcc.h" />
-    <Content Include="cef\include\base\internal\cef_atomicops_atomicword_compat.h" />
-    <Content Include="cef\include\base\internal\cef_atomicops_mac.h" />
-    <Content Include="cef\include\base\internal\cef_atomicops_x86_gcc.h" />
-    <Content Include="cef\include\base\internal\cef_atomicops_x86_msvc.h" />
-    <Content Include="cef\include\base\internal\cef_bind_internal.h" />
-    <Content Include="cef\include\base\internal\cef_bind_internal_win.h" />
-    <Content Include="cef\include\base\internal\cef_callback_internal.h" />
-    <Content Include="cef\include\base\internal\cef_lock_impl.h" />
-    <Content Include="cef\include\base\internal\cef_raw_scoped_refptr_mismatch_checker.h" />
-    <Content Include="cef\include\base\internal\cef_thread_checker_impl.h" />
-    <Content Include="cef\include\capi\cef_accessibility_handler_capi.h" />
-    <Content Include="cef\include\capi\cef_app_capi.h" />
-    <Content Include="cef\include\capi\cef_auth_callback_capi.h" />
-    <Content Include="cef\include\capi\cef_base_capi.h" />
-    <Content Include="cef\include\capi\cef_browser_capi.h" />
-    <Content Include="cef\include\capi\cef_browser_process_handler_capi.h" />
-    <Content Include="cef\include\capi\cef_callback_capi.h" />
-    <Content Include="cef\include\capi\cef_client_capi.h" />
-    <Content Include="cef\include\capi\cef_command_line_capi.h" />
-    <Content Include="cef\include\capi\cef_context_menu_handler_capi.h" />
-    <Content Include="cef\include\capi\cef_cookie_capi.h" />
-    <Content Include="cef\include\capi\cef_crash_util_capi.h" />
-    <Content Include="cef\include\capi\cef_dialog_handler_capi.h" />
-    <Content Include="cef\include\capi\cef_display_handler_capi.h" />
-    <Content Include="cef\include\capi\cef_dom_capi.h" />
-    <Content Include="cef\include\capi\cef_download_handler_capi.h" />
-    <Content Include="cef\include\capi\cef_download_item_capi.h" />
-    <Content Include="cef\include\capi\cef_drag_data_capi.h" />
-    <Content Include="cef\include\capi\cef_drag_handler_capi.h" />
-    <Content Include="cef\include\capi\cef_extension_capi.h" />
-    <Content Include="cef\include\capi\cef_extension_handler_capi.h" />
-    <Content Include="cef\include\capi\cef_file_util_capi.h" />
-    <Content Include="cef\include\capi\cef_find_handler_capi.h" />
-    <Content Include="cef\include\capi\cef_focus_handler_capi.h" />
-    <Content Include="cef\include\capi\cef_frame_capi.h" />
-    <Content Include="cef\include\capi\cef_image_capi.h" />
-    <Content Include="cef\include\capi\cef_jsdialog_handler_capi.h" />
-    <Content Include="cef\include\capi\cef_keyboard_handler_capi.h" />
-    <Content Include="cef\include\capi\cef_life_span_handler_capi.h" />
-    <Content Include="cef\include\capi\cef_load_handler_capi.h" />
-    <Content Include="cef\include\capi\cef_menu_model_capi.h" />
-    <Content Include="cef\include\capi\cef_menu_model_delegate_capi.h" />
-    <Content Include="cef\include\capi\cef_navigation_entry_capi.h" />
-    <Content Include="cef\include\capi\cef_origin_whitelist_capi.h" />
-    <Content Include="cef\include\capi\cef_parser_capi.h" />
-    <Content Include="cef\include\capi\cef_path_util_capi.h" />
-    <Content Include="cef\include\capi\cef_print_handler_capi.h" />
-    <Content Include="cef\include\capi\cef_print_settings_capi.h" />
-    <Content Include="cef\include\capi\cef_process_message_capi.h" />
-    <Content Include="cef\include\capi\cef_process_util_capi.h" />
-    <Content Include="cef\include\capi\cef_render_handler_capi.h" />
-    <Content Include="cef\include\capi\cef_render_process_handler_capi.h" />
-    <Content Include="cef\include\capi\cef_request_capi.h" />
-    <Content Include="cef\include\capi\cef_request_context_capi.h" />
-    <Content Include="cef\include\capi\cef_request_context_handler_capi.h" />
-    <Content Include="cef\include\capi\cef_request_handler_capi.h" />
-    <Content Include="cef\include\capi\cef_resource_bundle_capi.h" />
-    <Content Include="cef\include\capi\cef_resource_bundle_handler_capi.h" />
-    <Content Include="cef\include\capi\cef_resource_handler_capi.h" />
-    <Content Include="cef\include\capi\cef_response_capi.h" />
-    <Content Include="cef\include\capi\cef_response_filter_capi.h" />
-    <Content Include="cef\include\capi\cef_scheme_capi.h" />
-    <Content Include="cef\include\capi\cef_server_capi.h" />
-    <Content Include="cef\include\capi\cef_ssl_info_capi.h" />
-    <Content Include="cef\include\capi\cef_ssl_status_capi.h" />
-    <Content Include="cef\include\capi\cef_stream_capi.h" />
-    <Content Include="cef\include\capi\cef_string_visitor_capi.h" />
-    <Content Include="cef\include\capi\cef_task_capi.h" />
-    <Content Include="cef\include\capi\cef_thread_capi.h" />
-    <Content Include="cef\include\capi\cef_trace_capi.h" />
-    <Content Include="cef\include\capi\cef_urlrequest_capi.h" />
-    <Content Include="cef\include\capi\cef_v8_capi.h" />
-    <Content Include="cef\include\capi\cef_values_capi.h" />
-    <Content Include="cef\include\capi\cef_waitable_event_capi.h" />
-    <Content Include="cef\include\capi\cef_web_plugin_capi.h" />
-    <Content Include="cef\include\capi\cef_x509_certificate_capi.h" />
-    <Content Include="cef\include\capi\cef_xml_reader_capi.h" />
-    <Content Include="cef\include\capi\cef_zip_reader_capi.h" />
-    <Content Include="cef\include\capi\test\cef_test_helpers_capi.h" />
-    <Content Include="cef\include\capi\test\cef_translator_test_capi.h" />
-    <Content Include="cef\include\capi\views\cef_box_layout_capi.h" />
-    <Content Include="cef\include\capi\views\cef_browser_view_capi.h" />
-    <Content Include="cef\include\capi\views\cef_browser_view_delegate_capi.h" />
-    <Content Include="cef\include\capi\views\cef_button_capi.h" />
-    <Content Include="cef\include\capi\views\cef_button_delegate_capi.h" />
-    <Content Include="cef\include\capi\views\cef_display_capi.h" />
-    <Content Include="cef\include\capi\views\cef_fill_layout_capi.h" />
-    <Content Include="cef\include\capi\views\cef_label_button_capi.h" />
-    <Content Include="cef\include\capi\views\cef_layout_capi.h" />
-    <Content Include="cef\include\capi\views\cef_menu_button_capi.h" />
-    <Content Include="cef\include\capi\views\cef_menu_button_delegate_capi.h" />
-    <Content Include="cef\include\capi\views\cef_panel_capi.h" />
-    <Content Include="cef\include\capi\views\cef_panel_delegate_capi.h" />
-    <Content Include="cef\include\capi\views\cef_scroll_view_capi.h" />
-    <Content Include="cef\include\capi\views\cef_textfield_capi.h" />
-    <Content Include="cef\include\capi\views\cef_textfield_delegate_capi.h" />
-    <Content Include="cef\include\capi\views\cef_view_capi.h" />
-    <Content Include="cef\include\capi\views\cef_view_delegate_capi.h" />
-    <Content Include="cef\include\capi\views\cef_window_capi.h" />
-    <Content Include="cef\include\capi\views\cef_window_delegate_capi.h" />
-    <Content Include="cef\include\cef_accessibility_handler.h" />
-    <Content Include="cef\include\cef_app.h" />
-    <Content Include="cef\include\cef_auth_callback.h" />
-    <Content Include="cef\include\cef_base.h" />
-    <Content Include="cef\include\cef_browser.h" />
-    <Content Include="cef\include\cef_browser_process_handler.h" />
-    <Content Include="cef\include\cef_callback.h" />
-    <Content Include="cef\include\cef_client.h" />
-    <Content Include="cef\include\cef_command_line.h" />
-    <Content Include="cef\include\cef_context_menu_handler.h" />
-    <Content Include="cef\include\cef_cookie.h" />
-    <Content Include="cef\include\cef_crash_util.h" />
-    <Content Include="cef\include\cef_dialog_handler.h" />
-    <Content Include="cef\include\cef_display_handler.h" />
-    <Content Include="cef\include\cef_dom.h" />
-    <Content Include="cef\include\cef_download_handler.h" />
-    <Content Include="cef\include\cef_download_item.h" />
-    <Content Include="cef\include\cef_drag_data.h" />
-    <Content Include="cef\include\cef_drag_handler.h" />
-    <Content Include="cef\include\cef_extension.h" />
-    <Content Include="cef\include\cef_extension_handler.h" />
-    <Content Include="cef\include\cef_file_util.h" />
-    <Content Include="cef\include\cef_find_handler.h" />
-    <Content Include="cef\include\cef_focus_handler.h" />
-    <Content Include="cef\include\cef_frame.h" />
-    <Content Include="cef\include\cef_image.h" />
-    <Content Include="cef\include\cef_jsdialog_handler.h" />
-    <Content Include="cef\include\cef_keyboard_handler.h" />
-    <Content Include="cef\include\cef_life_span_handler.h" />
-    <Content Include="cef\include\cef_load_handler.h" />
-    <Content Include="cef\include\cef_menu_model.h" />
-    <Content Include="cef\include\cef_menu_model_delegate.h" />
-    <Content Include="cef\include\cef_navigation_entry.h" />
-    <Content Include="cef\include\cef_origin_whitelist.h" />
-    <Content Include="cef\include\cef_parser.h" />
-    <Content Include="cef\include\cef_path_util.h" />
-    <Content Include="cef\include\cef_print_handler.h" />
-    <Content Include="cef\include\cef_print_settings.h" />
-    <Content Include="cef\include\cef_process_message.h" />
-    <Content Include="cef\include\cef_process_util.h" />
-    <Content Include="cef\include\cef_render_handler.h" />
-    <Content Include="cef\include\cef_render_process_handler.h" />
-    <Content Include="cef\include\cef_request.h" />
-    <Content Include="cef\include\cef_request_context.h" />
-    <Content Include="cef\include\cef_request_context_handler.h" />
-    <Content Include="cef\include\cef_request_handler.h" />
-    <Content Include="cef\include\cef_resource_bundle.h" />
-    <Content Include="cef\include\cef_resource_bundle_handler.h" />
-    <Content Include="cef\include\cef_resource_handler.h" />
-    <Content Include="cef\include\cef_response.h" />
-    <Content Include="cef\include\cef_response_filter.h" />
-    <Content Include="cef\include\cef_sandbox_win.h" />
-    <Content Include="cef\include\cef_scheme.h" />
-    <Content Include="cef\include\cef_server.h" />
-    <Content Include="cef\include\cef_ssl_info.h" />
-    <Content Include="cef\include\cef_ssl_status.h" />
-    <Content Include="cef\include\cef_stream.h" />
-    <Content Include="cef\include\cef_string_visitor.h" />
-    <Content Include="cef\include\cef_task.h" />
-    <Content Include="cef\include\cef_thread.h" />
-    <Content Include="cef\include\cef_trace.h" />
-    <Content Include="cef\include\cef_urlrequest.h" />
-    <Content Include="cef\include\cef_v8.h" />
-    <Content Include="cef\include\cef_values.h" />
-    <Content Include="cef\include\cef_version.h" />
-    <Content Include="cef\include\cef_waitable_event.h" />
-    <Content Include="cef\include\cef_web_plugin.h" />
-    <Content Include="cef\include\cef_x509_certificate.h" />
-    <Content Include="cef\include\cef_xml_reader.h" />
-    <Content Include="cef\include\cef_zip_reader.h" />
-    <Content Include="cef\include\internal\cef_export.h" />
-    <Content Include="cef\include\internal\cef_linux.h" />
-    <Content Include="cef\include\internal\cef_logging_internal.h" />
-    <Content Include="cef\include\internal\cef_mac.h" />
-    <Content Include="cef\include\internal\cef_ptr.h" />
-    <Content Include="cef\include\internal\cef_string.h" />
-    <Content Include="cef\include\internal\cef_string_list.h" />
-    <Content Include="cef\include\internal\cef_string_map.h" />
-    <Content Include="cef\include\internal\cef_string_multimap.h" />
-    <Content Include="cef\include\internal\cef_string_types.h" />
-    <Content Include="cef\include\internal\cef_string_wrappers.h" />
-    <Content Include="cef\include\internal\cef_thread_internal.h" />
-    <Content Include="cef\include\internal\cef_time.h" />
-    <Content Include="cef\include\internal\cef_trace_event_internal.h" />
-    <Content Include="cef\include\internal\cef_types.h" />
-    <Content Include="cef\include\internal\cef_types_linux.h" />
-    <Content Include="cef\include\internal\cef_types_mac.h" />
-    <Content Include="cef\include\internal\cef_types_win.h" />
-    <Content Include="cef\include\internal\cef_types_wrappers.h" />
-    <Content Include="cef\include\internal\cef_win.h" />
-    <Content Include="cef\include\test\cef_test_helpers.h" />
-    <Content Include="cef\include\test\cef_translator_test.h" />
-    <Content Include="cef\include\views\cef_box_layout.h" />
-    <Content Include="cef\include\views\cef_browser_view.h" />
-    <Content Include="cef\include\views\cef_browser_view_delegate.h" />
-    <Content Include="cef\include\views\cef_button.h" />
-    <Content Include="cef\include\views\cef_button_delegate.h" />
-    <Content Include="cef\include\views\cef_display.h" />
-    <Content Include="cef\include\views\cef_fill_layout.h" />
-    <Content Include="cef\include\views\cef_label_button.h" />
-    <Content Include="cef\include\views\cef_layout.h" />
-    <Content Include="cef\include\views\cef_menu_button.h" />
-    <Content Include="cef\include\views\cef_menu_button_delegate.h" />
-    <Content Include="cef\include\views\cef_panel.h" />
-    <Content Include="cef\include\views\cef_panel_delegate.h" />
-    <Content Include="cef\include\views\cef_scroll_view.h" />
-    <Content Include="cef\include\views\cef_textfield.h" />
-    <Content Include="cef\include\views\cef_textfield_delegate.h" />
-    <Content Include="cef\include\views\cef_view.h" />
-    <Content Include="cef\include\views\cef_view_delegate.h" />
-    <Content Include="cef\include\views\cef_window.h" />
-    <Content Include="cef\include\views\cef_window_delegate.h" />
-    <Content Include="cef\include\wrapper\cef_byte_read_handler.h" />
-    <Content Include="cef\include\wrapper\cef_closure_task.h" />
-    <Content Include="cef\include\wrapper\cef_helpers.h" />
-    <Content Include="cef\include\wrapper\cef_message_router.h" />
-    <Content Include="cef\include\wrapper\cef_resource_manager.h" />
-    <Content Include="cef\include\wrapper\cef_scoped_temp_dir.h" />
-    <Content Include="cef\include\wrapper\cef_stream_resource_handler.h" />
-    <Content Include="cef\include\wrapper\cef_xml_object.h" />
-    <Content Include="cef\include\wrapper\cef_zip_archive.h" />
     <Content Include="cef\libcef.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -973,37 +474,13 @@
     <Content Include="cef\libGLESv2.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="cef\osmesa.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="cef\PepperFlash\pepflashplayer.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="cef\pgort140.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="cef\swiftshader\libEGL.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="cef\swiftshader\libGLESv2.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="cef\VkICD_mock_icd.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="cef\VkLayer_core_validation.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="cef\VkLayer_object_tracker.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="cef\VkLayer_parameter_validation.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="cef\VkLayer_threading.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="cef\VkLayer_unique_objects.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="livepage\livepage.js">

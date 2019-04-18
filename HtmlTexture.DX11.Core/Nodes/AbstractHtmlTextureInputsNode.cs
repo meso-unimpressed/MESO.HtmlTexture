@@ -135,6 +135,9 @@ namespace HtmlTexture.DX11.Nodes
         [Input("User-Agent")]
         public IDiffSpread<string> UserAgentIn;
 
+        [Input("Mute Audio")]
+        public IDiffSpread<bool> MuteAudioIn;
+
         [Input("Log to Console")]
         public IDiffSpread<bool> LogToConsoleIn;
 
@@ -164,7 +167,7 @@ namespace HtmlTexture.DX11.Nodes
             return SpreadUtils.SpreadMax(OperationsIn, LoadIn, HardLoadIn, ReloadIn, SizeIn,
                 DocSizeBaseSelectorIn, AutoWidthIn, AutoHeightIn, PopupIn, FilterUrlIn,
                 ZoomLevelIn, MouseIn, KeyboardIn, ShowDevToolsIn,
-                LivePageIn, UserAgentIn, LogToConsoleIn, NoMouseMoveOnFirstTouchIn, EnabledIn);
+                LivePageIn, UserAgentIn, LogToConsoleIn, NoMouseMoveOnFirstTouchIn, MuteAudioIn, EnabledIn);
         }
 
         protected abstract void LoadContent(HtmlTextureWrapper wrapper, int i);
@@ -199,7 +202,8 @@ namespace HtmlTexture.DX11.Nodes
                     DocumentSizeElementSelector = DocSizeBaseSelectorIn[i],
                     AllowGetCookies = AllowCookiesIn[i] && AllowGetCookiesIn[i],
                     AllowSetCookies = AllowCookiesIn[i] && AllowSetCookiesIn[i],
-                    NoMouseMoveOnFirstTouch = NoMouseMoveOnFirstTouchIn[i]
+                    NoMouseMoveOnFirstTouch = NoMouseMoveOnFirstTouchIn[i],
+                    MuteAudio = MuteAudioIn[i]
                 },
                 VvvvLogger = Logger,
                 Operations = new HtmlTextureOperationHost(),
@@ -224,8 +228,10 @@ namespace HtmlTexture.DX11.Nodes
             if (ReloadIn[i]) wrapper.Reload();
             if (ShowDevToolsIn[i]) wrapper.ShowDevTool();
 
-            if (SpreadUtils.AnyChanged(LivePageIn, PopupIn, UserAgentIn, LogToConsoleIn, ZoomLevelIn, InvVScrollIn,
-                InvHScrollIn, DocSizeBaseSelectorIn, FilterModeIn, NoMouseMoveOnFirstTouchIn))
+            if (SpreadUtils.AnyChanged(LivePageIn, PopupIn, UserAgentIn,
+                LogToConsoleIn, ZoomLevelIn, InvVScrollIn,
+                InvHScrollIn, DocSizeBaseSelectorIn, FilterModeIn,
+                NoMouseMoveOnFirstTouchIn, MuteAudioIn))
             {
                 wrapper.BrowserSettings = new HtmlTextureWrapper.WrapperBrowserSettings
                 {
@@ -240,7 +246,8 @@ namespace HtmlTexture.DX11.Nodes
                     DocumentSizeElementSelector = DocSizeBaseSelectorIn[i],
                     AllowGetCookies = AllowCookiesIn[i] && AllowGetCookiesIn[i],
                     AllowSetCookies = AllowCookiesIn[i] && AllowSetCookiesIn[i],
-                    NoMouseMoveOnFirstTouch = NoMouseMoveOnFirstTouchIn[i]
+                    NoMouseMoveOnFirstTouch = NoMouseMoveOnFirstTouchIn[i],
+                    MuteAudio = MuteAudioIn[i]
                 };
             }
 
@@ -291,6 +298,9 @@ namespace HtmlTexture.DX11.Nodes
         [Output("Loading Progress")]
         public ISpread<double> LoadingProgressOut;
 
+        [Input("Has Audio")]
+        public IDiffSpread<bool> HasAudioOut;
+
         [Output("Current Url")]
         public ISpread<string> CurrentUrlOut;
 
@@ -307,7 +317,8 @@ namespace HtmlTexture.DX11.Nodes
         {
             TextureOut.SliceCount = WrapperOut.SliceCount = DocSizeOut.SliceCount = IsLoadingOut.SliceCount =
                 JsLogOut.SliceCount = CurrentUrlOut.SliceCount = ErrorTextOut.SliceCount = TextureValidOut.SliceCount =
-                    LoadedOut.SliceCount = CreatedOut.SliceCount = DocReadyOut.SliceCount = LoadingProgressOut.SliceCount = slc;
+                    LoadedOut.SliceCount = CreatedOut.SliceCount = DocReadyOut.SliceCount = LoadingProgressOut.SliceCount =
+                        HasAudioOut.SliceCount = slc;
         }
 
         protected void FillOuptuts(HtmlTextureWrapper wrapper, int i)
@@ -324,97 +335,12 @@ namespace HtmlTexture.DX11.Nodes
             TextureValidOut[i] = wrapper.IsTextureValid;
             JsLogOut[i] = wrapper.LastConsole;
             LoadingProgressOut[i] = wrapper.Progress;
+            HasAudioOut[i] = wrapper.HasAudio;
         }
 
         public void Update(DX11RenderContext context)
         {
             CanCreate = TextureOut.IsConnected && (ManInit.SliceCount > 0 && ManInit[0]);
-            for (int i = 0; i < WrapperOut.SliceCount; i++)
-            {
-                var wrapper = WrapperOut[i];
-                wrapper?.UpdateDX11Resources(context);
-            }
-        }
-
-        public void Destroy(DX11RenderContext context, bool force)
-        {
-            for (int i = 0; i < WrapperOut.SliceCount; i++)
-            {
-                var wrapper = WrapperOut[i];
-                wrapper?.DestroyDX11Resources(context, force);
-            }
-        }
-
-        public void Dispose()
-        {
-            for (int i = 0; i < WrapperOut.SliceCount; i++)
-            {
-                var wrapper = WrapperOut[i];
-                wrapper?.Dispose();
-            }
-        }
-    }
-
-    public abstract class HtmlTextureOutputNode : IDX11ResourceHost, IDisposable
-    {
-        [Output("Texture Output")]
-        public Pin<DX11Resource<DX11Texture2D>> TextureOut;
-
-        [Output("Wrapper Output")]
-        public Pin<HtmlTextureWrapper> WrapperOut;
-
-        [Output("Document Size")]
-        public ISpread<Vector2D> DocSizeOut;
-
-        [Output("Document Ready")]
-        public ISpread<bool> DocReadyOut;
-        [Output("Loading")]
-        public ISpread<bool> IsLoadingOut;
-
-        [Output("On Created", IsBang = true)]
-        public ISpread<bool> CreatedOut;
-        [Output("On Loaded", IsBang = true)]
-        public ISpread<bool> LoadedOut;
-        [Output("Loading Progress")]
-        public ISpread<double> LoadingProgressOut;
-
-        [Output("Current Url")]
-        public ISpread<string> CurrentUrlOut;
-
-        [Output("Texture Valid")]
-        public ISpread<bool> TextureValidOut;
-
-        [Output("Error Text")]
-        public ISpread<string> ErrorTextOut;
-
-        [Output("Last Js Log")]
-        public ISpread<string> JsLogOut;
-
-        protected virtual void SetOutputsSliceCount(int slc)
-        {
-            TextureOut.SliceCount = WrapperOut.SliceCount = DocSizeOut.SliceCount = IsLoadingOut.SliceCount =
-                JsLogOut.SliceCount = CurrentUrlOut.SliceCount = ErrorTextOut.SliceCount = TextureValidOut.SliceCount =
-                    LoadedOut.SliceCount = CreatedOut.SliceCount = DocReadyOut.SliceCount = LoadingProgressOut.SliceCount = slc;
-        }
-
-        protected void FillOuptuts(HtmlTextureWrapper wrapper, int i)
-        {
-            if (wrapper == null) return;
-            TextureOut[i] = wrapper.DX11Texture;
-            DocSizeOut[i] = new Vector2D(wrapper.DocumentSize.w, wrapper.DocumentSize.h);
-            IsLoadingOut[i] = wrapper.Loading;
-            DocReadyOut[i] = wrapper.IsDocumentReady;
-            CurrentUrlOut[i] = wrapper.CurrentUrl;
-            ErrorTextOut[i] = wrapper.LastError;
-            LoadedOut[i] = wrapper.LoadedFrame;
-            CreatedOut[i] = wrapper.CreatedFrame;
-            TextureValidOut[i] = wrapper.IsTextureValid;
-            JsLogOut[i] = wrapper.LastConsole;
-            LoadingProgressOut[i] = wrapper.Progress;
-        }
-
-        public void Update(DX11RenderContext context)
-        {
             for (int i = 0; i < WrapperOut.SliceCount; i++)
             {
                 var wrapper = WrapperOut[i];

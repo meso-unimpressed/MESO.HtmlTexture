@@ -46,13 +46,10 @@ namespace VVVV.HtmlTexture.DX11.Core
 
             if (!TextureSettings.Equals(_prevTextureSettings)) UpdateSize();
 
-            //if (BrowserSettings.ZoomLevel != Browser.Host.ZoomLevel)
-            //{
-            //    Browser.Host.ZoomLevel = Math.Abs(BrowserSettings.ZoomLevel) <= 0.0001 ? 0.0001 : BrowserSettings.ZoomLevel;
-            //    //Browser.Host.ZoomLevel = BrowserSettings.ZoomLevel;
-            //}
-
             Browser.Host.ZoomLevel = BrowserSettings.ZoomLevel;
+
+            if(Browser.Host.IsAudioMuted != BrowserSettings.MuteAudio)
+                Browser.Host.SetAudioMuted(BrowserSettings.MuteAudio);
 
             if (DocumentSizeBaseSelector != null)
                 DocumentSizeBaseSelector.Selector = BrowserSettings.DocumentSizeElementSelector;

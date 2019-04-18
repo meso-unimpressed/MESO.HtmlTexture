@@ -15,23 +15,8 @@ namespace VVVV.HtmlTexture.DX11.Core
 {
     public partial class HtmlTextureWrapper : IMainlooping, IDisposable
     {
-        public void Initialize()
+        private void InitLifeSpanHandler()
         {
-            Settings = new CfxBrowserSettings()
-            {
-                WindowlessFrameRate = InitSettings.Fps,
-                Webgl = CfxState.Enabled,
-                Plugins = CfxState.Enabled,
-                ApplicationCache = CfxState.Enabled,
-                Javascript = CfxState.Enabled,
-                FileAccessFromFileUrls = CfxState.Enabled,
-                UniversalAccessFromFileUrls = CfxState.Enabled,
-                WebSecurity = CfxState.Disabled
-            };
-            Globals.UpdateScripts();
-
-            TextureSize = (DefaultWidth, DefaultHeight);
-
             LifeSpanHandler = new CfxLifeSpanHandler();
             LifeSpanHandler.OnAfterCreated += (sender, e) =>
             {
@@ -52,7 +37,10 @@ namespace VVVV.HtmlTexture.DX11.Core
                 }
                 else e.SetReturnValue(true);
             };
+        }
 
+        private void InitRenderHandler()
+        {
             RenderHandler = new CfxRenderHandler();
             RenderHandler.GetViewRect += (sender, e) =>
             {
@@ -60,7 +48,6 @@ namespace VVVV.HtmlTexture.DX11.Core
                 e.Rect.Y = 0;
                 e.Rect.Width = TextureSize.w;
                 e.Rect.Height = TextureSize.h;
-                e.SetReturnValue(true);
             };
             RenderHandler.GetRootScreenRect += (sender, e) =>
             {
@@ -70,9 +57,32 @@ namespace VVVV.HtmlTexture.DX11.Core
                 e.Rect.Height = TextureSize.h;
                 e.SetReturnValue(true);
             };
-            //RenderHandler.OnPaint += (sender, args) => _paintFrame = true;
-            RenderHandler.OnAcceleratedPaint += HandleAcceleratedRenderPaint;
+            RenderHandler.GetScreenInfo += (sender, e) =>
+            {
+                e.ScreenInfo.AvailableRect.X = 0;
+                e.ScreenInfo.AvailableRect.Y = 0;
+                e.ScreenInfo.AvailableRect.Width = TextureSize.w;
+                e.ScreenInfo.AvailableRect.Height = TextureSize.h;
+                e.ScreenInfo.Depth = 24;
+                e.ScreenInfo.DepthPerComponent = 8;
+                e.ScreenInfo.DeviceScaleFactor = 1.0f;
+                e.ScreenInfo.IsMonochrome = false;
+                e.ScreenInfo.Rect = e.ScreenInfo.AvailableRect;
+                e.SetReturnValue(true);
+            };
+            RenderHandler.OnAcceleratedPaint += (sender, args) =>
+            {
+                _invalidateAccFrame = args.SharedHandle != _newAccFramePtr;
+                _newAccFramePtr = args.SharedHandle;
+            };
+            RenderHandler.OnPaint += (sender, args) =>
+            {
 
+            };
+        }
+
+        private void InitLoadHandler()
+        {
             LoadHandler = new CfxLoadHandler();
             LoadHandler.OnLoadStart += (sender, e) =>
             {
@@ -86,7 +96,10 @@ namespace VVVV.HtmlTexture.DX11.Core
                 LastError = e.ErrorText;
             };
             LoadHandler.OnLoadingStateChange += (sender, e) => CurrentUrl = Browser.MainFrame.Url;
+        }
 
+        private void InitRequestHandler()
+        {
             RequestHandler = new CfxRequestHandler();
             RequestHandler.CanGetCookies += (sender, args) => { args.SetReturnValue(BrowserSettings.AllowGetCookies); };
             RequestHandler.CanSetCookie += (sender, args) => { args.SetReturnValue(BrowserSettings.AllowSetCookies); };
@@ -95,13 +108,10 @@ namespace VVVV.HtmlTexture.DX11.Core
             RequestHandler.OnCertificateError += (sender, e) => LogError("Cert error: " + e.CertError.ToString());
             RequestHandler.OnPluginCrashed += (sender, e) => LogError("Plugin Crashed: " + e.PluginPath);
             RequestHandler.OnRenderProcessTerminated += (sender, e) => LogError("Render Process Terminated: " + e.Status.ToString());
+        }
 
-            ContextMenuHandler = new CfxContextMenuHandler();
-            ContextMenuHandler.OnBeforeContextMenu += (sender, args) => args.Model.Clear();
-            DisplayHandler = new CfxDisplayHandler();
-            DisplayHandler.OnConsoleMessage += HandleConsoleMessage;
-            DisplayHandler.OnLoadingProgressChange += (sender, args) => Progress = args.Progress;
-
+        private void InitCfxClient()
+        {
             Client = new CfxClient();
             Client.GetLifeSpanHandler += (sender, e) => e.SetReturnValue(LifeSpanHandler);
             Client.GetRenderHandler += (sender, e) => e.SetReturnValue(RenderHandler);
@@ -109,12 +119,97 @@ namespace VVVV.HtmlTexture.DX11.Core
             Client.GetRequestHandler += (sender, e) => e.SetReturnValue(RequestHandler);
             Client.GetDisplayHandler += (sender, e) => e.SetReturnValue(DisplayHandler);
             Client.GetContextMenuHandler += (sender, args) => args.SetReturnValue(ContextMenuHandler);
+            Client.GetJsDialogHandler += (sender, args) => args.SetReturnValue(JsDialogHandler);
+            //Client.GetDownloadHandler += (sender, args) => args.SetReturnValue(DownloadHandler);
+            Client.GetAudioHandler += (sender, args) => args.SetReturnValue(AudioHandler);
+
             Visitor = new CfxStringVisitor();
             Visitor.Visit += (sender, e) =>
             {
                 RootElement = HtmlToXElement(e.String);
                 Dom = new XDocument(RootElement);
             };
+        }
+
+        private void InitAudioHandler()
+        {
+            AudioHandler = new CfxAudioHandler();
+            AudioHandler.OnAudioStreamStarted += (sender, args) =>
+            {
+                HasAudio = true;
+                _audioStreams.UpdateGeneric(args.AudioStreamId, new HtmlAudioStream()
+                {
+                    AudioStreamId = args.AudioStreamId,
+                    ChannelLayout = args.ChannelLayout,
+                    Channels = args.Channels,
+                    FramesPerBuffer = args.FramesPerBuffer,
+                    SampleRate = args.SampleRate
+                });
+            };
+            AudioHandler.OnAudioStreamStopped += (sender, args) =>
+            {
+                if (_audioStreams.ContainsKey(args.AudioStreamId))
+                    _audioStreams.Remove(args.AudioStreamId);
+
+                if (_audioStreams.Count <= 0)
+                    HasAudio = true;
+            };
+            AudioHandler.OnAudioStreamPacket += (sender, args) =>
+            {
+                if (_audioStreams.TryGetValue(args.AudioStreamId, out var stream))
+                {
+                    stream.Frames = args.Frames;
+                    stream.TimeStamp = args.Pts;
+                    stream.Frames = args.Frames;
+                }
+            };
+        }
+
+        private void InitJsDialogHandler()
+        {
+            JsDialogHandler = new CfxJsDialogHandler();
+            JsDialogHandler.OnJsDialog += (sender, args) =>
+            {
+                LastJsDialogText = args.MessageText;
+                args.SuppressMessage = true;
+                args.Callback.Continue(true, "");
+                args.SetReturnValue(true);
+            };
+        }
+        
+
+        public void Initialize()
+        {
+            Settings = new CfxBrowserSettings()
+            {
+                WindowlessFrameRate = InitSettings.Fps,
+                Webgl = CfxState.Enabled,
+                Plugins = CfxState.Enabled,
+                ApplicationCache = CfxState.Enabled,
+                Javascript = CfxState.Enabled,
+                FileAccessFromFileUrls = CfxState.Enabled,
+                UniversalAccessFromFileUrls = CfxState.Enabled,
+                WebSecurity = CfxState.Disabled
+            };
+            Globals.UpdateScripts();
+
+            TextureSize = (DefaultWidth, DefaultHeight);
+
+            InitLifeSpanHandler();
+            InitRenderHandler();
+            InitLoadHandler();
+            InitRequestHandler();
+            InitJsDialogHandler();
+            InitAudioHandler();
+
+            ContextMenuHandler = new CfxContextMenuHandler();
+            ContextMenuHandler.OnBeforeContextMenu += (sender, args) => args.Model.Clear();
+
+            DisplayHandler = new CfxDisplayHandler();
+            DisplayHandler.OnConsoleMessage += HandleConsoleMessage;
+            DisplayHandler.OnLoadingProgressChange += (sender, args) => Progress = args.Progress;
+
+            InitCfxClient();
 
             CreateBrowser();
             //_invalidate = true;
@@ -160,19 +255,23 @@ namespace VVVV.HtmlTexture.DX11.Core
 
         private void CreateBrowser()
         {
-            var windowInfo = new CfxWindowInfo();
-            windowInfo.SetAsWindowless(IntPtr.Zero);
-
-            windowInfo.WindowlessRenderingEnabled = true;
-            windowInfo.SharedTextureEnabled = true;
-            windowInfo.ExternalBeginFrameEnabled = InitSettings.FrameRequestFromVvvv;
-
             if (Browser != null)
             {
                 Browser.Host.CloseBrowser(true);
                 Browser = null;
             }
-            CfxBrowserHost.CreateBrowser(windowInfo, Client, "", Settings, null);
+
+            var windowInfo = new CfxWindowInfo
+            {
+                WindowlessRenderingEnabled = true,
+                SharedTextureEnabled = true,
+                ExternalBeginFrameEnabled = InitSettings.FrameRequestFromVvvv,
+                Width = TextureSettings.TargetSize.w,
+                Height = TextureSettings.TargetSize.h
+            };
+            windowInfo.SetAsWindowless(IntPtr.Zero);
+
+            CfxBrowserHost.CreateBrowser(windowInfo, Client, "", Settings, CfxRequestContext.GetGlobalContext());
         }
 
         private void HandleConsoleMessage(object sender, CfxOnConsoleMessageEventArgs e)
@@ -195,12 +294,6 @@ namespace VVVV.HtmlTexture.DX11.Core
             }
             e.Request.SetHeaderMap(headerMap);
             e.SetReturnValue(CfxReturnValue.Continue);
-        }
-
-        private void HandleAcceleratedRenderPaint(object sender, CfxOnAcceleratedPaintEventArgs e)
-        {
-            _invalidateAccFrame = e.SharedHandle != _newAccFramePtr;
-            _newAccFramePtr = e.SharedHandle;
         }
 
         public void OnLoadEnd()

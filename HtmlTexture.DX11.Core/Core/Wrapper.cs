@@ -28,7 +28,6 @@ using VVVV.Utils.VMath;
 
 namespace VVVV.HtmlTexture.DX11.Core
 {
-
     public partial class HtmlTextureWrapper : IMainlooping, IDisposable
     {
         public static readonly Dictionary<int, HtmlTextureWrapper> Instances = new Dictionary<int, HtmlTextureWrapper>();
@@ -56,6 +55,7 @@ namespace VVVV.HtmlTexture.DX11.Core
         private Subscription<Keyboard, KeyNotification> _keyboardSubscription;
         private Keyboard _keyboard;
         private readonly Dictionary<int, CfxTouchEvent> _touches = new Dictionary<int, CfxTouchEvent>();
+        private readonly Dictionary<int, HtmlAudioStream> _audioStreams = new Dictionary<int, HtmlAudioStream>();
 
         public bool Enabled { get; set; }
         public bool AllowFrameRequest { get; set; } = false;
@@ -66,6 +66,8 @@ namespace VVVV.HtmlTexture.DX11.Core
         public WrapperTextureSettings TextureSettings { get; set; }
         public WrapperInitSettings InitSettings { get; }
 
+        public CfxBrowserSettings Settings { get; private set; }
+
         public JsBinding OnLoadBinding { get; private set; }
         public ResizeNotificationFunction ResizeNotification { get; private set; }
         public DocSizeBaseSelector DocumentSizeBaseSelector { get; private set; }
@@ -73,18 +75,25 @@ namespace VVVV.HtmlTexture.DX11.Core
         public Dictionary<HtmlTextureOperation, object> OperationResults { get; } = new Dictionary<HtmlTextureOperation, object>();
         public Dictionary<int, HtmlTextureTouch> SubmittedTouches { get; } = new Dictionary<int, HtmlTextureTouch>();
 
+        public IEnumerable<HtmlAudioStream> AudioStreams => _audioStreams.Values;
+
         public CfxMouseEvent MouseEvent { get; set; }
         public CfxBrowser Browser { get; private set; }
         public CfrBrowser RemoteBrowser { get; set; }
         public CfxStringVisitor Visitor { get; private set; }
         public CfxClient Client { get; private set; }
+
         public CfxContextMenuHandler ContextMenuHandler { get; private set; }
         public CfxLifeSpanHandler LifeSpanHandler { get; private set; }
         public CfxLoadHandler LoadHandler { get; private set; }
         public CfxRenderHandler RenderHandler { get; private set; }
         public CfxRequestHandler RequestHandler { get; private set; }
         public CfxDisplayHandler DisplayHandler { get; private set; }
-        public CfxBrowserSettings Settings { get; private set; }
+        public CfxJsDialogHandler JsDialogHandler { get; private set; }
+
+        // TODO: Manage Downloads
+        //public CfxDownloadHandler DownloadHandler { get; private set; }
+        public CfxAudioHandler AudioHandler { get; private set; }
         public CfrV8Handler V8Handler { get; private set; }
 
         public (int w, int h) DocumentSize { get; private set; }
@@ -98,7 +107,9 @@ namespace VVVV.HtmlTexture.DX11.Core
         public bool LivePageActive { get; private set; }
         public double Progress { get; private set; }
         public bool Closed { get; private set; }
+        public bool HasAudio { get; private set; }
 
+        public string LastJsDialogText { get; private set; }
         public string LastError { get; private set; }
         public string LastConsole { get; private set; }
         public string CurrentUrl { get; private set; }

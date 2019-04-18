@@ -60,11 +60,12 @@ namespace VVVV.HtmlTexture.DX11.Core
             {
                 var ceftouch = new CfxTouchEvent
                 {
+                    PointerType = CfxPointerType.Touch,
                     Type = _touches.ContainsKey(id) ? CfxTouchEventType.Moved : CfxTouchEventType.Pressed,
                     Id = id,
                     X = (float)VMath.Map(f, -1.0, 1.0, 0.0, TextureSize.w, TMapMode.Float),
                     Y = (float)VMath.Map(y, 1.0, -1.0, 0.0, TextureSize.h, TMapMode.Float),
-                    Force = force,
+                    Pressure = force,
                     RadiusX = rad,
                     RadiusY = rad,
                     RotationAngle = rot

@@ -240,6 +240,157 @@
             Calling SetReturnValue() more then once per callback or from different event handlers will cause an exception to be thrown.
             </summary>
         </member>
+        <member name="T:Chromium.Event.CfxOnAudioStreamStartedEventHandler">
+            <summary>
+            Called when the stream identified by |AudioStreamId| has started.
+            |AudioStreamId| will uniquely identify the stream across all future
+            CfxAudioHandler callbacks. OnAudioSteamStopped will always be called
+            after OnAudioStreamStarted; both functions may be called multiple times for
+            the same stream. |Channels| is the number of channels, |ChannelLayout| is
+            the layout of the channels and |SampleRate| is the stream sample rate.
+            |FramesPerBuffer| is the maximum number of frames that will occur in the
+            PCM packet passed to OnAudioStreamPacket.
+            </summary>
+            <remarks>
+            See also the original CEF documentation in
+            <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_audio_handler_capi.h">cef/include/capi/cef_audio_handler_capi.h</see>.
+            </remarks>
+        </member>
+        <member name="T:Chromium.Event.CfxOnAudioStreamStartedEventArgs">
+            <summary>
+            Called when the stream identified by |AudioStreamId| has started.
+            |AudioStreamId| will uniquely identify the stream across all future
+            CfxAudioHandler callbacks. OnAudioSteamStopped will always be called
+            after OnAudioStreamStarted; both functions may be called multiple times for
+            the same stream. |Channels| is the number of channels, |ChannelLayout| is
+            the layout of the channels and |SampleRate| is the stream sample rate.
+            |FramesPerBuffer| is the maximum number of frames that will occur in the
+            PCM packet passed to OnAudioStreamPacket.
+            </summary>
+            <remarks>
+            See also the original CEF documentation in
+            <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_audio_handler_capi.h">cef/include/capi/cef_audio_handler_capi.h</see>.
+            </remarks>
+        </member>
+        <member name="P:Chromium.Event.CfxOnAudioStreamStartedEventArgs.Browser">
+            <summary>
+            Get the Browser parameter for the <see cref="E:Chromium.CfxAudioHandler.OnAudioStreamStarted"/> callback.
+            </summary>
+        </member>
+        <member name="P:Chromium.Event.CfxOnAudioStreamStartedEventArgs.AudioStreamId">
+            <summary>
+            Get the AudioStreamId parameter for the <see cref="E:Chromium.CfxAudioHandler.OnAudioStreamStarted"/> callback.
+            </summary>
+        </member>
+        <member name="P:Chromium.Event.CfxOnAudioStreamStartedEventArgs.Channels">
+            <summary>
+            Get the Channels parameter for the <see cref="E:Chromium.CfxAudioHandler.OnAudioStreamStarted"/> callback.
+            </summary>
+        </member>
+        <member name="P:Chromium.Event.CfxOnAudioStreamStartedEventArgs.ChannelLayout">
+            <summary>
+            Get the ChannelLayout parameter for the <see cref="E:Chromium.CfxAudioHandler.OnAudioStreamStarted"/> callback.
+            </summary>
+        </member>
+        <member name="P:Chromium.Event.CfxOnAudioStreamStartedEventArgs.SampleRate">
+            <summary>
+            Get the SampleRate parameter for the <see cref="E:Chromium.CfxAudioHandler.OnAudioStreamStarted"/> callback.
+            </summary>
+        </member>
+        <member name="P:Chromium.Event.CfxOnAudioStreamStartedEventArgs.FramesPerBuffer">
+            <summary>
+            Get the FramesPerBuffer parameter for the <see cref="E:Chromium.CfxAudioHandler.OnAudioStreamStarted"/> callback.
+            </summary>
+        </member>
+        <member name="T:Chromium.Event.CfxOnAudioStreamPacketEventHandler">
+            <summary>
+            Called when a PCM packet is received for the stream identified by
+            |AudioStreamId|. |Data| is an array representing the raw PCM data as a
+            floating point type, i.e. 4-byte value(s). |Frames| is the number of frames
+            in the PCM packet. |Pts| is the presentation timestamp (in milliseconds
+            since the Unix Epoch) and represents the time at which the decompressed
+            packet should be presented to the user. Based on |Frames| and the
+            |ChannelLayout| value passed to OnAudioStreamStarted you can calculate the
+            size of the |Data| array in bytes.
+            </summary>
+            <remarks>
+            See also the original CEF documentation in
+            <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_audio_handler_capi.h">cef/include/capi/cef_audio_handler_capi.h</see>.
+            </remarks>
+        </member>
+        <member name="T:Chromium.Event.CfxOnAudioStreamPacketEventArgs">
+            <summary>
+            Called when a PCM packet is received for the stream identified by
+            |AudioStreamId|. |Data| is an array representing the raw PCM data as a
+            floating point type, i.e. 4-byte value(s). |Frames| is the number of frames
+            in the PCM packet. |Pts| is the presentation timestamp (in milliseconds
+            since the Unix Epoch) and represents the time at which the decompressed
+            packet should be presented to the user. Based on |Frames| and the
+            |ChannelLayout| value passed to OnAudioStreamStarted you can calculate the
+            size of the |Data| array in bytes.
+            </summary>
+            <remarks>
+            See also the original CEF documentation in
+            <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_audio_handler_capi.h">cef/include/capi/cef_audio_handler_capi.h</see>.
+            </remarks>
+        </member>
+        <member name="P:Chromium.Event.CfxOnAudioStreamPacketEventArgs.Browser">
+            <summary>
+            Get the Browser parameter for the <see cref="E:Chromium.CfxAudioHandler.OnAudioStreamPacket"/> callback.
+            </summary>
+        </member>
+        <member name="P:Chromium.Event.CfxOnAudioStreamPacketEventArgs.AudioStreamId">
+            <summary>
+            Get the AudioStreamId parameter for the <see cref="E:Chromium.CfxAudioHandler.OnAudioStreamPacket"/> callback.
+            </summary>
+        </member>
+        <member name="P:Chromium.Event.CfxOnAudioStreamPacketEventArgs.Data">
+            <summary>
+            Get the Data parameter for the <see cref="E:Chromium.CfxAudioHandler.OnAudioStreamPacket"/> callback.
+            </summary>
+        </member>
+        <member name="P:Chromium.Event.CfxOnAudioStreamPacketEventArgs.Frames">
+            <summary>
+            Get the Frames parameter for the <see cref="E:Chromium.CfxAudioHandler.OnAudioStreamPacket"/> callback.
+            </summary>
+        </member>
+        <member name="P:Chromium.Event.CfxOnAudioStreamPacketEventArgs.Pts">
+            <summary>
+            Get the Pts parameter for the <see cref="E:Chromium.CfxAudioHandler.OnAudioStreamPacket"/> callback.
+            </summary>
+        </member>
+        <member name="T:Chromium.Event.CfxOnAudioStreamStoppedEventHandler">
+            <summary>
+            Called when the stream identified by |AudioStreamId| has stopped.
+            OnAudioSteamStopped will always be called after OnAudioStreamStarted; both
+            functions may be called multiple times for the same stream.
+            </summary>
+            <remarks>
+            See also the original CEF documentation in
+            <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_audio_handler_capi.h">cef/include/capi/cef_audio_handler_capi.h</see>.
+            </remarks>
+        </member>
+        <member name="T:Chromium.Event.CfxOnAudioStreamStoppedEventArgs">
+            <summary>
+            Called when the stream identified by |AudioStreamId| has stopped.
+            OnAudioSteamStopped will always be called after OnAudioStreamStarted; both
+            functions may be called multiple times for the same stream.
+            </summary>
+            <remarks>
+            See also the original CEF documentation in
+            <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_audio_handler_capi.h">cef/include/capi/cef_audio_handler_capi.h</see>.
+            </remarks>
+        </member>
+        <member name="P:Chromium.Event.CfxOnAudioStreamStoppedEventArgs.Browser">
+            <summary>
+            Get the Browser parameter for the <see cref="E:Chromium.CfxAudioHandler.OnAudioStreamStopped"/> callback.
+            </summary>
+        </member>
+        <member name="P:Chromium.Event.CfxOnAudioStreamStoppedEventArgs.AudioStreamId">
+            <summary>
+            Get the AudioStreamId parameter for the <see cref="E:Chromium.CfxAudioHandler.OnAudioStreamStopped"/> callback.
+            </summary>
+        </member>
         <member name="T:Chromium.Event.CfxOnBeforeChildProcessLaunchEventHandler">
             <summary>
             Called before a child process is launched. Will be called on the browser
@@ -369,6 +520,30 @@
         <member name="P:Chromium.Event.CfxOnScheduleMessagePumpWorkEventArgs.DelayMs">
             <summary>
             Get the DelayMs parameter for the <see cref="E:Chromium.CfxBrowserProcessHandler.OnScheduleMessagePumpWork"/> callback.
+            </summary>
+        </member>
+        <member name="T:Chromium.Event.CfxGetAudioHandlerEventHandler">
+            <summary>
+            Return the handler for audio rendering events.
+            </summary>
+            <remarks>
+            See also the original CEF documentation in
+            <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_client_capi.h">cef/include/capi/cef_client_capi.h</see>.
+            </remarks>
+        </member>
+        <member name="T:Chromium.Event.CfxGetAudioHandlerEventArgs">
+            <summary>
+            Return the handler for audio rendering events.
+            </summary>
+            <remarks>
+            See also the original CEF documentation in
+            <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_client_capi.h">cef/include/capi/cef_client_capi.h</see>.
+            </remarks>
+        </member>
+        <member name="M:Chromium.Event.CfxGetAudioHandlerEventArgs.SetReturnValue(Chromium.CfxAudioHandler)">
+            <summary>
+            Set the return value for the <see cref="E:Chromium.CfxClient.GetAudioHandler"/> callback.
+            Calling SetReturnValue() more then once per callback or from different event handlers will cause an exception to be thrown.
             </summary>
         </member>
         <member name="T:Chromium.Event.CfxGetContextMenuHandlerEventHandler">
@@ -1007,7 +1182,7 @@
             Get the NumDeleted parameter for the <see cref="E:Chromium.CfxDeleteCookiesCallback.OnComplete"/> callback.
             </summary>
         </member>
-        <member name="T:Chromium.Event.CfxDialogHandlerOnFileDialogEventHandler">
+        <member name="T:Chromium.Event.CfxOnFileDialogEventHandler">
             <summary>
             Called to run a file chooser dialog. |Mode| represents the type of dialog
             to display. |Title| to the title to be used for the dialog and may be NULL
@@ -1028,7 +1203,7 @@
             <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_dialog_handler_capi.h">cef/include/capi/cef_dialog_handler_capi.h</see>.
             </remarks>
         </member>
-        <member name="T:Chromium.Event.CfxDialogHandlerOnFileDialogEventArgs">
+        <member name="T:Chromium.Event.CfxOnFileDialogEventArgs">
             <summary>
             Called to run a file chooser dialog. |Mode| represents the type of dialog
             to display. |Title| to the title to be used for the dialog and may be NULL
@@ -1049,42 +1224,42 @@
             <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_dialog_handler_capi.h">cef/include/capi/cef_dialog_handler_capi.h</see>.
             </remarks>
         </member>
-        <member name="P:Chromium.Event.CfxDialogHandlerOnFileDialogEventArgs.Browser">
+        <member name="P:Chromium.Event.CfxOnFileDialogEventArgs.Browser">
             <summary>
             Get the Browser parameter for the <see cref="E:Chromium.CfxDialogHandler.OnFileDialog"/> callback.
             </summary>
         </member>
-        <member name="P:Chromium.Event.CfxDialogHandlerOnFileDialogEventArgs.Mode">
+        <member name="P:Chromium.Event.CfxOnFileDialogEventArgs.Mode">
             <summary>
             Get the Mode parameter for the <see cref="E:Chromium.CfxDialogHandler.OnFileDialog"/> callback.
             </summary>
         </member>
-        <member name="P:Chromium.Event.CfxDialogHandlerOnFileDialogEventArgs.Title">
+        <member name="P:Chromium.Event.CfxOnFileDialogEventArgs.Title">
             <summary>
             Get the Title parameter for the <see cref="E:Chromium.CfxDialogHandler.OnFileDialog"/> callback.
             </summary>
         </member>
-        <member name="P:Chromium.Event.CfxDialogHandlerOnFileDialogEventArgs.DefaultFilePath">
+        <member name="P:Chromium.Event.CfxOnFileDialogEventArgs.DefaultFilePath">
             <summary>
             Get the DefaultFilePath parameter for the <see cref="E:Chromium.CfxDialogHandler.OnFileDialog"/> callback.
             </summary>
         </member>
-        <member name="P:Chromium.Event.CfxDialogHandlerOnFileDialogEventArgs.AcceptFilters">
+        <member name="P:Chromium.Event.CfxOnFileDialogEventArgs.AcceptFilters">
             <summary>
             Get the AcceptFilters parameter for the <see cref="E:Chromium.CfxDialogHandler.OnFileDialog"/> callback.
             </summary>
         </member>
-        <member name="P:Chromium.Event.CfxDialogHandlerOnFileDialogEventArgs.SelectedAcceptFilter">
+        <member name="P:Chromium.Event.CfxOnFileDialogEventArgs.SelectedAcceptFilter">
             <summary>
             Get the SelectedAcceptFilter parameter for the <see cref="E:Chromium.CfxDialogHandler.OnFileDialog"/> callback.
             </summary>
         </member>
-        <member name="P:Chromium.Event.CfxDialogHandlerOnFileDialogEventArgs.Callback">
+        <member name="P:Chromium.Event.CfxOnFileDialogEventArgs.Callback">
             <summary>
             Get the Callback parameter for the <see cref="E:Chromium.CfxDialogHandler.OnFileDialog"/> callback.
             </summary>
         </member>
-        <member name="M:Chromium.Event.CfxDialogHandlerOnFileDialogEventArgs.SetReturnValue(System.Boolean)">
+        <member name="M:Chromium.Event.CfxOnFileDialogEventArgs.SetReturnValue(System.Boolean)">
             <summary>
             Set the return value for the <see cref="E:Chromium.CfxDialogHandler.OnFileDialog"/> callback.
             Calling SetReturnValue() more then once per callback or from different event handlers will cause an exception to be thrown.
@@ -1528,7 +1703,7 @@
             Get the Callback parameter for the <see cref="E:Chromium.CfxDownloadHandler.OnDownloadUpdated"/> callback.
             </summary>
         </member>
-        <member name="T:Chromium.Event.CfxDownloadImageCallbackOnDownloadImageFinishedEventHandler">
+        <member name="T:Chromium.Event.CfxOnDownloadImageFinishedEventHandler">
             <summary>
             Method that will be executed when the image download has completed.
             |ImageUrl| is the URL that was downloaded and |HttpStatusCode| is the
@@ -1540,7 +1715,7 @@
             <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_browser_capi.h">cef/include/capi/cef_browser_capi.h</see>.
             </remarks>
         </member>
-        <member name="T:Chromium.Event.CfxDownloadImageCallbackOnDownloadImageFinishedEventArgs">
+        <member name="T:Chromium.Event.CfxOnDownloadImageFinishedEventArgs">
             <summary>
             Method that will be executed when the image download has completed.
             |ImageUrl| is the URL that was downloaded and |HttpStatusCode| is the
@@ -1552,17 +1727,17 @@
             <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_browser_capi.h">cef/include/capi/cef_browser_capi.h</see>.
             </remarks>
         </member>
-        <member name="P:Chromium.Event.CfxDownloadImageCallbackOnDownloadImageFinishedEventArgs.ImageUrl">
+        <member name="P:Chromium.Event.CfxOnDownloadImageFinishedEventArgs.ImageUrl">
             <summary>
             Get the ImageUrl parameter for the <see cref="E:Chromium.CfxDownloadImageCallback.OnDownloadImageFinished"/> callback.
             </summary>
         </member>
-        <member name="P:Chromium.Event.CfxDownloadImageCallbackOnDownloadImageFinishedEventArgs.HttpStatusCode">
+        <member name="P:Chromium.Event.CfxOnDownloadImageFinishedEventArgs.HttpStatusCode">
             <summary>
             Get the HttpStatusCode parameter for the <see cref="E:Chromium.CfxDownloadImageCallback.OnDownloadImageFinished"/> callback.
             </summary>
         </member>
-        <member name="P:Chromium.Event.CfxDownloadImageCallbackOnDownloadImageFinishedEventArgs.Image">
+        <member name="P:Chromium.Event.CfxOnDownloadImageFinishedEventArgs.Image">
             <summary>
             Get the Image parameter for the <see cref="E:Chromium.CfxDownloadImageCallback.OnDownloadImageFinished"/> callback.
             </summary>
@@ -1649,7 +1824,7 @@
             Do not keep a reference to the elements of this array outside of this function.
             </summary>
         </member>
-        <member name="T:Chromium.Event.CfxEndTracingCallbackOnEndTracingCompleteEventHandler">
+        <member name="T:Chromium.Event.CfxOnEndTracingCompleteEventHandler">
             <summary>
             Called after all processes have sent their trace data. |TracingFile| is
             the path at which tracing data was written. The client is responsible for
@@ -1660,7 +1835,7 @@
             <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_trace_capi.h">cef/include/capi/cef_trace_capi.h</see>.
             </remarks>
         </member>
-        <member name="T:Chromium.Event.CfxEndTracingCallbackOnEndTracingCompleteEventArgs">
+        <member name="T:Chromium.Event.CfxOnEndTracingCompleteEventArgs">
             <summary>
             Called after all processes have sent their trace data. |TracingFile| is
             the path at which tracing data was written. The client is responsible for
@@ -1671,7 +1846,7 @@
             <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_trace_capi.h">cef/include/capi/cef_trace_capi.h</see>.
             </remarks>
         </member>
-        <member name="P:Chromium.Event.CfxEndTracingCallbackOnEndTracingCompleteEventArgs.TracingFile">
+        <member name="P:Chromium.Event.CfxOnEndTracingCompleteEventArgs.TracingFile">
             <summary>
             Get the TracingFile parameter for the <see cref="E:Chromium.CfxEndTracingCallback.OnEndTracingComplete"/> callback.
             </summary>
@@ -2073,7 +2248,7 @@
             Calling SetReturnValue() more then once per callback or from different event handlers will cause an exception to be thrown.
             </summary>
         </member>
-        <member name="T:Chromium.Event.CfxFindHandlerOnFindResultEventHandler">
+        <member name="T:Chromium.Event.CfxOnFindResultEventHandler">
             <summary>
             Called to report find results returned by CfxBrowserHost.Find().
             |Identifer| is the identifier passed to find(), |Count| is the number of
@@ -2087,7 +2262,7 @@
             <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_find_handler_capi.h">cef/include/capi/cef_find_handler_capi.h</see>.
             </remarks>
         </member>
-        <member name="T:Chromium.Event.CfxFindHandlerOnFindResultEventArgs">
+        <member name="T:Chromium.Event.CfxOnFindResultEventArgs">
             <summary>
             Called to report find results returned by CfxBrowserHost.Find().
             |Identifer| is the identifier passed to find(), |Count| is the number of
@@ -2101,32 +2276,32 @@
             <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_find_handler_capi.h">cef/include/capi/cef_find_handler_capi.h</see>.
             </remarks>
         </member>
-        <member name="P:Chromium.Event.CfxFindHandlerOnFindResultEventArgs.Browser">
+        <member name="P:Chromium.Event.CfxOnFindResultEventArgs.Browser">
             <summary>
             Get the Browser parameter for the <see cref="E:Chromium.CfxFindHandler.OnFindResult"/> callback.
             </summary>
         </member>
-        <member name="P:Chromium.Event.CfxFindHandlerOnFindResultEventArgs.Identifier">
+        <member name="P:Chromium.Event.CfxOnFindResultEventArgs.Identifier">
             <summary>
             Get the Identifier parameter for the <see cref="E:Chromium.CfxFindHandler.OnFindResult"/> callback.
             </summary>
         </member>
-        <member name="P:Chromium.Event.CfxFindHandlerOnFindResultEventArgs.Count">
+        <member name="P:Chromium.Event.CfxOnFindResultEventArgs.Count">
             <summary>
             Get the Count parameter for the <see cref="E:Chromium.CfxFindHandler.OnFindResult"/> callback.
             </summary>
         </member>
-        <member name="P:Chromium.Event.CfxFindHandlerOnFindResultEventArgs.SelectionRect">
+        <member name="P:Chromium.Event.CfxOnFindResultEventArgs.SelectionRect">
             <summary>
             Get the SelectionRect parameter for the <see cref="E:Chromium.CfxFindHandler.OnFindResult"/> callback.
             </summary>
         </member>
-        <member name="P:Chromium.Event.CfxFindHandlerOnFindResultEventArgs.ActiveMatchOrdinal">
+        <member name="P:Chromium.Event.CfxOnFindResultEventArgs.ActiveMatchOrdinal">
             <summary>
             Get the ActiveMatchOrdinal parameter for the <see cref="E:Chromium.CfxFindHandler.OnFindResult"/> callback.
             </summary>
         </member>
-        <member name="P:Chromium.Event.CfxFindHandlerOnFindResultEventArgs.FinalUpdate">
+        <member name="P:Chromium.Event.CfxOnFindResultEventArgs.FinalUpdate">
             <summary>
             Get the FinalUpdate parameter for the <see cref="E:Chromium.CfxFindHandler.OnFindResult"/> callback.
             </summary>
@@ -3342,7 +3517,7 @@
             Calling SetReturnValue() more then once per callback or from different event handlers will cause an exception to be thrown.
             </summary>
         </member>
-        <member name="T:Chromium.Event.CfxPdfPrintCallbackOnPdfPrintFinishedEventHandler">
+        <member name="T:Chromium.Event.CfxOnPdfPrintFinishedEventHandler">
             <summary>
             Method that will be executed when the PDF printing has completed. |Path| is
             the output path. |Ok| will be true (1) if the printing completed
@@ -3353,7 +3528,7 @@
             <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_browser_capi.h">cef/include/capi/cef_browser_capi.h</see>.
             </remarks>
         </member>
-        <member name="T:Chromium.Event.CfxPdfPrintCallbackOnPdfPrintFinishedEventArgs">
+        <member name="T:Chromium.Event.CfxOnPdfPrintFinishedEventArgs">
             <summary>
             Method that will be executed when the PDF printing has completed. |Path| is
             the output path. |Ok| will be true (1) if the printing completed
@@ -3364,12 +3539,12 @@
             <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_browser_capi.h">cef/include/capi/cef_browser_capi.h</see>.
             </remarks>
         </member>
-        <member name="P:Chromium.Event.CfxPdfPrintCallbackOnPdfPrintFinishedEventArgs.Path">
+        <member name="P:Chromium.Event.CfxOnPdfPrintFinishedEventArgs.Path">
             <summary>
             Get the Path parameter for the <see cref="E:Chromium.CfxPdfPrintCallback.OnPdfPrintFinished"/> callback.
             </summary>
         </member>
-        <member name="P:Chromium.Event.CfxPdfPrintCallbackOnPdfPrintFinishedEventArgs.Ok">
+        <member name="P:Chromium.Event.CfxOnPdfPrintFinishedEventArgs.Ok">
             <summary>
             Get the Ok parameter for the <see cref="E:Chromium.CfxPdfPrintCallback.OnPdfPrintFinished"/> callback.
             </summary>
@@ -3736,7 +3911,7 @@
             Calling SetReturnValue() more then once per callback or from different event handlers will cause an exception to be thrown.
             </summary>
         </member>
-        <member name="T:Chromium.Event.CfxRegisterCdmCallbackOnCdmRegistrationCompleteEventHandler">
+        <member name="T:Chromium.Event.CfxOnCdmRegistrationCompleteEventHandler">
             <summary>
             Method that will be called when CDM registration is complete. |Result| will
             be CEF_CDM_REGISTRATION_ERROR_NONE if registration completed successfully.
@@ -3748,7 +3923,7 @@
             <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_web_plugin_capi.h">cef/include/capi/cef_web_plugin_capi.h</see>.
             </remarks>
         </member>
-        <member name="T:Chromium.Event.CfxRegisterCdmCallbackOnCdmRegistrationCompleteEventArgs">
+        <member name="T:Chromium.Event.CfxOnCdmRegistrationCompleteEventArgs">
             <summary>
             Method that will be called when CDM registration is complete. |Result| will
             be CEF_CDM_REGISTRATION_ERROR_NONE if registration completed successfully.
@@ -3760,12 +3935,12 @@
             <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_web_plugin_capi.h">cef/include/capi/cef_web_plugin_capi.h</see>.
             </remarks>
         </member>
-        <member name="P:Chromium.Event.CfxRegisterCdmCallbackOnCdmRegistrationCompleteEventArgs.Result">
+        <member name="P:Chromium.Event.CfxOnCdmRegistrationCompleteEventArgs.Result">
             <summary>
             Get the Result parameter for the <see cref="E:Chromium.CfxRegisterCdmCallback.OnCdmRegistrationComplete"/> callback.
             </summary>
         </member>
-        <member name="P:Chromium.Event.CfxRegisterCdmCallbackOnCdmRegistrationCompleteEventArgs.ErrorMessage">
+        <member name="P:Chromium.Event.CfxOnCdmRegistrationCompleteEventArgs.ErrorMessage">
             <summary>
             Get the ErrorMessage parameter for the <see cref="E:Chromium.CfxRegisterCdmCallback.OnCdmRegistrationComplete"/> callback.
             </summary>
@@ -3799,7 +3974,8 @@
         <member name="T:Chromium.Event.CfxGetRootScreenRectEventHandler">
             <summary>
             Called to retrieve the root window rectangle in screen coordinates. Return
-            true (1) if the rectangle was provided.
+            true (1) if the rectangle was provided. If this function returns false (0)
+            the rectangle from GetViewRect will be used.
             </summary>
             <remarks>
             See also the original CEF documentation in
@@ -3809,7 +3985,8 @@
         <member name="T:Chromium.Event.CfxGetRootScreenRectEventArgs">
             <summary>
             Called to retrieve the root window rectangle in screen coordinates. Return
-            true (1) if the rectangle was provided.
+            true (1) if the rectangle was provided. If this function returns false (0)
+            the rectangle from GetViewRect will be used.
             </summary>
             <remarks>
             See also the original CEF documentation in
@@ -3835,7 +4012,7 @@
         <member name="T:Chromium.Event.CfxGetViewRectEventHandler">
             <summary>
             Called to retrieve the view rectangle which is relative to screen
-            coordinates. Return true (1) if the rectangle was provided.
+            coordinates. This function must always provide a non-NULL rectangle.
             </summary>
             <remarks>
             See also the original CEF documentation in
@@ -3845,7 +4022,7 @@
         <member name="T:Chromium.Event.CfxGetViewRectEventArgs">
             <summary>
             Called to retrieve the view rectangle which is relative to screen
-            coordinates. Return true (1) if the rectangle was provided.
+            coordinates. This function must always provide a non-NULL rectangle.
             </summary>
             <remarks>
             See also the original CEF documentation in
@@ -3860,12 +4037,6 @@
         <member name="P:Chromium.Event.CfxGetViewRectEventArgs.Rect">
             <summary>
             Get the Rect parameter for the <see cref="E:Chromium.CfxRenderHandler.GetViewRect"/> callback.
-            </summary>
-        </member>
-        <member name="M:Chromium.Event.CfxGetViewRectEventArgs.SetReturnValue(System.Boolean)">
-            <summary>
-            Set the return value for the <see cref="E:Chromium.CfxRenderHandler.GetViewRect"/> callback.
-            Calling SetReturnValue() more then once per callback or from different event handlers will cause an exception to be thrown.
             </summary>
         </member>
         <member name="T:Chromium.Event.CfxGetScreenPointEventHandler">
@@ -4034,7 +4205,8 @@
             contains the pixel data for the whole image. |DirtyRects| contains the set
             of rectangles in pixel coordinates that need to be repainted. |Buffer| will
             be |Width|*|Height|*4 bytes in size and represents a BGRA image with an
-            upper-left origin.
+            upper-left origin. This function is only called when
+            CfxWindowInfo.SharedTextureEnabled is set to false (0).
             </summary>
             <remarks>
             See also the original CEF documentation in
@@ -4050,7 +4222,8 @@
             contains the pixel data for the whole image. |DirtyRects| contains the set
             of rectangles in pixel coordinates that need to be repainted. |Buffer| will
             be |Width|*|Height|*4 bytes in size and represents a BGRA image with an
-            upper-left origin.
+            upper-left origin. This function is only called when
+            CfxWindowInfo.SharedTextureEnabled is set to false (0).
             </summary>
             <remarks>
             See also the original CEF documentation in
@@ -4090,9 +4263,13 @@
         </member>
         <member name="T:Chromium.Event.CfxOnAcceleratedPaintEventHandler">
             <summary>
-            Called when an view has been rendered to the given shared texture handle.
-            Currently, the shared handle represents a D3D11 Texture2D that can be
-            accessed with the OpenSharedResource function available from a ID3D11Device
+            Called when an element has been rendered to the shared texture handle.
+            |Type| indicates whether the element is the view or the popup widget.
+            |DirtyRects| contains the set of rectangles in pixel coordinates that need
+            to be repainted. |SharedHandle| is the handle for a D3D11 Texture2D that
+            can be accessed via ID3D11Device using the OpenSharedResource function.
+            This function is only called when CfxWindowInfo.SharedTextureEnabled
+            is set to true (1), and is currently only supported on Windows.
             </summary>
             <remarks>
             See also the original CEF documentation in
@@ -4101,9 +4278,13 @@
         </member>
         <member name="T:Chromium.Event.CfxOnAcceleratedPaintEventArgs">
             <summary>
-            Called when an view has been rendered to the given shared texture handle.
-            Currently, the shared handle represents a D3D11 Texture2D that can be
-            accessed with the OpenSharedResource function available from a ID3D11Device
+            Called when an element has been rendered to the shared texture handle.
+            |Type| indicates whether the element is the view or the popup widget.
+            |DirtyRects| contains the set of rectangles in pixel coordinates that need
+            to be repainted. |SharedHandle| is the handle for a D3D11 Texture2D that
+            can be accessed via ID3D11Device using the OpenSharedResource function.
+            This function is only called when CfxWindowInfo.SharedTextureEnabled
+            is set to true (1), and is currently only supported on Windows.
             </summary>
             <remarks>
             See also the original CEF documentation in
@@ -4380,6 +4561,40 @@
         <member name="P:Chromium.Event.CfxOnTextSelectionChangedEventArgs.SelectedRange">
             <summary>
             Get the SelectedRange parameter for the <see cref="E:Chromium.CfxRenderHandler.OnTextSelectionChanged"/> callback.
+            </summary>
+        </member>
+        <member name="T:Chromium.Event.CfxOnVirtualKeyboardRequestedEventHandler">
+            <summary>
+            Called when an on-screen keyboard should be shown or hidden for the
+            specified |Browser|. |InputMode| specifies what kind of keyboard should be
+            opened. If |InputMode| is CEF_TEXT_INPUT_MODE_NONE, any existing keyboard
+            for this browser should be hidden.
+            </summary>
+            <remarks>
+            See also the original CEF documentation in
+            <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_render_handler_capi.h">cef/include/capi/cef_render_handler_capi.h</see>.
+            </remarks>
+        </member>
+        <member name="T:Chromium.Event.CfxOnVirtualKeyboardRequestedEventArgs">
+            <summary>
+            Called when an on-screen keyboard should be shown or hidden for the
+            specified |Browser|. |InputMode| specifies what kind of keyboard should be
+            opened. If |InputMode| is CEF_TEXT_INPUT_MODE_NONE, any existing keyboard
+            for this browser should be hidden.
+            </summary>
+            <remarks>
+            See also the original CEF documentation in
+            <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_render_handler_capi.h">cef/include/capi/cef_render_handler_capi.h</see>.
+            </remarks>
+        </member>
+        <member name="P:Chromium.Event.CfxOnVirtualKeyboardRequestedEventArgs.Browser">
+            <summary>
+            Get the Browser parameter for the <see cref="E:Chromium.CfxRenderHandler.OnVirtualKeyboardRequested"/> callback.
+            </summary>
+        </member>
+        <member name="P:Chromium.Event.CfxOnVirtualKeyboardRequestedEventArgs.InputMode">
+            <summary>
+            Get the InputMode parameter for the <see cref="E:Chromium.CfxRenderHandler.OnVirtualKeyboardRequested"/> callback.
             </summary>
         </member>
         <member name="T:Chromium.Event.CfxOnRenderThreadCreatedEventHandler">
@@ -5337,7 +5552,7 @@
             Calling SetReturnValue() more then once per callback or from different event handlers will cause an exception to be thrown.
             </summary>
         </member>
-        <member name="T:Chromium.Event.CfxCanSetCookieEventHandler">
+        <member name="T:Chromium.Event.CfxRequestHandlerCanSetCookieEventHandler">
             <summary>
             Called on the IO thread when receiving a network request with a "Set-
             Cookie" response header value represented by |Cookie|. Return true (1) to
@@ -5349,7 +5564,7 @@
             <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_request_handler_capi.h">cef/include/capi/cef_request_handler_capi.h</see>.
             </remarks>
         </member>
-        <member name="T:Chromium.Event.CfxCanSetCookieEventArgs">
+        <member name="T:Chromium.Event.CfxRequestHandlerCanSetCookieEventArgs">
             <summary>
             Called on the IO thread when receiving a network request with a "Set-
             Cookie" response header value represented by |Cookie|. Return true (1) to
@@ -5361,27 +5576,27 @@
             <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_request_handler_capi.h">cef/include/capi/cef_request_handler_capi.h</see>.
             </remarks>
         </member>
-        <member name="P:Chromium.Event.CfxCanSetCookieEventArgs.Browser">
+        <member name="P:Chromium.Event.CfxRequestHandlerCanSetCookieEventArgs.Browser">
             <summary>
             Get the Browser parameter for the <see cref="E:Chromium.CfxRequestHandler.CanSetCookie"/> callback.
             </summary>
         </member>
-        <member name="P:Chromium.Event.CfxCanSetCookieEventArgs.Frame">
+        <member name="P:Chromium.Event.CfxRequestHandlerCanSetCookieEventArgs.Frame">
             <summary>
             Get the Frame parameter for the <see cref="E:Chromium.CfxRequestHandler.CanSetCookie"/> callback.
             </summary>
         </member>
-        <member name="P:Chromium.Event.CfxCanSetCookieEventArgs.Request">
+        <member name="P:Chromium.Event.CfxRequestHandlerCanSetCookieEventArgs.Request">
             <summary>
             Get the Request parameter for the <see cref="E:Chromium.CfxRequestHandler.CanSetCookie"/> callback.
             </summary>
         </member>
-        <member name="P:Chromium.Event.CfxCanSetCookieEventArgs.Cookie">
+        <member name="P:Chromium.Event.CfxRequestHandlerCanSetCookieEventArgs.Cookie">
             <summary>
             Get the Cookie parameter for the <see cref="E:Chromium.CfxRequestHandler.CanSetCookie"/> callback.
             </summary>
         </member>
-        <member name="M:Chromium.Event.CfxCanSetCookieEventArgs.SetReturnValue(System.Boolean)">
+        <member name="M:Chromium.Event.CfxRequestHandlerCanSetCookieEventArgs.SetReturnValue(System.Boolean)">
             <summary>
             Set the return value for the <see cref="E:Chromium.CfxRequestHandler.CanSetCookie"/> callback.
             Calling SetReturnValue() more then once per callback or from different event handlers will cause an exception to be thrown.
@@ -5704,7 +5919,7 @@
             Get the Status parameter for the <see cref="E:Chromium.CfxRequestHandler.OnRenderProcessTerminated"/> callback.
             </summary>
         </member>
-        <member name="T:Chromium.Event.CfxResolveCallbackOnResolveCompletedEventHandler">
+        <member name="T:Chromium.Event.CfxOnResolveCompletedEventHandler">
             <summary>
             Called on the UI thread after the ResolveHost request has completed.
             |Result| will be the result code. |ResolvedIps| will be the list of
@@ -5715,7 +5930,7 @@
             <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_request_context_capi.h">cef/include/capi/cef_request_context_capi.h</see>.
             </remarks>
         </member>
-        <member name="T:Chromium.Event.CfxResolveCallbackOnResolveCompletedEventArgs">
+        <member name="T:Chromium.Event.CfxOnResolveCompletedEventArgs">
             <summary>
             Called on the UI thread after the ResolveHost request has completed.
             |Result| will be the result code. |ResolvedIps| will be the list of
@@ -5726,12 +5941,12 @@
             <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_request_context_capi.h">cef/include/capi/cef_request_context_capi.h</see>.
             </remarks>
         </member>
-        <member name="P:Chromium.Event.CfxResolveCallbackOnResolveCompletedEventArgs.Result">
+        <member name="P:Chromium.Event.CfxOnResolveCompletedEventArgs.Result">
             <summary>
             Get the Result parameter for the <see cref="E:Chromium.CfxResolveCallback.OnResolveCompleted"/> callback.
             </summary>
         </member>
-        <member name="P:Chromium.Event.CfxResolveCallbackOnResolveCompletedEventArgs.ResolvedIps">
+        <member name="P:Chromium.Event.CfxOnResolveCompletedEventArgs.ResolvedIps">
             <summary>
             Get the ResolvedIps parameter for the <see cref="E:Chromium.CfxResolveCallback.OnResolveCompleted"/> callback.
             </summary>
@@ -5930,8 +6145,12 @@
             (0) or the specified number of bytes have been read. Use the |Response|
             object to set the mime type, http status code and other optional header
             values. To redirect the request to a new URL set |RedirectUrl| to the new
-            URL. If an error occured while setting up the request you can call
-            set_error() on |Response| to indicate the error condition.
+            URL. |RedirectUrl| can be either a relative or fully qualified URL. It is
+            also possible to set |Response| to a redirect http status code and pass the
+            new URL via a Location header. Likewise with |RedirectUrl| it is valid to
+            set a relative or fully qualified URL as the Location header value. If an
+            error occured while setting up the request you can call set_error() on
+            |Response| to indicate the error condition.
             </summary>
             <remarks>
             See also the original CEF documentation in
@@ -5947,8 +6166,12 @@
             (0) or the specified number of bytes have been read. Use the |Response|
             object to set the mime type, http status code and other optional header
             values. To redirect the request to a new URL set |RedirectUrl| to the new
-            URL. If an error occured while setting up the request you can call
-            set_error() on |Response| to indicate the error condition.
+            URL. |RedirectUrl| can be either a relative or fully qualified URL. It is
+            also possible to set |Response| to a redirect http status code and pass the
+            new URL via a Location header. Likewise with |RedirectUrl| it is valid to
+            set a relative or fully qualified URL as the Location header value. If an
+            error occured while setting up the request you can call set_error() on
+            |Response| to indicate the error condition.
             </summary>
             <remarks>
             See also the original CEF documentation in
@@ -6052,6 +6275,37 @@
         <member name="M:Chromium.Event.CfxCanGetCookieEventArgs.SetReturnValue(System.Boolean)">
             <summary>
             Set the return value for the <see cref="E:Chromium.CfxResourceHandler.CanGetCookie"/> callback.
+            Calling SetReturnValue() more then once per callback or from different event handlers will cause an exception to be thrown.
+            </summary>
+        </member>
+        <member name="T:Chromium.Event.CfxResourceHandlerCanSetCookieEventHandler">
+            <summary>
+            Return true (1) if the specified cookie returned with the response can be
+            set or false (0) otherwise.
+            </summary>
+            <remarks>
+            See also the original CEF documentation in
+            <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_resource_handler_capi.h">cef/include/capi/cef_resource_handler_capi.h</see>.
+            </remarks>
+        </member>
+        <member name="T:Chromium.Event.CfxResourceHandlerCanSetCookieEventArgs">
+            <summary>
+            Return true (1) if the specified cookie returned with the response can be
+            set or false (0) otherwise.
+            </summary>
+            <remarks>
+            See also the original CEF documentation in
+            <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_resource_handler_capi.h">cef/include/capi/cef_resource_handler_capi.h</see>.
+            </remarks>
+        </member>
+        <member name="P:Chromium.Event.CfxResourceHandlerCanSetCookieEventArgs.Cookie">
+            <summary>
+            Get the Cookie parameter for the <see cref="E:Chromium.CfxResourceHandler.CanSetCookie"/> callback.
+            </summary>
+        </member>
+        <member name="M:Chromium.Event.CfxResourceHandlerCanSetCookieEventArgs.SetReturnValue(System.Boolean)">
+            <summary>
+            Set the return value for the <see cref="E:Chromium.CfxResourceHandler.CanSetCookie"/> callback.
             Calling SetReturnValue() more then once per callback or from different event handlers will cause an exception to be thrown.
             </summary>
         </member>
@@ -6191,7 +6445,7 @@
             Calling SetReturnValue() more then once per callback or from different event handlers will cause an exception to be thrown.
             </summary>
         </member>
-        <member name="T:Chromium.Event.CfxRunFileDialogCallbackOnFileDialogDismissedEventHandler">
+        <member name="T:Chromium.Event.CfxOnFileDialogDismissedEventHandler">
             <summary>
             Called asynchronously after the file dialog is dismissed.
             |SelectedAcceptFilter| is the 0-based index of the value selected from
@@ -6204,7 +6458,7 @@
             <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_browser_capi.h">cef/include/capi/cef_browser_capi.h</see>.
             </remarks>
         </member>
-        <member name="T:Chromium.Event.CfxRunFileDialogCallbackOnFileDialogDismissedEventArgs">
+        <member name="T:Chromium.Event.CfxOnFileDialogDismissedEventArgs">
             <summary>
             Called asynchronously after the file dialog is dismissed.
             |SelectedAcceptFilter| is the 0-based index of the value selected from
@@ -6217,17 +6471,17 @@
             <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_browser_capi.h">cef/include/capi/cef_browser_capi.h</see>.
             </remarks>
         </member>
-        <member name="P:Chromium.Event.CfxRunFileDialogCallbackOnFileDialogDismissedEventArgs.SelectedAcceptFilter">
+        <member name="P:Chromium.Event.CfxOnFileDialogDismissedEventArgs.SelectedAcceptFilter">
             <summary>
             Get the SelectedAcceptFilter parameter for the <see cref="E:Chromium.CfxRunFileDialogCallback.OnFileDialogDismissed"/> callback.
             </summary>
         </member>
-        <member name="P:Chromium.Event.CfxRunFileDialogCallbackOnFileDialogDismissedEventArgs.FilePaths">
+        <member name="P:Chromium.Event.CfxOnFileDialogDismissedEventArgs.FilePaths">
             <summary>
             Get the FilePaths parameter for the <see cref="E:Chromium.CfxRunFileDialogCallback.OnFileDialogDismissed"/> callback.
             </summary>
         </member>
-        <member name="T:Chromium.Event.CfxSchemeHandlerFactoryCreateEventHandler">
+        <member name="T:Chromium.Event.CfxCreateEventHandler">
             <summary>
             Return a new resource handler instance to handle the request or an NULL
             reference to allow default handling of the request. |Browser| and |Frame|
@@ -6241,7 +6495,7 @@
             <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_scheme_capi.h">cef/include/capi/cef_scheme_capi.h</see>.
             </remarks>
         </member>
-        <member name="T:Chromium.Event.CfxSchemeHandlerFactoryCreateEventArgs">
+        <member name="T:Chromium.Event.CfxCreateEventArgs">
             <summary>
             Return a new resource handler instance to handle the request or an NULL
             reference to allow default handling of the request. |Browser| and |Frame|
@@ -6255,27 +6509,27 @@
             <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_scheme_capi.h">cef/include/capi/cef_scheme_capi.h</see>.
             </remarks>
         </member>
-        <member name="P:Chromium.Event.CfxSchemeHandlerFactoryCreateEventArgs.Browser">
+        <member name="P:Chromium.Event.CfxCreateEventArgs.Browser">
             <summary>
             Get the Browser parameter for the <see cref="E:Chromium.CfxSchemeHandlerFactory.Create"/> callback.
             </summary>
         </member>
-        <member name="P:Chromium.Event.CfxSchemeHandlerFactoryCreateEventArgs.Frame">
+        <member name="P:Chromium.Event.CfxCreateEventArgs.Frame">
             <summary>
             Get the Frame parameter for the <see cref="E:Chromium.CfxSchemeHandlerFactory.Create"/> callback.
             </summary>
         </member>
-        <member name="P:Chromium.Event.CfxSchemeHandlerFactoryCreateEventArgs.SchemeName">
+        <member name="P:Chromium.Event.CfxCreateEventArgs.SchemeName">
             <summary>
             Get the SchemeName parameter for the <see cref="E:Chromium.CfxSchemeHandlerFactory.Create"/> callback.
             </summary>
         </member>
-        <member name="P:Chromium.Event.CfxSchemeHandlerFactoryCreateEventArgs.Request">
+        <member name="P:Chromium.Event.CfxCreateEventArgs.Request">
             <summary>
             Get the Request parameter for the <see cref="E:Chromium.CfxSchemeHandlerFactory.Create"/> callback.
             </summary>
         </member>
-        <member name="M:Chromium.Event.CfxSchemeHandlerFactoryCreateEventArgs.SetReturnValue(Chromium.CfxResourceHandler)">
+        <member name="M:Chromium.Event.CfxCreateEventArgs.SetReturnValue(Chromium.CfxResourceHandler)">
             <summary>
             Set the return value for the <see cref="E:Chromium.CfxSchemeHandlerFactory.Create"/> callback.
             Calling SetReturnValue() more then once per callback or from different event handlers will cause an exception to be thrown.
@@ -6960,7 +7214,7 @@
             Calling SetReturnValue() more then once per callback or from different event handlers will cause an exception to be thrown.
             </summary>
         </member>
-        <member name="T:Chromium.Event.CfxV8arrayBufferReleaseCallbackReleaseBufferEventHandler">
+        <member name="T:Chromium.Event.CfxReleaseBufferEventHandler">
             <summary>
             Called to release |Buffer| when the ArrayBuffer JS object is garbage
             collected. |Buffer| is the value that was passed to CreateArrayBuffer along
@@ -6971,7 +7225,7 @@
             <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_v8_capi.h">cef/include/capi/cef_v8_capi.h</see>.
             </remarks>
         </member>
-        <member name="T:Chromium.Event.CfxV8arrayBufferReleaseCallbackReleaseBufferEventArgs">
+        <member name="T:Chromium.Event.CfxReleaseBufferEventArgs">
             <summary>
             Called to release |Buffer| when the ArrayBuffer JS object is garbage
             collected. |Buffer| is the value that was passed to CreateArrayBuffer along
@@ -6982,9 +7236,9 @@
             <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_v8_capi.h">cef/include/capi/cef_v8_capi.h</see>.
             </remarks>
         </member>
-        <member name="P:Chromium.Event.CfxV8arrayBufferReleaseCallbackReleaseBufferEventArgs.Buffer">
+        <member name="P:Chromium.Event.CfxReleaseBufferEventArgs.Buffer">
             <summary>
-            Get the Buffer parameter for the <see cref="E:Chromium.CfxV8arrayBufferReleaseCallback.ReleaseBuffer"/> callback.
+            Get the Buffer parameter for the <see cref="E:Chromium.CfxV8ArrayBufferReleaseCallback.ReleaseBuffer"/> callback.
             </summary>
         </member>
         <member name="T:Chromium.Event.CfxV8HandlerExecuteEventHandler">
@@ -7300,7 +7554,7 @@
             Calling SetReturnValue() more then once per callback or from different event handlers will cause an exception to be thrown.
             </summary>
         </member>
-        <member name="T:Chromium.Event.CfxWebPluginUnstableCallbackIsUnstableEventHandler">
+        <member name="T:Chromium.Event.CfxIsUnstableEventHandler">
             <summary>
             Method that will be called for the requested plugin. |Unstable| will be
             true (1) if the plugin has reached the crash count threshold of 3 times in
@@ -7311,7 +7565,7 @@
             <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_web_plugin_capi.h">cef/include/capi/cef_web_plugin_capi.h</see>.
             </remarks>
         </member>
-        <member name="T:Chromium.Event.CfxWebPluginUnstableCallbackIsUnstableEventArgs">
+        <member name="T:Chromium.Event.CfxIsUnstableEventArgs">
             <summary>
             Method that will be called for the requested plugin. |Unstable| will be
             true (1) if the plugin has reached the crash count threshold of 3 times in
@@ -7322,12 +7576,12 @@
             <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_web_plugin_capi.h">cef/include/capi/cef_web_plugin_capi.h</see>.
             </remarks>
         </member>
-        <member name="P:Chromium.Event.CfxWebPluginUnstableCallbackIsUnstableEventArgs.Path">
+        <member name="P:Chromium.Event.CfxIsUnstableEventArgs.Path">
             <summary>
             Get the Path parameter for the <see cref="E:Chromium.CfxWebPluginUnstableCallback.IsUnstable"/> callback.
             </summary>
         </member>
-        <member name="P:Chromium.Event.CfxWebPluginUnstableCallbackIsUnstableEventArgs.Unstable">
+        <member name="P:Chromium.Event.CfxIsUnstableEventArgs.Unstable">
             <summary>
             Get the Unstable parameter for the <see cref="E:Chromium.CfxWebPluginUnstableCallback.IsUnstable"/> callback.
             </summary>
@@ -7483,6 +7737,59 @@
             Retrieves the CfxRenderProcessHandler provided by the event handler attached to the GetRenderProcessHandler event, if any.
             Returns null if no event handler is attached.
             </summary>
+        </member>
+        <member name="T:Chromium.CfxAudioHandler">
+            <summary>
+            Implement this structure to handle audio events All functions will be called
+            on the UI thread
+            </summary>
+            <remarks>
+            See also the original CEF documentation in
+            <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_audio_handler_capi.h">cef/include/capi/cef_audio_handler_capi.h</see>.
+            </remarks>
+        </member>
+        <member name="E:Chromium.CfxAudioHandler.OnAudioStreamStarted">
+            <summary>
+            Called when the stream identified by |AudioStreamId| has started.
+            |AudioStreamId| will uniquely identify the stream across all future
+            CfxAudioHandler callbacks. OnAudioSteamStopped will always be called
+            after OnAudioStreamStarted; both functions may be called multiple times for
+            the same stream. |Channels| is the number of channels, |ChannelLayout| is
+            the layout of the channels and |SampleRate| is the stream sample rate.
+            |FramesPerBuffer| is the maximum number of frames that will occur in the
+            PCM packet passed to OnAudioStreamPacket.
+            </summary>
+            <remarks>
+            See also the original CEF documentation in
+            <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_audio_handler_capi.h">cef/include/capi/cef_audio_handler_capi.h</see>.
+            </remarks>
+        </member>
+        <member name="E:Chromium.CfxAudioHandler.OnAudioStreamPacket">
+            <summary>
+            Called when a PCM packet is received for the stream identified by
+            |AudioStreamId|. |Data| is an array representing the raw PCM data as a
+            floating point type, i.e. 4-byte value(s). |Frames| is the number of frames
+            in the PCM packet. |Pts| is the presentation timestamp (in milliseconds
+            since the Unix Epoch) and represents the time at which the decompressed
+            packet should be presented to the user. Based on |Frames| and the
+            |ChannelLayout| value passed to OnAudioStreamStarted you can calculate the
+            size of the |Data| array in bytes.
+            </summary>
+            <remarks>
+            See also the original CEF documentation in
+            <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_audio_handler_capi.h">cef/include/capi/cef_audio_handler_capi.h</see>.
+            </remarks>
+        </member>
+        <member name="E:Chromium.CfxAudioHandler.OnAudioStreamStopped">
+            <summary>
+            Called when the stream identified by |AudioStreamId| has stopped.
+            OnAudioSteamStopped will always be called after OnAudioStreamStarted; both
+            functions may be called multiple times for the same stream.
+            </summary>
+            <remarks>
+            See also the original CEF documentation in
+            <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_audio_handler_capi.h">cef/include/capi/cef_audio_handler_capi.h</see>.
+            </remarks>
         </member>
         <member name="T:Chromium.CfxAuthCallback">
             <summary>
@@ -8124,6 +8431,16 @@
             <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_browser_capi.h">cef/include/capi/cef_browser_capi.h</see>.
             </remarks>
         </member>
+        <member name="P:Chromium.CfxBrowserHost.IsAudioMuted">
+            <summary>
+            Returns true (1) if the browser's audio is muted.  This function can only
+            be called on the UI thread.
+            </summary>
+            <remarks>
+            See also the original CEF documentation in
+            <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_browser_capi.h">cef/include/capi/cef_browser_capi.h</see>.
+            </remarks>
+        </member>
         <member name="M:Chromium.CfxBrowserHost.CloseBrowser(System.Boolean)">
             <summary>
             Request that the browser close. The JavaScript 'onbeforeunload' event will
@@ -8423,6 +8740,15 @@
             <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_browser_capi.h">cef/include/capi/cef_browser_capi.h</see>.
             </remarks>
         </member>
+        <member name="M:Chromium.CfxBrowserHost.SendTouchEvent(Chromium.CfxTouchEvent)">
+            <summary>
+            Send a touch event to the browser for a windowless browser.
+            </summary>
+            <remarks>
+            See also the original CEF documentation in
+            <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_browser_capi.h">cef/include/capi/cef_browser_capi.h</see>.
+            </remarks>
+        </member>
         <member name="M:Chromium.CfxBrowserHost.SendFocusEvent(System.Boolean)">
             <summary>
             Send a focus event to the browser.
@@ -8435,15 +8761,6 @@
         <member name="M:Chromium.CfxBrowserHost.SendCaptureLostEvent">
             <summary>
             Send a capture lost event to the browser.
-            </summary>
-            <remarks>
-            See also the original CEF documentation in
-            <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_browser_capi.h">cef/include/capi/cef_browser_capi.h</see>.
-            </remarks>
-        </member>
-        <member name="M:Chromium.CfxBrowserHost.SendTouchEvent(Chromium.CfxTouchEvent)">
-            <summary>
-            Send a touch event to the browser for a windowless browser.
             </summary>
             <remarks>
             See also the original CEF documentation in
@@ -8643,6 +8960,15 @@
             Enable notifications of auto resize via
             CfxDisplayHandler.OnAutoResize. Notifications are disabled by default.
             |minSize| and |maxSize| define the range of allowed sizes.
+            </summary>
+            <remarks>
+            See also the original CEF documentation in
+            <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_browser_capi.h">cef/include/capi/cef_browser_capi.h</see>.
+            </remarks>
+        </member>
+        <member name="M:Chromium.CfxBrowserHost.SetAudioMuted(System.Boolean)">
+            <summary>
+             Set whether the browser's audio is muted.
             </summary>
             <remarks>
             See also the original CEF documentation in
@@ -9018,6 +9344,21 @@
             See also the original CEF documentation in
             <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_client_capi.h">cef/include/capi/cef_client_capi.h</see>.
             </remarks>
+        </member>
+        <member name="E:Chromium.CfxClient.GetAudioHandler">
+            <summary>
+            Return the handler for audio rendering events.
+            </summary>
+            <remarks>
+            See also the original CEF documentation in
+            <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_client_capi.h">cef/include/capi/cef_client_capi.h</see>.
+            </remarks>
+        </member>
+        <member name="M:Chromium.CfxClient.RetrieveAudioHandler">
+            <summary>
+            Retrieves the CfxAudioHandler provided by the event handler attached to the GetAudioHandler event, if any.
+            Returns null if no event handler is attached.
+            </summary>
         </member>
         <member name="E:Chromium.CfxClient.GetContextMenuHandler">
             <summary>
@@ -11576,6 +11917,17 @@
             <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/internal/cef_types.h">cef/include/internal/cef_types.h</see>.
             </remarks>
         </member>
+        <member name="T:Chromium.CfxChannelLayout">
+            <summary>
+            Enumerates the various representations of the ordering of audio channels.
+            Logged to UMA, so never reuse a value, always add new/greater ones!
+            See media\base\channel_layout.h
+            </summary>
+            <remarks>
+            See also the original CEF documentation in
+            <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/internal/cef_types.h">cef/include/internal/cef_types.h</see>.
+            </remarks>
+        </member>
         <member name="T:Chromium.CfxColorModel">
             <summary>
             Print job color mode values.
@@ -12079,9 +12431,15 @@
             ERROR logging.
             </summary>
         </member>
+        <member name="F:Chromium.CfxLogSeverity.Fatal">
+            <summary>
+            FATAL logging.
+            </summary>
+        </member>
         <member name="F:Chromium.CfxLogSeverity.Disable">
             <summary>
-            Completely disable logging.
+            Disable logging to file for all messages, and to stderr for messages with
+            severity less than FATAL.
             </summary>
         </member>
         <member name="T:Chromium.CfxMainAxisAlignment">
@@ -12315,6 +12673,15 @@
             <summary>
             Disable the content. The user cannot load disabled content.
             </summary>
+        </member>
+        <member name="T:Chromium.CfxPointerType">
+            <summary>
+            The device type that caused the event.
+            </summary>
+            <remarks>
+            See also the original CEF documentation in
+            <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/internal/cef_types.h">cef/include/internal/cef_types.h</see>.
+            </remarks>
         </member>
         <member name="T:Chromium.CfxPostdataElementType">
             <summary>
@@ -12565,6 +12932,93 @@
             <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/internal/cef_types.h">cef/include/internal/cef_types.h</see>.
             </remarks>
         </member>
+        <member name="T:Chromium.CfxSchemeOptions">
+            <summary>
+            
+            Configuration options for registering a custom scheme.
+            These values are used when calling AddCustomScheme.
+            </summary>
+            <remarks>
+            See also the original CEF documentation in
+            <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/internal/cef_types.h">cef/include/internal/cef_types.h</see>.
+            </remarks>
+        </member>
+        <member name="F:Chromium.CfxSchemeOptions.Standard">
+            <summary>
+            If CEF_SCHEME_OPTION_STANDARD is set the scheme will be treated as a
+            standard scheme. Standard schemes are subject to URL canonicalization and
+            parsing rules as defined in the Common Internet Scheme Syntax RFC 1738
+            Section 3.1 available at http://www.ietf.org/rfc/rfc1738.txt
+            
+            In particular, the syntax for standard scheme URLs must be of the form:
+            &lt;pre>
+             [scheme]://[username]:[password]@[host]:[port]/[url-path]
+            &lt;/pre> Standard scheme URLs must have a host component that is a fully
+            qualified domain name as defined in Section 3.5 of RFC 1034 [13] and
+            Section 2.1 of RFC 1123. These URLs will be canonicalized to
+            "scheme://host/path" in the simplest case and
+            "scheme://username:password@host:port/path" in the most explicit case. For
+            example, "scheme:host/path" and "scheme:///host/path" will both be
+            canonicalized to "scheme://host/path". The origin of a standard scheme URL
+            is the combination of scheme, host and port (i.e., "scheme://host:port" in
+            the most explicit case).
+            
+            For non-standard scheme URLs only the "scheme:" component is parsed and
+            canonicalized. The remainder of the URL will be passed to the handler as-
+            is. For example, "scheme:///some%20text" will remain the same. Non-standard
+            scheme URLs cannot be used as a target for form submission.
+            </summary>
+        </member>
+        <member name="F:Chromium.CfxSchemeOptions.Local">
+            <summary>
+            If CEF_SCHEME_OPTION_LOCAL is set the scheme will be treated with the same
+            security rules as those applied to "file" URLs. Normal pages cannot link to
+            or access local URLs. Also, by default, local URLs can only perform
+            XMLHttpRequest calls to the same URL (origin + path) that originated the
+            request. To allow XMLHttpRequest calls from a local URL to other URLs with
+            the same origin set the CfxSettings.FileAccessFromFileUrlsAllowed
+            value to true (1). To allow XMLHttpRequest calls from a local URL to all
+            origins set the CfxSettings.UniversalAccessFromFileUrlsAllowed value
+            to true (1).
+            </summary>
+        </member>
+        <member name="F:Chromium.CfxSchemeOptions.DisplayIsolated">
+            <summary>
+            If CEF_SCHEME_OPTION_DISPLAY_ISOLATED is set the scheme can only be
+            displayed from other content hosted with the same scheme. For example,
+            pages in other origins cannot create iframes or hyperlinks to URLs with the
+            scheme. For schemes that must be accessible from other schemes don't set
+            this, set CEF_SCHEME_OPTION_CORS_ENABLED, and use CORS
+            "Access-Control-Allow-Origin" headers to further restrict access.
+            </summary>
+        </member>
+        <member name="F:Chromium.CfxSchemeOptions.Secure">
+            <summary>
+            If CEF_SCHEME_OPTION_SECURE is set the scheme will be treated with the same
+            security rules as those applied to "https" URLs. For example, loading this
+            scheme from other secure schemes will not trigger mixed content warnings.
+            </summary>
+        </member>
+        <member name="F:Chromium.CfxSchemeOptions.CorsEnabled">
+            <summary>
+            If CEF_SCHEME_OPTION_CORS_ENABLED is set the scheme can be sent CORS
+            requests. This value should be set in most cases where
+            CEF_SCHEME_OPTION_STANDARD is set.
+            </summary>
+        </member>
+        <member name="F:Chromium.CfxSchemeOptions.CspBypassing">
+            <summary>
+            If CEF_SCHEME_OPTION_CSP_BYPASSING is set the scheme can bypass Content-
+            Security-Policy (CSP) checks. This value should not be set in most cases
+            where CEF_SCHEME_OPTION_STANDARD is set.
+            </summary>
+        </member>
+        <member name="F:Chromium.CfxSchemeOptions.FetchEnabled">
+            <summary>
+            If CEF_SCHEME_OPTION_FETCH_ENABLED is set the scheme can perform Fetch API
+            requests.
+            </summary>
+        </member>
         <member name="T:Chromium.CfxSslContentStatus">
             <summary>
             Supported SSL content status flags. See content/public/common/ssl_status.h
@@ -12641,6 +13095,22 @@
             <summary>
             Segmentation fault.
             </summary>
+        </member>
+        <member name="F:Chromium.CfxTerminationStatus.ProcessOOM">
+            <summary>
+            Out of memory. Some platforms may use TS_PROCESS_CRASHED instead.
+            </summary>
+        </member>
+        <member name="T:Chromium.CfxTextInputMode">
+            <summary>
+            Input mode of a virtual keyboard. These constants match their equivalents
+            in Chromium's text_input_mode.h and should not be renumbered.
+            See https://html.spec.whatwg.org/#input-modalities:-the-inputmode-attribute
+            </summary>
+            <remarks>
+            See also the original CEF documentation in
+            <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/internal/cef_types.h">cef/include/internal/cef_types.h</see>.
+            </remarks>
         </member>
         <member name="T:Chromium.CfxTextStyle">
             <summary>
@@ -12954,7 +13424,16 @@
             If set the request will fail if it cannot be served from the cache (or some
             equivalent local store). Setting this value is equivalent to specifying the
             "Cache-Control: only-if-cached" request header. Setting this value in
-            combination with UR_FLAG_SKIP_CACHE will cause the request to fail.
+            combination with UR_FLAG_SKIP_CACHE or UR_FLAG_DISABLE_CACHE will cause the
+            request to fail.
+            </summary>
+        </member>
+        <member name="F:Chromium.CfxUrlRequestFlags.DisableCache">
+            <summary>
+            If set the cache will not be used at all. Setting this value is equivalent
+            to specifying the "Cache-Control: no-store" request header. Setting this
+            value in combination with UR_FLAG_ONLY_FROM_CACHE will cause the request to
+            fail.
             </summary>
         </member>
         <member name="F:Chromium.CfxUrlRequestFlags.AllowStoredCredentials">
@@ -16271,7 +16750,8 @@
         <member name="E:Chromium.CfxRenderHandler.GetRootScreenRect">
             <summary>
             Called to retrieve the root window rectangle in screen coordinates. Return
-            true (1) if the rectangle was provided.
+            true (1) if the rectangle was provided. If this function returns false (0)
+            the rectangle from GetViewRect will be used.
             </summary>
             <remarks>
             See also the original CEF documentation in
@@ -16281,7 +16761,7 @@
         <member name="E:Chromium.CfxRenderHandler.GetViewRect">
             <summary>
             Called to retrieve the view rectangle which is relative to screen
-            coordinates. Return true (1) if the rectangle was provided.
+            coordinates. This function must always provide a non-NULL rectangle.
             </summary>
             <remarks>
             See also the original CEF documentation in
@@ -16342,7 +16822,8 @@
             contains the pixel data for the whole image. |DirtyRects| contains the set
             of rectangles in pixel coordinates that need to be repainted. |Buffer| will
             be |Width|*|Height|*4 bytes in size and represents a BGRA image with an
-            upper-left origin.
+            upper-left origin. This function is only called when
+            CfxWindowInfo.SharedTextureEnabled is set to false (0).
             </summary>
             <remarks>
             See also the original CEF documentation in
@@ -16351,9 +16832,13 @@
         </member>
         <member name="E:Chromium.CfxRenderHandler.OnAcceleratedPaint">
             <summary>
-            Called when an view has been rendered to the given shared texture handle.
-            Currently, the shared handle represents a D3D11 Texture2D that can be
-            accessed with the OpenSharedResource function available from a ID3D11Device
+            Called when an element has been rendered to the shared texture handle.
+            |Type| indicates whether the element is the view or the popup widget.
+            |DirtyRects| contains the set of rectangles in pixel coordinates that need
+            to be repainted. |SharedHandle| is the handle for a D3D11 Texture2D that
+            can be accessed via ID3D11Device using the OpenSharedResource function.
+            This function is only called when CfxWindowInfo.SharedTextureEnabled
+            is set to true (1), and is currently only supported on Windows.
             </summary>
             <remarks>
             See also the original CEF documentation in
@@ -16426,6 +16911,18 @@
             Called when text selection has changed for the specified |Browser|.
             |SelectedText| is the currently selected text and |SelectedRange| is the
             character range.
+            </summary>
+            <remarks>
+            See also the original CEF documentation in
+            <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_render_handler_capi.h">cef/include/capi/cef_render_handler_capi.h</see>.
+            </remarks>
+        </member>
+        <member name="E:Chromium.CfxRenderHandler.OnVirtualKeyboardRequested">
+            <summary>
+            Called when an on-screen keyboard should be shown or hidden for the
+            specified |Browser|. |InputMode| specifies what kind of keyboard should be
+            opened. If |InputMode| is CEF_TEXT_INPUT_MODE_NONE, any existing keyboard
+            for this browser should be hidden.
             </summary>
             <remarks>
             See also the original CEF documentation in
@@ -17697,8 +18194,12 @@
             (0) or the specified number of bytes have been read. Use the |Response|
             object to set the mime type, http status code and other optional header
             values. To redirect the request to a new URL set |RedirectUrl| to the new
-            URL. If an error occured while setting up the request you can call
-            set_error() on |Response| to indicate the error condition.
+            URL. |RedirectUrl| can be either a relative or fully qualified URL. It is
+            also possible to set |Response| to a redirect http status code and pass the
+            new URL via a Location header. Likewise with |RedirectUrl| it is valid to
+            set a relative or fully qualified URL as the Location header value. If an
+            error occured while setting up the request you can call set_error() on
+            |Response| to indicate the error condition.
             </summary>
             <remarks>
             See also the original CEF documentation in
@@ -18013,11 +18514,11 @@
             hash value will be returned:
             0 - CEF_API_HASH_PLATFORM
             1 - CEF_API_HASH_UNIVERSAL
-            2 - CEF_COMMIT_HASH
+            2 - CEF_COMMIT_HASH (from cef_version.h)
             </summary>
             <remarks>
             See also the original CEF documentation in
-            <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/cef_version.h">cef/include/cef_version.h</see>.
+            <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/cef_api_hash.h">cef/include/cef_api_hash.h</see>.
             </remarks>
         </member>
         <member name="M:Chromium.CfxRuntime.Base64Decode(System.String)">
@@ -18803,11 +19304,13 @@
             Returns CEF version information for the libcef library. The |entry|
             parameter describes which version component will be returned:
             0 - CEF_VERSION_MAJOR
-            1 - CEF_COMMIT_NUMBER
-            2 - CHROME_VERSION_MAJOR
-            3 - CHROME_VERSION_MINOR
-            4 - CHROME_VERSION_BUILD
-            5 - CHROME_VERSION_PATCH
+            1 - CEF_VERSION_MINOR
+            2 - CEF_VERSION_PATCH
+            3 - CEF_COMMIT_NUMBER
+            4 - CHROME_VERSION_MAJOR
+            5 - CHROME_VERSION_MINOR
+            6 - CHROME_VERSION_BUILD
+            7 - CHROME_VERSION_PATCH
             </summary>
             <remarks>
             See also the original CEF documentation in
@@ -18988,61 +19491,12 @@
             <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_scheme_capi.h">cef/include/capi/cef_scheme_capi.h</see>.
             </remarks>
         </member>
-        <member name="M:Chromium.CfxSchemeRegistrar.AddCustomScheme(System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+        <member name="M:Chromium.CfxSchemeRegistrar.AddCustomScheme(System.String,System.Int32)">
             <summary>
             Register a custom scheme. This function should not be called for the built-
             in HTTP, HTTPS, FILE, FTP, ABOUT and DATA schemes.
             
-            If |isStandard| is true (1) the scheme will be treated as a standard
-            scheme. Standard schemes are subject to URL canonicalization and parsing
-            rules as defined in the Common Internet Scheme Syntax RFC 1738 Section 3.1
-            available at http://www.ietf.org/rfc/rfc1738.txt
-            
-            In particular, the syntax for standard scheme URLs must be of the form:
-            &lt;pre>
-             [scheme]://[username]:[password]@[host]:[port]/[url-path]
-            &lt;/pre> Standard scheme URLs must have a host component that is a fully
-            qualified domain name as defined in Section 3.5 of RFC 1034 [13] and
-            Section 2.1 of RFC 1123. These URLs will be canonicalized to
-            "scheme://host/path" in the simplest case and
-            "scheme://username:password@host:port/path" in the most explicit case. For
-            example, "scheme:host/path" and "scheme:///host/path" will both be
-            canonicalized to "scheme://host/path". The origin of a standard scheme URL
-            is the combination of scheme, host and port (i.e., "scheme://host:port" in
-            the most explicit case).
-            
-            For non-standard scheme URLs only the "scheme:" component is parsed and
-            canonicalized. The remainder of the URL will be passed to the handler as-
-            is. For example, "scheme:///some%20text" will remain the same. Non-standard
-            scheme URLs cannot be used as a target for form submission.
-            
-            If |isLocal| is true (1) the scheme will be treated with the same security
-            rules as those applied to "file" URLs. Normal pages cannot link to or
-            access local URLs. Also, by default, local URLs can only perform
-            XMLHttpRequest calls to the same URL (origin + path) that originated the
-            request. To allow XMLHttpRequest calls from a local URL to other URLs with
-            the same origin set the CfxSettings.FileAccessFromFileUrlsAllowed
-            value to true (1). To allow XMLHttpRequest calls from a local URL to all
-            origins set the CfxSettings.UniversalAccessFromFileUrlsAllowed value
-            to true (1).
-            
-            If |isDisplayIsolated| is true (1) the scheme can only be displayed from
-            other content hosted with the same scheme. For example, pages in other
-            origins cannot create iframes or hyperlinks to URLs with the scheme. For
-            schemes that must be accessible from other schemes set this value to false
-            (0), set |isCorsEnabled| to true (1), and use CORS "Access-Control-Allow-
-            Origin" headers to further restrict access.
-            
-            If |isSecure| is true (1) the scheme will be treated with the same
-            security rules as those applied to "https" URLs. For example, loading this
-            scheme from other secure schemes will not trigger mixed content warnings.
-            
-            If |isCorsEnabled| is true (1) the scheme can be sent CORS requests. This
-            value should be true (1) in most cases where |isStandard| is true (1).
-            
-            If |isCspBypassing| is true (1) the scheme can bypass Content-Security-
-            Policy (CSP) checks. This value should be false (0) in most cases where
-            |isStandard| is true (1).
+            See CfxSchemeOptions for possible values for |options|.
             
             This function may be called on any thread. It should only be called once
             per unique |schemeName| value. If |schemeName| is already registered or
@@ -19538,7 +19992,7 @@
             Set to true (1) to have the browser process message loop run in a separate
             thread. If false (0) than the CfxDoMessageLoopWork() function must be
             called from your application message loop. This option is only supported on
-            Windows.
+            Windows and Linux.
             </summary>
             <remarks>
             See also the original CEF documentation in
@@ -19695,9 +20149,10 @@
         <member name="P:Chromium.CfxSettings.LogSeverity">
             <summary>
             The log severity. Only messages of this severity level or higher will be
-            logged. Also configurable using the "log-severity" command-line switch with
-            a value of "verbose", "info", "warning", "error", "error-report" or
-            "disable".
+            logged. When set to DISABLE no messages will be written to the log file,
+            but FATAL messages will still be output to stderr. Also configurable using
+            the "log-severity" command-line switch with a value of "verbose", "info",
+            "warning", "error", "fatal" or "disable".
             </summary>
             <remarks>
             See also the original CEF documentation in
@@ -20370,9 +20825,10 @@
             <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/internal/cef_types.h">cef/include/internal/cef_types.h</see>.
             </remarks>
         </member>
-        <member name="P:Chromium.CfxTouchEvent.Force">
+        <member name="P:Chromium.CfxTouchEvent.Pressure">
             <summary>
-            Force. Set to 0 if not applicable.
+            The normalized pressure of the pointer input in the range of [0,1].
+            Set to 0 if not applicable.
             </summary>
             <remarks>
             See also the original CEF documentation in
@@ -20381,9 +20837,10 @@
         </member>
         <member name="P:Chromium.CfxTouchEvent.Type">
             <summary>
-            The state of the touch point. Touches begin with one TET_PRESSED event
-            followed by zero or more TET_MOVED events and finally one TET_RELEASED
-            or TET_CANCELLED event. Events not respecting this order will be ignored.
+            The state of the touch point. Touches begin with one CEF_TET_PRESSED event
+            followed by zero or more CEF_TET_MOVED events and finally one
+            CEF_TET_RELEASED or CEF_TET_CANCELLED event. Events not respecting this
+            order will be ignored.
             </summary>
             <remarks>
             See also the original CEF documentation in
@@ -20394,6 +20851,15 @@
             <summary>
             Bit flags describing any pressed modifier keys. See
             CfxEventFlags for values.
+            </summary>
+            <remarks>
+            See also the original CEF documentation in
+            <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/internal/cef_types.h">cef/include/internal/cef_types.h</see>.
+            </remarks>
+        </member>
+        <member name="P:Chromium.CfxTouchEvent.PointerType">
+            <summary>
+            The device type that caused the event.
             </summary>
             <remarks>
             See also the original CEF documentation in
@@ -20705,7 +21171,7 @@
             <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_v8_capi.h">cef/include/capi/cef_v8_capi.h</see>.
             </remarks>
         </member>
-        <member name="T:Chromium.CfxV8arrayBufferReleaseCallback">
+        <member name="T:Chromium.CfxV8ArrayBufferReleaseCallback">
             <summary>
             Callback structure that is passed to CfxV8Value.CreateArrayBuffer.
             </summary>
@@ -20714,7 +21180,7 @@
             <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_v8_capi.h">cef/include/capi/cef_v8_capi.h</see>.
             </remarks>
         </member>
-        <member name="E:Chromium.CfxV8arrayBufferReleaseCallback.ReleaseBuffer">
+        <member name="E:Chromium.CfxV8ArrayBufferReleaseCallback.ReleaseBuffer">
             <summary>
             Called to release |Buffer| when the ArrayBuffer JS object is garbage
             collected. |Buffer| is the value that was passed to CreateArrayBuffer along
@@ -21303,12 +21769,12 @@
             <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_v8_capi.h">cef/include/capi/cef_v8_capi.h</see>.
             </remarks>
         </member>
-        <member name="M:Chromium.CfxV8Value.CreateArrayBuffer(System.IntPtr,System.UInt64,Chromium.CfxV8arrayBufferReleaseCallback)">
+        <member name="M:Chromium.CfxV8Value.CreateArrayBuffer(System.IntPtr,System.UInt64,Chromium.CfxV8ArrayBufferReleaseCallback)">
             <summary>
             Create a new CfxV8Value object of type ArrayBuffer which wraps the
             provided |buffer| of size |length| bytes. The ArrayBuffer is externalized,
             meaning that it does not own |buffer|. The caller is responsible for freeing
-            |buffer| when requested via a call to CfxV8arrayBufferReleaseCallback::
+            |buffer| when requested via a call to CfxV8ArrayBufferReleaseCallback::
             ReleaseBuffer. This function should only be called from within the scope of a
             CfxRenderProcessHandler, CfxV8Handler or CfxV8Accessor callback,
             or in combination with calling enter() and exit() on a stored CfxV8Context
@@ -21773,7 +22239,7 @@
             Prevent the ArrayBuffer from using it's memory block by setting the length
             to zero. This operation cannot be undone. If the ArrayBuffer was created
             with CreateArrayBuffer then
-            CfxV8arrayBufferReleaseCallback.ReleaseBuffer will be called to
+            CfxV8ArrayBufferReleaseCallback.ReleaseBuffer will be called to
             release the underlying buffer.
             </summary>
             <remarks>
@@ -22293,9 +22759,9 @@
         </member>
         <member name="P:Chromium.CfxWindowInfoLinux.SharedTextureEnabled">
             <summary>
-            Set to true (1) to enable shared textures for off-screen rendering. Only
-            valid if windowless_rendering_enabled above is set to true.
-            Currently Windows-only (D3D11)
+            Set to true (1) to enable shared textures for windowless rendering. Only
+            valid if windowless_rendering_enabled above is also set to true. Currently
+            only supported on Windows (D3D11).
             </summary>
             <remarks>
             See also the original CEF documentation in
@@ -22304,8 +22770,8 @@
         </member>
         <member name="P:Chromium.CfxWindowInfoLinux.ExternalBeginFrameEnabled">
             <summary>
-            Set to true (1) to enable the ability to issue BeginFrame from the client
-            application.
+            Set to true (1) to enable the ability to issue BeginFrame requests from the
+            client application by calling CfxBrowserHost.SendExternalBeginFrame.
             </summary>
             <remarks>
             See also the original CEF documentation in
@@ -22350,9 +22816,9 @@
         </member>
         <member name="P:Chromium.CfxWindowInfoWindows.SharedTextureEnabled">
             <summary>
-            Set to true (1) to enable shared textures for off-screen rendering. Only
-            valid if windowless_rendering_enabled above is set to true.
-            Currently Windows-only (D3D11)
+            Set to true (1) to enable shared textures for windowless rendering. Only
+            valid if windowless_rendering_enabled above is also set to true. Currently
+            only supported on Windows (D3D11).
             </summary>
             <remarks>
             See also the original CEF documentation in
@@ -22361,8 +22827,8 @@
         </member>
         <member name="P:Chromium.CfxWindowInfoWindows.ExternalBeginFrameEnabled">
             <summary>
-            Set to true (1) to enable the ability to issue BeginFrame from the client
-            application.
+            Set to true (1) to enable the ability to issue BeginFrame requests from the
+            client application by calling CfxBrowserHost.SendExternalBeginFrame.
             </summary>
             <remarks>
             See also the original CEF documentation in
@@ -24552,7 +25018,7 @@
             Calling SetReturnValue() more then once per callback or from different event handlers will cause an exception to be thrown.
             </summary>
         </member>
-        <member name="T:Chromium.Remote.Event.CfrV8arrayBufferReleaseCallbackReleaseBufferEventHandler">
+        <member name="T:Chromium.Remote.Event.CfrReleaseBufferEventHandler">
             <summary>
             Called to release |Buffer| when the ArrayBuffer JS object is garbage
             collected. |Buffer| is the value that was passed to CreateArrayBuffer along
@@ -24563,7 +25029,7 @@
             <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_v8_capi.h">cef/include/capi/cef_v8_capi.h</see>.
             </remarks>
         </member>
-        <member name="T:Chromium.Remote.Event.CfrV8arrayBufferReleaseCallbackReleaseBufferEventArgs">
+        <member name="T:Chromium.Remote.Event.CfrReleaseBufferEventArgs">
             <summary>
             Called to release |Buffer| when the ArrayBuffer JS object is garbage
             collected. |Buffer| is the value that was passed to CreateArrayBuffer along
@@ -24574,9 +25040,9 @@
             <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_v8_capi.h">cef/include/capi/cef_v8_capi.h</see>.
             </remarks>
         </member>
-        <member name="P:Chromium.Remote.Event.CfrV8arrayBufferReleaseCallbackReleaseBufferEventArgs.Buffer">
+        <member name="P:Chromium.Remote.Event.CfrReleaseBufferEventArgs.Buffer">
             <summary>
-            Get the Buffer parameter for the <see cref="E:Chromium.Remote.CfrV8arrayBufferReleaseCallback.ReleaseBuffer"/> render process callback.
+            Get the Buffer parameter for the <see cref="E:Chromium.Remote.CfrV8ArrayBufferReleaseCallback.ReleaseBuffer"/> render process callback.
             </summary>
         </member>
         <member name="T:Chromium.Remote.Event.CfrV8HandlerExecuteEventHandler">
@@ -27964,6 +28430,18 @@
             <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_file_util_capi.h">cef/include/capi/cef_file_util_capi.h</see>.
             </remarks>
         </member>
+        <member name="T:Chromium.Remote.CfrRuntime.Process">
+            <summary>
+            Provides access to the remote process.
+            /// A thread must be in a remote context in order to access any functions in this class.
+            </summary>
+        </member>
+        <member name="M:Chromium.Remote.CfrRuntime.Process.SetPriorityClass(System.Diagnostics.ProcessPriorityClass)">
+            <summary>
+            Set the priority class in the target process.
+            Returns true on success, false otherwise.
+            </summary>
+        </member>
         <member name="M:Chromium.Remote.CfrRuntime.ExecuteProcess(Chromium.Remote.CfrApp)">
             <summary>
             This function should be called from the render process startup callback
@@ -28019,61 +28497,12 @@
             <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_scheme_capi.h">cef/include/capi/cef_scheme_capi.h</see>.
             </remarks>
         </member>
-        <member name="M:Chromium.Remote.CfrSchemeRegistrar.AddCustomScheme(System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+        <member name="M:Chromium.Remote.CfrSchemeRegistrar.AddCustomScheme(System.String,System.Int32)">
             <summary>
             Register a custom scheme. This function should not be called for the built-
             in HTTP, HTTPS, FILE, FTP, ABOUT and DATA schemes.
             
-            If |isStandard| is true (1) the scheme will be treated as a standard
-            scheme. Standard schemes are subject to URL canonicalization and parsing
-            rules as defined in the Common Internet Scheme Syntax RFC 1738 Section 3.1
-            available at http://www.ietf.org/rfc/rfc1738.txt
-            
-            In particular, the syntax for standard scheme URLs must be of the form:
-            &lt;pre>
-             [scheme]://[username]:[password]@[host]:[port]/[url-path]
-            &lt;/pre> Standard scheme URLs must have a host component that is a fully
-            qualified domain name as defined in Section 3.5 of RFC 1034 [13] and
-            Section 2.1 of RFC 1123. These URLs will be canonicalized to
-            "scheme://host/path" in the simplest case and
-            "scheme://username:password@host:port/path" in the most explicit case. For
-            example, "scheme:host/path" and "scheme:///host/path" will both be
-            canonicalized to "scheme://host/path". The origin of a standard scheme URL
-            is the combination of scheme, host and port (i.e., "scheme://host:port" in
-            the most explicit case).
-            
-            For non-standard scheme URLs only the "scheme:" component is parsed and
-            canonicalized. The remainder of the URL will be passed to the handler as-
-            is. For example, "scheme:///some%20text" will remain the same. Non-standard
-            scheme URLs cannot be used as a target for form submission.
-            
-            If |isLocal| is true (1) the scheme will be treated with the same security
-            rules as those applied to "file" URLs. Normal pages cannot link to or
-            access local URLs. Also, by default, local URLs can only perform
-            XMLHttpRequest calls to the same URL (origin + path) that originated the
-            request. To allow XMLHttpRequest calls from a local URL to other URLs with
-            the same origin set the CfrSettings.FileAccessFromFileUrlsAllowed
-            value to true (1). To allow XMLHttpRequest calls from a local URL to all
-            origins set the CfrSettings.UniversalAccessFromFileUrlsAllowed value
-            to true (1).
-            
-            If |isDisplayIsolated| is true (1) the scheme can only be displayed from
-            other content hosted with the same scheme. For example, pages in other
-            origins cannot create iframes or hyperlinks to URLs with the scheme. For
-            schemes that must be accessible from other schemes set this value to false
-            (0), set |isCorsEnabled| to true (1), and use CORS "Access-Control-Allow-
-            Origin" headers to further restrict access.
-            
-            If |isSecure| is true (1) the scheme will be treated with the same
-            security rules as those applied to "https" URLs. For example, loading this
-            scheme from other secure schemes will not trigger mixed content warnings.
-            
-            If |isCorsEnabled| is true (1) the scheme can be sent CORS requests. This
-            value should be true (1) in most cases where |isStandard| is true (1).
-            
-            If |isCspBypassing| is true (1) the scheme can bypass Content-Security-
-            Policy (CSP) checks. This value should be false (0) in most cases where
-            |isStandard| is true (1).
+            See CfrSchemeOptions for possible values for |options|.
             
             This function may be called on any thread. It should only be called once
             per unique |schemeName| value. If |schemeName| is already registered or
@@ -28801,7 +29230,7 @@
             <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_v8_capi.h">cef/include/capi/cef_v8_capi.h</see>.
             </remarks>
         </member>
-        <member name="T:Chromium.Remote.CfrV8arrayBufferReleaseCallback">
+        <member name="T:Chromium.Remote.CfrV8ArrayBufferReleaseCallback">
             <summary>
             Callback structure that is passed to CfrV8Value.CreateArrayBuffer.
             </summary>
@@ -28810,7 +29239,7 @@
             <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_v8_capi.h">cef/include/capi/cef_v8_capi.h</see>.
             </remarks>
         </member>
-        <member name="E:Chromium.Remote.CfrV8arrayBufferReleaseCallback.ReleaseBuffer">
+        <member name="E:Chromium.Remote.CfrV8ArrayBufferReleaseCallback.ReleaseBuffer">
             <summary>
             Called to release |Buffer| when the ArrayBuffer JS object is garbage
             collected. |Buffer| is the value that was passed to CreateArrayBuffer along
@@ -29399,12 +29828,12 @@
             <see href="https://bitbucket.org/chromiumfx/chromiumfx/src/tip/cef/include/capi/cef_v8_capi.h">cef/include/capi/cef_v8_capi.h</see>.
             </remarks>
         </member>
-        <member name="M:Chromium.Remote.CfrV8Value.CreateArrayBuffer(Chromium.Remote.RemotePtr,System.UInt64,Chromium.Remote.CfrV8arrayBufferReleaseCallback)">
+        <member name="M:Chromium.Remote.CfrV8Value.CreateArrayBuffer(Chromium.Remote.RemotePtr,System.UInt64,Chromium.Remote.CfrV8ArrayBufferReleaseCallback)">
             <summary>
             Create a new CfrV8Value object of type ArrayBuffer which wraps the
             provided |buffer| of size |length| bytes. The ArrayBuffer is externalized,
             meaning that it does not own |buffer|. The caller is responsible for freeing
-            |buffer| when requested via a call to CfrV8arrayBufferReleaseCallback::
+            |buffer| when requested via a call to CfrV8ArrayBufferReleaseCallback::
             ReleaseBuffer. This function should only be called from within the scope of a
             CfrRenderProcessHandler, CfrV8Handler or CfrV8Accessor callback,
             or in combination with calling enter() and exit() on a stored CfrV8Context
@@ -29869,7 +30298,7 @@
             Prevent the ArrayBuffer from using it's memory block by setting the length
             to zero. This operation cannot be undone. If the ArrayBuffer was created
             with CreateArrayBuffer then
-            CfrV8arrayBufferReleaseCallback.ReleaseBuffer will be called to
+            CfrV8ArrayBufferReleaseCallback.ReleaseBuffer will be called to
             release the underlying buffer.
             </summary>
             <remarks>
@@ -30783,6 +31212,11 @@
             Base class for all remote callback event args.
             </summary>
         </member>
+        <member name="P:Chromium.Remote.CfrEventArgs.RemoteProcessId">
+            <summary>
+            The process ID of the remote render process where the event originated.
+            </summary>
+        </member>
         <member name="T:Chromium.Remote.CfrBaseRefCounted">
             <summary>
             Base class for all remote wrapper classes for ref counted CEF structs.
@@ -30834,6 +31268,11 @@
         <member name="M:Chromium.Remote.RemotePtr.op_Equality(Chromium.Remote.RemotePtr,Chromium.Remote.RemotePtr)">
             <summary>
             Two remote pointers are equal if both are null or both are of the same value on the same connection.
+            </summary>
+        </member>
+        <member name="P:Chromium.Remote.RemotePtr.RemoteProcessId">
+            <summary>
+            The process ID of the remote render process this remote IntPtr belongs to.
             </summary>
         </member>
         <member name="F:Chromium.Remote.StreamHandler.readBufferStart">
@@ -31128,9 +31567,9 @@
         </member>
         <member name="P:Chromium.CfxWindowInfo.SharedTextureEnabled">
             <summary>
-            Set to true (1) to enable shared textures for off-screen rendering. Only
-            valid if windowless_rendering_enabled above is set to true.
-            Currently Windows-only (D3D11)
+            Set to true (1) to enable shared textures for windowless rendering. Only
+            valid if windowless_rendering_enabled above is also set to true. Currently
+            only supported on Windows (D3D11).
             </summary>
             <remarks>
             See also the original CEF documentation in
@@ -31139,8 +31578,8 @@
         </member>
         <member name="P:Chromium.CfxWindowInfo.ExternalBeginFrameEnabled">
             <summary>
-            Set to true (1) to enable the ability to issue BeginFrame from the client
-            application.
+            Set to true (1) to enable the ability to issue BeginFrame requests from the
+            client application by calling CfxBrowserHost.SendExternalBeginFrame.
             </summary>
             <remarks>
             See also the original CEF documentation in
