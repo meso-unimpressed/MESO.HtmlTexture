@@ -1,1 +1,0 @@
-{"file_format_version": "1.1.0", "layer": {"instance_extensions": [{"spec_version": "6", "name": "VK_EXT_debug_report"}], "description": "Google Validation Layer", "library_path": "VkLayer_threading.dll", "implementation_version": "1", "type": "GLOBAL", "api_version": "1.1.79", "name": "VK_LAYER_GOOGLE_threading"}}
